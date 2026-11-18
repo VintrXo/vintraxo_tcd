@@ -23,6 +23,7 @@ Approved,معتمد,TCD Content
 Approved By,اعتمده
 Approved On,تاريخ الاعتماد
 Approved Version,النسخة المعتمدة
+Approved Versions,النسخ المعتمدة
 Archive,أرشفة
 Archived,أرشفة
 Archived,مؤرشف,TCD
@@ -62,6 +63,7 @@ Cannot delete a space that still has content. Archive or move the content first.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
 Caption,التعليق
 Caption,التعليق,TCD Block
+Categories,التصنيفات
 Category,التصنيف,TCD Content
 Category,فئة
 Category Name,اسم التصنيف
@@ -82,6 +84,7 @@ Content,المحتوى,TCD Quiz
 Content,المحتوى,TCD Quiz Submission
 Content,محتوى
 Content Editor,محرر المحتوى
+Content Relations,علاقات المحتوى
 Content Type,نوع المحتوى
 Content Type,نوع المحتوى,TCD Content
 Content Type,نوع المحتوى,TCD Progress
@@ -148,9 +151,11 @@ Language,اللغة,TCD Content Version
 Last Viewed On,آخر مشاهدة
 Learner,المتعلم
 Learner Portal,بوابة المتعلمين
+Learner Progress,تقدّم المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
 Learning,التعلّم
+Learning Settings,إعدادات التعلّم
 Lesson,درس
 Lesson,درس,TCD
 Lesson,درس,TCD Content
@@ -244,8 +249,10 @@ Question {0}: correct answers must be between 1 and {1}.,السؤال {0}: ال�
 Question {0}: exactly one correct answer is allowed.,السؤال {0}: يُسمح بإجابة صحيحة واحدة فقط.
 Questions,الأسئلة
 Quiz,الاختبار
-Quiz Attempts,محاولات الاختبار
+Quiz Analytics,تحليلات الاختبارات
+Quiz Attempts,محاولات الاختبارات
 Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
+Quizzes,الاختبارات
 Reference,مرجع
 Reference,مرجع,TCD
 Reference,مرجع,TCD Content
@@ -312,20 +319,20 @@ Submit for Review,إرسال للمراجعة
 Summary,الملخص,TCD Content
 Summary,الملخص,TCD Content Version
 Summary,ملخص
-TCD Category,تصنيف TCD
-TCD Content,محتوى TCD
-TCD Content Relation,علاقة محتوى TCD
-TCD Content Version,نسخة محتوى TCD
-TCD Learner Progress,تقدّم متعلمي TCD
-TCD Progress,تقدّم TCD
-TCD Quiz,اختبار TCD
-TCD Quiz Analytics,تحليلات اختبارات TCD
-TCD Quiz Question,سؤال اختبار TCD
-TCD Quiz Submission,محاولة اختبار TCD
-TCD Settings,إعدادات TCD
-TCD Space,مساحة TCD
-TCD Space Role,دور مساحة TCD
-TCD Tutorial Lesson,درس مسار TCD
+TCD Category,تصنيف محتوى
+TCD Content,محتوى تعليمي
+TCD Content Relation,علاقة محتوى
+TCD Content Version,نسخة محتوى معتمدة
+TCD Learner Progress,تقدّم المتعلمين
+TCD Progress,سجل تقدّم
+TCD Quiz,اختبار
+TCD Quiz Analytics,تحليلات الاختبارات
+TCD Quiz Question,سؤال اختبار
+TCD Quiz Submission,محاولة اختبار
+TCD Settings,إعدادات التعلّم
+TCD Space,مساحة تعليمية
+TCD Space Role,دور المساحة
+TCD Tutorial Lesson,درس المسار
 Text,النص,TCD Block
 Text,نص
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
@@ -370,3 +377,4 @@ Wrong,خطأ
 {0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.
 {0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.
 {0} of {1} lessons completed,أُكمل {0} من {1} دروس
+{} Published,{} منشور
