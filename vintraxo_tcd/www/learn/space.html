@@ -5,11 +5,11 @@
 {% macro item_card(row) %}
 <li class="tcd-card">
 	<a href="{{ row.url|e }}" dir="{{ 'rtl' if row.language == 'ar' else 'ltr' }}">
-		<span class="tcd-badge">{{ _(row.content_type) }}</span>
-		{% if row.status != "Published" %}<span class="tcd-badge tcd-badge-warn">{{ _(row.status) }}</span>{% endif %}
+		<span class="tcd-badge">{{ _(row.content_type, context="TCD") }}</span>
+		{% if row.status != "Published" %}<span class="tcd-badge tcd-badge-warn">{{ _(row.status, context="TCD") }}</span>{% endif %}
 		<strong>{{ row.title|e }}</strong>
 		{% if row.summary %}<span class="tcd-muted">{{ row.summary|e }}</span>{% endif %}
-		{% if row.progress != "Not Started" %}<span class="tcd-status tcd-status-{{ row.progress|lower|replace(' ', '-') }}">{{ _(row.progress) }}</span>{% endif %}
+		{% if row.progress != "Not Started" %}<span class="tcd-status tcd-status-{{ row.progress|lower|replace(' ', '-') }}">{{ _(row.progress, context="TCD") }}</span>{% endif %}
 	</a>
 </li>
 {% endmacro %}

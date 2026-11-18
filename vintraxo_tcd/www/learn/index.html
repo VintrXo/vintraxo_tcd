@@ -21,9 +21,10 @@
 			{% for r in results %}
 			<li class="tcd-card">
 				<a href="{{ r.url|e }}" dir="{{ 'rtl' if r.language == 'ar' else 'ltr' }}">
-					<span class="tcd-badge">{{ _(r.content_type) }}</span>
+					<span class="tcd-badge">{{ _(r.content_type, context="TCD") }}</span>
 					<strong>{{ r.title|e }}</strong>
-					{% if r.summary %}<span class="tcd-muted">{{ r.summary|e }}</span>{% endif %}
+					{% if r.summary %}<span class="tcd-muted">{{ r.summary|e }}</span>
+					{% elif r.snippet %}<span class="tcd-muted tcd-snippet">{{ r.snippet|e }}</span>{% endif %}
 				</a>
 			</li>
 			{% endfor %}
@@ -41,7 +42,7 @@
 			{% for c in continue_learning %}
 			<li class="tcd-card">
 				<a href="{{ c.url|e }}">
-					<span class="tcd-badge">{{ _(c.content_type) }}</span>
+					<span class="tcd-badge">{{ _(c.content_type, context="TCD") }}</span>
 					<strong>{{ c.title|e }}</strong>
 					{% if c.content_type == "Tutorial" %}
 					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ c.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ c.percent|int }}%"></span></span>

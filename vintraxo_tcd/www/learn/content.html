@@ -8,12 +8,12 @@
 	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
 
 	{% if is_staff_preview %}
-	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status)) }}</div>
+	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status, context="TCD")) }}</div>
 	{% endif %}
 
 	<header class="tcd-hero">
-		<span class="tcd-badge">{{ _(doc.content_type) }}</span>
-		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress) }}</span>
+		<span class="tcd-badge">{{ _(doc.content_type, context="TCD") }}</span>
+		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress, context="TCD") }}</span>
 		<h1>{{ doc.title|e }}</h1>
 		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
 	</header>
@@ -40,7 +40,7 @@
 			<li class="tcd-lesson tcd-status-{{ l.status|lower|replace(' ', '-') }}">
 				<a href="{{ l.url|e }}">{{ l.title|e }}</a>
 				{% if l.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
-				<span class="tcd-status tcd-status-{{ l.status|lower|replace(' ', '-') }}">{{ _(l.status) }}</span>
+				<span class="tcd-status tcd-status-{{ l.status|lower|replace(' ', '-') }}">{{ _(l.status, context="TCD") }}</span>
 			</li>
 			{% endfor %}
 		</ol>

@@ -1,13 +1,41 @@
 (no output),(لا توجد مخرجات)
+0 = unlimited,0 = بلا حد
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
+Access,الوصول
+Active,مفعّل,TCD Quiz
+Active,مفعّل,TCD Space
+Active,نشط
 Add at least one question.,أضف سؤالًا واحدًا على الأقل.
+Add block:,إضافة كتلة:
+Allowed Roles,الأدوار المسموح بها
+Allowed Roles,الأدوار المسموحة,TCD Space
+Alt Text,النص البديل
+Alt Text,النص البديل,TCD Block
+Answered,أجابوا
+Answers,الإجابات
 Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
 Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
 Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
+Approve,اعتماد
 Approved,معتمد
-Archived,مؤرشف
+Approved,معتمد,TCD
+Approved,معتمد,TCD Content
+Approved By,اعتمده
+Approved On,تاريخ الاعتماد
+Approved Version,النسخة المعتمدة
+Archive,أرشفة
+Archived,أرشفة
+Archived,مؤرشف,TCD
+Archived,مؤرشف,TCD Content
 Article,مقال
+Article,مقال,TCD
+Article,مقال,TCD Content
+Attempt,المحاولة
+Attempts,المحاولات
 Attempts left: {0},المحاولات المتبقية: {0}
+Average Score,متوسط الدرجة
+Back to Draft,إرجاع لمسودة
+Best Quiz Score,أفضل درجة اختبار
 Block {0} ({1}): {2} has the wrong type.,الكتلة {0} ({1}): نوع {2} غير صحيح.
 Block {0} ({1}): {2} is required.,الكتلة {0} ({1}): الحقل {2} مطلوب.
 Block {0} must be an object.,الكتلة {0} يجب أن تكون كائنًا.
@@ -17,93 +45,322 @@ Block {0}: image URL must be absolute (http/https) or start with /.,الكتلة
 Block {0}: list items must be text.,الكتلة {0}: عناصر القائمة يجب أن تكون نصوصًا.
 Block {0}: playground language must be one of {1}.,الكتلة {0}: لغة محرر الأكواد يجب أن تكون أحد: {1}.
 Block {0}: unknown type {1}.,الكتلة {0}: نوع غير معروف {1}.
+Blocks,الكتل
+Blocks JSON (advanced),كتل JSON (متقدم)
+Blocks JSON is invalid. Fix it in the advanced section below.,كتل JSON غير صالحة. أصلحها في القسم المتقدم بالأسفل.
 Blocks must be a JSON list.,يجب أن تكون الكتل قائمة JSON.
 Blocks must be valid JSON.,يجب أن تكون الكتل بصيغة JSON صحيحة.
+Body,الجسم
+Body,المحتوى,TCD Content
+Callout,تنبيه
+Callout,تنبيه,TCD Block
 Cannot delete a category that has content.,لا يمكن حذف تصنيف يحتوي على محتوى.
 Cannot delete a category that has sub-categories.,لا يمكن حذف تصنيف له تصنيفات فرعية.
 Cannot delete a space that still has content. Archive or move the content first.,لا يمكن حذف مساحة ما زال بها محتوى. أرشِف المحتوى أو انقله أولًا.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
+Caption,التعليق
+Caption,التعليق,TCD Block
+Category,التصنيف,TCD Content
+Category,فئة
+Category Name,اسم التصنيف
+Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
+Code,رمز
+Code,كود,TCD Block
 Code editor,محرر الأكواد
-Completed,مكتمل
+Completed,اكتمل
+Completed,مكتمل,TCD
+Completed,مكتمل,TCD Progress
+Completed On,تاريخ الإكمال,TCD Progress
+Completed On,تم الإكمال في
+Completion Rate,نسبة الإكمال
+Content,المحتوى,TCD Content Version
+Content,المحتوى,TCD Progress
+Content,المحتوى,TCD Quiz
+Content,المحتوى,TCD Quiz Submission
+Content,محتوى
+Content Editor,محرر المحتوى
+Content Type,نوع المحتوى
+Content Type,نوع المحتوى,TCD Content
+Content Type,نوع المحتوى,TCD Progress
 Content cannot be related to itself.,لا يمكن ربط المحتوى بنفسه.
 Content must be reviewed and approved before publishing.,يجب مراجعة المحتوى واعتماده قبل النشر.
 Content versions are created automatically on approval.,تُنشأ نسخ المحتوى تلقائيًا عند الاعتماد.
 Content versions cannot be changed.,لا يمكن تعديل نسخ المحتوى.
 Continue learning,تابع التعلّم
+Copy,نسخ
 Correct,صحيح
+Correct %,نسبة الصحيح
+Correct Answers,الإجابات الصحيحة
 Correct answer,الإجابة الصحيحة
+Correctness of each question at grading time,صحة كل سؤال وقت التصحيح
+Current Approved Version,النسخة المعتمدة الحالية
+Default Content Language,لغة المحتوى الافتراضية
+Default Visibility,الظهور الافتراضي
+Defaults to TCD Settings > Default Visibility,القيمة الافتراضية من إعدادات TCD > الظهور الافتراضي
+Delete,حذف
+Delete this block?,حذف هذه الكتلة؟
+Description,الوصف,TCD Category
+Description,الوصف,TCD Space
+Description,وصف
 Done in {0} ms,انتهى في {0} مللي ثانية
 Draft,مسودة
+Draft,مسودة,TCD
+Draft,مسودة,TCD Content
+Duplicate,مكررة
 Each role can be listed only once.,لا يمكن تكرار الدور.
+Enable Learner Portal,تفعيل بوابة المتعلمين
+Enable Playgrounds,تفعيل محرر الأكواد
 Error,خطأ
+Expected Output (optional),المخرجات المتوقعة (اختياري)
+Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
+Explanation,الشرح
 False,خطأ
+Folder that contains pyodide.js (self-host for offline sites). Must end with /,المجلد الذي يحتوي pyodide.js (استضفه محليًا للمواقع غير المتصلة). يجب أن ينتهي بـ /
+Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
+From Content,من المحتوى
+From Date,من تاريخ
 General,عام
-In Progress,قيد التقدّم
+Heading,الترويسة
+Heading,عنوان,TCD Block
+Image,صورة
+Image,صورة,TCD Block
+Image URL,رابط الصورة
+Image URL,رابط الصورة,TCD Block
+In Progress,في تَقَدم
+In Progress,قيد التقدّم,TCD
+In Progress,قيد التقدّم,TCD Progress
 In Review,قيد المراجعة
+In Review,قيد المراجعة,TCD
+In Review,قيد المراجعة,TCD Content
+Internal,داخلي
+Internal,داخلي,TCD Content
+Internal,داخلي,TCD Settings
+Internal,داخلي,TCD Space
+Items (one per line),العناصر (عنصر في كل سطر)
+Items (one per line),العناصر (عنصر في كل سطر),TCD Block
+Language,اللغة
+Language,اللغة,TCD Block
+Language,اللغة,TCD Content
+Language,اللغة,TCD Content Version
+Last Viewed On,آخر مشاهدة
+Learner,المتعلم
+Learners,المتعلمون
+Learners Passed,نسبة الناجحين
 Learning,التعلّم
 Lesson,درس
+Lesson,درس,TCD
+Lesson,درس,TCD Content
+Lesson,درس,TCD Tutorial Lesson
 Lesson navigation,التنقل بين الدروس
 Lessons,الدروس
+Level,المستوى
+Level,المستوى,TCD Block
+List,قائمة
+List,قائمة,TCD Block
+"List of blocks: heading, paragraph, code, callout, list, image, playground",قائمة كتل: عنوان، فقرة، كود، تنبيه، قائمة، صورة، محرر أكواد
 Loading runtime (first run can take a few seconds)...,جارٍ تحميل بيئة التشغيل (أول تشغيل قد يستغرق بضع ثوانٍ)...
+Location,الموقع
+Location,الموقع,TCD Content
 Mark as complete,تحديد كمكتمل
+Max Attempts,الحد الأقصى للمحاولات
+Max Score,أقصى درجة
+Max Score,الدرجة العظمى,TCD Quiz Submission
 Max attempts cannot be negative.,لا يمكن أن يكون الحد الأقصى للمحاولات سالبًا.
+Most Common Wrong Answer,أكثر إجابة خاطئة
+Move down,تحريك لأسفل
+Move up,تحريك لأعلى
+Multiple Choice,اختيار متعدد
+Name,اسم
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
+Next,التالي
+Next,التالي,TCD Content Relation
 No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
 No attempts left.,لا توجد محاولات متبقية.
+No blocks yet. Add one below.,لا توجد كتل بعد. أضف واحدة بالأسفل.
 No content here yet.,لا يوجد محتوى هنا بعد.
 No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
-Not Started,لم يبدأ
+Not Started,لم تبدأ
+Not Started,لم يبدأ,TCD
 Not passed yet,لم تنجح بعد
 Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة أقصر.
+Numbered,مرقّمة
+Numbered,مرقّمة,TCD Block
+One option per line (not used for True False),خيار في كل سطر (لا يُستخدم مع صح/خطأ)
 Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
 Only a reviewer can publish content.,المراجع فقط يمكنه نشر المحتوى.
+Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
+"Option numbers starting at 1, comma separated (e.g. 2 or 1,3). True False: 1 = True, 2 = False","أرقام الخيارات بدءًا من 1 مفصولة بفاصلة (مثل 2 أو 1,3). صح/خطأ: 1 = صح، 2 = خطأ"
 Optional,اختياري
+Options,الخيارات,TCD Quiz Question
+Options,خيارات
 Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
 Output matches the expected result.,المخرجات مطابقة للنتيجة المتوقعة.
+Paragraph,فقرة
+Paragraph,فقرة,TCD Block
+Parent Category,التصنيف الأب
 Parent Category must belong to the same space.,يجب أن يكون التصنيف الأب في نفس المساحة.
 Parent Category would create a loop.,التصنيف الأب سيُنشئ حلقة دائرية.
+Pass Percentage,نسبة النجاح
 Pass percentage must be between 1 and 100.,نسبة النجاح يجب أن تكون بين 1 و100.
 Pass the quiz to complete this lesson.,انجح في الاختبار لإكمال هذا الدرس.
 Pass this quiz to complete the lesson.,انجح في هذا الاختبار لإكمال الدرس.
-Passed,ناجح
+Passed,تم الاجتياز بنجاح
+Per-question Results,نتائج كل سؤال
+Percent,النسبة,TCD Progress
+Percent,في المئة
+Percentage,النسبة المئوية
+Percentage,النسبة المئوية,TCD Quiz Submission
+Playground,محرر أكواد
+Playground,محرر أكواد,TCD Block
+Playground Timeout (seconds),مهلة محرر الأكواد (ثوانٍ)
 Playground timeout must be between 1 and 60 seconds.,مهلة محرر الأكواد يجب أن تكون بين 1 و60 ثانية.
+Playgrounds,محررات الأكواد
+Points,النقاط
+Prerequisite,متطلب سابق
 Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
+Progress Records,سجلات التقدّم
 Progress for this user and content already exists.,التقدّم لهذا المستخدم وهذا المحتوى موجود بالفعل.
 Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
-Published,منشور
+Public,جمهور
+Public,عام,TCD Content
+Public,عام,TCD Settings
+Public,عام,TCD Space
+Publish,نشر
+Published,منشور,TCD
+Published,منشور,TCD Content
+Published,نشرت
+Published On,تاريخ النشر
+Pyodide Base URL,رابط Pyodide الأساسي
+Question,السؤال
 Question {0}: add at least two options.,السؤال {0}: أضف خيارين على الأقل.
 Question {0}: correct answers must be between 1 and {1}.,السؤال {0}: الإجابات الصحيحة يجب أن تكون بين 1 و{1}.
 "Question {0}: correct answers must be numbers like 1 or 1,3.","السؤال {0}: الإجابات الصحيحة يجب أن تكون أرقامًا مثل 1 أو 1,3."
 Question {0}: exactly one correct answer is allowed.,السؤال {0}: يُسمح بإجابة صحيحة واحدة فقط.
+Questions,الأسئلة
+Quiz,الاختبار
+Quiz Attempts,محاولات الاختبار
 Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
 Reference,مرجع
+Reference,مرجع,TCD
+Reference,مرجع,TCD Content
+Related,ذات صلة
+Related,ذو صلة,TCD Content Relation
+Relation Type,نوع العلاقة
+Require Approval Before Publish,اشتراط الاعتماد قبل النشر
+Required to Complete Content,مطلوب لإكمال المحتوى
 Reset,إعادة تعيين
+Restricted,مقيّد
+Restricted,مقيّد,TCD Content
+Restricted,مقيّد,TCD Settings
+Restricted,مقيّد,TCD Space
 Results for {0},نتائج البحث عن {0}
+Review & Publishing,المراجعة والنشر
+Role,الدور,TCD Space Role
+Role,صلاحية
 Row {0}: lesson {1} is listed twice.,السطر {0}: الدرس {1} مكرر.
 Row {0}: lesson {1} must be in the same space.,السطر {0}: الدرس {1} يجب أن يكون في نفس المساحة.
 Row {0}: {1} is not a Lesson.,السطر {0}: {1} ليس درسًا.
 Run,تشغيل
 Running...,جارٍ التشغيل...
+SQL.js Base URL,رابط SQL.js الأساسي
+Save your changes first.,احفظ تغييراتك أولًا.
+Score,الدرجة,TCD Quiz Submission
+Score,النتيجة
 Score: {0} / {1} ({2}%),الدرجة: {0} / {1} ({2}%)
-Search,بحث
+Search,البحث
+Search Text,نص البحث
 Search lessons and articles,ابحث في الدروس والمقالات
+See Also,انظر أيضًا
+Select a quiz.,اختر اختبارًا.
+"Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
+Show Answers After Submit,إظهار الإجابات بعد التسليم
+Shown after submission when enabled on the quiz,يظهر بعد التسليم إذا كان مفعّلًا في الاختبار
+Shuffle Questions,خلط الأسئلة
+Single Choice,اختيار واحد
+Slug,المعرف اللطيف
+Slug,المعرّف في الرابط,TCD Content
 Slug {0} is already used in this space.,المعرّف {0} مستخدم بالفعل في هذه المساحة.
+Snapshot,اللقطة
+Sort Order,الترتيب,TCD Category
+Sort Order,الترتيب,TCD Content Relation
+Sort Order,ترتيب الفرز
+Space,المساحة
+Space,المساحة,TCD Category
+Space,المساحة,TCD Content
+Space,المساحة,TCD Progress
+Space,المساحة,TCD Quiz
+Space ID,معرّف المساحة
 "Space ID must be 2-80 characters: lowercase letters, digits, - or _.",معرّف المساحة من 2 إلى 80 حرفًا: حروف إنجليزية صغيرة وأرقام و- أو _.
 Spaces,المساحات
+Started On,تاريخ البدء
+Starter Code,الكود المبدئي
+Starter Code,الكود المبدئي,TCD Block
+Status,الحالة
+Status,الحالة,TCD Content
+Status,الحالة,TCD Progress
 Stop,إيقاف
 Stopped.,تم الإيقاف.
 Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت المهلة ({0} ثوانٍ).
 Submit answers,إرسال الإجابات
+Submit for Review,إرسال للمراجعة
+Summary,الملخص,TCD Content
+Summary,الملخص,TCD Content Version
+Summary,ملخص
+TCD Category,تصنيف TCD
+TCD Content,محتوى TCD
+TCD Content Relation,علاقة محتوى TCD
+TCD Content Version,نسخة محتوى TCD
+TCD Learner Progress,تقدّم متعلمي TCD
+TCD Progress,تقدّم TCD
+TCD Quiz,اختبار TCD
+TCD Quiz Analytics,تحليلات اختبارات TCD
+TCD Quiz Question,سؤال اختبار TCD
+TCD Quiz Submission,محاولة اختبار TCD
+TCD Settings,إعدادات TCD
+TCD Space,مساحة TCD
+TCD Space Role,دور مساحة TCD
+TCD Tutorial Lesson,درس مسار TCD
+Text,النص,TCD Block
+Text,نص
+The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
 "This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
+This content is {0}. Move it back to Draft to edit.,حالة هذا المحتوى {0}. أعده إلى مسودة لتعديله.
 This quiz is not active.,هذا الاختبار غير مفعّل.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
+Title,العنوان,TCD Block
+Title,العنوان,TCD Content
+Title,العنوان,TCD Content Version
+Title,العنوان,TCD Quiz
+Title,العنوان,TCD Space
+Title,العنوان,TCD Tutorial Lesson
+Title,اللقب
+To Content,إلى المحتوى
+To Date,إلى تاريخ
 True,صح
+True False,صح أو خطأ
 Try again,حاول مرة أخرى
 Tutorial,مسار تعليمي
+Tutorial,مسار تعليمي,TCD
+Tutorial,مسار تعليمي,TCD Content
 Tutorials complete automatically when their lessons are completed.,تكتمل المسارات تلقائيًا عند إكمال دروسها.
+Type,النوع
+Type,النوع,TCD Quiz Question
+Unique within the space. Generated from the title when empty,فريد داخل المساحة. يُولَّد من العنوان إذا تُرك فارغًا
+Unknown block type. Edit it in the JSON section.,نوع كتلة غير معروف. عدّلها في قسم JSON.
+User,المستخدم
+User,المستخدم,TCD Progress
+User,المستخدم,TCD Quiz Submission
+Variant,النوع,TCD Block
+Variant,مختلف
+Version,الإصدار
+Version,النسخة,TCD Content Version
+View in Portal,عرض في البوابة
+Visibility,الرؤية
+Visibility,الظهور,TCD Content
+Visibility,الظهور,TCD Space
 Wrong,خطأ
 {0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.
 {0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.

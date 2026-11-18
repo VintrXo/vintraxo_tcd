@@ -23,7 +23,7 @@
 ## Services (`vintraxo_tcd/core/`)
 | Module | Responsibility |
 |---|---|
-| search.py | Arabic-aware text normalization |
+| search.py | Arabic-aware normalization and ranked search (all terms required, title > summary > body, snippets) |
 | content.py | Block schema, slugs, search_text, tutorial lessons, review workflow, version snapshots |
 | permissions.py | Space/visibility access (has_permission + permission_query_conditions) |
 | progress.py | Lesson/tutorial progress and roll-up |
@@ -70,3 +70,24 @@ page (site origin)
   path to self-host for offline sites). Output is capped at 100k characters; SQL tables at 500 rows.
 - Verified in headless Chromium: JS/Python infinite loops are killed, `fetch` to the site from the sandbox is blocked
   (origin `null`), HTML preview cannot touch the parent page.
+
+## Authoring and instructor tools (P4)
+- **Block editor** (`tcd_content.js`): visual editor for `blocks` (add, edit, move, copy, delete), synced to the JSON field,
+  which stays available under "Blocks JSON (advanced)". Locked (read-only) for Approved/Published content.
+  Status group buttons call `api.set_content_status` (Submit for Review, Approve, Publish, Archive, Back to Draft);
+  "View in Portal" and "Approved Version" shortcuts. Flags come from `TCDContent.onload`.
+- **Reports** (Instructor, Reviewer, Administrator; permission-aware via `get_list`):
+  - TCD Learner Progress: progress per learner and content, best quiz score, attempts; completion summary and chart.
+  - TCD Quiz Analytics: per-question correct rate and most common wrong answer, attempts, pass rate, average score.
+    Uses `TCD Quiz Submission.results` (correctness stored at grading time), so editing the answer key later does not
+    rewrite history.
+- **Search**: every term must match; ranking = exact/phrase title > title word > title prefix > summary > body frequency;
+  LIKE wildcards in the query are escaped. Used by `api.search_content` and the portal.
+
+## Translations
+`translations/ar.csv` (no compile step). App translations are global, so:
+- app-specific strings use plain keys;
+- generic words (Title, Status, Published...) are translated with a **context**: the DocType name for desk labels and
+  select options (Frappe passes it automatically), `TCD Block` for editor labels, `TCD` for statuses/types in the portal
+  and reports. This keeps our wording without changing other apps' screens.
+- Frappe/ERPNext Arabic `.po` files are only active after `bench compile-po-to-mo`.

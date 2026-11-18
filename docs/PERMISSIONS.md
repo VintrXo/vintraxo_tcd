@@ -42,9 +42,13 @@ Layers 2-3 are applied in both `has_permission` (single doc) and
 Relation (both ends), Version and Quiz (through their content).
 Progress and Quiz Submission: users see their own rows; staff also see rows for content they can access.
 
+## Reports (P4)
+TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
+Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.
+
 ## Portal (P3)
 `/learn` pages use the same checks (`frappe.has_permission` / `get_list`), so a page shows exactly what the API allows.
 Guests are redirected to login; anything not readable is a 404.
 
 Rule: extra layers only restrict further; they never bypass Frappe permissions.
-Every phase ships a permission test (`tests/test_p1.py`, `tests/test_p2.py`, `tests/test_p3.py`).
+Every phase ships a permission test (`tests/test_p1.py`, `tests/test_p2.py`, `tests/test_p3.py`, `tests/test_p4.py`).

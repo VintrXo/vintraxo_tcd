@@ -29,3 +29,99 @@ def normalize_text(text: str | None) -> str:
 	text = _DIACRITICS.sub("", str(text)).replace(_TATWEEL, "")
 	text = text.translate(_CHAR_MAP).lower()
 	return _WS.sub(" ", text).strip()
+
+
+# ---------------------------------------------------------------- ranked search
+
+MAX_TERMS = 8
+CANDIDATES = 200
+SNIPPET_RADIUS = 60
+RESULT_FIELDS = [
+	"name",
+	"title",
+	"slug",
+	"space",
+	"content_type",
+	"status",
+	"language",
+	"summary",
+	"modified",
+]
+
+
+def tokenize(query: str | None) -> list[str]:
+	"""Normalized, de-duplicated terms of 2+ characters (order kept)."""
+	seen, terms = set(), []
+	for term in normalize_text(query).split():
+		if len(term) >= 2 and term not in seen:
+			seen.add(term)
+			terms.append(term)
+	return terms[:MAX_TERMS]
+
+
+def _like(term: str) -> str:
+	escaped = term.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+	return f"%{escaped}%"
+
+
+def _score(row, terms: list[str], phrase: str) -> float:
+	title = normalize_text(row.title)
+	summary = normalize_text(row.summary)
+	body = row.search_text or ""
+	title_words = title.split()
+	score = 0.0
+	if title == phrase:
+		score += 100
+	elif phrase in title:
+		score += 40
+	for term in terms:
+		if term in title_words:
+			score += 15
+		elif any(w.startswith(term) for w in title_words):
+			score += 10
+		elif term in title:
+			score += 6
+		if term in summary:
+			score += 3
+		score += min(body.count(term), 5) * 0.5
+	if row.content_type == "Tutorial":
+		score += 1
+	return score
+
+
+def snippet(text: str, terms: list[str]) -> str:
+	"""Short excerpt of normalized text around the first matching term."""
+	if not text:
+		return ""
+	positions = [text.find(t) for t in terms if t in text]
+	if not positions:
+		return text[: SNIPPET_RADIUS * 2]
+	start = max(min(positions) - SNIPPET_RADIUS, 0)
+	end = min(start + SNIPPET_RADIUS * 2, len(text))
+	return ("..." if start else "") + text[start:end].strip() + ("..." if end < len(text) else "")
+
+
+def search(query: str | None, space: str | None = None, limit: int = 20) -> list:
+	"""Every term must match (AND); results ranked by where the terms match. Permission-aware."""
+	import frappe
+
+	terms = tokenize(query)
+	if not terms:
+		return []
+	filters = [["TCD Content", "search_text", "like", _like(t)] for t in terms]
+	if space:
+		filters.append(["TCD Content", "space", "=", space])
+	rows = frappe.get_list(
+		"TCD Content",
+		filters=filters,
+		fields=[*RESULT_FIELDS, "search_text"],
+		order_by="modified desc",
+		limit_page_length=CANDIDATES,
+	)
+	phrase = " ".join(terms)
+	for row in rows:
+		row.score = _score(row, terms, phrase)
+		row.snippet = snippet(row.search_text, terms)
+		del row["search_text"]
+	rows.sort(key=lambda r: (-r.score, -r.modified.timestamp()))
+	return rows[: max(1, min(int(limit or 20), 100))]

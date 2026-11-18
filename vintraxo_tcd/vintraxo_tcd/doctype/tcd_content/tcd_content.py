@@ -30,6 +30,15 @@ class TCDContent(Document):
 		if self.status == "Draft":
 			self.published_on = None
 
+	def onload(self):
+		roles = set(frappe.get_roles())
+		self.set_onload("require_approval", svc.require_approval())
+		self.set_onload("is_reviewer", bool(roles & svc.REVIEW_ROLES))
+		if self.space and self.slug and not self.is_new():
+			from vintraxo_tcd.core.portal import content_url
+
+			self.set_onload("portal_url", content_url(self.space, self.slug))
+
 	def set_defaults(self):
 		if not self.language or not self.visibility:
 			settings = frappe.get_cached_doc("TCD Settings")

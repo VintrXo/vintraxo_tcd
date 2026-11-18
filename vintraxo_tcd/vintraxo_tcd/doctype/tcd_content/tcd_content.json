@@ -17,6 +17,8 @@
   "category",
   "body_section",
   "summary",
+  "blocks_editor",
+  "blocks_json_section",
   "blocks",
   "search_text",
   "lessons_section",
@@ -116,6 +118,17 @@
    "label": "Summary"
   },
   {
+   "fieldname": "blocks_editor",
+   "fieldtype": "HTML",
+   "label": "Content Editor"
+  },
+  {
+   "fieldname": "blocks_json_section",
+   "fieldtype": "Section Break",
+   "label": "Blocks JSON (advanced)",
+   "collapsible": 1
+  },
+  {
    "fieldname": "blocks",
    "fieldtype": "JSON",
    "label": "Blocks",
@@ -183,7 +196,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-18 22:00:00.000000",
+ "modified": "2026-11-19 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

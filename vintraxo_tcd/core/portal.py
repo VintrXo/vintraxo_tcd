@@ -6,7 +6,7 @@ import frappe
 from frappe import _
 
 from vintraxo_tcd.core import progress
-from vintraxo_tcd.core.search import normalize_text
+from vintraxo_tcd.core.search import search
 
 CONTENT_LIST_FIELDS = ["name", "title", "slug", "summary", "content_type", "language", "category", "modified"]
 
@@ -75,15 +75,8 @@ def home_context(query: str | None = None) -> dict:
 	)
 	ctx["continue_learning"] = _attach_content(in_progress)
 
-	term = normalize_text(query)
-	if len(term) >= 2:
-		rows = frappe.get_list(
-			"TCD Content",
-			filters={"search_text": ("like", f"%{term}%"), "content_type": ("!=", "Reference")},
-			fields=[*CONTENT_LIST_FIELDS, "space"],
-			order_by="modified desc",
-			limit_page_length=50,
-		)
+	if query:
+		rows = search(query, limit=50)
 		for row in rows:
 			row.url = content_url(row.space, row.slug)
 		ctx["results"] = rows
@@ -214,7 +207,7 @@ def js_labels() -> dict:
 		"output_matches": _("Output matches the expected result."),
 		"output_differs": _("Output differs from the expected result."),
 		"error": _("Error"),
-		"completed": _("Completed"),
+		"completed": _("Completed", context="TCD"),
 		"mark_complete": _("Mark as complete"),
 		"submit": _("Submit answers"),
 		"score": _("Score: {0} / {1} ({2}%)"),

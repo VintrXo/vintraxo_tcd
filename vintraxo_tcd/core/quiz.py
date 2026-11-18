@@ -134,6 +134,7 @@ def grade(quiz, user: str, answers) -> dict:
 			"max_score": max_score,
 			"percentage": percentage,
 			"passed": int(passed),
+			"results": json.dumps({r["id"]: r["is_correct"] for r in results}),
 		}
 	)
 	sub.flags.from_quiz = True

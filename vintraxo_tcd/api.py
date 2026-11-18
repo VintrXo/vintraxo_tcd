@@ -5,7 +5,7 @@ import frappe
 from vintraxo_tcd.core import content as svc_content
 from vintraxo_tcd.core import progress
 from vintraxo_tcd.core import quiz as svc_quiz
-from vintraxo_tcd.core.search import normalize_text
+from vintraxo_tcd.core.search import search
 
 # keep in sync with the TCD Settings field defaults
 DEFAULT_PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/"
@@ -24,20 +24,8 @@ def set_content_status(name: str, status: str) -> dict:
 
 @frappe.whitelist()
 def search_content(query: str, space: str | None = None, limit: int = 20) -> list[dict]:
-	"""Arabic-normalized search over content the user can read."""
-	term = normalize_text(query)
-	if len(term) < 2:
-		return []
-	filters = {"search_text": ("like", f"%{term}%")}
-	if space:
-		filters["space"] = space
-	return frappe.get_list(
-		"TCD Content",
-		filters=filters,
-		fields=["name", "title", "slug", "space", "content_type", "status", "language"],
-		order_by="modified desc",
-		limit_page_length=min(int(limit or 20), 100),
-	)
+	"""Arabic-normalized, ranked search over content the user can read."""
+	return search(query, space=space, limit=limit)
 
 
 # ---------------------------------------------------------------- P2: learning
