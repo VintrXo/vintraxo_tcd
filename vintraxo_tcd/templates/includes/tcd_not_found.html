@@ -1,0 +1,13 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page tcd-not-found">
+	<header class="tcd-hero">
+		<h1>{{ _("Page not found") }}</h1>
+		<p class="tcd-muted">{{ _("This page does not exist or you do not have access to it.") }}</p>
+	</header>
+	<a class="btn btn-default" href="/learn">{{ _("Back to Learning") }}</a>
+</div>
+{% endblock %}

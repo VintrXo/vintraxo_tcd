@@ -53,6 +53,25 @@ def direction(language: str | None) -> str:
 	return "rtl" if (language or "ar") == "ar" else "ltr"
 
 
+def portal_page(build):
+	"""Wrap a www get_context: hidden/missing pages render our own 404 with a real 404 status.
+
+	Frappe's generic 404 page can be replaced by other apps (e.g. Builder) without setting the
+	status code, so we never rely on it.
+	"""
+
+	def get_context(context):
+		try:
+			build(context)
+		except frappe.PageDoesNotExistError:
+			context.http_status_code = 404
+			context.title = _("Page not found")
+			context.template = "templates/includes/tcd_not_found.html"
+			context.show_sidebar = False
+
+	return get_context
+
+
 # ---------------------------------------------------------------- pages
 
 
