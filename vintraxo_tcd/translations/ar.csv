@@ -193,6 +193,7 @@ Group Name,اسم المجموعة
 Group Name,اسم المجموعة,TCD Student Group
 Heading,الترويسة
 Heading,عنوان,TCD Block
+Home,الصفحة الرئيسية
 Image,صورة
 Image,صورة,TCD Block
 Image URL,رابط الصورة
@@ -370,6 +371,7 @@ Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
 Relation Type,نوع العلاقة
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
+Reports,تقارير
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
 Required Sequence,تسلسل إلزامي
 Required Sequence,تسلسل إلزامي,TCD
@@ -411,6 +413,7 @@ Search lessons and articles,ابحث في الدروس والمقالات
 See Also,انظر أيضًا
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
+Settings,إعدادات
 "Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
 Show Answers After Submit,إظهار الإجابات بعد التسليم
 Shown after submission when enabled on the quiz,يظهر بعد التسليم إذا كان مفعّلًا في الاختبار
