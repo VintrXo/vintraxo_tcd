@@ -1,0 +1,56 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+{% set s = data.summary %}
+<div class="tcd-page">
+	<header class="tcd-hero"><h1>{{ _("My Learning") }}</h1></header>
+
+	<ul class="tcd-stats">
+		<li><strong>{{ s.active }}</strong><span>{{ _("Active", context="TCD") }}</span></li>
+		<li><strong>{{ s.pending_approval }}</strong><span>{{ _("Pending Approval", context="TCD") }}</span></li>
+		<li><strong>{{ s.completed }}</strong><span>{{ _("Completed", context="TCD") }}</span></li>
+		<li class="{{ 'tcd-stat-warn' if s.overdue else '' }}"><strong>{{ s.overdue }}</strong><span>{{ _("Overdue") }}</span></li>
+	</ul>
+
+	<section class="tcd-section">
+		<h2>{{ _("My courses") }}</h2>
+		{% if data.enrollments %}
+		<ul class="tcd-cards">
+			{% for e in data.enrollments %}
+			<li class="tcd-card">
+				<a href="{{ e.url|e }}">
+					<span class="tcd-badge">{{ _("Learning Path") if e.kind == "path" else _("Course", context="TCD") }}</span>
+					<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>
+					<strong>{{ e.title|e }}</strong>
+					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ e.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ e.percent|int }}%"></span></span>
+					<span class="tcd-muted">{{ e.percent|int }}%{% if e.due_date %} · {{ _("Due") }} {{ frappe.format_date(e.due_date) }}{% endif %}{% if e.overdue %} · <span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="tcd-muted">{{ _("You are not enrolled in any course yet.") }} <a href="/learn">{{ _("Browse spaces") }}</a></p>
+		{% endif %}
+	</section>
+
+	{% if data.assignments %}
+	<section class="tcd-section">
+		<h2>{{ _("Assignments") }}</h2>
+		<ul class="tcd-lessons">
+			{% for a in data.assignments %}
+			<li class="tcd-lesson">
+				<strong>{{ a.title|e }}</strong>
+				<span class="tcd-status tcd-status-{{ a.status|lower|replace(' ', '-') }}">{{ _(a.status, context="TCD") }}</span>
+				{% if a.score is not none and a.status == "Graded" %}<span class="tcd-muted">{{ a.score }} / {{ a.max_score }}</span>{% endif %}
+				{% if a.due_date %}<span class="tcd-muted">{{ _("Due") }} {{ frappe.format_datetime(a.due_date) }}</span>{% endif %}
+				{% if a.overdue %}<span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}
+				{% if a.feedback %}<p class="tcd-muted tcd-small">{{ a.feedback|e }}</p>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+</div>
+{% endblock %}

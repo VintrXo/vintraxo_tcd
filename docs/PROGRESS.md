@@ -27,27 +27,28 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Desk polish | f8bddb7 … 4d16f87 | 48 | VX icon, workspace, sidebar, navbar link, real 404 |
 | Phase 0 — cleanup | e553fd6 + this commit | 52 | Arabic names without TCD, short labels, translated badge, translation coverage test, VISION/PROGRESS/ADR docs |
 | Phase 1 (partial, previous plan) | 648097e | 65 | Course, Chapter, Learning Path, Learning Item, Enrollment, Student Group, 4 completion rules, roll-up, course/path portal pages |
+| Phase 1 — LMS core | this commit | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
 
-## Phase 1 — LMS core: audit against PLAN.md
+## Phase 1 — LMS core: status
 
 | Requirement | State |
 |---|---|
-| TCD Course, TCD Chapter, TCD Learning Path, TCD Learning Item, TCD Enrollment | Done (648097e) |
-| TCD Batch (student groups) | Exists as **TCD Student Group** — naming decision pending |
-| Instructor assignment | Missing (no course ↔ instructor link) |
-| Reuse lesson entity | Done (chapters reference TCD Content) |
-| Lesson types: Article, Video, Interactive Tutorial, Playground, Quiz, Assignment, External, Project, Document | Partial: content types are Article / Tutorial / Lesson / Reference; no lesson type, no video/external block |
-| TCD Assignment + Submission, manual grading, feedback | Missing |
-| Completion rules + roll-up lesson → chapter → course → path | Done |
-| Course feedback / rating | Missing |
-| Learner "My Learning" (portal) | Partial: "My courses" section on /learn |
-| Instructor dashboard (portal + report) | Missing |
-| Enrollment-based access (enrolled learners, course instructors, admins) | Partial: course access follows space/visibility; no "enrolled only" mode, instructors see all courses they can read |
+| TCD Course, TCD Chapter, TCD Learning Path, TCD Learning Item, TCD Enrollment | Done |
+| TCD Batch | Done (renamed from TCD Student Group, ADR-0007) |
+| Instructor assignment | Done (`instructors` on course and path) |
+| Reuse lesson entity; lesson types | Done (`lesson_type`; video, link and file blocks, ADR-0009) |
+| TCD Assignment + Submission, manual grading, feedback | Done (Graded / Returned, private uploads, late flag) |
+| Completion rules + roll-up | Done (required assignments also gate completion) |
+| Course feedback / rating | Done (TCD Course Feedback) |
+| My Learning + Instructor dashboards (portal + report) | Done (/learn/my, /learn/instructor, TCD Instructor Dashboard) |
+| Enrollment-based access | Done (course access Enrolled Only + instructor scope, ADR-0008) |
+
+Not verified: actual YouTube/Vimeo playback (headless Chromium shows the embed with the right URL but does not play it).
 
 ## Pending
 
-Phase 1 remainder, then Phases 2–11 (see PLAN.md). MVP gate after Phase 2.
+Phase 2 (unified experience), then the MVP gate; Phases 3–11 after (see PLAN.md).
 
 ## Blocked / needs decision
 
-- Phase 1 remainder: Batch naming, enrollment-only access mode, lesson types (see the report of 2026-11-19).
+- None.

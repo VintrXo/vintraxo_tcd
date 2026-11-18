@@ -30,6 +30,9 @@
 | quiz.py | Quiz validation, learner payload (no answers), grading |
 | portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
 | courses.py | Course/path structure rules, completion rules, roll-up, enrollment, sequence gating |
+| assignments.py | Assignment validation, submission, grading, completion |
+| media.py | Video/link/file blocks, video host allowlist, upload validation |
+| dashboards.py | My Learning and instructor dashboard data |
 
 ## Public API (`vintraxo_tcd.api.*`)
 | Method | HTTP | Purpose |
@@ -45,14 +48,21 @@
 | get_course(name) | GET | Outline with completed/locked items, chapter and course percent, enrollment |
 | get_learning_path(name) | GET | Courses with state, path percent, enrollment |
 | enroll(enrollment_for, name) | POST | Self-enrollment (Course / Learning Path; path also enrolls in its courses) |
-| enroll_group(student_group, enrollment_for, name, due_date?) | POST | Staff: enroll a cohort; returns enrolled + skipped with reasons |
-| approve_enrollment(name) | POST | Instructor: approve a Pending Approval enrollment |
+| enroll_batch(batch, enrollment_for, name, due_date?) | POST | Instructor of the course: enroll a batch; returns enrolled + skipped with reasons |
+| approve_enrollment(name) | POST | Instructor of the course: approve a Pending Approval enrollment |
+| get_assignment(name) | GET | Assignment details + the learner's submission |
+| submit_assignment(name, answer_text?, attachment?) | POST | Create/update the learner's submission (file must be the learner's own upload) |
+| grade_submission(name, action, score?, feedback?) | POST | Instructor of the course: Graded or Returned |
+| rate_course(name, rating, comment?) | POST | Enrolled learner: 1-5 rating, one per course |
+| my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
 
 ## Learner portal (P3)
 | Route | Page | Content |
 |---|---|---|
 | `/learn` | `www/learn/index` | Spaces, "continue learning", search (`?q=`) |
 | `/learn/<space>` | `www/learn/space` | Content grouped by category; tutorials first |
+| `/learn/my` | `www/learn/my` | My Learning: enrollments, due/overdue, assignments |
+| `/learn/instructor` | `www/learn/instructor` | Instructor dashboard: courses, approvals, grading queue |
 | `/learn/<space>/course/<slug>` | `www/learn/course` | Outline, progress, enroll button, locked items |
 | `/learn/<space>/path/<slug>` | `www/learn/path` | Courses of the path with state |
 | `/learn/<space>/<slug>[?tutorial=&course=]` | `www/learn/content` | Blocks, tutorial lessons, quiz, complete button, prev/next |

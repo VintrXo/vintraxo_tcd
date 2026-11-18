@@ -78,8 +78,101 @@
 		});
 	}
 
+	async function uploadPrivate(file) {
+		const form = new FormData();
+		form.append("file", file, file.name);
+		form.append("is_private", "1");
+		const res = await fetch("/api/method/upload_file", {
+			method: "POST",
+			credentials: "same-origin",
+			headers: { Accept: "application/json", "X-Frappe-CSRF-Token": (window.frappe && window.frappe.csrf_token) || "" },
+			body: form,
+		});
+		const data = await res.json().catch(() => ({}));
+		if (!res.ok) throw new Error(serverMessage(data) || res.statusText);
+		return data.message.file_url;
+	}
+
+	function showIn(section, text, isError) {
+		let msg = section.querySelector(".tcd-message");
+		if (!msg) {
+			msg = el("p", { class: "tcd-message", role: "status" });
+			section.append(msg);
+		}
+		msg.textContent = text;
+		msg.hidden = !text;
+		msg.classList.toggle("tcd-error", !!isError);
+	}
+
+	function initAssignment(t) {
+		document.querySelectorAll(".tcd-assignment[data-assignment]").forEach((section) => {
+			const form = section.querySelector(".tcd-assignment-form");
+			if (!form) return;
+			form.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				const button = form.querySelector("button[type=submit]");
+				button.disabled = true;
+				try {
+					const args = { name: section.dataset.assignment };
+					const text = form.querySelector("textarea[name=answer_text]");
+					if (text) args.answer_text = text.value;
+					const fileInput = form.querySelector("input[type=file]");
+					if (fileInput && fileInput.files.length) {
+						showIn(section, t.uploading || "Uploading...");
+						args.attachment = await uploadPrivate(fileInput.files[0]);
+					}
+					await call("submit_assignment", args, true);
+					window.location.reload();
+				} catch (err) {
+					showIn(section, err.message, true);
+					button.disabled = false;
+				}
+			});
+		});
+	}
+
+	function initRating(t) {
+		const section = document.querySelector(".tcd-rating[data-course]");
+		const form = section && section.querySelector(".tcd-rating-form");
+		if (!form) return;
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const checked = form.querySelector("input[name=rating]:checked");
+			if (!checked) return showIn(section, t.choose_rating || "Choose a rating.", true);
+			try {
+				await call(
+					"rate_course",
+					{ name: section.dataset.course, rating: Number(checked.value), comment: form.querySelector("textarea").value },
+					true
+				);
+				showIn(section, t.saved || "Saved.");
+			} catch (err) {
+				showIn(section, err.message, true);
+			}
+		});
+	}
+
+	function initApprove() {
+		document.querySelectorAll(".tcd-approve[data-name]").forEach((btn) => {
+			btn.addEventListener("click", async () => {
+				btn.disabled = true;
+				try {
+					await call("approve_enrollment", { name: btn.dataset.name }, true);
+					btn.closest("li").remove();
+				} catch (err) {
+					showIn(btn.closest("section"), err.message, true);
+					btn.disabled = false;
+				}
+			});
+		});
+	}
+
 	function init() {
 		initEnroll();
+		const t0 = labels();
+		initAssignment(t0);
+		initRating(t0);
+		initApprove();
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;
 		const t = labels();

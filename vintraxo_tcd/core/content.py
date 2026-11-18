@@ -23,6 +23,15 @@ BLOCK_SCHEMA = {
 	"list": {"items": (list, True), "ordered": (bool, False)},
 	"image": {"url": (str, True), "alt": (str, False), "caption": (str, False)},
 	"playground": {"language": (str, True), "code": (str, True), "expected_output": (str, False)},
+	"video": {
+		"url": (str, True),
+		"title": (str, False),
+		"caption": (str, False),
+		"provider": (str, False),
+		"embed_url": (str, False),
+	},
+	"link": {"url": (str, True), "title": (str, True), "description": (str, False)},
+	"file": {"url": (str, True), "title": (str, True)},
 }
 
 # fields whose text goes into search_text, per block type
@@ -34,6 +43,9 @@ SEARCHABLE = {
 	"list": ("items",),
 	"image": ("alt", "caption"),
 	"playground": ("code",),
+	"video": ("title", "caption"),
+	"link": ("title", "description"),
+	"file": ("title",),
 }
 
 
@@ -96,6 +108,15 @@ def _validate_block_values(idx: int, block: dict):
 		)
 	if btype == "image" and not re.match(r"^(https?://|/)", block["url"]):
 		frappe.throw(_("Block {0}: image URL must be absolute (http/https) or start with /.").format(idx))
+	if btype in ("video", "link", "file"):
+		from vintraxo_tcd.core import media
+
+		if btype == "video":
+			block["provider"], block["embed_url"] = media.parse_video(block["url"])
+		elif btype == "link":
+			media.validate_link(block["url"])
+		else:
+			media.validate_file_url(block["url"], public_only=True)
 
 
 def dump_blocks(blocks: list) -> str:

@@ -10,6 +10,8 @@ class TCDContent(Document):
 	def validate(self):
 		self.set_defaults()
 		self.validate_category()
+		if self.content_type != "Lesson":
+			self.lesson_type = None
 		svc.validate_lessons(self)
 
 		blocks = svc.validate_blocks(svc.parse_blocks(self.blocks))

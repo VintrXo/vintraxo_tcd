@@ -35,6 +35,9 @@
 	</section>
 	{% endif %}
 
+	<p class="tcd-quicklinks"><a class="btn btn-default btn-sm" href="/learn/my">{{ _("My Learning") }}</a>
+		{% if is_instructor %}<a class="btn btn-default btn-sm" href="/learn/instructor">{{ _("Instructor Dashboard") }}</a>{% endif %}</p>
+
 	{% if my_enrollments %}
 	<section class="tcd-section">
 		<h2>{{ _("My courses") }}</h2>

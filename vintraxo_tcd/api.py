@@ -2,9 +2,12 @@
 
 import frappe
 
+from vintraxo_tcd.core import assignments as svc_assignments
 from vintraxo_tcd.core import content as svc_content
 from vintraxo_tcd.core import courses, progress
+from vintraxo_tcd.core import dashboards as svc_dashboards
 from vintraxo_tcd.core import quiz as svc_quiz
+from vintraxo_tcd.core.permissions import is_instructor_of
 from vintraxo_tcd.core.search import search
 
 # keep in sync with the TCD Settings field defaults
@@ -60,6 +63,7 @@ def get_lesson(name: str, tutorial: str | None = None) -> dict:
 	quiz = frappe.db.get_value(
 		"TCD Quiz", {"content": doc.name, "is_active": 1}, ["name", "title"], as_dict=True
 	)
+	assignment_name = frappe.db.get_value("TCD Assignment", {"content": doc.name, "is_active": 1})
 	out = {
 		"name": doc.name,
 		"title": doc.title,
@@ -75,6 +79,8 @@ def get_lesson(name: str, tutorial: str | None = None) -> dict:
 		and {"name": quiz.name, "title": quiz.title, "passed": progress.has_passed(user, quiz.name)},
 		"progress": frappe.db.get_value("TCD Progress", {"user": user, "content": doc.name}, "status")
 		or "Not Started",
+		"lesson_type": doc.lesson_type,
+		"assignment": assignment_name and get_assignment(assignment_name),
 	}
 	if doc.content_type == "Tutorial":
 		out["tutorial"] = progress.tutorial_summary(user, doc.name)
@@ -172,6 +178,11 @@ def get_course(name: str) -> dict:
 		"percent": state["percent"],
 		"score": state["score"],
 		"enrollment": enrollment,
+		"access": course.access,
+		"rating": course_rating(course.name),
+		"my_feedback": frappe.db.get_value(
+			"TCD Course Feedback", {"course": course.name, "user": user}, ["rating", "comment"], as_dict=True
+		),
 	}
 
 
@@ -222,13 +233,18 @@ def enroll(enrollment_for: str, name: str) -> dict:
 
 
 @frappe.whitelist(methods=["POST"])
-def enroll_group(student_group: str, enrollment_for: str, name: str, due_date: str | None = None) -> dict:
-	"""Staff: enroll every member of a student group."""
+def enroll_batch(batch: str, enrollment_for: str, name: str, due_date: str | None = None) -> dict:
+	"""Staff: enroll every member of a batch."""
 	if not frappe.has_permission("TCD Enrollment", "create"):
 		frappe.throw(frappe._("Not permitted"), frappe.PermissionError)
-	group = _readable("TCD Student Group", student_group)
+	group = _readable("TCD Batch", batch)
 	doctype = courses.OFFERINGS[enrollment_for][0]
 	target = _readable(doctype, name)
+	field = courses.OFFERINGS[enrollment_for][1]
+	if not is_instructor_of(frappe.session.user, **{field if field == "course" else "path": target.name}):
+		frappe.throw(
+			frappe._("Only an instructor of this course can enroll a batch."), frappe.PermissionError
+		)
 	enrolled, skipped = [], []
 	for row in group.members:
 		frappe.db.savepoint("tcd_enroll_member")
@@ -246,8 +262,120 @@ def enroll_group(student_group: str, enrollment_for: str, name: str, due_date: s
 def approve_enrollment(name: str) -> dict:
 	doc = frappe.get_doc("TCD Enrollment", name)
 	doc.check_permission("write")
-	roles = set(frappe.get_roles())
-	if not roles & {"TCD Instructor", "TCD Administrator", "System Manager"}:
-		frappe.throw(frappe._("Only an instructor can approve completion."), frappe.PermissionError)
+	if not is_instructor_of(frappe.session.user, doc.course, doc.learning_path):
+		frappe.throw(
+			frappe._("Only an instructor of this course can approve completion."), frappe.PermissionError
+		)
 	doc = courses.approve(doc.name)
 	return {"name": doc.name, "status": doc.status}
+
+
+# ---------------------------------------------------------------- assignments, feedback, dashboards
+
+
+@frappe.whitelist()
+def get_assignment(name: str) -> dict:
+	assignment = _readable("TCD Assignment", name)
+	mine = frappe.db.get_value(
+		"TCD Assignment Submission",
+		{"assignment": assignment.name, "user": frappe.session.user},
+		[
+			"name",
+			"status",
+			"score",
+			"passed",
+			"feedback",
+			"answer_text",
+			"attachment",
+			"submitted_on",
+			"is_late",
+		],
+		as_dict=True,
+	)
+	return {
+		"name": assignment.name,
+		"title": assignment.title,
+		"instructions": assignment.instructions,
+		"submission_type": assignment.submission_type,
+		"due_date": assignment.due_date,
+		"max_score": assignment.max_score,
+		"pass_score": assignment.pass_score,
+		"allowed_extensions": assignment.allowed_extensions,
+		"submission": mine,
+	}
+
+
+@frappe.whitelist(methods=["POST"])
+def submit_assignment(name: str, answer_text: str | None = None, attachment: str | None = None) -> dict:
+	assignment = _readable("TCD Assignment", name)
+	doc = svc_assignments.submit(assignment, frappe.session.user, answer_text, attachment)
+	if doc.attachment:
+		# course instructors open the private file through the submission they can read
+		file_name = frappe.db.get_value("File", {"file_url": doc.attachment, "owner": doc.user})
+		if file_name:
+			frappe.db.set_value(
+				"File",
+				file_name,
+				{
+					"attached_to_doctype": "TCD Assignment Submission",
+					"attached_to_name": doc.name,
+					"attached_to_field": "attachment",
+				},
+			)
+	return {"name": doc.name, "status": doc.status, "is_late": doc.is_late}
+
+
+@frappe.whitelist(methods=["POST"])
+def grade_submission(
+	name: str, action: str = "Graded", score: float | None = None, feedback: str | None = None
+) -> dict:
+	doc = frappe.get_doc("TCD Assignment Submission", name)
+	doc.check_permission("read")
+	if not frappe.has_permission("TCD Assignment Submission", "write", doc) or not is_instructor_of(
+		frappe.session.user, doc.course
+	):
+		frappe.throw(frappe._("Only an instructor of this course can grade."), frappe.PermissionError)
+	doc = svc_assignments.grade(doc, score, feedback, action)
+	return {"name": doc.name, "status": doc.status, "score": doc.score, "passed": doc.passed}
+
+
+def course_rating(course: str) -> dict:
+	rows = frappe.get_all(
+		"TCD Course Feedback", filters={"course": course}, pluck="rating", ignore_permissions=True
+	)
+	return {"average": round(sum(rows) / len(rows), 1) if rows else None, "count": len(rows)}
+
+
+@frappe.whitelist(methods=["POST"])
+def rate_course(name: str, rating: int, comment: str | None = None) -> dict:
+	course = _readable("TCD Course", name)
+	user = frappe.session.user
+	if not frappe.db.exists(
+		"TCD Enrollment", {"user": user, "course": course.name, "status": ("!=", "Withdrawn")}
+	):
+		frappe.throw(frappe._("Enroll in the course before rating it."), frappe.PermissionError)
+	existing = frappe.db.get_value("TCD Course Feedback", {"course": course.name, "user": user})
+	doc = (
+		frappe.get_doc("TCD Course Feedback", existing) if existing else frappe.new_doc("TCD Course Feedback")
+	)
+	doc.update(
+		{
+			"course": course.name,
+			"user": user,
+			"rating": int(rating),
+			"comment": (comment or "").strip()[:2000],
+		}
+	)
+	doc.flags.from_api = True
+	doc.save(ignore_permissions=True)
+	return {"rating": course_rating(course.name)}
+
+
+@frappe.whitelist()
+def my_learning() -> dict:
+	return svc_dashboards.my_learning(frappe.session.user)
+
+
+@frappe.whitelist()
+def instructor_dashboard() -> dict:
+	return svc_dashboards.instructor_dashboard(frappe.session.user)

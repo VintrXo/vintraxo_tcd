@@ -80,8 +80,10 @@ def can_access_content(doc, user: str) -> bool:
 		return False
 	if doc.visibility == "Internal":
 		return staff
-	if doc.visibility == "Restricted":
-		return doc.space in role_spaces or doc.owner == user
+	if doc.visibility == "Restricted" and not (doc.space in role_spaces or doc.owner == user):
+		return False
+	if not staff and doc.doctype == "TCD Content" and doc.name in gated_contents(user):
+		return False
 	return True
 
 
@@ -94,12 +96,16 @@ def _in(column: str, values) -> str:
 	return f"{column} in ({', '.join(frappe.db.escape(v) for v in sorted(values))})"
 
 
-def _content_condition(user: str, table: str = "`tabTCD Content`") -> str:
+def _content_condition(
+	user: str, table: str = "`tabTCD Content`", enrollment_gate: bool | None = None
+) -> str:
 	if is_admin(user):
 		return ""
 	accessible, role_spaces = _space_access(user)
 	if not accessible:
 		return "1=0"
+	if enrollment_gate is None:
+		enrollment_gate = table in ("`tabTCD Content`", "c")
 
 	space_cond = _in(f"{table}.space", accessible)
 	restricted = f"({table}.visibility = 'Restricted' and ({_in(f'{table}.space', role_spaces)} or {table}.owner = {frappe.db.escape(user)}))"
@@ -109,7 +115,61 @@ def _content_condition(user: str, table: str = "`tabTCD Content`") -> str:
 		return f"({space_cond} and {vis})"
 
 	vis = f"({table}.visibility = 'Public' or {restricted})"
-	return f"({space_cond} and {table}.status = 'Published' and {vis})"
+	gate = ""
+	if enrollment_gate:
+		blocked = gated_contents(user)
+		if blocked:
+			gate = f" and {table}.name not in ({', '.join(frappe.db.escape(n) for n in sorted(blocked))})"
+	return f"({space_cond} and {table}.status = 'Published' and {vis}{gate})"
+
+
+# ---------------------------------------------------------------- enrollment gate (ADR-0008)
+
+
+def _contents_of_courses(courses) -> set:
+	if not courses:
+		return set()
+	chapters = frappe.get_all(
+		"TCD Chapter", filters={"course": ("in", list(courses))}, pluck="name", ignore_permissions=True
+	)
+	if not chapters:
+		return set()
+	return set(
+		frappe.get_all(
+			"TCD Learning Item",
+			filters={"parenttype": "TCD Chapter", "parent": ("in", chapters)},
+			pluck="content",
+			ignore_permissions=True,
+		)
+	)
+
+
+def gated_contents(user: str) -> set:
+	"""Contents a learner may not open: used only by Enrolled Only courses the learner is not enrolled in."""
+	enrolled_only = set(
+		frappe.get_all(
+			"TCD Course", filters={"access": "Enrolled Only"}, pluck="name", ignore_permissions=True
+		)
+	)
+	if not enrolled_only:
+		return set()
+	open_courses = set(
+		frappe.get_all(
+			"TCD Course", filters={"access": ("!=", "Enrolled Only")}, pluck="name", ignore_permissions=True
+		)
+	)
+	restricted = _contents_of_courses(enrolled_only) - _contents_of_courses(open_courses)
+	if not restricted:
+		return set()
+	mine = set(
+		frappe.get_all(
+			"TCD Enrollment",
+			filters={"user": user, "course": ("is", "set"), "status": ("!=", "Withdrawn")},
+			pluck="course",
+			ignore_permissions=True,
+		)
+	)
+	return restricted - _contents_of_courses(mine & enrolled_only)
 
 
 # ---------------------------------------------------------------- permission_query_conditions
@@ -240,11 +300,11 @@ def has_app_permission():
 
 
 def course_query(user=None, doctype=None):
-	return _content_condition(user or frappe.session.user, "`tabTCD Course`")
+	return _content_condition(user or frappe.session.user, "`tabTCD Course`", enrollment_gate=False)
 
 
 def path_query(user=None, doctype=None):
-	return _content_condition(user or frappe.session.user, "`tabTCD Learning Path`")
+	return _content_condition(user or frappe.session.user, "`tabTCD Learning Path`", enrollment_gate=False)
 
 
 def offering_has_permission(doc, ptype=None, user=None, debug=False):
@@ -255,7 +315,7 @@ def offering_has_permission(doc, ptype=None, user=None, debug=False):
 
 
 def _via(doctype: str, column: str, user: str) -> str:
-	cond = _content_condition(user, "c")
+	cond = _content_condition(user, "c", enrollment_gate=doctype == "TCD Content")
 	if not cond:
 		return ""
 	return f"{column} in (select c.name from `tab{doctype}` c where {cond})"
@@ -276,27 +336,84 @@ def chapter_has_permission(doc, ptype=None, user=None, debug=False):
 	return is_admin(user) or _offering_ok("TCD Course", doc.course, user)
 
 
+def instructed(user: str, doctype: str) -> set:
+	"""Courses or learning paths where `user` is listed as instructor."""
+	parents = set(
+		frappe.get_all(
+			"TCD Course Instructor",
+			filters={"parenttype": doctype, "user": user},
+			pluck="parent",
+			ignore_permissions=True,
+		)
+	)
+	if not parents:
+		return parents
+	# ignore rows left behind by deleted parents
+	return set(
+		frappe.get_all(
+			doctype, filters={"name": ("in", list(parents))}, pluck="name", ignore_permissions=True
+		)
+	)
+
+
+def is_instructor_of(user: str, course: str | None = None, path: str | None = None) -> bool:
+	if is_admin(user):
+		return True
+	if course and course in instructed(user, "TCD Course"):
+		return True
+	return bool(path and path in instructed(user, "TCD Learning Path"))
+
+
 def enrollment_query(user=None, doctype=None):
 	user = user or frappe.session.user
 	if is_admin(user):
 		return ""
 	table = "`tabTCD Enrollment`"
-	own = f"{table}.user = {frappe.db.escape(user)}"
-	if not is_staff(user):
-		return own
-	courses = _via("TCD Course", f"{table}.course", user)
-	paths = _via("TCD Learning Path", f"{table}.learning_path", user)
-	return f"({own} or {courses} or {paths})"
+	parts = [f"{table}.user = {frappe.db.escape(user)}"]
+	courses = instructed(user, "TCD Course")
+	paths = instructed(user, "TCD Learning Path")
+	if courses:
+		parts.append(_in(f"{table}.course", courses))
+	if paths:
+		parts.append(_in(f"{table}.learning_path", paths))
+	return "(" + " or ".join(parts) + ")"
 
 
 def enrollment_has_permission(doc, ptype=None, user=None, debug=False):
 	user = user or frappe.session.user
+	return doc.user == user or is_instructor_of(user, doc.course, doc.learning_path)
+
+
+# ---------------------------------------------------------------- assignments and feedback
+
+
+def assignment_query(user=None, doctype=None):
+	return _via_content("`tabTCD Assignment`.content", user or frappe.session.user)
+
+
+def assignment_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	return is_admin(user) or _content_doc_ok(doc.content, user)
+
+
+def _own_or_course_instructor(table: str, user: str) -> str:
 	if is_admin(user):
-		return True
-	if doc.user == user:
-		return True
-	if not is_staff(user):
-		return False
-	if doc.course:
-		return _offering_ok("TCD Course", doc.course, user)
-	return _offering_ok("TCD Learning Path", doc.learning_path, user)
+		return ""
+	parts = [f"{table}.user = {frappe.db.escape(user)}"]
+	courses = instructed(user, "TCD Course")
+	if courses:
+		parts.append(_in(f"{table}.course", courses))
+	return "(" + " or ".join(parts) + ")"
+
+
+def submission_scope_query(user=None, doctype=None):
+	return _own_or_course_instructor("`tabTCD Assignment Submission`", user or frappe.session.user)
+
+
+def feedback_query(user=None, doctype=None):
+	return _own_or_course_instructor("`tabTCD Course Feedback`", user or frappe.session.user)
+
+
+def own_or_course_instructor_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	return doc.user == user or is_instructor_of(user, doc.course)

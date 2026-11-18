@@ -3,8 +3,10 @@
 # Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
 # rename must run before desktop icons / sidebars are synced from files
 vintraxo_tcd.patches.rename_desk_entries_to_vx
+vintraxo_tcd.patches.rename_student_group_to_batch
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
 vintraxo_tcd.patches.add_learning_navbar_link
 vintraxo_tcd.patches.set_vx_desktop_icon
+vintraxo_tcd.patches.copy_enrollment_batch

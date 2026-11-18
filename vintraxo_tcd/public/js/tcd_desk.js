@@ -2,18 +2,18 @@
 
 function tcd_offering_buttons(frm, enrollment_for) {
 	if (frm.doc.status === "Published" && frappe.model.can_create("TCD Enrollment")) {
-		frm.add_custom_button(__("Enroll Student Group"), () => {
+		frm.add_custom_button(__("Enroll Batch"), () => {
 			const d = new frappe.ui.Dialog({
-				title: __("Enroll Student Group"),
+				title: __("Enroll Batch"),
 				fields: [
-					{ fieldname: "student_group", fieldtype: "Link", options: "TCD Student Group", label: __("Student Group"), reqd: 1 },
+					{ fieldname: "batch", fieldtype: "Link", options: "TCD Batch", label: __("Batch"), reqd: 1 },
 					{ fieldname: "due_date", fieldtype: "Date", label: __("Due Date") },
 				],
 				primary_action_label: __("Enroll"),
 				primary_action(values) {
 					frappe
 						.call({
-							method: "vintraxo_tcd.api.enroll_group",
+							method: "vintraxo_tcd.api.enroll_batch",
 							args: { ...values, enrollment_for, name: frm.doc.name },
 							freeze: true,
 						})

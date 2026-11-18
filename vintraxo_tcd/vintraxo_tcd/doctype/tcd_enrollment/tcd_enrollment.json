@@ -12,7 +12,7 @@
   "space",
   "column_break_1",
   "status",
-  "student_group",
+  "batch",
   "due_date",
   "progress_section",
   "percent",
@@ -93,10 +93,10 @@
    "search_index": 1
   },
   {
-   "fieldname": "student_group",
+   "fieldname": "batch",
    "fieldtype": "Link",
-   "options": "TCD Student Group",
-   "label": "Student Group",
+   "options": "TCD Batch",
+   "label": "Batch",
    "in_standard_filter": 1
   },
   {
@@ -153,7 +153,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 05:00:00.000000",
+ "modified": "2026-11-19 08:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Enrollment",

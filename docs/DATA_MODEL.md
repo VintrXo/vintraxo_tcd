@@ -75,9 +75,9 @@ Draft -> In Review -> Approved -> Published -> Archived
 | TCD Chapter | hash | course, title, sort_order, items (TCD Learning Item) |
 | TCD Learning Path | hash | title, slug, space, language, visibility, status, summary, completion_rule, minimum_score, self_enrollment, items (TCD Learning Item) |
 | TCD Learning Item (child) | - | content (Link TCD Content, in chapters), course (Link TCD Course, in paths), is_optional |
-| TCD Enrollment | hash | user, enrollment_for (Course/Learning Path), course, learning_path, student_group, status (Active/Pending Approval/Completed/Withdrawn), percent, score, enrolled_on, due_date, completed_on, approved_by, approved_on |
-| TCD Student Group | group_name | description, is_active, members (TCD Student Group Member) |
-| TCD Student Group Member (child) | - | user, full_name |
+| TCD Enrollment | hash | user, enrollment_for (Course/Learning Path), course, learning_path, batch, status (Active/Pending Approval/Completed/Withdrawn), percent, score, enrolled_on, due_date, completed_on, approved_by, approved_on |
+| TCD Batch (was TCD Student Group) | group_name | batch name, is_active, start_date, end_date, description, members (TCD Batch Member) |
+| TCD Batch Member (child) | - | user, full_name |
 
 ### Rules
 - Lessons stay one entity: chapter items are TCD Content (Lesson, Article or Reference; never Tutorial) in the course space,
@@ -94,6 +94,32 @@ Draft -> In Review -> Approved -> Published -> Archived
   (required courses completed). Triggered on lesson completion and quiz grading.
 - Enrollment is unique per user and course/path. Enrolling in a path also enrolls in its courses. Self-enrollment only
   when the course/path allows it and is readable; staff can enroll users or a whole student group.
+
+## Phase 1 completion (LMS core)
+| DocType / field | Key fields |
+|---|---|
+| TCD Course: `access` | Open / Enrolled Only |
+| TCD Course: `instructors` (TCD Course Instructor child) | user, full_name |
+| TCD Learning Path: `instructors` | same child |
+| TCD Content: `lesson_type` (Lesson only) | Article, Video, Interactive Tutorial, Playground, Quiz, Assignment, External, Project, Document |
+| New blocks | `video` (url, title, caption → embed_url), `link` (url, title, description), `file` (url to an uploaded File, title) |
+| TCD Settings | video_domains, allowed_file_extensions, max_upload_mb |
+| TCD Assignment | title, content, course, instructions, submission_type (Text / File / Text and File), max_score, pass_score, due_date, allowed_extensions, required_to_complete, is_active |
+| TCD Assignment Submission | assignment, user, content, course, answer_text, attachment, status (Submitted / Returned / Graded), score, passed, feedback, submitted_on, graded_by, graded_on |
+| TCD Course Feedback | course, user, rating (1-5), comment |
+
+### Rules
+- **Enrolled Only**: a content item is restricted when every course containing it is Enrolled Only; learners then need an
+  enrollment (any status but Withdrawn) in one of those courses. Staff are not affected. The course page stays visible.
+- **Instructor scope**: enrollments, submissions and feedback of a course are visible to its instructors (and admins);
+  other staff no longer see them. Approve/grade only on courses you instruct.
+- **Video block**: host must be in TCD Settings > video_domains (YouTube, Vimeo by default) or an uploaded file under
+  `/files/` (mp4/webm). Rendered as a privacy-friendly embed (youtube-nocookie) in a sandboxed iframe.
+- **Uploads** (file block, submissions): must reference an existing File document, extension in the allowed list, size
+  under max_upload_mb; submissions use private files owned by the learner.
+- **Assignments**: one submission per learner; editable while Submitted/Returned, locked when Graded. Graded with
+  score ≥ pass_score passes; a required assignment must pass before its lesson can be completed (like a required quiz).
+- **Feedback**: one rating per learner per course, only when enrolled.
 
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson

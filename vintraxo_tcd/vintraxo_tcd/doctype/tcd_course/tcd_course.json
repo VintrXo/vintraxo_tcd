@@ -17,6 +17,9 @@
   "minimum_score",
   "column_break_2",
   "self_enrollment",
+  "access_section",
+  "access",
+  "instructors",
   "about_section",
   "summary"
  ],
@@ -110,6 +113,28 @@
    "default": "1"
   },
   {
+   "fieldname": "access_section",
+   "fieldtype": "Section Break",
+   "label": "Access and Instructors"
+  },
+  {
+   "fieldname": "access",
+   "fieldtype": "Select",
+   "label": "Access",
+   "options": "Open\nEnrolled Only",
+   "default": "Open",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Enrolled Only: lessons used only by Enrolled Only courses are hidden from learners who are not enrolled"
+  },
+  {
+   "fieldname": "instructors",
+   "fieldtype": "Table",
+   "options": "TCD Course Instructor",
+   "label": "Instructors",
+   "description": "Instructors see enrollments, submissions and feedback of this course and can approve and grade"
+  },
+  {
    "fieldname": "about_section",
    "fieldtype": "Section Break",
    "label": "About"
@@ -121,7 +146,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 05:00:00.000000",
+ "modified": "2026-11-19 08:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

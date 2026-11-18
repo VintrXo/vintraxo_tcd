@@ -381,7 +381,7 @@ def validate_enrollment(doc):
 			frappe.throw(_("Enrollments complete automatically or through approval."))
 
 
-def enroll(user: str, enrollment_for: str, target: str, student_group: str | None = None, due_date=None):
+def enroll(user: str, enrollment_for: str, target: str, batch: str | None = None, due_date=None):
 	"""Create (or return) an enrollment; a path enrollment also enrolls in its courses."""
 	field = OFFERINGS[enrollment_for][1]
 	existing = frappe.db.get_value("TCD Enrollment", {"user": user, field: target})
@@ -397,14 +397,14 @@ def enroll(user: str, enrollment_for: str, target: str, student_group: str | Non
 				"user": user,
 				"enrollment_for": enrollment_for,
 				field: target,
-				"student_group": student_group,
+				"batch": batch,
 				"due_date": due_date,
 			}
 		).insert(ignore_permissions=True)
 	if enrollment_for == "Learning Path":
 		for c in path_courses(target):
 			if frappe.db.get_value("TCD Course", c["course"], "status") == "Published":
-				enroll(user, "Course", c["course"], student_group, due_date)
+				enroll(user, "Course", c["course"], batch, due_date)
 		refresh_path(user, target)
 	else:
 		refresh_course(user, target)

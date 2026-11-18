@@ -1,0 +1,71 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page tcd-instructor">
+	<header class="tcd-hero">
+		<h1>{{ _("Instructor Dashboard") }}</h1>
+		<p class="tcd-muted"><a href="/app/query-report/TCD Instructor Dashboard">{{ _("Open the full report") }}</a></p>
+	</header>
+
+	<section class="tcd-section">
+		<h2>{{ _("My courses") }}</h2>
+		{% if data.courses %}
+		<div class="tcd-table-wrap">
+		<table class="table table-sm">
+			<thead><tr>
+				<th>{{ _("Course", context="TCD") }}</th><th>{{ _("Enrolled") }}</th><th>{{ _("Active", context="TCD") }}</th>
+				<th>{{ _("Pending Approval", context="TCD") }}</th><th>{{ _("Completed", context="TCD") }}</th>
+				<th>{{ _("Completion Rate") }}</th><th>{{ _("To Grade") }}</th><th>{{ _("Rating") }}</th>
+			</tr></thead>
+			<tbody>
+			{% for c in data.courses %}
+			<tr>
+				<td><a href="/app/tcd-course/{{ c.course|urlencode }}">{{ c.title|e }}</a></td>
+				<td>{{ c.enrolled }}</td><td>{{ c.active }}</td><td>{{ c.pending_approval }}</td><td>{{ c.completed }}</td>
+				<td>{{ c.completion_rate }}%</td><td>{{ c.to_grade }}</td>
+				<td>{% if c.rating %}{{ c.rating }} ★ ({{ c.ratings }}){% else %}-{% endif %}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		</div>
+		{% else %}
+		<p class="tcd-muted">{{ _("You are not an instructor of any course yet.") }}</p>
+		{% endif %}
+	</section>
+
+	<section class="tcd-section">
+		<h2>{{ _("Waiting for approval") }}</h2>
+		{% if data.pending_approvals %}
+		<ul class="tcd-lessons">
+			{% for p in data.pending_approvals %}
+			<li class="tcd-lesson">
+				<span dir="ltr">{{ p.user|e }}</span> · {{ p.course_title|e }}
+				<button type="button" class="btn btn-xs btn-primary tcd-approve" data-name="{{ p.name|e }}">{{ _("Approve Completion") }}</button>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}<p class="tcd-muted">{{ _("Nothing waiting.") }}</p>{% endif %}
+	</section>
+
+	<section class="tcd-section">
+		<h2>{{ _("Submissions to grade") }}</h2>
+		{% if data.to_grade %}
+		<ul class="tcd-lessons">
+			{% for s in data.to_grade %}
+			<li class="tcd-lesson">
+				<a href="/app/tcd-assignment-submission/{{ s.name|urlencode }}"><span dir="ltr">{{ s.user|e }}</span></a> · {{ s.course_title|e }}
+				{% if s.is_late %}<span class="tcd-error">{{ _("Late") }}</span>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}<p class="tcd-muted">{{ _("Nothing to grade.") }}</p>{% endif %}
+		<p class="tcd-message" role="status" hidden></p>
+	</section>
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}

@@ -1,5 +1,5 @@
 from frappe.model.document import Document
 
 
-class TCDStudentGroupMember(Document):
+class TCDBatchMember(Document):
 	pass

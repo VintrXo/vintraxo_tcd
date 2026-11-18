@@ -26,8 +26,42 @@ const TCD_BLOCK_TYPES = {
 			["expected_output", "code", __("Expected Output (optional)", null, "TCD Block")],
 		],
 	},
+	video: {
+		label: __("Video", null, "TCD Block"),
+		fields: [
+			["url", "upload", __("Video URL (YouTube, Vimeo or upload)", null, "TCD Block"), [".mp4", ".webm"], "ltr"],
+			["title", "data", __("Title", null, "TCD Block")],
+			["caption", "data", __("Caption", null, "TCD Block")],
+		],
+	},
+	link: {
+		label: __("External Link", null, "TCD Block"),
+		fields: [
+			["url", "data", __("Link URL (https)", null, "TCD Block"), null, "ltr"],
+			["title", "data", __("Title", null, "TCD Block")],
+			["description", "text", __("Description", null, "TCD Block")],
+		],
+	},
+	file: {
+		label: __("File", null, "TCD Block"),
+		fields: [
+			["url", "upload", __("File", null, "TCD Block"), null, "ltr"],
+			["title", "data", __("Title", null, "TCD Block")],
+		],
+	},
 };
-const TCD_REQUIRED = { heading: "text", paragraph: "text", code: "code", callout: "text", list: "items", image: "url", playground: "code" };
+const TCD_REQUIRED = {
+	heading: "text",
+	paragraph: "text",
+	code: "code",
+	callout: "text",
+	list: "items",
+	image: "url",
+	playground: "code",
+	video: "url",
+	link: "url",
+	file: "url",
+};
 const TCD_LOCKED = ["Approved", "Published"];
 
 class TCDBlockEditor {
@@ -144,7 +178,7 @@ class TCDBlockEditor {
 			input.type = "checkbox";
 			input.checked = !!block[field];
 			group.classList.add("tcd-check");
-		} else if (kind === "data") {
+		} else if (kind === "data" || kind === "upload") {
 			input = this.el("input", "form-control input-xs");
 			input.type = "text";
 			input.value = block[field] ?? "";
@@ -170,6 +204,25 @@ class TCDBlockEditor {
 		input.addEventListener(kind === "check" || kind === "select" ? "change" : "input", frappe.utils.debounce(update, 250));
 		if (kind === "check") group.append(input, lab);
 		else group.append(lab, input);
+		if (kind === "upload" && !this.readOnly) {
+			const btn = this.el("button", "btn btn-xs btn-default tcd-upload-btn", __("Upload"));
+			btn.type = "button";
+			btn.addEventListener("click", () => {
+				new frappe.ui.FileUploader({
+					allow_multiple: false,
+					make_attachments_public: true,
+					allow_toggle_private: false,
+					allow_web_link: false,
+					restrictions: options ? { allowed_file_types: options } : {},
+					on_success: (file) => {
+						input.value = file.file_url;
+						block[field] = file.file_url;
+						this.commit();
+					},
+				});
+			});
+			group.append(btn);
+		}
 		return group;
 	}
 

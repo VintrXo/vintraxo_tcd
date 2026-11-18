@@ -23,7 +23,10 @@
 | TCD Course / TCD Learning Path | full | CRW | RW | R | R |
 | TCD Chapter | full | CRWD | RW | R | R |
 | TCD Enrollment | full | R | R | CRW | R (own; self-enroll via API) |
-| TCD Student Group | full | - | R | CRWD | - |
+| TCD Batch | full | - | R | CRWD | - |
+| TCD Assignment | full | CRW | RW | CRW | R (via content) |
+| TCD Assignment Submission | full | - | - | RW (own courses) | R (own; submit via API) |
+| TCD Course Feedback | full | R | R | R (own courses) | R (own; via API) |
 | TCD Progress | R, D | - | - | R | R (own) |
 | TCD Quiz Submission | R, D | R | R | R | R (own) |
 
@@ -49,7 +52,10 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 ## Courses (Phase 1)
 - Course and Learning Path use the same space + visibility + status rules as TCD Content (learners: Published only).
 - Chapters follow their course. Enrollments: own rows, plus staff for courses/paths they can read.
-- Approving a Pending Approval enrollment: TCD Instructor or admin (`api.approve_enrollment`).
+- Approving a Pending Approval enrollment: an instructor of that course, or admin (`api.approve_enrollment`).
+- Instructor scope: enrollment, submission and feedback rows are visible to the learner, the instructors of the
+  course/path, and admins only.
+- Enrolled Only courses: their lessons are hidden from non-enrolled learners in `has_permission` and list queries.
 
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.

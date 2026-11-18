@@ -9,7 +9,7 @@ from vintraxo_tcd.tests.test_p3 import render
 
 CLEAN = (
 	"TCD Enrollment",
-	"TCD Student Group",
+	"TCD Batch",
 	"TCD Chapter",
 	"TCD Learning Path",
 	"TCD Course",
@@ -26,7 +26,7 @@ def lesson(space, title, **kw):
 	return publish(make_content(space, title, content_type="Lesson", visibility="Public", **kw))
 
 
-def make_course(space, title, chapters, rule="All Items", publish_it=True, **kw):
+def make_course(space, title, chapters, rule="All Items", publish_it=True, instructors=(), **kw):
 	"""chapters = [[content_doc | (content_doc, optional)], ...]"""
 	frappe.set_user("Administrator")
 	course = frappe.get_doc(
@@ -36,6 +36,7 @@ def make_course(space, title, chapters, rule="All Items", publish_it=True, **kw)
 			"space": space,
 			"visibility": "Public",
 			"completion_rule": rule,
+			"instructors": [{"user": u} for u in instructors],
 			**kw,
 		}
 	).insert()
@@ -82,7 +83,8 @@ class TestPhase1Courses(IntegrationTestCase):
 		for dt in CLEAN:
 			frappe.db.delete(dt)
 		frappe.db.delete("TCD Learning Item")
-		frappe.db.delete("TCD Student Group Member")
+		frappe.db.delete("TCD Course Instructor")
+		frappe.db.delete("TCD Batch Member")
 		self.space = make_space("ph1-public").name
 		self.l1 = lesson(self.space, "Lesson A")
 		self.l2 = lesson(self.space, "Lesson B")
@@ -191,7 +193,9 @@ class TestPhase1Courses(IntegrationTestCase):
 		api.complete_lesson(self.l2.name)  # not enrolled: no gating
 
 	def test_manual_approval(self):
-		course = make_course(self.space, "Manual", [[self.l1]], rule="Manual Approval")
+		course = make_course(
+			self.space, "Manual", [[self.l1]], rule="Manual Approval", instructors=[self.vip]
+		)
 		frappe.set_user(self.learner)
 		api.enroll("Course", course.name)
 		api.complete_lesson(self.l1.name)
@@ -282,36 +286,40 @@ class TestPhase1Courses(IntegrationTestCase):
 		again = api.enroll("Course", open_course.name)
 		self.assertEqual(first["name"], again["name"])
 
-	def test_enroll_group(self):
+	def test_enroll_batch(self):
 		restricted_space = make_space("ph1-restricted", "Restricted", roles=["TCD Instructor"]).name
-		course = make_course(self.space, "Group course", [[self.l1]], self_enrollment=0)
+		course = make_course(
+			self.space, "Group course", [[self.l1]], self_enrollment=0, instructors=[self.vip]
+		)
 		hidden_lesson = lesson(restricted_space, "Hidden")
-		hidden_course = make_course(restricted_space, "Hidden course", [[hidden_lesson]])
+		hidden_course = make_course(
+			restricted_space, "Hidden course", [[hidden_lesson]], instructors=[self.vip]
+		)
 		group = frappe.get_doc(
 			{
-				"doctype": "TCD Student Group",
+				"doctype": "TCD Batch",
 				"group_name": "ph1-cohort",
 				"members": [{"user": self.learner}, {"user": self.vip}],
 			}
 		).insert()
 
 		frappe.set_user(self.vip)
-		res = api.enroll_group(group.name, "Course", course.name, due_date="2030-01-01")
+		res = api.enroll_batch(group.name, "Course", course.name, due_date="2030-01-01")
 		self.assertEqual(set(res["enrolled"]), {self.learner, self.vip})
 		self.assertEqual(str(enrollment(self.learner, course.name).due_date), "2030-01-01")
 
-		res = api.enroll_group(group.name, "Course", hidden_course.name)
+		res = api.enroll_batch(group.name, "Course", hidden_course.name)
 		self.assertEqual(res["enrolled"], [self.vip])  # learner has no access to the restricted space
 		self.assertEqual([s["user"] for s in res["skipped"]], [self.learner])
 
 		frappe.set_user(self.learner)
 		with self.assertRaises(frappe.PermissionError):
-			api.enroll_group(group.name, "Course", course.name)
+			api.enroll_batch(group.name, "Course", course.name)
 
 	# ------------------------------------------------------------ permissions
 
 	def test_permissions(self):
-		course = make_course(self.space, "Perm", [[self.l1]])
+		course = make_course(self.space, "Perm", [[self.l1]], instructors=[self.vip])
 		draft = make_course(self.space, "Hidden draft", [[self.l2]], publish_it=False)
 		frappe.set_user(self.learner)
 		api.enroll("Course", course.name)
@@ -327,11 +335,20 @@ class TestPhase1Courses(IntegrationTestCase):
 		self.assertEqual(set(frappe.get_list("TCD Enrollment", pluck="user")), {self.learner})
 		other = frappe.db.get_value("TCD Enrollment", {"user": self.vip})
 		self.assertFalse(frappe.has_permission("TCD Enrollment", "read", other))
-		self.assertFalse(frappe.has_permission("TCD Student Group", "read"))
+		self.assertFalse(frappe.has_permission("TCD Batch", "read"))
 
 		frappe.set_user(self.vip)
 		self.assertEqual(set(frappe.get_list("TCD Enrollment", pluck="user")), {self.learner, self.vip})
 		self.assertIn(draft.name, frappe.get_list("TCD Course", pluck="name"))  # staff see drafts
+
+		# instructor scope: enrollments of a course the instructor does not teach stay hidden
+		not_mine = make_course(self.space, "Not mine", [[self.l3]])
+		frappe.set_user(self.learner)
+		api.enroll("Course", not_mine.name)
+		hidden = frappe.db.get_value("TCD Enrollment", {"user": self.learner, "course": not_mine.name})
+		frappe.set_user(self.vip)
+		self.assertFalse(frappe.has_permission("TCD Enrollment", "read", hidden))
+		self.assertNotIn(hidden, frappe.get_list("TCD Enrollment", pluck="name"))
 
 	# ------------------------------------------------------------ portal
 

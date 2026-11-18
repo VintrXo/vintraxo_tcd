@@ -23,6 +23,25 @@
 			<img src="{{ b.url|e }}" alt="{{ (b.alt or '')|e }}" loading="lazy">
 			{% if b.caption %}<figcaption>{{ b.caption|e }}</figcaption>{% endif %}
 		</figure>
+	{% elif b.type == "video" and b.embed_url %}
+		<figure class="tcd-video">
+			{% if b.provider == "file" %}
+			<video controls preload="metadata" src="{{ b.embed_url|e }}"{% if b.title %} aria-label="{{ b.title|e }}"{% endif %}></video>
+			{% else %}
+			<iframe src="{{ b.embed_url|e }}" title="{{ (b.title or _('Video'))|e }}" loading="lazy"
+				sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+				allow="fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+			{% endif %}
+			{% if b.caption %}<figcaption>{{ b.caption|e }}</figcaption>{% endif %}
+		</figure>
+	{% elif b.type == "link" %}
+		<a class="tcd-link-card" href="{{ b.url|e }}" target="_blank" rel="noopener noreferrer nofollow">
+			<strong>{{ b.title|e }}</strong>
+			{% if b.description %}<span class="tcd-muted">{{ b.description|e }}</span>{% endif %}
+			<span class="tcd-muted tcd-small" dir="ltr">{{ b.url|e }}</span>
+		</a>
+	{% elif b.type == "file" %}
+		<a class="tcd-file" href="{{ b.url|e }}" download rel="noopener">📄 {{ b.title|e }}</a>
 	{% elif b.type == "playground" and playground.enabled %}
 		<section class="tcd-playground" data-language="{{ b.language|e }}">
 			<div class="tcd-playground-bar" dir="ltr">

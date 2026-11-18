@@ -46,15 +46,47 @@ def has_passed(user: str, quiz: str) -> bool:
 	return bool(frappe.db.exists("TCD Quiz Submission", {"quiz": quiz, "user": user, "passed": 1}))
 
 
+def required_assignment(content: str) -> str | None:
+	return frappe.db.get_value(
+		"TCD Assignment", {"content": content, "is_active": 1, "required_to_complete": 1}, "name"
+	)
+
+
+def has_passed_assignment(user: str, assignment: str) -> bool:
+	return bool(
+		frappe.db.exists(
+			"TCD Assignment Submission",
+			{"assignment": assignment, "user": user, "status": "Graded", "passed": 1},
+		)
+	)
+
+
+def completion_blockers(user: str, content: str) -> list[str]:
+	"""Assessment requirements that keep a lesson from being completed."""
+	missing = []
+	quiz = required_quiz(content)
+	if quiz and not has_passed(user, quiz):
+		missing.append(_("Pass the quiz to complete this lesson."))
+	assignment = required_assignment(content)
+	if assignment and not has_passed_assignment(user, assignment):
+		missing.append(_("Pass the assignment to complete this lesson."))
+	return missing
+
+
 def complete(user: str, content: str, from_quiz: bool = False):
-	"""Mark content completed and roll up into the tutorials that include it."""
+	"""Mark content completed and roll up into tutorials and courses.
+
+	`from_quiz` means the call comes from an assessment result (quiz grading or assignment grading):
+	unmet requirements then simply leave the lesson open instead of raising.
+	"""
 	content_type = frappe.db.get_value("TCD Content", content, "content_type")
 	if content_type == "Tutorial":
 		frappe.throw(_("Tutorials complete automatically when their lessons are completed."))
-	if not from_quiz:
-		quiz = required_quiz(content)
-		if quiz and not has_passed(user, quiz):
-			frappe.throw(_("Pass the quiz to complete this lesson."))
+	missing = completion_blockers(user, content)
+	if missing:
+		if from_quiz:
+			return None
+		frappe.throw(" ".join(missing))
 
 	from vintraxo_tcd.core import courses
 

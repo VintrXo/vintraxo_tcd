@@ -31,6 +31,25 @@
 		<p class="tcd-message" role="status" hidden></p>
 	</section>
 
+	<section class="tcd-section tcd-rating" data-course="{{ doc.name|e }}">
+		<p class="tcd-muted">
+			{% if data.rating.average %}★ {{ data.rating.average }} ({{ data.rating.count }} {{ _("ratings") }}){% else %}{{ _("No ratings yet") }}{% endif %}
+			{% if data.access == "Enrolled Only" %} · {{ _("For enrolled learners") }}{% endif %}
+		</p>
+		{% if e %}
+		<form class="tcd-rating-form" novalidate>
+			<fieldset class="tcd-stars">
+				<legend>{{ _("Rate this course") }}</legend>
+				{% for n in range(1, 6) %}
+				<label><input type="radio" name="rating" value="{{ n }}" {% if data.my_feedback and data.my_feedback.rating == n %}checked{% endif %}> {{ n }} ★</label>
+				{% endfor %}
+			</fieldset>
+			<textarea class="form-control" name="comment" rows="2" dir="auto" placeholder="{{ _('Comment (optional)') }}">{{ (data.my_feedback.comment or "")|e if data.my_feedback else "" }}</textarea>
+			<button type="submit" class="btn btn-default btn-sm">{{ _("Save rating") }}</button>
+		</form>
+		{% endif %}
+	</section>
+
 	{% for ch in data.chapters %}
 	<section class="tcd-section tcd-chapter">
 		<h2>{{ ch.title|e }} <span class="tcd-muted tcd-small">{{ ch.percent|int }}%</span></h2>

@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "content",
+  "course",
+  "column_break_1",
+  "submission_type",
+  "due_date",
+  "is_active",
+  "grading_section",
+  "max_score",
+  "pass_score",
+  "column_break_2",
+  "required_to_complete",
+  "allowed_extensions",
+  "instructions_section",
+  "instructions"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "options": "TCD Content",
+   "label": "Lesson",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1,
+   "description": "The lesson this assignment belongs to"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "options": "TCD Course",
+   "label": "Course",
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "description": "Course whose instructors grade the submissions"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "submission_type",
+   "fieldtype": "Select",
+   "label": "Submission Type",
+   "options": "Text\nFile\nText and File",
+   "default": "Text",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Datetime",
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Active",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "grading_section",
+   "fieldtype": "Section Break",
+   "label": "Grading"
+  },
+  {
+   "fieldname": "max_score",
+   "fieldtype": "Float",
+   "label": "Max Score",
+   "default": "100",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pass_score",
+   "fieldtype": "Float",
+   "label": "Pass Score",
+   "default": "50",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "required_to_complete",
+   "fieldtype": "Check",
+   "label": "Required to Complete Content",
+   "default": "1"
+  },
+  {
+   "fieldname": "allowed_extensions",
+   "fieldtype": "Data",
+   "label": "Allowed File Extensions",
+   "description": "Comma separated; empty uses TCD Settings"
+  },
+  {
+   "fieldname": "instructions_section",
+   "fieldtype": "Section Break",
+   "label": "Instructions"
+  },
+  {
+   "fieldname": "instructions",
+   "fieldtype": "Text",
+   "label": "Instructions"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Learner",
+   "read": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "title_field": "title",
+ "show_title_field_in_link": 1,
+ "track_changes": 1
+}

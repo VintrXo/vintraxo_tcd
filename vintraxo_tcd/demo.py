@@ -127,6 +127,7 @@ def create_demo():
 			}
 		).insert(ignore_permissions=True)
 	_demo_course(l1, l2, l3)
+	_demo_lms(l3)
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -182,3 +183,39 @@ def _demo_course(l1, l2, l3):
 		).insert(ignore_permissions=True)
 		path.status = "Published"
 		path.save(ignore_permissions=True)
+
+
+def _demo_lms(sql_lesson):
+	"""Phase 1 demo: instructor, a video lesson and an assignment."""
+	course = frappe.get_doc("TCD Course", {"space": SPACE, "title": "أساسيات بايثون"})
+	if not any(r.user == "Administrator" for r in course.instructors):
+		course.append("instructors", {"user": "Administrator"})
+		course.save(ignore_permissions=True)
+	_content(
+		"شرح بالفيديو",
+		"Lesson",
+		[
+			{"type": "paragraph", "text": "شاهد الفيديو ثم جرّب بنفسك."},
+			{
+				"type": "video",
+				"url": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+				"title": "Python for Beginners",
+			},
+			{"type": "link", "url": "https://docs.python.org/3/tutorial/", "title": "دليل بايثون الرسمي"},
+		],
+		lesson_type="Video",
+	)
+	if not frappe.db.exists("TCD Assignment", {"content": sql_lesson.name}):
+		frappe.get_doc(
+			{
+				"doctype": "TCD Assignment",
+				"title": "تكليف: استعلام بنفسك",
+				"content": sql_lesson.name,
+				"course": course.name,
+				"submission_type": "Text",
+				"max_score": 10,
+				"pass_score": 6,
+				"required_to_complete": 0,
+				"instructions": "اكتب استعلام SQL يعرض الطلاب الحاصلين على أكثر من 70 مرتّبين تنازليًا.",
+			}
+		).insert(ignore_permissions=True)

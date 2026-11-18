@@ -102,6 +102,9 @@ def home_context(query: str | None = None) -> dict:
 	)
 	ctx["continue_learning"] = _attach_content(in_progress)
 	ctx["my_enrollments"] = my_enrollments(user)
+	ctx["is_instructor"] = "TCD Instructor" in frappe.get_roles(
+		user
+	) or "TCD Administrator" in frappe.get_roles(user)
 
 	if query:
 		rows = search(query, limit=50)
@@ -290,6 +293,9 @@ def js_labels() -> dict:
 		"false": _("False"),
 		"preview": _("Preview"),
 		"enrolled": _("Enrolled"),
+		"uploading": _("Uploading..."),
+		"saved": _("Saved."),
+		"choose_rating": _("Choose a rating."),
 	}
 
 

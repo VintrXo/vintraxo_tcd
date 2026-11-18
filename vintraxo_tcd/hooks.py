@@ -277,6 +277,9 @@ permission_query_conditions = {
 	"TCD Learning Path": "vintraxo_tcd.core.permissions.path_query",
 	"TCD Chapter": "vintraxo_tcd.core.permissions.chapter_query",
 	"TCD Enrollment": "vintraxo_tcd.core.permissions.enrollment_query",
+	"TCD Assignment": "vintraxo_tcd.core.permissions.assignment_query",
+	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.submission_scope_query",
+	"TCD Course Feedback": "vintraxo_tcd.core.permissions.feedback_query",
 }
 
 has_permission = {
@@ -292,9 +295,14 @@ has_permission = {
 	"TCD Learning Path": "vintraxo_tcd.core.permissions.offering_has_permission",
 	"TCD Chapter": "vintraxo_tcd.core.permissions.chapter_has_permission",
 	"TCD Enrollment": "vintraxo_tcd.core.permissions.enrollment_has_permission",
+	"TCD Assignment": "vintraxo_tcd.core.permissions.assignment_has_permission",
+	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
+	"TCD Course Feedback": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
 }
 
 website_route_rules = [
+	{"from_route": "/learn/my", "to_route": "learn/my"},
+	{"from_route": "/learn/instructor", "to_route": "learn/instructor"},
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
 	{"from_route": "/learn/<space>/course/<slug>", "to_route": "learn/course"},
 	{"from_route": "/learn/<space>/path/<slug>", "to_route": "learn/path"},
