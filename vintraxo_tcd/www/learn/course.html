@@ -1,0 +1,56 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+{% set e = data.enrollment %}
+<article class="tcd-page tcd-course" dir="{{ dir }}" lang="{{ doc.language|e }}">
+	{% if is_staff_preview %}
+	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status, context="TCD")) }}</div>
+	{% endif %}
+	<header class="tcd-hero">
+		<span class="tcd-badge">{{ _("Course", context="TCD") }}</span>
+		{% if e %}<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>{% endif %}
+		<h1>{{ doc.title|e }}</h1>
+		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
+		<p class="tcd-muted">{{ _("Completion rule") }}: {{ _(doc.completion_rule, context="TCD") }}{% if doc.completion_rule == "Minimum Score" %} ({{ doc.minimum_score|int }}%){% endif %}</p>
+	</header>
+
+	<section class="tcd-section">
+		{% if e %}
+		<div class="tcd-progress-row">
+			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ data.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ data.percent|int }}%"></span></span>
+			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}</span>
+		</div>
+		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
+		{% elif data.self_enrollment and not is_staff_preview %}
+		<button type="button" class="btn btn-primary tcd-enroll" data-for="Course" data-name="{{ doc.name|e }}">{{ _("Enroll") }}</button>
+		{% else %}
+		<p class="tcd-muted">{{ _("Ask your instructor to enroll you.") }}</p>
+		{% endif %}
+		<p class="tcd-message" role="status" hidden></p>
+	</section>
+
+	{% for ch in data.chapters %}
+	<section class="tcd-section tcd-chapter">
+		<h2>{{ ch.title|e }} <span class="tcd-muted tcd-small">{{ ch.percent|int }}%</span></h2>
+		<ol class="tcd-lessons">
+			{% for it in ch["items"] %}
+			{% set st = "completed" if it.completed else ("locked" if it.locked else "not-started") %}
+			<li class="tcd-lesson tcd-status-{{ st }}">
+				{% if it.locked %}<span aria-hidden="true">🔒</span> {% endif %}
+				<a href="{{ it.url|e }}">{{ it.title|e }}</a>
+				{% if it.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
+				<span class="tcd-status tcd-status-{{ st }}">{{ _("Completed", context="TCD") if it.completed else (_("Locked", context="TCD") if it.locked else "") }}</span>
+			</li>
+			{% endfor %}
+		</ol>
+	</section>
+	{% else %}
+	<p class="tcd-muted">{{ _("No content here yet.") }}</p>
+	{% endfor %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</article>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}

@@ -1,12 +1,27 @@
 (no output),(لا توجد مخرجات)
 0 = unlimited,0 = بلا حد
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
+About,حول
+About,نبذة,TCD
+About,نبذة,TCD Course
+About,نبذة,TCD Learning Path
 Access,الوصول
 Active,مفعّل,TCD Quiz
 Active,مفعّل,TCD Space
 Active,نشط
+Active,نشط,TCD
+Active,نشط,TCD Enrollment
+Active,نشط,TCD Student Group
 Add at least one question.,أضف سؤالًا واحدًا على الأقل.
+Add at least one required course before publishing.,أضف دورة إلزامية واحدة على الأقل قبل النشر.
+Add at least one required item before publishing.,أضف عنصرًا إلزاميًا واحدًا على الأقل قبل النشر.
 Add block:,إضافة كتلة:
+All Items,جميع الأصناف
+All Items,كل العناصر,TCD
+All Items,كل العناصر,TCD Course
+All Items,كل العناصر,TCD Learning Path
+All items are done. Waiting for your instructor's approval.,أنهيت كل العناصر. في انتظار اعتماد المدرّب.
+Allow Self Enrollment,السماح بالتسجيل الذاتي
 Allowed Roles,الأدوار المسموح بها
 Allowed Roles,الأدوار المسموحة,TCD Space
 Alt Text,النص البديل
@@ -17,25 +32,32 @@ Answers must be an object of question id -> option numbers.,يجب أن تكون
 Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
 Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
 Approve,اعتماد
+Approve Completion,اعتماد الإكمال
 Approved,معتمد
 Approved,معتمد,TCD
 Approved,معتمد,TCD Content
 Approved By,اعتمده
+Approved By,اعتمده,TCD Enrollment
 Approved On,تاريخ الاعتماد
+Approved On,تاريخ الاعتماد,TCD Enrollment
 Approved Version,النسخة المعتمدة
 Approved Versions,النسخ المعتمدة
 Archive,أرشفة
 Archived,أرشفة
 Archived,مؤرشف,TCD
 Archived,مؤرشف,TCD Content
+Archived,مؤرشف,TCD Course
+Archived,مؤرشف,TCD Learning Path
 Article,مقال
 Article,مقال,TCD
 Article,مقال,TCD Content
+Ask your instructor to enroll you.,اطلب من المدرّب تسجيلك.
 Assessment,التقييم
 Attempt,المحاولة
 Attempts,المحاولات
 Attempts left: {0},المحاولات المتبقية: {0}
 Average Score,متوسط الدرجة
+Average of the best quiz scores across the items,متوسط أفضل درجات الاختبارات في العناصر
 Back to Draft,إرجاع لمسودة
 Back to Learning,العودة إلى التعلّم
 Best Quiz Score,أفضل درجة اختبار
@@ -59,26 +81,41 @@ Callout,تنبيه
 Callout,تنبيه,TCD Block
 Cannot delete a category that has content.,لا يمكن حذف تصنيف يحتوي على محتوى.
 Cannot delete a category that has sub-categories.,لا يمكن حذف تصنيف له تصنيفات فرعية.
+Cannot delete a course that has enrollments. Archive it instead.,لا يمكن حذف دورة بها تسجيلات. أرشفها بدلًا من ذلك.
+Cannot delete a learning path that has enrollments. Archive it instead.,لا يمكن حذف مسار تعلّم به تسجيلات. أرشفه بدلًا من ذلك.
 Cannot delete a space that still has content. Archive or move the content first.,لا يمكن حذف مساحة ما زال بها محتوى. أرشِف المحتوى أو انقله أولًا.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
 Caption,التعليق
 Caption,التعليق,TCD Block
 Categories,التصنيفات
 Category,التصنيف,TCD Content
+Category,التصنيف,TCD Course
 Category,فئة
 Category Name,اسم التصنيف
 Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
+Chapters,الفصول
+Choose what to enroll in.,اختر ما تريد التسجيل فيه.
 Code,رمز
 Code,كود,TCD Block
 Code editor,محرر الأكواد
+Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
 Completed,اكتمل
 Completed,مكتمل,TCD
+Completed,مكتمل,TCD Enrollment
 Completed,مكتمل,TCD Progress
+Completed On,تاريخ الإكمال,TCD Enrollment
 Completed On,تاريخ الإكمال,TCD Progress
 Completed On,تم الإكمال في
+Completion,إكمال
+Completion,الإكمال,TCD
+Completion,الإكمال,TCD Course
+Completion,الإكمال,TCD Learning Path
 Completion Rate,نسبة الإكمال
+Completion Rule,قاعدة الإكمال
+Completion rule,قاعدة الإكمال
 Content,المحتوى,TCD Content Version
+Content,المحتوى,TCD Learning Item
 Content,المحتوى,TCD Progress
 Content,المحتوى,TCD Quiz
 Content,المحتوى,TCD Quiz Submission
@@ -99,6 +136,14 @@ Correct %,نسبة الصحيح
 Correct Answers,الإجابات الصحيحة
 Correct answer,الإجابة الصحيحة
 Correctness of each question at grading time,صحة كل سؤال وقت التصحيح
+Course,المقرر التعليمي
+Course,دورة,TCD
+Course,دورة,TCD Chapter
+Course,دورة,TCD Enrollment
+Course,دورة,TCD Learning Item
+Course (learning paths),دورة (لمسارات التعلّم)
+Courses,الدورات
+Courses and learning paths,الدورات ومسارات التعلّم
 Current Approved Version,النسخة المعتمدة الحالية
 Default Content Language,لغة المحتوى الافتراضية
 Default Visibility,الظهور الافتراضي
@@ -107,15 +152,30 @@ Delete,حذف
 Delete this block?,حذف هذه الكتلة؟
 Description,الوصف,TCD Category
 Description,الوصف,TCD Space
+Description,الوصف,TCD Student Group
 Description,وصف
 Done in {0} ms,انتهى في {0} مللي ثانية
 Draft,مسودة
 Draft,مسودة,TCD
 Draft,مسودة,TCD Content
+Draft,مسودة,TCD Course
+Draft,مسودة,TCD Learning Path
+Due,الموعد النهائي
+Due Date,الموعد النهائي,TCD
+Due Date,الموعد النهائي,TCD Enrollment
+Due Date,بسبب تاريخ
 Duplicate,مكررة
 Each role can be listed only once.,لا يمكن تكرار الدور.
 Enable Learner Portal,تفعيل بوابة المتعلمين
 Enable Playgrounds,تفعيل محرر الأكواد
+Enroll,سجّل الآن
+Enroll Student Group,تسجيل مجموعة متعلمين
+Enrolled,مسجّل
+Enrolled On,تاريخ التسجيل
+Enrolled: {0},تم تسجيل: {0}
+Enrollment For,التسجيل في
+Enrollments,التسجيلات
+Enrollments complete automatically or through approval.,تكتمل التسجيلات تلقائيًا أو عبر الاعتماد.
 Error,خطأ
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
@@ -125,7 +185,12 @@ Folder that contains pyodide.js (self-host for offline sites). Must end with /,�
 Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
 From Content,من المحتوى
 From Date,من تاريخ
+Full Name,الاسم الكامل
+Full Name,الاسم الكامل,TCD Enrollment
+Full Name,الاسم الكامل,TCD Student Group Member
 General,عام
+Group Name,اسم المجموعة
+Group Name,اسم المجموعة,TCD Student Group
 Heading,الترويسة
 Heading,عنوان,TCD Block
 Image,صورة
@@ -140,27 +205,39 @@ In Review,قيد المراجعة,TCD
 In Review,قيد المراجعة,TCD Content
 Internal,داخلي
 Internal,داخلي,TCD Content
+Internal,داخلي,TCD Course
+Internal,داخلي,TCD Learning Path
 Internal,داخلي,TCD Settings
 Internal,داخلي,TCD Space
+Invalid enrollment type.,نوع تسجيل غير صالح.
+Item Title,عنوان العنصر
+Items,العناصر
+Items,العناصر,TCD Chapter
 Items (one per line),العناصر (عنصر في كل سطر)
 Items (one per line),العناصر (عنصر في كل سطر),TCD Block
 Language,اللغة
 Language,اللغة,TCD Block
 Language,اللغة,TCD Content
 Language,اللغة,TCD Content Version
+Language,اللغة,TCD Course
+Language,اللغة,TCD Learning Path
 Last Viewed On,آخر مشاهدة
 Learner,المتعلم
+Learner,المتعلم,TCD Enrollment
 Learner Portal,بوابة المتعلمين
 Learner Progress,تقدّم المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
 Learning,التعلّم
+Learning Path,مسار تعلّم
+Learning Paths,مسارات التعلّم
 Learning Settings,إعدادات التعلّم
 Lesson,درس
 Lesson,درس,TCD
 Lesson,درس,TCD Content
 Lesson,درس,TCD Tutorial Lesson
 Lesson navigation,التنقل بين الدروس
+"Lesson, Article or Reference (chapters)",درس أو مقال أو مرجع (للفصول)
 Lessons,الدروس
 Level,المستوى
 Level,المستوى,TCD Block
@@ -170,15 +247,31 @@ List,قائمة,TCD Block
 Loading runtime (first run can take a few seconds)...,جارٍ تحميل بيئة التشغيل (أول تشغيل قد يستغرق بضع ثوانٍ)...
 Location,الموقع
 Location,الموقع,TCD Content
+Locked,مغلق
+Locked,مقفل,TCD
+Manual Approval,اعتماد يدوي
+Manual Approval,اعتماد يدوي,TCD
+Manual Approval,اعتماد يدوي,TCD Course
+Manual Approval,اعتماد يدوي,TCD Learning Path
 Mark as complete,تحديد كمكتمل
 Max Attempts,الحد الأقصى للمحاولات
 Max Score,أقصى درجة
 Max Score,الدرجة العظمى,TCD Quiz Submission
 Max attempts cannot be negative.,لا يمكن أن يكون الحد الأقصى للمحاولات سالبًا.
+Members,الأعضاء
+Members,الأعضاء,TCD Student Group
+Minimum Score,الحد الأدنى للدرجة
+Minimum Score,الحد الأدنى للدرجة,TCD
+Minimum Score,الحد الأدنى للدرجة,TCD Course
+Minimum Score,الحد الأدنى للدرجة,TCD Learning Path
+Minimum score must be between 1 and 100.,الحد الأدنى للدرجة يجب أن يكون بين 1 و100.
 Most Common Wrong Answer,أكثر إجابة خاطئة
 Move down,تحريك لأسفل
+Move the course back to Draft to change its chapters.,أعد الدورة إلى مسودة لتعديل فصولها.
+Move the learning path back to Draft to change its courses.,أعد مسار التعلّم إلى مسودة لتعديل دوراته.
 Move up,تحريك لأعلى
 Multiple Choice,اختيار متعدد
+My courses,دوراتي
 Name,اسم
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 Next,التالي
@@ -191,15 +284,20 @@ No spaces are available to you yet.,لا توجد مساحات متاحة لك �
 Not Started,لم تبدأ
 Not Started,لم يبدأ,TCD
 Not passed yet,لم تنجح بعد
+Not permitted,غير مسموح به
 Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة أقصر.
 Numbered,مرقّمة
 Numbered,مرقّمة,TCD Block
 One option per line (not used for True False),خيار في كل سطر (لا يُستخدم مع صح/خطأ)
 Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
 Only a reviewer can publish content.,المراجع فقط يمكنه نشر المحتوى.
+Only a reviewer can publish.,المراجع فقط يمكنه النشر.
+Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
+Only enrollments pending approval can be approved.,يمكن اعتماد التسجيلات التي في انتظار الاعتماد فقط.
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
 "Option numbers starting at 1, comma separated (e.g. 2 or 1,3). True False: 1 = True, 2 = False","أرقام الخيارات بدءًا من 1 مفصولة بفاصلة (مثل 2 أو 1,3). صح/خطأ: 1 = صح، 2 = خطأ"
 Optional,اختياري
+Optional,اختياري,TCD Learning Item
 Options,الخيارات,TCD Quiz Question
 Options,خيارات
 Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
@@ -215,7 +313,11 @@ Pass percentage must be between 1 and 100.,نسبة النجاح يجب أن ت�
 Pass the quiz to complete this lesson.,انجح في الاختبار لإكمال هذا الدرس.
 Pass this quiz to complete the lesson.,انجح في هذا الاختبار لإكمال الدرس.
 Passed,تم الاجتياز بنجاح
+Pending Approval,في انتظار الاعتماد,TCD
+Pending Approval,في انتظار الاعتماد,TCD Enrollment
+Pending Approval,في انتظار الموافقة
 Per-question Results,نتائج كل سؤال
+Percent,النسبة,TCD Enrollment
 Percent,النسبة,TCD Progress
 Percent,في المئة
 Percentage,النسبة المئوية
@@ -229,16 +331,24 @@ Points,النقاط
 Prerequisite,متطلب سابق
 Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
+Progress,التقدّم,TCD
+Progress,التقدّم,TCD Enrollment
+Progress,تقدم
 Progress Records,سجلات التقدّم
 Progress for this user and content already exists.,التقدّم لهذا المستخدم وهذا المحتوى موجود بالفعل.
 Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
 Public,جمهور
 Public,عام,TCD Content
+Public,عام,TCD Course
+Public,عام,TCD Learning Path
 Public,عام,TCD Settings
 Public,عام,TCD Space
 Publish,نشر
+Publish these items first: {0},انشر هذه العناصر أولًا: {0}
 Published,منشور,TCD
 Published,منشور,TCD Content
+Published,منشور,TCD Course
+Published,منشور,TCD Learning Path
 Published,نشرت
 Published On,تاريخ النشر
 Pyodide Base URL,رابط Pyodide الأساسي
@@ -259,24 +369,39 @@ Reference,مرجع,TCD Content
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
 Relation Type,نوع العلاقة
+Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
+Required Sequence,تسلسل إلزامي
+Required Sequence,تسلسل إلزامي,TCD
+Required Sequence,تسلسل إلزامي,TCD Course
+Required Sequence,تسلسل إلزامي,TCD Learning Path
 Required to Complete Content,مطلوب لإكمال المحتوى
 Reset,إعادة تعيين
 Restricted,مقيّد
 Restricted,مقيّد,TCD Content
+Restricted,مقيّد,TCD Course
+Restricted,مقيّد,TCD Learning Path
 Restricted,مقيّد,TCD Settings
 Restricted,مقيّد,TCD Space
 Results for {0},نتائج البحث عن {0}
 Review & Publishing,المراجعة والنشر
 Role,الدور,TCD Space Role
 Role,صلاحية
+Row {0}: choose a content item.,السطر {0}: اختر عنصر محتوى.
+Row {0}: choose a course.,السطر {0}: اختر دورة.
 Row {0}: lesson {1} is listed twice.,السطر {0}: الدرس {1} مكرر.
 Row {0}: lesson {1} must be in the same space.,السطر {0}: الدرس {1} يجب أن يكون في نفس المساحة.
+"Row {0}: {1} cannot be a course item (use a lesson, article or reference).",السطر {0}: لا يمكن أن يكون {1} عنصرًا في دورة (استخدم درسًا أو مقالًا أو مرجعًا).
+Row {0}: {1} is already in this course.,السطر {0}: {1} موجود بالفعل في هذه الدورة.
+Row {0}: {1} is listed twice.,السطر {0}: {1} مكرر.
 Row {0}: {1} is not a Lesson.,السطر {0}: {1} ليس درسًا.
+Row {0}: {1} must be in the course space.,السطر {0}: يجب أن يكون {1} في مساحة الدورة.
+Row {0}: {1} must be in the same space.,السطر {0}: يجب أن يكون {1} في نفس المساحة.
 Run,تشغيل
 Running...,جارٍ التشغيل...
 SQL.js Base URL,رابط SQL.js الأساسي
 Save your changes first.,احفظ تغييراتك أولًا.
+Score,الدرجة,TCD Enrollment
 Score,الدرجة,TCD Quiz Submission
 Score,النتيجة
 Score: {0} / {1} ({2}%),الدرجة: {0} / {1} ({2}%)
@@ -285,21 +410,30 @@ Search Text,نص البحث
 Search lessons and articles,ابحث في الدروس والمقالات
 See Also,انظر أيضًا
 Select a quiz.,اختر اختبارًا.
+Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
 "Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
 Show Answers After Submit,إظهار الإجابات بعد التسليم
 Shown after submission when enabled on the quiz,يظهر بعد التسليم إذا كان مفعّلًا في الاختبار
 Shuffle Questions,خلط الأسئلة
 Single Choice,اختيار واحد
+Skipped: {0},تم التخطي: {0}
 Slug,المعرف اللطيف
 Slug,المعرّف في الرابط,TCD Content
+Slug,المعرّف في الرابط,TCD Course
+Slug,المعرّف في الرابط,TCD Learning Path
 Slug {0} is already used in this space.,المعرّف {0} مستخدم بالفعل في هذه المساحة.
 Snapshot,اللقطة
 Sort Order,الترتيب,TCD Category
+Sort Order,الترتيب,TCD Chapter
 Sort Order,الترتيب,TCD Content Relation
 Sort Order,ترتيب الفرز
 Space,المساحة
 Space,المساحة,TCD Category
+Space,المساحة,TCD Chapter
 Space,المساحة,TCD Content
+Space,المساحة,TCD Course
+Space,المساحة,TCD Enrollment
+Space,المساحة,TCD Learning Path
 Space,المساحة,TCD Progress
 Space,المساحة,TCD Quiz
 Space ID,معرّف المساحة
@@ -310,20 +444,32 @@ Starter Code,الكود المبدئي
 Starter Code,الكود المبدئي,TCD Block
 Status,الحالة
 Status,الحالة,TCD Content
+Status,الحالة,TCD Course
+Status,الحالة,TCD Enrollment
+Status,الحالة,TCD Learning Path
 Status,الحالة,TCD Progress
 Stop,إيقاف
 Stopped.,تم الإيقاف.
 Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت المهلة ({0} ثوانٍ).
+Student Group,مجموعة متعلمين
+Student Groups,مجموعات المتعلمين
 Submit answers,إرسال الإجابات
 Submit for Review,إرسال للمراجعة
 Summary,الملخص,TCD Content
 Summary,الملخص,TCD Content Version
+Summary,الملخص,TCD Course
+Summary,الملخص,TCD Learning Path
 Summary,ملخص
 TCD Category,تصنيف محتوى
+TCD Chapter,فصل
 TCD Content,محتوى تعليمي
 TCD Content Relation,علاقة محتوى
 TCD Content Version,نسخة محتوى معتمدة
+TCD Course,دورة
+TCD Enrollment,تسجيل
 TCD Learner Progress,تقدّم المتعلمين
+TCD Learning Item,عنصر تعلّم
+TCD Learning Path,مسار تعلّم
 TCD Progress,سجل تقدّم
 TCD Quiz,اختبار
 TCD Quiz Analytics,تحليلات الاختبارات
@@ -332,6 +478,8 @@ TCD Quiz Submission,محاولة اختبار
 TCD Settings,إعدادات التعلّم
 TCD Space,مساحة تعليمية
 TCD Space Role,دور المساحة
+TCD Student Group,مجموعة متعلمين
+TCD Student Group Member,عضو مجموعة
 TCD Tutorial Lesson,درس المسار
 Text,النص,TCD Block
 Text,نص
@@ -339,12 +487,16 @@ The lesson or tutorial this quiz belongs to,الدرس أو المسار الذ�
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
 "This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
 This content is {0}. Move it back to Draft to edit.,حالة هذا المحتوى {0}. أعده إلى مسودة لتعديله.
+This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
 This quiz is not active.,هذا الاختبار غير مفعّل.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 Title,العنوان,TCD Block
+Title,العنوان,TCD Chapter
 Title,العنوان,TCD Content
 Title,العنوان,TCD Content Version
+Title,العنوان,TCD Course
+Title,العنوان,TCD Learning Path
 Title,العنوان,TCD Quiz
 Title,العنوان,TCD Space
 Title,العنوان,TCD Tutorial Lesson
@@ -365,6 +517,7 @@ Unknown block type. Edit it in the JSON section.,نوع كتلة غير معرو
 User,المستخدم
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
+User,المستخدم,TCD Student Group Member
 Variant,النوع,TCD Block
 Variant,مختلف
 Version,الإصدار
@@ -372,9 +525,18 @@ Version,النسخة,TCD Content Version
 View in Portal,عرض في البوابة
 Visibility,الرؤية
 Visibility,الظهور,TCD Content
+Visibility,الظهور,TCD Course
+Visibility,الظهور,TCD Learning Path
 Visibility,الظهور,TCD Space
+Withdrawn,منسحب
+Withdrawn,منسحب,TCD
+Withdrawn,منسحب,TCD Enrollment
 Wrong,خطأ
+You can only enroll in published courses and learning paths.,يمكن التسجيل فقط في الدورات ومسارات التعلّم المنشورة.
+{0} cannot access this course or learning path.,لا يستطيع {0} الوصول إلى هذه الدورة أو مسار التعلّم.
 {0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.
+{0} is already enrolled.,{0} مسجّل بالفعل.
 {0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.
 {0} of {1} lessons completed,أُكمل {0} من {1} دروس
+{} Pending,{} بانتظار الاعتماد
 {} Published,{} منشور

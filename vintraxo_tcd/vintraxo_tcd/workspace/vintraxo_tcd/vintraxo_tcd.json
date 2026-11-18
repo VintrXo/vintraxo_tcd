@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}]",
+ "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Courses\", \"col\": 3}}, {\"id\": \"tcd-sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Enrollments\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}]",
  "creation": "2026-11-19 01:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -12,7 +12,7 @@
  "is_hidden": 0,
  "label": "VintraXo TCD",
  "links": [],
- "modified": "2026-11-19 04:00:00.000000",
+ "modified": "2026-11-19 06:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VintraXo TCD",
@@ -48,6 +48,22 @@
    "color": "Blue",
    "format": "{} Published",
    "stats_filter": "{\"status\": \"Published\"}"
+  },
+  {
+   "label": "Courses",
+   "link_to": "TCD Course",
+   "type": "DocType",
+   "color": "Blue",
+   "format": "{} Published",
+   "stats_filter": "{\"status\": \"Published\"}"
+  },
+  {
+   "label": "Enrollments",
+   "link_to": "TCD Enrollment",
+   "type": "DocType",
+   "color": "Orange",
+   "format": "{} Pending",
+   "stats_filter": "{\"status\": \"Pending Approval\"}"
   },
   {
    "label": "Spaces",

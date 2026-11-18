@@ -28,6 +28,10 @@
 	</section>
 	{% endif %}
 
+	{% if sequence_blockers %}
+	<div class="tcd-callout tcd-callout-warning">{{ _("This item is locked by the course order. Complete these items first: {0}").format(sequence_blockers|join(", ")|e) }}</div>
+	{% endif %}
+
 	<div class="tcd-body">
 		{{ render_blocks(lesson.blocks, lesson.playground) }}
 	</div>

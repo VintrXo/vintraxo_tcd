@@ -93,3 +93,9 @@
 .tcd-footer { margin-block-start: 2rem; padding-block-start: 1rem; border-block-start: 1px solid var(--tcd-border); display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
 .tcd-nav { display: flex; gap: 0.5rem; margin-inline-start: auto; flex-wrap: wrap; }
 .tcd-message { flex-basis: 100%; margin: 0; }
+
+/* courses (Phase 1) */
+.tcd-small { font-size: 0.8rem; font-weight: normal; }
+.tcd-status-locked { color: var(--tcd-muted); }
+.tcd-status-pending-approval { color: var(--tcd-warn); }
+.tcd-callout-info { border-inline-start-color: var(--tcd-accent); }

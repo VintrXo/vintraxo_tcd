@@ -273,6 +273,10 @@ permission_query_conditions = {
 	"TCD Quiz": "vintraxo_tcd.core.permissions.quiz_query",
 	"TCD Progress": "vintraxo_tcd.core.permissions.progress_query",
 	"TCD Quiz Submission": "vintraxo_tcd.core.permissions.submission_query",
+	"TCD Course": "vintraxo_tcd.core.permissions.course_query",
+	"TCD Learning Path": "vintraxo_tcd.core.permissions.path_query",
+	"TCD Chapter": "vintraxo_tcd.core.permissions.chapter_query",
+	"TCD Enrollment": "vintraxo_tcd.core.permissions.enrollment_query",
 }
 
 has_permission = {
@@ -284,10 +288,16 @@ has_permission = {
 	"TCD Quiz": "vintraxo_tcd.core.permissions.quiz_has_permission",
 	"TCD Progress": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
 	"TCD Quiz Submission": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
+	"TCD Course": "vintraxo_tcd.core.permissions.offering_has_permission",
+	"TCD Learning Path": "vintraxo_tcd.core.permissions.offering_has_permission",
+	"TCD Chapter": "vintraxo_tcd.core.permissions.chapter_has_permission",
+	"TCD Enrollment": "vintraxo_tcd.core.permissions.enrollment_has_permission",
 }
 
 website_route_rules = [
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
+	{"from_route": "/learn/<space>/course/<slug>", "to_route": "learn/course"},
+	{"from_route": "/learn/<space>/path/<slug>", "to_route": "learn/path"},
 	{"from_route": "/learn/<space>/<slug>", "to_route": "learn/content"},
 ]
 
@@ -304,3 +314,5 @@ add_to_apps_screen = [
 		"has_permission": "vintraxo_tcd.core.permissions.has_app_permission",
 	}
 ]
+
+app_include_js = ["/assets/vintraxo_tcd/js/tcd_desk.js"]

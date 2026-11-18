@@ -28,7 +28,8 @@
 | permissions.py | Space/visibility access (has_permission + permission_query_conditions) |
 | progress.py | Lesson/tutorial progress and roll-up |
 | quiz.py | Quiz validation, learner payload (no answers), grading |
-| portal.py | Context for /learn pages (login/portal guards, listings, lesson page) |
+| portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
+| courses.py | Course/path structure rules, completion rules, roll-up, enrollment, sequence gating |
 
 ## Public API (`vintraxo_tcd.api.*`)
 | Method | HTTP | Purpose |
@@ -41,13 +42,20 @@
 | get_tutorial_progress(name) | GET | Lessons with status and percent |
 | get_quiz(name) | GET | Questions without answers, attempts left |
 | submit_quiz(name, answers) | POST | Grade on the server; answers = {question_id: [option numbers]} |
+| get_course(name) | GET | Outline with completed/locked items, chapter and course percent, enrollment |
+| get_learning_path(name) | GET | Courses with state, path percent, enrollment |
+| enroll(enrollment_for, name) | POST | Self-enrollment (Course / Learning Path; path also enrolls in its courses) |
+| enroll_group(student_group, enrollment_for, name, due_date?) | POST | Staff: enroll a cohort; returns enrolled + skipped with reasons |
+| approve_enrollment(name) | POST | Instructor: approve a Pending Approval enrollment |
 
 ## Learner portal (P3)
 | Route | Page | Content |
 |---|---|---|
 | `/learn` | `www/learn/index` | Spaces, "continue learning", search (`?q=`) |
 | `/learn/<space>` | `www/learn/space` | Content grouped by category; tutorials first |
-| `/learn/<space>/<slug>[?tutorial=]` | `www/learn/content` | Blocks, tutorial lessons, quiz, complete button, prev/next |
+| `/learn/<space>/course/<slug>` | `www/learn/course` | Outline, progress, enroll button, locked items |
+| `/learn/<space>/path/<slug>` | `www/learn/path` | Courses of the path with state |
+| `/learn/<space>/<slug>[?tutorial=&course=]` | `www/learn/content` | Blocks, tutorial lessons, quiz, complete button, prev/next |
 
 - Guests get a 302 to `/login?redirect-to=...`; `TCD Settings > Enable Learner Portal` off = 404.
 - Hidden spaces/content return 404 (never 403) so their existence is not revealed. Staff see a preview banner on unpublished content.

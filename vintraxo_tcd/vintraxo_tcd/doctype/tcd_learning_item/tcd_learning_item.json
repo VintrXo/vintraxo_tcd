@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 05:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "content",
+  "course",
+  "item_title",
+  "is_optional"
+ ],
+ "fields": [
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "options": "TCD Content",
+   "label": "Content",
+   "in_list_view": 1,
+   "description": "Lesson, Article or Reference (chapters)"
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "options": "TCD Course",
+   "label": "Course",
+   "in_list_view": 1,
+   "description": "Course (learning paths)"
+  },
+  {
+   "fieldname": "item_title",
+   "fieldtype": "Data",
+   "label": "Item Title",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "is_optional",
+   "fieldtype": "Check",
+   "label": "Optional",
+   "in_list_view": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 05:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Learning Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

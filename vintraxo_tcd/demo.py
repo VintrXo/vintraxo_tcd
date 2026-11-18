@@ -126,5 +126,59 @@ def create_demo():
 				],
 			}
 		).insert(ignore_permissions=True)
+	_demo_course(l1, l2, l3)
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
+
+
+def _demo_course(l1, l2, l3):
+	"""Phase 1 demo: a sequenced course and a learning path."""
+	course = frappe.db.get_value("TCD Course", {"space": SPACE, "title": "أساسيات بايثون"})
+	if not course:
+		doc = frappe.get_doc(
+			{
+				"doctype": "TCD Course",
+				"title": "أساسيات بايثون",
+				"space": SPACE,
+				"visibility": "Public",
+				"language": "ar",
+				"completion_rule": "Required Sequence",
+				"summary": "دورة قصيرة بترتيب إلزامي: كل درس يفتح بعد اللي قبله.",
+			}
+		).insert(ignore_permissions=True)
+		frappe.get_doc(
+			{
+				"doctype": "TCD Chapter",
+				"course": doc.name,
+				"title": "البداية",
+				"sort_order": 1,
+				"items": [{"content": l1.name}, {"content": l2.name}],
+			}
+		).insert(ignore_permissions=True)
+		frappe.get_doc(
+			{
+				"doctype": "TCD Chapter",
+				"course": doc.name,
+				"title": "قواعد البيانات",
+				"sort_order": 2,
+				"items": [{"content": l3.name, "is_optional": 1}],
+			}
+		).insert(ignore_permissions=True)
+		doc.reload()
+		doc.status = "Published"
+		doc.save(ignore_permissions=True)
+		course = doc.name
+	if not frappe.db.exists("TCD Learning Path", {"space": SPACE, "title": "مسار مطوّر بايثون"}):
+		path = frappe.get_doc(
+			{
+				"doctype": "TCD Learning Path",
+				"title": "مسار مطوّر بايثون",
+				"space": SPACE,
+				"visibility": "Public",
+				"language": "ar",
+				"summary": "ابدأ بأساسيات بايثون.",
+				"items": [{"course": course}],
+			}
+		).insert(ignore_permissions=True)
+		path.status = "Published"
+		path.save(ignore_permissions=True)

@@ -68,6 +68,33 @@ Draft -> In Review -> Approved -> Published -> Archived
   Submissions are immutable; passing a required quiz completes its content.
 - Playground blocks are removed from `get_lesson` output when TCD Settings > Enable Playgrounds is off.
 
+## Phase 1 (R2): courses, paths, enrollment, cohorts
+| DocType | Naming | Key fields |
+|---|---|---|
+| TCD Course | hash | title, slug, space, category, language, visibility, status (Draft/Published/Archived), summary, completion_rule, minimum_score, self_enrollment |
+| TCD Chapter | hash | course, title, sort_order, items (TCD Learning Item) |
+| TCD Learning Path | hash | title, slug, space, language, visibility, status, summary, completion_rule, minimum_score, self_enrollment, items (TCD Learning Item) |
+| TCD Learning Item (child) | - | content (Link TCD Content, in chapters), course (Link TCD Course, in paths), is_optional |
+| TCD Enrollment | hash | user, enrollment_for (Course/Learning Path), course, learning_path, student_group, status (Active/Pending Approval/Completed/Withdrawn), percent, score, enrolled_on, due_date, completed_on, approved_by, approved_on |
+| TCD Student Group | group_name | description, is_active, members (TCD Student Group Member) |
+| TCD Student Group Member (child) | - | user, full_name |
+
+### Rules
+- Lessons stay one entity: chapter items are TCD Content (Lesson, Article or Reference; never Tutorial) in the course space,
+  each content at most once per course. Path items are courses of the same space, no duplicates.
+- Publishing a course/path needs a reviewer when approval is required, and every required item must already be Published.
+- Completion rules (course and path):
+  - **All Items**: every required item completed.
+  - **Required Sequence**: same, and a required item can only be completed after the previous required items of every
+    sequence course the learner is actively enrolled in.
+  - **Manual Approval**: when all required items are done the enrollment becomes Pending Approval; an instructor approves.
+  - **Minimum Score**: all required items done and the average best quiz score over the course quizzes >= minimum_score
+    (no quizzes = satisfied).
+- Roll-up: lesson (TCD Progress) -> chapter (computed) -> course enrollment (percent, score, status) -> path enrollment
+  (required courses completed). Triggered on lesson completion and quiz grading.
+- Enrollment is unique per user and course/path. Enrolling in a path also enrolls in its courses. Self-enrollment only
+  when the course/path allows it and is readable; staff can enroll users or a whole student group.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

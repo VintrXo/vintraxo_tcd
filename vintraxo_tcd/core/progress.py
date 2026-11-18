@@ -56,12 +56,21 @@ def complete(user: str, content: str, from_quiz: bool = False):
 		if quiz and not has_passed(user, quiz):
 			frappe.throw(_("Pass the quiz to complete this lesson."))
 
+	from vintraxo_tcd.core import courses
+
+	blockers = courses.sequence_blockers(user, content)
+	if blockers:
+		if from_quiz:
+			return None  # quiz result is kept; completion waits for the earlier items
+		frappe.throw(_("Complete these items first: {0}").format(", ".join(blockers)))
+
 	doc = _upsert(user, content, status="Completed", percent=100, last_viewed_on=now_datetime())
 	if not doc.completed_on:
 		doc.db_set("completed_on", now_datetime(), update_modified=False)
 
 	for tutorial in tutorials_for_lesson(content):
 		refresh_tutorial(user, tutorial)
+	courses.on_content_changed(user, content)
 	return doc
 
 

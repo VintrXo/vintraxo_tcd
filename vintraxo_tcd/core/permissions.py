@@ -232,3 +232,71 @@ def has_app_permission():
 	"""Show the app on the apps screen / desk to TCD staff only (learners use the portal)."""
 	user = frappe.session.user
 	return user != "Guest" and (is_admin(user) or is_staff(user))
+
+
+# ---------------------------------------------------------------- Phase 1: courses, paths, enrollments
+# Course and Learning Path carry the same space / visibility / status / owner fields as TCD Content,
+# so the same rules apply to them.
+
+
+def course_query(user=None, doctype=None):
+	return _content_condition(user or frappe.session.user, "`tabTCD Course`")
+
+
+def path_query(user=None, doctype=None):
+	return _content_condition(user or frappe.session.user, "`tabTCD Learning Path`")
+
+
+def offering_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	if doc.is_new() and not doc.space:
+		return True
+	return can_access_content(doc, user)
+
+
+def _via(doctype: str, column: str, user: str) -> str:
+	cond = _content_condition(user, "c")
+	if not cond:
+		return ""
+	return f"{column} in (select c.name from `tab{doctype}` c where {cond})"
+
+
+def chapter_query(user=None, doctype=None):
+	return _via("TCD Course", "`tabTCD Chapter`.course", user or frappe.session.user)
+
+
+def _offering_ok(doctype: str, name: str | None, user: str) -> bool:
+	if not name or not frappe.db.exists(doctype, name):
+		return True  # link validation reports it
+	return can_access_content(frappe.get_cached_doc(doctype, name), user)
+
+
+def chapter_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	return is_admin(user) or _offering_ok("TCD Course", doc.course, user)
+
+
+def enrollment_query(user=None, doctype=None):
+	user = user or frappe.session.user
+	if is_admin(user):
+		return ""
+	table = "`tabTCD Enrollment`"
+	own = f"{table}.user = {frappe.db.escape(user)}"
+	if not is_staff(user):
+		return own
+	courses = _via("TCD Course", f"{table}.course", user)
+	paths = _via("TCD Learning Path", f"{table}.learning_path", user)
+	return f"({own} or {courses} or {paths})"
+
+
+def enrollment_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	if is_admin(user):
+		return True
+	if doc.user == user:
+		return True
+	if not is_staff(user):
+		return False
+	if doc.course:
+		return _offering_ok("TCD Course", doc.course, user)
+	return _offering_ok("TCD Learning Path", doc.learning_path, user)

@@ -49,6 +49,14 @@ def content_url(space: str, slug: str, tutorial: str | None = None) -> str:
 	return f"{url}?tutorial={quote(tutorial)}" if tutorial else url
 
 
+def course_url(space: str, slug: str) -> str:
+	return f"/learn/{quote(space)}/course/{quote(slug)}"
+
+
+def path_url(space: str, slug: str) -> str:
+	return f"/learn/{quote(space)}/path/{quote(slug)}"
+
+
 def direction(language: str | None) -> str:
 	return "rtl" if (language or "ar") == "ar" else "ltr"
 
@@ -93,6 +101,7 @@ def home_context(query: str | None = None) -> dict:
 		limit_page_length=6,
 	)
 	ctx["continue_learning"] = _attach_content(in_progress)
+	ctx["my_enrollments"] = my_enrollments(user)
 
 	if query:
 		rows = search(query, limit=50)
@@ -159,16 +168,44 @@ def space_context(space_name: str) -> dict:
 		)
 		(group["tutorials"] if row.content_type == "Tutorial" else group["items"]).append(row)
 
+	offerings = []
+	for doctype, kind, url in (("TCD Learning Path", "path", path_url), ("TCD Course", "course", course_url)):
+		rows_o = frappe.get_list(
+			doctype,
+			filters={"space": space.name},
+			fields=["name", "title", "slug", "summary", "language", "status"],
+			order_by="title asc",
+			limit_page_length=200,
+		)
+		field = "learning_path" if kind == "path" else "course"
+		mine = dict(
+			frappe.get_all(
+				"TCD Enrollment",
+				filters={"user": user, field: ("in", [r.name for r in rows_o] or [""])},
+				fields=[field, "status"],
+				as_list=True,
+			)
+		)
+		for r in rows_o:
+			r.kind = kind
+			r.url = url(space.name, r.slug)
+			r.enrollment = mine.get(r.name)
+			offerings.append(r)
+
 	return {
 		"space": space,
+		"offerings": offerings,
 		"groups": sorted(groups.values(), key=lambda g: (g["sort"], g["title"])),
 		"title": space.title,
 		"parents": [{"route": "/learn", "title": _("Learning")}],
 	}
 
 
-def content_context(space_name: str, slug: str, tutorial: str | None = None) -> dict:
+def content_context(
+	space_name: str, slug: str, tutorial: str | None = None, course: str | None = None
+) -> dict:
 	from vintraxo_tcd import api
+	from vintraxo_tcd.core import courses as course_svc
 
 	space = get_space(space_name)
 	doc = get_content_by_slug(space.name, slug)
@@ -188,6 +225,15 @@ def content_context(space_name: str, slug: str, tutorial: str | None = None) -> 
 				target = frappe.db.get_value("TCD Content", lesson[key], ["title", "slug"], as_dict=True)
 				nav[key] = {"title": target.title, "url": content_url(space.name, target.slug, tutorial)}
 
+	if (
+		course
+		and frappe.db.exists("TCD Course", course)
+		and frappe.has_permission("TCD Course", "read", course)
+	):
+		c = frappe.db.get_value("TCD Course", course, ["title", "slug"], as_dict=True)
+		parents.append({"route": course_url(space.name, c.slug), "title": c.title})
+	blockers = course_svc.sequence_blockers(user, doc.name)
+
 	if lesson.get("tutorial"):
 		for item in lesson["tutorial"]["lessons"]:
 			item["url"] = content_url(space.name, item["slug"], doc.name)
@@ -203,8 +249,10 @@ def content_context(space_name: str, slug: str, tutorial: str | None = None) -> 
 		"parents": [{**p, "route": p["route"].rstrip("/")} for p in parents],
 		"can_complete": doc.content_type != "Tutorial"
 		and lesson["progress"] != "Completed"
-		and not (quiz_required and not (lesson["quiz"] or {}).get("passed")),
+		and not (quiz_required and not (lesson["quiz"] or {}).get("passed"))
+		and not blockers,
 		"quiz_required": quiz_required,
+		"sequence_blockers": blockers,
 		"is_staff_preview": doc.status != "Published",
 		"user": user,
 		"js_labels": js_labels(),
@@ -241,6 +289,7 @@ def js_labels() -> dict:
 		"true": _("True"),
 		"false": _("False"),
 		"preview": _("Preview"),
+		"enrolled": _("Enrolled"),
 	}
 
 
@@ -252,3 +301,81 @@ def json_for_script(data) -> str:
 		.replace(">", "\\u003e")
 		.replace("&", "\\u0026")
 	)
+
+
+# ---------------------------------------------------------------- courses and paths (Phase 1)
+
+
+def my_enrollments(user: str) -> list:
+	rows = frappe.get_list(
+		"TCD Enrollment",
+		filters={"user": user, "status": ("!=", "Withdrawn")},
+		fields=["name", "enrollment_for", "course", "learning_path", "status", "percent", "due_date"],
+		order_by="modified desc",
+		limit_page_length=20,
+	)
+	out = []
+	for r in rows:
+		doctype = "TCD Course" if r.course else "TCD Learning Path"
+		target = r.course or r.learning_path
+		if not frappe.has_permission(doctype, "read", target):
+			continue
+		t = frappe.db.get_value(doctype, target, ["title", "slug", "space"], as_dict=True)
+		r.title = t.title
+		r.url = (course_url if r.course else path_url)(t.space, t.slug)
+		out.append(r)
+	return out
+
+
+def _offering_by_slug(doctype: str, space: str, slug: str):
+	name = frappe.db.get_value(doctype, {"space": space, "slug": slug})
+	if not name or not frappe.has_permission(doctype, "read", name):
+		raise frappe.PageDoesNotExistError
+	return frappe.get_doc(doctype, name)
+
+
+def course_context(space_name: str, slug: str) -> dict:
+	from vintraxo_tcd import api
+
+	space = get_space(space_name)
+	course = _offering_by_slug("TCD Course", space.name, slug)
+	data = api.get_course(course.name)
+	for ch in data["chapters"]:
+		for item in ch["items"]:
+			item["url"] = content_url(space.name, item["slug"]) + "?course=" + quote(course.name)
+	return {
+		"space": space,
+		"doc": course,
+		"data": data,
+		"dir": direction(course.language),
+		"title": course.title,
+		"parents": [
+			{"route": "/learn", "title": _("Learning")},
+			{"route": content_url(space.name, "").rstrip("/"), "title": space.title},
+		],
+		"is_staff_preview": course.status != "Published",
+		"js_labels": js_labels(),
+	}
+
+
+def path_context(space_name: str, slug: str) -> dict:
+	from vintraxo_tcd import api
+
+	space = get_space(space_name)
+	path = _offering_by_slug("TCD Learning Path", space.name, slug)
+	data = api.get_learning_path(path.name)
+	for c in data["courses"]:
+		c["url"] = course_url(space.name, c["slug"])
+	return {
+		"space": space,
+		"doc": path,
+		"data": data,
+		"dir": direction(path.language),
+		"title": path.title,
+		"parents": [
+			{"route": "/learn", "title": _("Learning")},
+			{"route": content_url(space.name, "").rstrip("/"), "title": space.title},
+		],
+		"is_staff_preview": path.status != "Published",
+		"js_labels": js_labels(),
+	}

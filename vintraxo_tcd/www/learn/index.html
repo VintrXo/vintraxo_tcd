@@ -35,6 +35,25 @@
 	</section>
 	{% endif %}
 
+	{% if my_enrollments %}
+	<section class="tcd-section">
+		<h2>{{ _("My courses") }}</h2>
+		<ul class="tcd-cards">
+			{% for m in my_enrollments %}
+			<li class="tcd-card">
+				<a href="{{ m.url|e }}">
+					<span class="tcd-badge">{{ _("Learning Path") if m.learning_path else _("Course", context="TCD") }}</span>
+					<span class="tcd-status tcd-status-{{ m.status|lower|replace(' ', '-') }}">{{ _(m.status, context="TCD") }}</span>
+					<strong>{{ m.title|e }}</strong>
+					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ m.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ m.percent|int }}%"></span></span>
+					{% if m.due_date %}<span class="tcd-muted">{{ _("Due") }} {{ frappe.format_date(m.due_date) }}</span>{% endif %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if continue_learning %}
 	<section class="tcd-section">
 		<h2>{{ _("Continue learning") }}</h2>

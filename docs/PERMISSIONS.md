@@ -20,6 +20,10 @@
 | TCD Content Relation | full | CRWD | R | R | R |
 | TCD Content Version | R, D | R | R | R | - |
 | TCD Quiz | full | CRW | RW | R | - (API only) |
+| TCD Course / TCD Learning Path | full | CRW | RW | R | R |
+| TCD Chapter | full | CRWD | RW | R | R |
+| TCD Enrollment | full | R | R | CRW | R (own; self-enroll via API) |
+| TCD Student Group | full | - | R | CRWD | - |
 | TCD Progress | R, D | - | - | R | R (own) |
 | TCD Quiz Submission | R, D | R | R | R | R (own) |
 
@@ -41,6 +45,11 @@ Layers 2-3 are applied in both `has_permission` (single doc) and
 `permission_query_conditions` (lists/reports/search), for Space, Category, Content,
 Relation (both ends), Version and Quiz (through their content).
 Progress and Quiz Submission: users see their own rows; staff also see rows for content they can access.
+
+## Courses (Phase 1)
+- Course and Learning Path use the same space + visibility + status rules as TCD Content (learners: Published only).
+- Chapters follow their course. Enrollments: own rows, plus staff for courses/paths they can read.
+- Approving a Pending Approval enrollment: TCD Instructor or admin (`api.approve_enrollment`).
 
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.

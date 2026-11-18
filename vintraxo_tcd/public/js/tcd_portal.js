@@ -58,7 +58,28 @@
 
 	// ------------------------------------------------------------ page
 
+	function initEnroll() {
+		document.querySelectorAll(".tcd-enroll[data-name]").forEach((btn) => {
+			btn.addEventListener("click", async () => {
+				const message = btn.closest("section")?.querySelector(".tcd-message");
+				btn.disabled = true;
+				try {
+					await call("enroll", { enrollment_for: btn.dataset.for, name: btn.dataset.name }, true);
+					window.location.reload();
+				} catch (e) {
+					if (message) {
+						message.textContent = e.message;
+						message.hidden = false;
+						message.classList.add("tcd-error");
+					}
+					btn.disabled = false;
+				}
+			});
+		});
+	}
+
 	function init() {
+		initEnroll();
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;
 		const t = labels();

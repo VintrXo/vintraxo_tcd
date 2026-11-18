@@ -21,6 +21,25 @@
 		{% if space.description %}<p class="tcd-muted">{{ space.description|e }}</p>{% endif %}
 	</header>
 
+	{% if offerings %}
+	<section class="tcd-section">
+		<h2>{{ _("Courses and learning paths") }}</h2>
+		<ul class="tcd-cards">
+			{% for o in offerings %}
+			<li class="tcd-card">
+				<a href="{{ o.url|e }}" dir="{{ 'rtl' if o.language == 'ar' else 'ltr' }}">
+					<span class="tcd-badge">{{ _("Learning Path") if o.kind == "path" else _("Course", context="TCD") }}</span>
+					{% if o.status != "Published" %}<span class="tcd-badge tcd-badge-warn">{{ _(o.status, context="TCD") }}</span>{% endif %}
+					<strong>{{ o.title|e }}</strong>
+					{% if o.summary %}<span class="tcd-muted">{{ o.summary|e }}</span>{% endif %}
+					{% if o.enrollment %}<span class="tcd-status tcd-status-{{ o.enrollment|lower|replace(' ', '-') }}">{{ _(o.enrollment, context="TCD") }}</span>{% endif %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% for g in groups %}
 	<section class="tcd-section">
 		<h2>{{ g.title|e }}</h2>

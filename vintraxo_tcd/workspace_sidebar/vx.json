@@ -87,6 +87,72 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "graduation-cap",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Courses",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Courses",
+   "link_to": "TCD Course",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Chapters",
+   "link_to": "TCD Chapter",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Learning Paths",
+   "link_to": "TCD Learning Path",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Enrollments",
+   "link_to": "TCD Enrollment",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Student Groups",
+   "link_to": "TCD Student Group",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "icon": "list-checks",
    "indent": 1,
    "keep_closed": 0,
@@ -184,7 +250,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 04:00:00.000000",
+ "modified": "2026-11-19 06:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

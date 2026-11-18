@@ -141,7 +141,7 @@ def ensure_unique_slug(doc):
 
 def _slug_taken(doc, slug) -> bool:
 	return bool(
-		frappe.db.exists("TCD Content", {"space": doc.space, "slug": slug, "name": ("!=", doc.name or "")})
+		frappe.db.exists(doc.doctype, {"space": doc.space, "slug": slug, "name": ("!=", doc.name or "")})
 	)
 
 

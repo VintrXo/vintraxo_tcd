@@ -142,6 +142,9 @@ def grade(quiz, user: str, answers) -> dict:
 
 	if passed and quiz.required_to_complete:
 		progress.complete(user, quiz.content, from_quiz=True)
+	from vintraxo_tcd.core import courses
+
+	courses.on_content_changed(user, quiz.content)  # scores feed Minimum Score rules
 
 	return {
 		"submission": sub.name,

@@ -3,7 +3,7 @@
 import frappe
 
 from vintraxo_tcd.core import content as svc_content
-from vintraxo_tcd.core import progress
+from vintraxo_tcd.core import courses, progress
 from vintraxo_tcd.core import quiz as svc_quiz
 from vintraxo_tcd.core.search import search
 
@@ -125,3 +125,129 @@ def get_quiz(name: str) -> dict:
 @frappe.whitelist(methods=["POST"])
 def submit_quiz(name: str, answers) -> dict:
 	return svc_quiz.grade(_quiz_for_user(name), frappe.session.user, answers)
+
+
+# ---------------------------------------------------------------- Phase 1: courses & enrollment
+
+
+def _readable(doctype: str, name: str):
+	doc = frappe.get_doc(doctype, name)
+	doc.check_permission("read")
+	return doc
+
+
+@frappe.whitelist()
+def get_course(name: str) -> dict:
+	"""Course outline with the learner's state (completed / locked per item, chapter percent)."""
+	course = _readable("TCD Course", name)
+	user = frappe.session.user
+	state = courses.course_status(user, course.name)
+	visible = []
+	for ch in state["chapters"]:
+		items = []
+		for item in ch["items"]:
+			content = frappe.get_doc("TCD Content", item["content"])
+			if not frappe.has_permission("TCD Content", "read", content):
+				continue
+			items.append(
+				{**item, "title": content.title, "slug": content.slug, "content_type": content.content_type}
+			)
+		visible.append({**ch, "items": items})
+	enrollment = frappe.db.get_value(
+		"TCD Enrollment",
+		{"user": user, "course": course.name},
+		["name", "status", "percent", "score"],
+		as_dict=True,
+	)
+	return {
+		"name": course.name,
+		"title": course.title,
+		"slug": course.slug,
+		"space": course.space,
+		"summary": course.summary,
+		"completion_rule": course.completion_rule,
+		"minimum_score": course.minimum_score,
+		"self_enrollment": bool(course.self_enrollment),
+		"chapters": visible,
+		"percent": state["percent"],
+		"score": state["score"],
+		"enrollment": enrollment,
+	}
+
+
+@frappe.whitelist()
+def get_learning_path(name: str) -> dict:
+	path = _readable("TCD Learning Path", name)
+	user = frappe.session.user
+	state = courses.path_status(user, path.name)
+	items = []
+	for c in state["courses"]:
+		course = frappe.get_doc("TCD Course", c["course"])
+		if not frappe.has_permission("TCD Course", "read", course):
+			continue
+		items.append({**c, "title": course.title, "slug": course.slug})
+	enrollment = frappe.db.get_value(
+		"TCD Enrollment",
+		{"user": user, "learning_path": path.name},
+		["name", "status", "percent"],
+		as_dict=True,
+	)
+	return {
+		"name": path.name,
+		"title": path.title,
+		"slug": path.slug,
+		"space": path.space,
+		"summary": path.summary,
+		"completion_rule": path.completion_rule,
+		"self_enrollment": bool(path.self_enrollment),
+		"courses": items,
+		"percent": state["percent"],
+		"enrollment": enrollment,
+	}
+
+
+@frappe.whitelist(methods=["POST"])
+def enroll(enrollment_for: str, name: str) -> dict:
+	"""Self-enrollment of the current user."""
+	if enrollment_for not in courses.OFFERINGS:
+		frappe.throw(frappe._("Invalid enrollment type."))
+	doctype = courses.OFFERINGS[enrollment_for][0]
+	doc = _readable(doctype, name)
+	if not doc.self_enrollment:
+		frappe.throw(
+			frappe._("Self enrollment is not allowed here. Ask your instructor."), frappe.PermissionError
+		)
+	e = courses.enroll(frappe.session.user, enrollment_for, doc.name)
+	return {"name": e.name, "status": e.status, "percent": e.percent}
+
+
+@frappe.whitelist(methods=["POST"])
+def enroll_group(student_group: str, enrollment_for: str, name: str, due_date: str | None = None) -> dict:
+	"""Staff: enroll every member of a student group."""
+	if not frappe.has_permission("TCD Enrollment", "create"):
+		frappe.throw(frappe._("Not permitted"), frappe.PermissionError)
+	group = _readable("TCD Student Group", student_group)
+	doctype = courses.OFFERINGS[enrollment_for][0]
+	target = _readable(doctype, name)
+	enrolled, skipped = [], []
+	for row in group.members:
+		frappe.db.savepoint("tcd_enroll_member")
+		try:
+			courses.enroll(row.user, enrollment_for, target.name, group.name, due_date)
+			enrolled.append(row.user)
+		except frappe.ValidationError as e:
+			frappe.db.rollback(save_point="tcd_enroll_member")
+			frappe.clear_last_message()
+			skipped.append({"user": row.user, "reason": frappe.utils.strip_html(str(e))})
+	return {"enrolled": enrolled, "skipped": skipped}
+
+
+@frappe.whitelist(methods=["POST"])
+def approve_enrollment(name: str) -> dict:
+	doc = frappe.get_doc("TCD Enrollment", name)
+	doc.check_permission("write")
+	roles = set(frappe.get_roles())
+	if not roles & {"TCD Instructor", "TCD Administrator", "System Manager"}:
+		frappe.throw(frappe._("Only an instructor can approve completion."), frappe.PermissionError)
+	doc = courses.approve(doc.name)
+	return {"name": doc.name, "status": doc.status}
