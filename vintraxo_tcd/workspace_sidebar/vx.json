@@ -1,6 +1,6 @@
 {
  "app": "vintraxo_tcd",
- "creation": "2026-11-19 01:00:00.000000",
+ "creation": "2026-11-19 01:00:00",
  "docstatus": 0,
  "doctype": "Workspace Sidebar",
  "header_icon": "book-open",
@@ -9,14 +9,14 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "home",
    "indent": 0,
    "keep_closed": 0,
    "label": "Home",
    "link_to": "VintraXo TCD",
    "link_type": "Workspace",
    "show_arrow": 0,
-   "type": "Link",
-   "icon": "home"
+   "type": "Link"
   },
   {
    "child": 0,
@@ -184,11 +184,11 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 01:00:00.000000",
+ "modified": "2026-11-19 01:00:00",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
- "name": "VintraXo TCD",
+ "name": "VX",
  "owner": "Administrator",
  "standard": 1,
- "title": "VintraXo TCD"
+ "title": "VX"
 }
