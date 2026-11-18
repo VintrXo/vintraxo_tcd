@@ -294,3 +294,13 @@ website_route_rules = [
 portal_menu_items = [
 	{"title": "Learning", "route": "/learn", "reference_doctype": "", "role": "TCD Learner"},
 ]
+
+add_to_apps_screen = [
+	{
+		"name": "vintraxo_tcd",
+		"logo": "/assets/vintraxo_tcd/images/tcd-logo.svg",
+		"title": "VintraXo TCD",
+		"route": "/app/vintraxo-tcd",
+		"has_permission": "vintraxo_tcd.core.permissions.has_app_permission",
+	}
+]

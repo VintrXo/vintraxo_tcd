@@ -1,0 +1,37 @@
+{
+ "app": "vintraxo_tcd",
+ "bg_color": "blue",
+ "creation": "2026-11-19 01:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "App",
+ "idx": 0,
+ "label": "VintraXo TCD",
+ "link_to": "VintraXo TCD",
+ "link_type": "Workspace Sidebar",
+ "logo_url": "/assets/vintraxo_tcd/images/tcd-logo.svg",
+ "modified": "2026-11-19 01:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "VintraXo TCD",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "TCD Administrator"
+  },
+  {
+   "role": "TCD Content Author"
+  },
+  {
+   "role": "TCD Content Reviewer"
+  },
+  {
+   "role": "TCD Instructor"
+  }
+ ],
+ "standard": 1
+}

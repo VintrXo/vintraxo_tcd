@@ -1,0 +1,90 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Content\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Space\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Quiz\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"TCD Settings\", \"col\": 3}}]",
+ "creation": "2026-11-19 01:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "book-open",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "VintraXo TCD",
+ "links": [],
+ "modified": "2026-11-19 01:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "VintraXo TCD",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "TCD Administrator"
+  },
+  {
+   "role": "TCD Content Author"
+  },
+  {
+   "role": "TCD Content Reviewer"
+  },
+  {
+   "role": "TCD Instructor"
+  }
+ ],
+ "sequence_id": 50.0,
+ "shortcuts": [
+  {
+   "label": "TCD Content",
+   "link_to": "TCD Content",
+   "type": "DocType",
+   "color": "Blue",
+   "format": "{} Published",
+   "stats_filter": "{\"status\": \"Published\"}"
+  },
+  {
+   "label": "TCD Space",
+   "link_to": "TCD Space",
+   "type": "DocType",
+   "color": "Grey"
+  },
+  {
+   "label": "TCD Quiz",
+   "link_to": "TCD Quiz",
+   "type": "DocType",
+   "color": "Grey"
+  },
+  {
+   "label": "TCD Learner Progress",
+   "link_to": "TCD Learner Progress",
+   "type": "Report",
+   "color": "Green"
+  },
+  {
+   "label": "TCD Quiz Analytics",
+   "link_to": "TCD Quiz Analytics",
+   "type": "Report",
+   "color": "Green"
+  },
+  {
+   "label": "Learner Portal",
+   "url": "/learn",
+   "type": "URL",
+   "color": "Orange"
+  },
+  {
+   "label": "TCD Settings",
+   "link_to": "TCD Settings",
+   "type": "DocType",
+   "color": "Grey"
+  }
+ ],
+ "title": "VintraXo TCD"
+}

@@ -30,6 +30,7 @@ Archived,مؤرشف,TCD Content
 Article,مقال
 Article,مقال,TCD
 Article,مقال,TCD Content
+Assessment,التقييم
 Attempt,المحاولة
 Attempts,المحاولات
 Attempts left: {0},المحاولات المتبقية: {0}
@@ -146,6 +147,7 @@ Language,اللغة,TCD Content
 Language,اللغة,TCD Content Version
 Last Viewed On,آخر مشاهدة
 Learner,المتعلم
+Learner Portal,بوابة المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
 Learning,التعلّم

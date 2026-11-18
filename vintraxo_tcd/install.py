@@ -11,6 +11,7 @@ TCD_ROLES = [
 
 def after_install():
 	create_roles()
+	add_navbar_link()
 	frappe.db.commit()
 
 
@@ -26,3 +27,15 @@ def create_roles():
 			}
 		)
 		doc.insert(ignore_permissions=True)
+
+
+LEARN_URL = "/learn"
+
+
+def add_navbar_link():
+	"""Add a "Learning" item to the website navbar (once; admins can rename or remove it)."""
+	settings = frappe.get_single("Website Settings")
+	if any(item.url == LEARN_URL for item in settings.top_bar_items):
+		return
+	settings.append("top_bar_items", {"label": "Learning", "url": LEARN_URL})
+	settings.save(ignore_permissions=True)

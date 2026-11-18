@@ -226,3 +226,9 @@ def own_or_staff_has_permission(doc, ptype=None, user=None, debug=False):
 	if is_admin(user) or doc.user == user:
 		return True
 	return is_staff(user) and _content_doc_ok(doc.content, user)
+
+
+def has_app_permission():
+	"""Show the app on the apps screen / desk to TCD staff only (learners use the portal)."""
+	user = frappe.session.user
+	return user != "Guest" and (is_admin(user) or is_staff(user))
