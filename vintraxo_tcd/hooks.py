@@ -262,3 +262,26 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+after_install = "vintraxo_tcd.install.after_install"
+
+permission_query_conditions = {
+	"TCD Space": "vintraxo_tcd.core.permissions.space_query",
+	"TCD Category": "vintraxo_tcd.core.permissions.category_query",
+	"TCD Content": "vintraxo_tcd.core.permissions.content_query",
+	"TCD Content Relation": "vintraxo_tcd.core.permissions.relation_query",
+	"TCD Content Version": "vintraxo_tcd.core.permissions.version_query",
+	"TCD Quiz": "vintraxo_tcd.core.permissions.quiz_query",
+	"TCD Progress": "vintraxo_tcd.core.permissions.progress_query",
+	"TCD Quiz Submission": "vintraxo_tcd.core.permissions.submission_query",
+}
+
+has_permission = {
+	"TCD Space": "vintraxo_tcd.core.permissions.space_has_permission",
+	"TCD Category": "vintraxo_tcd.core.permissions.category_has_permission",
+	"TCD Content": "vintraxo_tcd.core.permissions.content_has_permission",
+	"TCD Content Relation": "vintraxo_tcd.core.permissions.relation_has_permission",
+	"TCD Content Version": "vintraxo_tcd.core.permissions.version_has_permission",
+	"TCD Quiz": "vintraxo_tcd.core.permissions.quiz_has_permission",
+	"TCD Progress": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
+	"TCD Quiz Submission": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
+}

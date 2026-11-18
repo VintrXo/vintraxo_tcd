@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "creation": "2026-11-18 20:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general_section",
+  "default_language",
+  "enable_portal",
+  "column_break_1",
+  "default_visibility",
+  "require_approval_before_publish",
+  "playground_section",
+  "enable_playgrounds",
+  "playground_timeout_seconds"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "default": "ar",
+   "fieldname": "default_language",
+   "fieldtype": "Select",
+   "label": "Default Content Language",
+   "options": "ar\nen"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_portal",
+   "fieldtype": "Check",
+   "label": "Enable Learner Portal"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Internal",
+   "fieldname": "default_visibility",
+   "fieldtype": "Select",
+   "label": "Default Visibility",
+   "options": "Public\nInternal\nRestricted"
+  },
+  {
+   "default": "1",
+   "fieldname": "require_approval_before_publish",
+   "fieldtype": "Check",
+   "label": "Require Approval Before Publish"
+  },
+  {
+   "fieldname": "playground_section",
+   "fieldtype": "Section Break",
+   "label": "Playgrounds"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_playgrounds",
+   "fieldtype": "Check",
+   "label": "Enable Playgrounds"
+  },
+  {
+   "default": "5",
+   "fieldname": "playground_timeout_seconds",
+   "fieldtype": "Int",
+   "label": "Playground Timeout (seconds)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-11-18 20:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "TCD Administrator",
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
