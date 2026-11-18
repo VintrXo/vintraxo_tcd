@@ -1,0 +1,74 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page">
+	<header class="tcd-hero">
+		<h1>{{ _("Learning") }}</h1>
+		<form class="tcd-search" method="get" action="/learn" role="search">
+			<input type="search" name="q" value="{{ query|e }}" placeholder="{{ _('Search lessons and articles') }}"
+				aria-label="{{ _('Search') }}" minlength="2">
+			<button type="submit" class="btn btn-primary btn-sm">{{ _("Search") }}</button>
+		</form>
+	</header>
+
+	{% if results is not none %}
+	<section class="tcd-section">
+		<h2>{{ _("Results for {0}").format(query|e) }}</h2>
+		{% if results %}
+		<ul class="tcd-cards">
+			{% for r in results %}
+			<li class="tcd-card">
+				<a href="{{ r.url|e }}" dir="{{ 'rtl' if r.language == 'ar' else 'ltr' }}">
+					<span class="tcd-badge">{{ _(r.content_type) }}</span>
+					<strong>{{ r.title|e }}</strong>
+					{% if r.summary %}<span class="tcd-muted">{{ r.summary|e }}</span>{% endif %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="tcd-muted">{{ _("Nothing found. Try a shorter word.") }}</p>
+		{% endif %}
+	</section>
+	{% endif %}
+
+	{% if continue_learning %}
+	<section class="tcd-section">
+		<h2>{{ _("Continue learning") }}</h2>
+		<ul class="tcd-cards">
+			{% for c in continue_learning %}
+			<li class="tcd-card">
+				<a href="{{ c.url|e }}">
+					<span class="tcd-badge">{{ _(c.content_type) }}</span>
+					<strong>{{ c.title|e }}</strong>
+					{% if c.content_type == "Tutorial" %}
+					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ c.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ c.percent|int }}%"></span></span>
+					{% endif %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	<section class="tcd-section">
+		<h2>{{ _("Spaces") }}</h2>
+		{% if spaces %}
+		<ul class="tcd-cards">
+			{% for s in spaces %}
+			<li class="tcd-card">
+				<a href="/learn/{{ s.name|urlencode }}">
+					<strong>{{ s.title|e }}</strong>
+					{% if s.description %}<span class="tcd-muted">{{ s.description|e }}</span>{% endif %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="tcd-muted">{{ _("No spaces are available to you yet.") }}</p>
+		{% endif %}
+	</section>
+</div>
+{% endblock %}

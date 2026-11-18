@@ -1,0 +1,34 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% macro item_card(row) %}
+<li class="tcd-card">
+	<a href="{{ row.url|e }}" dir="{{ 'rtl' if row.language == 'ar' else 'ltr' }}">
+		<span class="tcd-badge">{{ _(row.content_type) }}</span>
+		{% if row.status != "Published" %}<span class="tcd-badge tcd-badge-warn">{{ _(row.status) }}</span>{% endif %}
+		<strong>{{ row.title|e }}</strong>
+		{% if row.summary %}<span class="tcd-muted">{{ row.summary|e }}</span>{% endif %}
+		{% if row.progress != "Not Started" %}<span class="tcd-status tcd-status-{{ row.progress|lower|replace(' ', '-') }}">{{ _(row.progress) }}</span>{% endif %}
+	</a>
+</li>
+{% endmacro %}
+
+{% block page_content %}
+<div class="tcd-page">
+	<header class="tcd-hero">
+		<h1>{{ space.title|e }}</h1>
+		{% if space.description %}<p class="tcd-muted">{{ space.description|e }}</p>{% endif %}
+	</header>
+
+	{% for g in groups %}
+	<section class="tcd-section">
+		<h2>{{ g.title|e }}</h2>
+		{% if g.tutorials %}<ul class="tcd-cards tcd-cards-wide">{% for row in g.tutorials %}{{ item_card(row) }}{% endfor %}</ul>{% endif %}
+		{% if g["items"] %}<ul class="tcd-cards">{% for row in g["items"] %}{{ item_card(row) }}{% endfor %}</ul>{% endif %}
+	</section>
+	{% else %}
+	<p class="tcd-muted">{{ _("No content here yet.") }}</p>
+	{% endfor %}
+</div>
+{% endblock %}

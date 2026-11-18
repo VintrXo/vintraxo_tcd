@@ -285,3 +285,12 @@ has_permission = {
 	"TCD Progress": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
 	"TCD Quiz Submission": "vintraxo_tcd.core.permissions.own_or_staff_has_permission",
 }
+
+website_route_rules = [
+	{"from_route": "/learn/<space>", "to_route": "learn/space"},
+	{"from_route": "/learn/<space>/<slug>", "to_route": "learn/content"},
+]
+
+portal_menu_items = [
+	{"title": "Learning", "route": "/learn", "reference_doctype": "", "role": "TCD Learner"},
+]

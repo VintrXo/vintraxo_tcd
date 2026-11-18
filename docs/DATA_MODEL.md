@@ -2,7 +2,8 @@
 
 ## P0 (done)
 - TCD Settings (Single): default_language, enable_portal, default_visibility,
-  require_approval_before_publish, enable_playgrounds, playground_timeout_seconds
+  require_approval_before_publish, enable_playgrounds, playground_timeout_seconds,
+  pyodide_index_url, sqljs_base_url (P3; https:// or / only, normalized to end with /)
 
 ## P1 (done)
 | DocType | Naming | Key fields |

@@ -1,0 +1,14 @@
+import frappe
+
+from vintraxo_tcd.core import portal
+
+no_cache = 1
+
+
+def get_context(context):
+	portal.require_portal()
+	form = frappe.form_dict
+	context.update(portal.content_context(form.get("space"), form.get("slug"), form.get("tutorial")))
+	context.labels_json = portal.json_for_script(context.js_labels)
+	context.playground_json = portal.json_for_script(context.lesson["playground"])
+	context.show_sidebar = False

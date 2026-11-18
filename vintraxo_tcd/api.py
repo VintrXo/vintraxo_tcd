@@ -7,6 +7,10 @@ from vintraxo_tcd.core import progress
 from vintraxo_tcd.core import quiz as svc_quiz
 from vintraxo_tcd.core.search import normalize_text
 
+# keep in sync with the TCD Settings field defaults
+DEFAULT_PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/"
+DEFAULT_SQLJS_URL = "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/"
+
 
 @frappe.whitelist(methods=["POST"])
 def set_content_status(name: str, status: str) -> dict:
@@ -45,11 +49,13 @@ def _readable_content(name: str):
 	return doc
 
 
-def _playground_config() -> dict:
+def playground_config() -> dict:
 	settings = frappe.get_cached_doc("TCD Settings")
 	return {
 		"enabled": bool(settings.enable_playgrounds),
 		"timeout_seconds": settings.playground_timeout_seconds or 5,
+		"pyodide_index_url": settings.pyodide_index_url or DEFAULT_PYODIDE_URL,
+		"sqljs_base_url": settings.sqljs_base_url or DEFAULT_SQLJS_URL,
 	}
 
 
@@ -58,7 +64,7 @@ def get_lesson(name: str, tutorial: str | None = None) -> dict:
 	"""Everything a learner page needs for one lesson/article (read-only, no side effects)."""
 	doc = _readable_content(name)
 	user = frappe.session.user
-	playground = _playground_config()
+	playground = playground_config()
 	blocks = svc_content.parse_blocks(doc.blocks)
 	if not playground["enabled"]:
 		blocks = [b for b in blocks if b.get("type") != "playground"]

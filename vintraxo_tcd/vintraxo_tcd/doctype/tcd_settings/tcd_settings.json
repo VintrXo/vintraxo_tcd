@@ -12,7 +12,9 @@
   "require_approval_before_publish",
   "playground_section",
   "enable_playgrounds",
-  "playground_timeout_seconds"
+  "playground_timeout_seconds",
+  "pyodide_index_url",
+  "sqljs_base_url"
  ],
  "fields": [
   {
@@ -66,12 +68,28 @@
    "fieldname": "playground_timeout_seconds",
    "fieldtype": "Int",
    "label": "Playground Timeout (seconds)"
+  },
+  {
+   "default": "https://cdn.jsdelivr.net/pyodide/v0.26.4/full/",
+   "fieldname": "pyodide_index_url",
+   "fieldtype": "Data",
+   "label": "Pyodide Base URL",
+   "description": "Folder that contains pyodide.js (self-host for offline sites). Must end with /",
+   "depends_on": "enable_playgrounds"
+  },
+  {
+   "default": "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/",
+   "fieldname": "sqljs_base_url",
+   "fieldtype": "Data",
+   "label": "SQL.js Base URL",
+   "description": "Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /",
+   "depends_on": "enable_playgrounds"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-18 20:00:00.000000",
+ "modified": "2026-11-18 23:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

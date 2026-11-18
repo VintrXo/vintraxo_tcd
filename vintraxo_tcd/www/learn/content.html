@@ -1,0 +1,78 @@
+{% extends "templates/web.html" %}
+{% from "templates/includes/tcd_blocks.html" import render_blocks %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<article class="tcd-page tcd-content" dir="{{ dir }}" lang="{{ doc.language|e }}"
+	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
+
+	{% if is_staff_preview %}
+	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status)) }}</div>
+	{% endif %}
+
+	<header class="tcd-hero">
+		<span class="tcd-badge">{{ _(doc.content_type) }}</span>
+		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress) }}</span>
+		<h1>{{ doc.title|e }}</h1>
+		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
+	</header>
+
+	{% if lesson.tutorial %}
+	{% set t = lesson.tutorial %}
+	<section class="tcd-section">
+		<div class="tcd-progress-row">
+			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ t.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ t.percent|int }}%"></span></span>
+			<span class="tcd-muted">{{ _("{0} of {1} lessons completed").format(t.completed, t.required) }}</span>
+		</div>
+	</section>
+	{% endif %}
+
+	<div class="tcd-body">
+		{{ render_blocks(lesson.blocks, lesson.playground) }}
+	</div>
+
+	{% if lesson.tutorial %}
+	<section class="tcd-section">
+		<h2>{{ _("Lessons") }}</h2>
+		<ol class="tcd-lessons">
+			{% for l in lesson.tutorial.lessons %}
+			<li class="tcd-lesson tcd-status-{{ l.status|lower|replace(' ', '-') }}">
+				<a href="{{ l.url|e }}">{{ l.title|e }}</a>
+				{% if l.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
+				<span class="tcd-status tcd-status-{{ l.status|lower|replace(' ', '-') }}">{{ _(l.status) }}</span>
+			</li>
+			{% endfor %}
+		</ol>
+	</section>
+	{% endif %}
+
+	{% if lesson.quiz %}
+	<section class="tcd-section tcd-quiz" data-quiz="{{ lesson.quiz.name|e }}">
+		<h2>{{ lesson.quiz.title|e }}</h2>
+		{% if quiz_required %}<p class="tcd-muted">{{ _("Pass this quiz to complete the lesson.") }}</p>{% endif %}
+		<div class="tcd-quiz-body"></div>
+	</section>
+	{% endif %}
+
+	<footer class="tcd-footer">
+		{% if doc.content_type != "Tutorial" %}
+		<button type="button" class="btn btn-primary tcd-complete" {% if not can_complete %}hidden{% endif %}>{{ _("Mark as complete") }}</button>
+		{% endif %}
+		<nav class="tcd-nav" aria-label="{{ _('Lesson navigation') }}">
+			{% if nav.prev %}<a class="btn btn-default tcd-prev" href="{{ nav.prev.url|e }}">{{ nav.prev.title|e }}</a>{% endif %}
+			{% if nav.next %}<a class="btn btn-default tcd-next" href="{{ nav.next.url|e }}">{{ nav.next.title|e }}</a>{% endif %}
+		</nav>
+		<p class="tcd-message" role="status" hidden></p>
+	</footer>
+
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+	<script type="application/json" id="tcd-playground-config">{{ playground_json }}</script>
+</article>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script defer src="/assets/vintraxo_tcd/js/tcd_playground.js"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>
+{% endblock %}

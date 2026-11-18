@@ -1,0 +1,110 @@
+(no output),(لا توجد مخرجات)
+A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
+Add at least one question.,أضف سؤالًا واحدًا على الأقل.
+Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
+Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
+Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
+Approved,معتمد
+Archived,مؤرشف
+Article,مقال
+Attempts left: {0},المحاولات المتبقية: {0}
+Block {0} ({1}): {2} has the wrong type.,الكتلة {0} ({1}): نوع {2} غير صحيح.
+Block {0} ({1}): {2} is required.,الكتلة {0} ({1}): الحقل {2} مطلوب.
+Block {0} must be an object.,الكتلة {0} يجب أن تكون كائنًا.
+Block {0}: callout variant must be one of {1}.,الكتلة {0}: نوع التنبيه يجب أن يكون أحد: {1}.
+Block {0}: heading level must be between 1 and 4.,الكتلة {0}: مستوى العنوان يجب أن يكون بين 1 و4.
+Block {0}: image URL must be absolute (http/https) or start with /.,الكتلة {0}: رابط الصورة يجب أن يبدأ بـ http/https أو /.
+Block {0}: list items must be text.,الكتلة {0}: عناصر القائمة يجب أن تكون نصوصًا.
+Block {0}: playground language must be one of {1}.,الكتلة {0}: لغة محرر الأكواد يجب أن تكون أحد: {1}.
+Block {0}: unknown type {1}.,الكتلة {0}: نوع غير معروف {1}.
+Blocks must be a JSON list.,يجب أن تكون الكتل قائمة JSON.
+Blocks must be valid JSON.,يجب أن تكون الكتل بصيغة JSON صحيحة.
+Cannot delete a category that has content.,لا يمكن حذف تصنيف يحتوي على محتوى.
+Cannot delete a category that has sub-categories.,لا يمكن حذف تصنيف له تصنيفات فرعية.
+Cannot delete a space that still has content. Archive or move the content first.,لا يمكن حذف مساحة ما زال بها محتوى. أرشِف المحتوى أو انقله أولًا.
+Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
+Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
+Code editor,محرر الأكواد
+Completed,مكتمل
+Content cannot be related to itself.,لا يمكن ربط المحتوى بنفسه.
+Content must be reviewed and approved before publishing.,يجب مراجعة المحتوى واعتماده قبل النشر.
+Content versions are created automatically on approval.,تُنشأ نسخ المحتوى تلقائيًا عند الاعتماد.
+Content versions cannot be changed.,لا يمكن تعديل نسخ المحتوى.
+Continue learning,تابع التعلّم
+Correct,صحيح
+Correct answer,الإجابة الصحيحة
+Done in {0} ms,انتهى في {0} مللي ثانية
+Draft,مسودة
+Each role can be listed only once.,لا يمكن تكرار الدور.
+Error,خطأ
+False,خطأ
+General,عام
+In Progress,قيد التقدّم
+In Review,قيد المراجعة
+Learning,التعلّم
+Lesson,درس
+Lesson navigation,التنقل بين الدروس
+Lessons,الدروس
+Loading runtime (first run can take a few seconds)...,جارٍ تحميل بيئة التشغيل (أول تشغيل قد يستغرق بضع ثوانٍ)...
+Mark as complete,تحديد كمكتمل
+Max attempts cannot be negative.,لا يمكن أن يكون الحد الأقصى للمحاولات سالبًا.
+New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
+No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
+No attempts left.,لا توجد محاولات متبقية.
+No content here yet.,لا يوجد محتوى هنا بعد.
+No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
+Not Started,لم يبدأ
+Not passed yet,لم تنجح بعد
+Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة أقصر.
+Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
+Only a reviewer can publish content.,المراجع فقط يمكنه نشر المحتوى.
+Optional,اختياري
+Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
+Output matches the expected result.,المخرجات مطابقة للنتيجة المتوقعة.
+Parent Category must belong to the same space.,يجب أن يكون التصنيف الأب في نفس المساحة.
+Parent Category would create a loop.,التصنيف الأب سيُنشئ حلقة دائرية.
+Pass percentage must be between 1 and 100.,نسبة النجاح يجب أن تكون بين 1 و100.
+Pass the quiz to complete this lesson.,انجح في الاختبار لإكمال هذا الدرس.
+Pass this quiz to complete the lesson.,انجح في هذا الاختبار لإكمال الدرس.
+Passed,ناجح
+Playground timeout must be between 1 and 60 seconds.,مهلة محرر الأكواد يجب أن تكون بين 1 و60 ثانية.
+Preview,معاينة
+Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
+Progress for this user and content already exists.,التقدّم لهذا المستخدم وهذا المحتوى موجود بالفعل.
+Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
+Published,منشور
+Question {0}: add at least two options.,السؤال {0}: أضف خيارين على الأقل.
+Question {0}: correct answers must be between 1 and {1}.,السؤال {0}: الإجابات الصحيحة يجب أن تكون بين 1 و{1}.
+"Question {0}: correct answers must be numbers like 1 or 1,3.","السؤال {0}: الإجابات الصحيحة يجب أن تكون أرقامًا مثل 1 أو 1,3."
+Question {0}: exactly one correct answer is allowed.,السؤال {0}: يُسمح بإجابة صحيحة واحدة فقط.
+Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
+Reference,مرجع
+Reset,إعادة تعيين
+Results for {0},نتائج البحث عن {0}
+Row {0}: lesson {1} is listed twice.,السطر {0}: الدرس {1} مكرر.
+Row {0}: lesson {1} must be in the same space.,السطر {0}: الدرس {1} يجب أن يكون في نفس المساحة.
+Row {0}: {1} is not a Lesson.,السطر {0}: {1} ليس درسًا.
+Run,تشغيل
+Running...,جارٍ التشغيل...
+Score: {0} / {1} ({2}%),الدرجة: {0} / {1} ({2}%)
+Search,بحث
+Search lessons and articles,ابحث في الدروس والمقالات
+Slug {0} is already used in this space.,المعرّف {0} مستخدم بالفعل في هذه المساحة.
+"Space ID must be 2-80 characters: lowercase letters, digits, - or _.",معرّف المساحة من 2 إلى 80 حرفًا: حروف إنجليزية صغيرة وأرقام و- أو _.
+Spaces,المساحات
+Stop,إيقاف
+Stopped.,تم الإيقاف.
+Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت المهلة ({0} ثوانٍ).
+Submit answers,إرسال الإجابات
+The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
+"This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
+This quiz is not active.,هذا الاختبار غير مفعّل.
+This relation already exists.,هذه العلاقة موجودة بالفعل.
+True,صح
+Try again,حاول مرة أخرى
+Tutorial,مسار تعليمي
+Tutorials complete automatically when their lessons are completed.,تكتمل المسارات تلقائيًا عند إكمال دروسها.
+Wrong,خطأ
+{0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.
+{0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.
+{0} of {1} lessons completed,أُكمل {0} من {1} دروس
