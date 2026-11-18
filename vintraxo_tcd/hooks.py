@@ -1,6 +1,6 @@
 app_name = "vintraxo_tcd"
 app_title = "VintraXo TCD"
-app_publisher = "Vintraxo"
+app_publisher = "vintraxo"
 app_description = "Training, Content & Documentation"
 app_email = "boda10043@gmail.com"
 app_license = "mit"
