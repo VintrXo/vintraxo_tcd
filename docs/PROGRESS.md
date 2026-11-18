@@ -13,8 +13,9 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
   no longer updated.
 - Arabic `.po` files of Frappe/ERPNext are not compiled on this bench (`bench compile-po-to-mo` is not run by decision),
   so the app ships its own `translations/ar.csv` (see ADR-0004).
-- Browser checks: logging into tcd.localhost from automation is currently blocked (no Desk credentials available to the
-  agent). Portal pages are verified by server-side rendering as a given user and screenshots of that HTML.
+- Browser checks: Administrator password on tcd.localhost was set by the owner's instruction (2026-11-19); Desk and
+  portal are checked in headless Chromium as Administrator. Learner views are checked by server-side rendering as the
+  learner (changes rolled back).
 
 ## Completed
 
@@ -49,4 +50,4 @@ Phase 1 remainder, then Phases 2–11 (see PLAN.md). MVP gate after Phase 2.
 
 ## Blocked / needs decision
 
-- Desk login for automated browser checks on tcd.localhost.
+- Phase 1 remainder: Batch naming, enrollment-only access mode, lesson types (see the report of 2026-11-19).
