@@ -90,4 +90,7 @@ page (site origin)
 - generic words (Title, Status, Published...) are translated with a **context**: the DocType name for desk labels and
   select options (Frappe passes it automatically), `TCD Block` for editor labels, `TCD` for statuses/types in the portal
   and reports. This keeps our wording without changing other apps' screens.
-- Frappe/ERPNext Arabic `.po` files are only active after `bench compile-po-to-mo`.
+- Frappe/ERPNext Arabic `.po` files are only active after `bench compile-po-to-mo` (not run on this bench by decision).
+- DocType/report names are translated without the "TCD" prefix (e.g. TCD Content = محتوى تعليمي).
+- `tests/test_translations.py` fails the build when any DocType name, report name, field label, description or
+  Select option lacks Arabic, or when Arabic text still contains "TCD". Every phase must keep it green.
