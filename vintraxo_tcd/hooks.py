@@ -298,8 +298,8 @@ portal_menu_items = [
 add_to_apps_screen = [
 	{
 		"name": "vintraxo_tcd",
-		"logo": "/assets/vintraxo_tcd/images/tcd-logo.svg",
-		"title": "VintraXo TCD",
+		"logo": "/assets/vintraxo_tcd/images/vx-logo.png",
+		"title": "VX",
 		"route": "/app/vintraxo-tcd",
 		"has_permission": "vintraxo_tcd.core.permissions.has_app_permission",
 	}
