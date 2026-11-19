@@ -13,6 +13,7 @@
   "percent",
   "video_percent",
   "video_watch",
+  "scorm_data",
   "started_on",
   "last_viewed_on",
   "completed_on"
@@ -91,6 +92,13 @@
    "hidden": 1
   },
   {
+   "fieldname": "scorm_data",
+   "fieldtype": "Small Text",
+   "label": "SCORM Data",
+   "read_only": 1,
+   "hidden": 1
+  },
+  {
    "fieldname": "started_on",
    "fieldtype": "Datetime",
    "label": "Started On",
@@ -110,7 +118,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 12:00:00.000000",
+ "modified": "2026-11-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Progress",

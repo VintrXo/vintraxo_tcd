@@ -21,6 +21,8 @@
   "body_section",
   "summary",
   "min_video_percent",
+  "scorm_package",
+  "scorm_launch",
   "blocks_editor",
   "blocks_json_section",
   "blocks",
@@ -71,7 +73,7 @@
    "fieldname": "lesson_type",
    "fieldtype": "Select",
    "label": "Lesson Type",
-   "options": "\nArticle\nVideo\nInteractive Tutorial\nPlayground\nQuiz\nAssignment\nExternal\nProject\nDocument",
+   "options": "\nArticle\nVideo\nInteractive Tutorial\nPlayground\nQuiz\nAssignment\nExternal\nProject\nDocument\nSCORM",
    "depends_on": "eval:doc.content_type=='Lesson'",
    "in_standard_filter": 1
   },
@@ -158,6 +160,20 @@
    "fieldtype": "Percent",
    "label": "Watch Before Completing (%)",
    "description": "Share of the page's videos the learner must watch before marking it complete; 0 means no rule"
+  },
+  {
+   "fieldname": "scorm_package",
+   "fieldtype": "Attach",
+   "label": "SCORM Package",
+   "depends_on": "eval:doc.lesson_type=='SCORM'",
+   "description": "A SCORM 1.2 or 2004 .zip (administrators only; SCORM must be allowed in Learning Settings)"
+  },
+  {
+   "fieldname": "scorm_launch",
+   "fieldtype": "Data",
+   "label": "SCORM Launch",
+   "read_only": 1,
+   "depends_on": "scorm_launch"
   },
   {
    "fieldname": "blocks_editor",
@@ -290,7 +306,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 15:00:00.000000",
+ "modified": "2026-11-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

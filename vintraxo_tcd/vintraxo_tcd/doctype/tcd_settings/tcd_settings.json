@@ -17,6 +17,7 @@
   "require_approval_before_publish",
   "playground_section",
   "enable_playgrounds",
+  "allow_scorm",
   "playground_timeout_seconds",
   "pyodide_index_url",
   "sqljs_base_url",
@@ -127,6 +128,12 @@
    "fieldname": "enable_playgrounds",
    "fieldtype": "Check",
    "label": "Enable Playgrounds"
+  },
+  {
+   "fieldname": "allow_scorm",
+   "fieldtype": "Check",
+   "label": "Allow SCORM Packages",
+   "description": "SCORM packages are served from this site and their JavaScript runs with the learner's session. Only administrators can upload them; upload only packages you trust."
   },
   {
    "default": "5",
@@ -307,7 +314,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 16:00:00.000000",
+ "modified": "2026-11-20 16:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

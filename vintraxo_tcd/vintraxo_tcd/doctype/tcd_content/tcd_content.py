@@ -38,9 +38,10 @@ class TCDContent(Document):
 			self.published_on = now_datetime()
 		if self.status == "Draft":
 			self.published_on = None
-		from vintraxo_tcd.core import freshness
+		from vintraxo_tcd.core import freshness, scorm
 
 		freshness.on_validate(self)
+		scorm.install(self)
 
 	def onload(self):
 		roles = set(frappe.get_roles())

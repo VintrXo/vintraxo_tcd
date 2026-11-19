@@ -984,3 +984,28 @@ def checkout(
 
 	safe = redirect_to if (redirect_to or "").startswith("/learn") else "/learn/my"
 	return payments.checkout(enrollment_for, name, frappe.session.user, coupon, safe)
+
+
+# ---------------------------------------------------------------- SCORM (Phase 16)
+
+
+@frappe.whitelist()
+def scorm_data(content: str) -> dict:
+	if frappe.session.user == "Guest":
+		raise frappe.PermissionError
+	_readable_content(content)
+	from vintraxo_tcd.core import scorm
+
+	return scorm.get_data(frappe.session.user, content)
+
+
+@frappe.whitelist(methods=["POST"])
+def scorm_commit(content: str, data) -> dict:
+	if frappe.session.user == "Guest":
+		raise frappe.PermissionError
+	doc = _readable_content(content)
+	if not doc.get("scorm_launch"):
+		frappe.throw(frappe._("This page has no SCORM package."))
+	from vintraxo_tcd.core import scorm
+
+	return scorm.commit(frappe.session.user, content, data)

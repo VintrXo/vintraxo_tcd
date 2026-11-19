@@ -28,6 +28,7 @@
 5,5 - خبير,TCD Skill Award
 5,5 - خبير,TCD User Skill
 A .json file made with Export Space on another site,ملف ‎.json‎ مصدَّر بزر «تصدير المساحة» من موقع آخر,TCD Content Import
+A SCORM 1.2 or 2004 .zip (administrators only; SCORM must be allowed in Learning Settings),ملف ‎.zip‎ بصيغة SCORM 1.2 أو 2004 (للمسؤولين فقط؛ ويجب السماح بـ SCORM في إعدادات التعلّم),TCD Content
 A calendar connected in Frappe's Google Calendar integration; events get a Meet link,تقويم مربوط بتكامل Google Calendar في Frappe؛ يُضاف للأحداث رابط Meet,TCD Settings
 A cancelled session has no attendance.,الجلسة الملغاة ليس لها حضور.
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
@@ -110,6 +111,7 @@ All items are done. Waiting for your instructor's approval.,أنهيت كل ال
 All languages found.,كل اللغات موجودة.
 All spaces,كل المساحات
 Allow Private Network,السماح بالشبكة الخاصة,TCD Connector
+Allow SCORM Packages,السماح بحزم SCORM,TCD Settings
 Allow Self Enrollment,السماح بالتسجيل الذاتي
 Allow Visitors Without Login,السماح للزوار بدون تسجيل دخول,TCD Settings
 Allow plain HTTP and local or private addresses. Only for trusted internal services.,يسمح بـ HTTP العادي والعناوين المحلية أو الخاصة. للخدمات الداخلية الموثوقة فقط.,TCD Connector
@@ -980,6 +982,7 @@ Only a reviewer can send a document for approval.,المراجع فقط يمكن
 Only active documents can be acknowledged.,يمكن الإقرار بالمستندات السارية فقط.
 Only active or expired certificates can be renewed.,يمكن تجديد الشهادات السارية أو المنتهية فقط.
 Only administrators can export or import spaces.,المسؤولون فقط يمكنهم تصدير المساحات أو استيرادها.
+Only administrators can upload SCORM packages.,المسؤولون فقط يمكنهم رفع حزم SCORM.
 Only an administrator can revoke certificates.,المسؤول فقط يمكنه إلغاء الشهادات.
 Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
 Only an instructor of this course can approve completion.,مدرّب هذه الدورة فقط يمكنه اعتماد الإكمال.
@@ -1329,6 +1332,13 @@ Runs per User per Minute,التشغيلات لكل مستخدم في الدقي�
 Runtime Error,خطأ أثناء التشغيل
 Runtime Error,خطأ أثناء التشغيل,TCD Code Run
 Runtime error,خطأ أثناء التشغيل
+SCORM,حزمة SCORM
+SCORM,حزمة SCORM,TCD Content
+SCORM Data,بيانات SCORM,TCD Progress
+SCORM Launch,صفحة التشغيل,TCD Content
+SCORM Package,حزمة SCORM,TCD Content
+SCORM packages are not allowed. An administrator can allow them in Learning Settings.,حزم SCORM غير مسموحة. يمكن للمسؤول السماح بها من إعدادات التعلّم.
+SCORM packages are served from this site and their JavaScript runs with the learner's session. Only administrators can upload them; upload only packages you trust.,حزم SCORM تُعرض من هذا الموقع ويعمل كود JavaScript الخاص بها بجلسة المتعلم. المسؤولون فقط يرفعونها؛ ارفع فقط حزمًا تثق بها.,TCD Settings
 SOP,إجراء تشغيلي
 SOP,إجراء تشغيلي,TCD
 SOP,إجراء تشغيلي,TCD Governance Document
@@ -1614,6 +1624,14 @@ The AI provider is busy. Try again in a minute.,مزوّد الذكاء الاص
 The AI provider rejected the API key.,رفض مزوّد الذكاء الاصطناعي مفتاح API.
 The AI provider returned an error ({0}).,أعاد مزوّد الذكاء الاصطناعي خطأ ({0}).
 The AI returned an empty lesson. Try again with more detail.,أعاد الذكاء الاصطناعي درسًا فارغًا. حاول مرة أخرى بتفاصيل أكثر.
+The SCORM data is too large.,بيانات SCORM كبيرة جدًا.
+The SCORM launch page is outside the package.,صفحة تشغيل SCORM خارج الحزمة.
+The SCORM manifest could not be read.,تعذّرت قراءة ملف التعريف (manifest) للحزمة.
+The SCORM manifest has no launch page.,ملف التعريف للحزمة لا يحدد صفحة تشغيل.
+The SCORM package contains an unsafe path: {0},حزمة SCORM تحتوي على مسار غير آمن: {0}
+The SCORM package has too many files.,حزمة SCORM بها ملفات كثيرة جدًا.
+The SCORM package is too large.,حزمة SCORM كبيرة جدًا.
+The SCORM package must be a .zip file.,حزمة SCORM يجب أن تكون ملف ‎.zip‎.
 The answer is too long.,الإجابة طويلة جدًا.
 The answers are too long.,الإجابات طويلة جدًا.
 The code is too long (maximum 64 KB).,الكود طويل جدًا (الحد الأقصى 64 كيلوبايت).
@@ -1658,8 +1676,10 @@ This event was already sent.,تم إرسال هذا الحدث بالفعل.
 This import is already done.,تم هذا الاستيراد بالفعل.
 This is a paid course. Use Buy.,هذه دورة مدفوعة. استخدم «شراء».
 This is free. Enroll directly.,هذه مجانية. سجّل مباشرة.
+This is not a SCORM package (imsmanifest.xml is missing).,هذه ليست حزمة SCORM (ملف imsmanifest.xml غير موجود).
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
+This page has no SCORM package.,هذه الصفحة ليس بها حزمة SCORM.
 This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
 This page is past its review date.,هذه الصفحة تجاوزت موعد مراجعتها.
 This page may be out of date: its review was due on {0}.,قد تكون هذه الصفحة غير محدّثة: كان موعد مراجعتها {0}.
@@ -1727,6 +1747,7 @@ Up next,التالي
 Upcoming sessions,الجلسات القادمة
 Upload,تحميل
 Upload,رفع,TCD
+Upload the SCORM package first.,ارفع حزمة SCORM أولًا.
 Uploaded file not found: {0},الملف المرفوع غير موجود: {0}
 Uploaded videos must be mp4 or webm.,الفيديوهات المرفوعة يجب أن تكون mp4 أو webm.
 Uploading...,جارٍ الرفع...

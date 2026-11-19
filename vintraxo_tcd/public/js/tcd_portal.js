@@ -323,6 +323,69 @@
 		});
 	}
 
+	/** SCORM 1.2 (window.API) and 2004 (window.API_1484_11) runtime for the package in .tcd-scorm. */
+	async function initScorm() {
+		const box = document.querySelector(".tcd-scorm[data-content]");
+		if (!box) return;
+		const content = box.dataset.content;
+		let data = {};
+		try {
+			data = (await call("scorm_data", { content: content })) || {};
+		} catch (_) {
+			data = {};
+		}
+		const changed = {};
+		let error = "0";
+		const commit = (keepalive) => {
+			if (!Object.keys(changed).length) return "true";
+			const body = JSON.stringify({ content: content, data: Object.assign({}, changed) });
+			Object.keys(changed).forEach((k) => delete changed[k]);
+			fetch(API + "scorm_commit", {
+				method: "POST",
+				credentials: "same-origin",
+				keepalive: !!keepalive,
+				headers: { "Content-Type": "application/json", "X-Frappe-CSRF-Token": (window.frappe && window.frappe.csrf_token) || "" },
+				body: body,
+			}).catch(() => {});
+			return "true";
+		};
+		const get = (k) => {
+			error = "0";
+			return data[k] !== undefined ? String(data[k]) : "";
+		};
+		const set = (k, v) => {
+			if (typeof k !== "string" || !k.startsWith("cmi.")) {
+				error = "201";
+				return "false";
+			}
+			data[k] = String(v);
+			changed[k] = String(v);
+			error = "0";
+			return "true";
+		};
+		window.API = {
+			LMSInitialize: () => "true",
+			LMSFinish: () => commit(true),
+			LMSGetValue: get,
+			LMSSetValue: set,
+			LMSCommit: () => commit(false),
+			LMSGetLastError: () => error,
+			LMSGetErrorString: () => "",
+			LMSGetDiagnostic: () => "",
+		};
+		window.API_1484_11 = {
+			Initialize: () => "true",
+			Terminate: () => commit(true),
+			GetValue: get,
+			SetValue: set,
+			Commit: () => commit(false),
+			GetLastError: () => error,
+			GetErrorString: () => "",
+			GetDiagnostic: () => "",
+		};
+		window.addEventListener("pagehide", () => commit(true));
+	}
+
 	function initWithdraw() {
 		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -531,6 +594,7 @@
 		initEnroll();
 		initWithdraw();
 		initBuy();
+		initScorm();
 		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);
