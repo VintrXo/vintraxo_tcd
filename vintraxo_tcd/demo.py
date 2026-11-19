@@ -132,6 +132,7 @@ def create_demo():
 	_demo_wiki(l1)
 	_demo_assessment()
 	_demo_governance(l1)
+	_demo_credentials_and_rules()
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -408,3 +409,29 @@ def _demo_governance(intro):
 		doc.reload()
 		doc.status = status
 		doc.save(ignore_permissions=True)
+
+
+def _demo_credentials_and_rules():
+	"""Phases 5 and 8 demo: the course issues a certificate and a skill; learners get a role guide."""
+	if not frappe.db.exists("TCD Skill", "بايثون"):
+		frappe.get_doc({"doctype": "TCD Skill", "skill_name": "بايثون", "skill_group": "برمجة"}).insert(
+			ignore_permissions=True
+		)
+	course = frappe.get_doc("TCD Course", {"space": SPACE, "title": "أساسيات بايثون"})
+	if not course.issue_certificate or not course.skills:
+		course.issue_certificate = 1
+		course.certificate_validity_months = 12
+		if not course.skills:
+			course.append("skills", {"skill": "بايثون", "level": "2"})
+		course.save(ignore_permissions=True)
+	guide = frappe.db.get_value("TCD Content", {"space": SPACE, "title": "دليل بيئة العمل"})
+	if guide and not frappe.db.exists("TCD Training Rule", {"content": guide}):
+		frappe.get_doc(
+			{
+				"doctype": "TCD Training Rule",
+				"title": "دليل بيئة العمل للمتعلمين الجدد",
+				"target_type": "Content",
+				"content": guide,
+				"roles": [{"role": "TCD Learner"}],
+			}
+		).insert(ignore_permissions=True)
