@@ -121,7 +121,7 @@ Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialo
 Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old dates, so the daily jobs would have
 expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
 | Phase 8 — Integrations | 483639f | 129 | Connector registry, signed webhooks with outbox/retry/rate limit, training rules (auto/mandatory enrollment by role and HR), role guides, training compliance |
-| Phase 9 — AI gateway | this commit | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
+| Phase 9 — AI gateway | d02dc01 | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
 
 ## Phase 7 — Notifications and analytics: status
 
