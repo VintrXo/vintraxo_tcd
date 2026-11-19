@@ -205,7 +205,9 @@ def role_guides(user: str) -> list[dict]:
 		order_by="title asc",
 	):
 		rule = frappe.get_doc("TCD Training Rule", name)
-		if rule.content in seen or not rule_matches(rule, user):
+		if rule.content in seen or not frappe.db.exists("TCD Content", rule.content):
+			continue  # a rule pointing to a deleted page must not break My Learning
+		if not rule_matches(rule, user):
 			continue
 		content = frappe.get_doc("TCD Content", rule.content)
 		if content.status != "Published" or not can_access_content(content, user):

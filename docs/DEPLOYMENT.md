@@ -14,7 +14,19 @@ bench get-app <repo-url> --branch <branch>
 bench --site <site> install-app vintraxo_tcd
 bench --site <site> migrate
 ```
-`after_install` creates the five TCD roles and a "Learning" item in the website navbar.
+What a new site receives:
+| Item | How |
+|---|---|
+| 60+ DocTypes, fields, permissions | App DocType JSON (no Custom Fields or Property Setters are used) |
+| 5 roles (TCD Administrator, Content Author, Content Reviewer, Instructor, Learner) | `after_install` + fixture `fixtures/role.json` (kept on every migrate) |
+| 7 notifications, 9 reports, certificate print format, workspace | Standard records in the module folders, synced by migrate |
+| 5 number cards | Module folder `number_card/`, synced because of `importable_doctypes = ["Number Card"]` |
+| VX desktop icon and sidebar | App folders `desktop_icon/`, `workspace_sidebar/` |
+| "Learning" item in the website navbar | `after_install` (removed again by `before_uninstall`) |
+| Arabic translations | `translations/ar.csv` |
+| Settings defaults | Portal on, Arabic, review before publish, playgrounds on, AI off |
+
+Patches in `patches.txt` are marked as done on a fresh install (they only fix data on older sites).
 Then: assign roles, open **VX → Learning Settings**, enable the portal. Optional demo: `vintraxo_tcd.demo.create_demo`.
 
 ## Upgrade

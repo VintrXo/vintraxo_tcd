@@ -1,0 +1,67 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-18 22:30:26.083747",
+  "name": "TCD Administrator",
+  "restrict_to_domain": null,
+  "role_name": "TCD Administrator",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-18 22:30:26.602439",
+  "name": "TCD Content Author",
+  "restrict_to_domain": null,
+  "role_name": "TCD Content Author",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-18 22:30:26.604834",
+  "name": "TCD Content Reviewer",
+  "restrict_to_domain": null,
+  "role_name": "TCD Content Reviewer",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-18 22:30:26.606909",
+  "name": "TCD Instructor",
+  "restrict_to_domain": null,
+  "role_name": "TCD Instructor",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-18 22:30:26.609742",
+  "name": "TCD Learner",
+  "restrict_to_domain": null,
+  "role_name": "TCD Learner",
+  "two_factor_auth": 0
+ }
+]

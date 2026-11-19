@@ -8,7 +8,7 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["frappe"]  # ERPNext/HRMS are optional and guarded
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -72,6 +72,8 @@ app_license = "mit"
 
 # automatically load and sync documents of this doctype from downstream apps
 # importable_doctypes = [doctype_1]
+# Number Cards in vintraxo_tcd/number_card/ are not synced by Frappe unless listed here
+importable_doctypes = ["Number Card"]
 
 # Jinja
 # ----------
@@ -92,6 +94,7 @@ app_license = "mit"
 # ------------
 
 # before_uninstall = "vintraxo_tcd.uninstall.before_uninstall"
+before_uninstall = "vintraxo_tcd.uninstall.before_uninstall"
 # after_uninstall = "vintraxo_tcd.uninstall.after_uninstall"
 
 # Integration Setup
@@ -359,3 +362,25 @@ doctype_list_js = {"TCD Content": "public/js/tcd_ai_list.js"}
 
 # Extra AI providers: {"Name": "dotted.path.ProviderClass"} (see core/ai.py AnthropicProvider)
 tcd_ai_providers = {}
+
+# Fixtures: the app has no Custom Fields / Property Setters / scripts (all fields live in its own DocTypes;
+# Print Format, Notifications, Reports, Number Cards, Workspace, Sidebar and Desktop Icon are standard
+# records in the module folders). Roles are exported so every migrate keeps them in place.
+fixtures = [
+	{
+		"dt": "Role",
+		"filters": [
+			[
+				"name",
+				"in",
+				[
+					"TCD Administrator",
+					"TCD Content Author",
+					"TCD Content Reviewer",
+					"TCD Instructor",
+					"TCD Learner",
+				],
+			]
+		],
+	}
+]

@@ -352,3 +352,8 @@ class TestPhase8Integrations(TCDTestCase):
 		self.assertEqual(status, 200)
 		self.assertIn("tcd-role-guides", html)
 		self.assertIn("tcd-badge-warn", html)  # mandatory badge
+		frappe.set_user("Administrator")
+		frappe.db.set_value("TCD Training Rule", {"title": "Guide"}, "content", "missing-page")
+		self.assertEqual(training.role_guides(self.vip), [])  # dangling rule is skipped, no error
+		status, _, _ = render("/learn/my", self.vip)
+		self.assertEqual(status, 200)
