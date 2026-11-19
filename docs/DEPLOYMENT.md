@@ -61,5 +61,10 @@ Patches in `patches.txt` run during `migrate` (renames before the model sync, da
 - `bench serve` (development server) is single-process: ~11 requests/s locally, and Frappe core's router
   occasionally raises `TypeError: 'NoneType' object is not iterable` under concurrent load (also on `/login`, not
   related to this app). Use the production setup for real traffic.
-- Code playgrounds run in the learner's browser. Server-side execution (Phase 10) is not built; see
-  `PHASE10_ISOLATION_DESIGN.md`.
+- Code playgrounds run in the learner's browser unless the code runner is enabled.
+
+## Code runner (optional, Phase 10)
+1. On a **separate VM** (not the Frappe server): install Judge0 CE (a patched release, 1.13.1 or later) following
+   its docs; firewall: inbound only from the Frappe server on the runner port, outbound denied; set an auth token.
+2. In VX → Learning Settings → Code Runner: enable, set the URL and token, keep the limits, click **Test Runner**.
+3. Use runner languages in playground blocks and Code questions, or tick "Grade on the Code Runner".

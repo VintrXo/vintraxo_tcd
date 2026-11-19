@@ -93,6 +93,7 @@ All Items,كل العناصر,TCD
 All Items,كل العناصر,TCD Course
 All Items,كل العناصر,TCD Learning Path
 All items are done. Waiting for your instructor's approval.,أنهيت كل العناصر. في انتظار اعتماد المدرّب.
+All languages found.,كل اللغات موجودة.
 All spaces,كل المساحات
 Allow Private Network,السماح بالشبكة الخاصة,TCD Connector
 Allow Self Enrollment,السماح بالتسجيل الذاتي
@@ -182,6 +183,7 @@ Bank Questions,أسئلة البنك,TCD Quiz
 Bank row {0}: category {1} has only {2} questions.,سطر البنك {0}: التصنيف {1} فيه {2} أسئلة فقط.
 Bank row {0}: choose a question or a category (not both).,سطر البنك {0}: اختر سؤالًا أو تصنيفًا (وليس الاثنين).
 Bank row {0}: the AI question must be reviewed before it is used in a quiz.,صف البنك {0}: يجب مراجعة سؤال الذكاء الاصطناعي قبل استخدامه في اختبار.
+"Base URL of the runner (Judge0 compatible), e.g. http://10.0.0.5:2358",الرابط الأساسي للمشغّل (متوافق مع Judge0)، مثال: http://10.0.0.5:2358,TCD Settings
 Batch,دفعة
 Batch,دفعة,TCD Enrollment
 Batch Name,اسم الدفعة,TCD Batch
@@ -207,6 +209,7 @@ Body,المحتوى,TCD Content
 Body (Markdown),النص (ماركداون),TCD Governance Document
 Body (Markdown),النص (ماركداون),TCD Governance Version
 Browse spaces,تصفّح المساحات
+CPU Time Limit (Seconds),حد وقت المعالج (ثوانٍ),TCD Settings
 Callout,تنبيه
 Callout,تنبيه,TCD Block
 Cannot delete a category that has content.,لا يمكن حذف تصنيف يحتوي على محتوى.
@@ -217,6 +220,8 @@ Cannot delete a space that still has content. Archive or move the content first.
 Cannot move a document from {0} to {1}.,لا يمكن نقل المستند من {0} إلى {1}.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
 Cannot reach the AI provider.,تعذّر الوصول إلى مزوّد الذكاء الاصطناعي.
+Cannot reach the code runner.,تعذّر الوصول إلى مشغّل الأكواد.
+Cannot reach the code runner: {0},تعذّر الوصول إلى مشغّل الأكواد: {0}
 Cannot resolve the endpoint host {0}.,تعذّر الوصول إلى عنوان الخادم {0}.
 Caption,التعليق
 Caption,التعليق,TCD Block
@@ -251,8 +256,11 @@ Choose what to enroll in.,اختر ما تريد التسجيل فيه.
 Code,رمز
 Code,كود,TCD Block
 Code Language,لغة الكود,TCD Question
+Code Runner,مشغّل الأكواد,TCD Settings
+Code SHA-256,بصمة الكود SHA-256,TCD Code Run
 "Code and SQL answers are checked on the learner's device, which a learner can alter. Tick this for graded exams: an instructor confirms each answer.",إجابات الأكواد و SQL تُفحص على جهاز المتعلم، ويمكن للمتعلم التلاعب بها. فعّل هذا الخيار في الاختبارات المحتسبة: يعتمد المدرّب كل إجابة.,TCD Quiz
 Code editor,محرر الأكواد
+Code runner,مشغّل الأكواد
 Code/SQL output comes from the learner's browser and can be forged; tick this for high-stakes questions,مخرجات الكود/SQL تأتي من متصفح المتعلم ويمكن تزويرها؛ فعّل هذا للأسئلة المهمة,TCD Question
 "Code: exact printed output. SQL: header line then one line per row, values separated by |",الكود: المخرجات المطبوعة بالضبط. SQL: سطر العناوين ثم سطر لكل صف، والقيم مفصولة بـ |,TCD Question
 "Comma separated, used by file blocks and submissions",مفصولة بفواصل، تُستخدم لكتل الملفات والتسليمات,TCD Settings
@@ -266,6 +274,9 @@ Compare with Current,مقارنة بالنسخة الحالية
 Competency Gap,فجوة الكفاءات
 Competency Profile,ملف الكفاءات
 Competency Profiles,ملفات الكفاءات
+Compilation Error,خطأ في الترجمة البرمجية
+Compilation Error,خطأ في الترجمة البرمجية,TCD Code Run
+Compilation error,خطأ في الترجمة البرمجية
 Complete the prerequisites first: {0},أكمل المتطلبات السابقة أولًا: {0}
 Complete these courses first: {0},أكمل هذه الدورات أولًا: {0}
 Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
@@ -398,6 +409,7 @@ Effective from {0},ساري من {0}
 Effort,مستوى الجهد,TCD AI Settings
 Employee,الموظف
 Enable AI,تفعيل الذكاء الاصطناعي,TCD AI Settings
+Enable Code Runner,تفعيل مشغّل الأكواد,TCD Settings
 Enable Learner Portal,تفعيل بوابة المتعلمين
 Enable Playgrounds,تفعيل محرر الأكواد
 Enabled,مفعّل,TCD Connector
@@ -427,6 +439,7 @@ Enrollments,التسجيلات
 Enrollments complete automatically or through approval.,تكتمل التسجيلات تلقائيًا أو عبر الاعتماد.
 Error,خطأ
 Error,خطأ,TCD AI Usage Log
+Error,خطأ,TCD Code Run
 Essay,مقالي
 Essay,مقالي,TCD Question
 Event,الحدث,TCD Connector Event
@@ -471,6 +484,8 @@ Fill Blank,املأ الفراغ
 Fill Blank,املأ الفراغ,TCD Question
 "Fill Blank: one line per blank, alternatives separated by |. Short Answer: one accepted answer per line",املأ الفراغ: سطر لكل فراغ والبدائل مفصولة بـ |. إجابة قصيرة: إجابة مقبولة في كل سطر,TCD Question
 Filter,الفلتر,TCD Rule HR Filter
+Finished,انتهى,TCD Code Run
+Finished,تم الانتهاء من
 Folder that contains pyodide.js (self-host for offline sites). Must end with /,المجلد الذي يحتوي pyodide.js (استضفه محليًا للمواقع غير المتصلة). يجب أن ينتهي بـ /
 Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
 Follows what you completed,يكمّل ما أنهيته
@@ -492,6 +507,7 @@ Give the lesson a title.,اكتب عنوانًا للدرس.
 Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
+Grade on the Code Runner,التصحيح على مشغّل الأكواد,TCD Question
 Graded,مُصحَّح
 Graded,مُصحَّح,TCD
 Graded,مُصحَّح,TCD Assignment Submission
@@ -501,6 +517,8 @@ Graded By,صحّحه,TCD Quiz Submission
 Graded On,تاريخ التصحيح,TCD Assignment Submission
 Graded On,تاريخ التصحيح,TCD Quiz Submission
 Grading,التصحيح,TCD Assignment
+Grading,تصحيح
+Grading,تصحيح,TCD Code Run
 Group Name,اسم المجموعة
 Group Name,اسم المجموعة,TCD Student Group
 Guides for your role,أدلة خاصة بدورك
@@ -567,12 +585,19 @@ Keep Prompt Text in the Usage Log,حفظ نص الطلب في سجل الاست�
 Kind,النوع
 Kind,النوع,TCD Governance Document
 Knowledge Usage,استخدام المعرفة
+Label,الاسم الظاهر,TCD Runner Language
 Language,اللغة
 Language,اللغة,TCD Block
+Language,اللغة,TCD Code Run
 Language,اللغة,TCD Content
 Language,اللغة,TCD Content Version
 Language,اللغة,TCD Course
 Language,اللغة,TCD Learning Path
+Language,اللغة,TCD Runner Language
+Language {0} is listed twice.,اللغة {0} مكررة.
+Languages on the runner,اللغات على المشغّل
+Languages the runner may execute. Check the ids with Test Runner.,اللغات المسموح للمشغّل بتشغيلها. تحقّق من الأرقام بزر «اختبار المشغّل».
+Languages the runner may execute. Check the ids with Test Runner.,اللغات المسموح للمشغّل بتشغيلها. تحقّق من الأرقام بزر «اختبار المشغّل».,TCD Settings
 Last Applied On,آخر تطبيق,TCD Training Rule
 Last Error,آخر خطأ,TCD Integration Event
 Last Viewed On,آخر مشاهدة
@@ -651,6 +676,8 @@ Max score must be greater than zero.,الدرجة العظمى يجب أن تك�
 Media and Uploads,الوسائط والملفات,TCD Settings
 Members,الأعضاء
 Members,الأعضاء,TCD Student Group
+Memory (KB),الذاكرة (كيلوبايت),TCD Code Run
+Memory Limit (MB),حد الذاكرة (ميجابايت),TCD Settings
 Minimum Score,الحد الأدنى للدرجة
 Minimum Score,الحد الأدنى للدرجة,TCD
 Minimum Score,الحد الأدنى للدرجة,TCD Course
@@ -672,6 +699,7 @@ My courses,دوراتي
 My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
+"Name used in lessons and questions, e.g. java",الاسم المستخدم في الدروس والأسئلة، مثال: java,TCD Runner Language
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.,TCD Training Rule
 Needs Review,يحتاج مراجعة
@@ -752,6 +780,7 @@ Ordering,ترتيب,TCD Question
 Original File,الملف الأصلي,TCD Governance Document
 Original File,الملف الأصلي,TCD Governance Version
 Original file,الملف الأصلي
+Output,المخرجات,TCD Code Run
 Output Price per Million Tokens (USD),سعر المخرجات لكل مليون رمز (دولار),TCD AI Settings
 Output Tokens,رموز المخرجات,TCD AI Usage Log
 Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
@@ -823,6 +852,8 @@ Policy Activated,اعتماد سياسة
 Policy Activated,اعتماد سياسة,TCD Connector Event
 Policy Activated,اعتماد سياسة,TCD Integration Event
 Popular in your spaces,شائع في مساحاتك
+Practice,تدريب
+Practice,تدريب,TCD Code Run
 Prerequisite,متطلب سابق
 Prerequisite Courses,الدورات المطلوبة مسبقًا,TCD Course
 "Prerequisite: the source requires the target. Next: after the source, go to the target",متطلب سابق: المصدر يتطلب الهدف. التالي: بعد المصدر انتقل إلى الهدف,TCD Content Relation
@@ -859,6 +890,7 @@ Published,منشور,TCD Learning Path
 Published,نشرت
 Published Content,المحتوى المنشور
 Published On,تاريخ النشر
+Purpose,الغرض,TCD Code Run
 Pyodide Base URL,رابط Pyodide الأساسي
 Question,السؤال
 Question Bank,بنك الأسئلة
@@ -897,8 +929,10 @@ Reference,مرجع
 Reference,مرجع,TCD
 Reference,مرجع,TCD Content
 Reference Name,اسم المرجع,TCD AI Usage Log
+Reference Name,اسم المرجع,TCD Code Run
 Reference Name,اسم المرجع,TCD Integration Event
 Reference Type,نوع المرجع,TCD AI Usage Log
+Reference Type,نوع المرجع,TCD Code Run
 Reference Type,نوع المرجع,TCD Integration Event
 Referenced by,مُشار إليه في
 Refused,مرفوض
@@ -987,8 +1021,18 @@ Rubric,معايير التقييم,TCD Question
 Rubric points must add up to more than zero.,مجموع نقاط معايير التقييم يجب أن يكون أكبر من صفر.
 Run,تشغيل
 Run your code before submitting; the output is checked.,شغّل الكود قبل الإرسال؛ يتم فحص المخرجات.
+Runner Language ID,رقم اللغة على المشغّل,TCD Runner Language
+Runner Languages,لغات المشغّل,TCD Settings
+Runner Token,مفتاح المشغّل,TCD Settings
+Runner URL,رابط المشغّل,TCD Settings
+Running on the code runner...,جارٍ التشغيل على مشغّل الأكواد...
 Running...,جارٍ التشغيل...
 "Runs before the learner's query (create tables, insert rows)",يُنفَّذ قبل استعلام المتعلم (إنشاء الجداول وإدخال الصفوف),TCD Question
+"Runs code on a separate, isolated runner service (never on this server). See docs/PHASE10_ISOLATION_DESIGN.md",يشغّل الأكواد على خدمة منفصلة ومعزولة (وليس على هذا السيرفر أبدًا). راجع docs/PHASE10_ISOLATION_DESIGN.md,TCD Settings
+Runs per User per Minute,التشغيلات لكل مستخدم في الدقيقة,TCD Settings
+Runtime Error,خطأ أثناء التشغيل
+Runtime Error,خطأ أثناء التشغيل,TCD Code Run
+Runtime error,خطأ أثناء التشغيل
 SOP,إجراء تشغيلي
 SOP,إجراء تشغيلي,TCD
 SOP,إجراء تشغيلي,TCD Governance Document
@@ -1092,6 +1136,7 @@ Starter Code,الكود المبدئي,TCD Block
 Statement,نص الإقرار,TCD Acknowledgment
 Status,الحالة
 Status,الحالة,TCD AI Usage Log
+Status,الحالة,TCD Code Run
 Status,الحالة,TCD Content
 Status,الحالة,TCD Course
 Status,الحالة,TCD Enrollment
@@ -1101,6 +1146,7 @@ Status,الحالة,TCD Progress
 Stop,إيقاف
 Stopped.,تم الإيقاف.
 Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت المهلة ({0} ثوانٍ).
+Stopped: time limit reached.,توقف: انتهى الوقت المسموح.
 Student Group,مجموعة متعلمين
 Student Groups,مجموعات المتعلمين
 Submission Type,نوع التسليم,TCD Assignment
@@ -1139,6 +1185,7 @@ TCD Batch Member,عضو دفعة
 TCD Category,تصنيف محتوى
 TCD Certificate,شهادة
 TCD Chapter,فصل
+TCD Code Run,تشغيل كود
 TCD Competency Gap,فجوة الكفاءات
 TCD Competency Profile,ملف كفاءات
 TCD Competency Requirement,متطلب كفاءة
@@ -1178,6 +1225,7 @@ TCD Quiz Submission,محاولة اختبار
 TCD Rubric Criterion,معيار تقييم
 TCD Rule HR Filter,فلتر موارد بشرية للقاعدة
 TCD Rule Role,دور القاعدة
+TCD Runner Language,لغة المشغّل
 TCD Settings,إعدادات التعلّم
 TCD Skill,مهارة
 TCD Skill Award,مهارة ممنوحة
@@ -1196,6 +1244,7 @@ Tell the learner what to change before returning the submission.,اكتب للم
 Template,قالب
 Template Name,اسم القالب,TCD Content Template
 Templates,القوالب
+Test Runner,اختبار المشغّل
 Test failed: {0},فشلت التجربة: {0}
 Test sent ({0}),تم إرسال التجربة ({0})
 Text,النص,TCD Block
@@ -1213,14 +1262,23 @@ The AI provider returned an error ({0}).,أعاد مزوّد الذكاء الا
 The AI returned an empty lesson. Try again with more detail.,أعاد الذكاء الاصطناعي درسًا فارغًا. حاول مرة أخرى بتفاصيل أكثر.
 The answer is too long.,الإجابة طويلة جدًا.
 The answers are too long.,الإجابات طويلة جدًا.
+The code is too long (maximum 64 KB).,الكود طويل جدًا (الحد الأقصى 64 كيلوبايت).
+The code runner could not run the code.,تعذّر على مشغّل الأكواد تشغيل الكود.
+The code runner does not support {0}.,مشغّل الأكواد لا يدعم {0}.
+The code runner is turned off.,مشغّل الأكواد متوقف.
+The code runner returned an error ({0}).,أعاد مشغّل الأكواد خطأ ({0}).
+The code runner sent an unreadable answer.,أرسل مشغّل الأكواد ردًا غير مقروء.
 The endpoint must be an http(s) URL.,يجب أن يكون العنوان رابط http(s).
 The endpoint resolves to a private or local address. Allow the private network to use it.,العنوان يشير إلى شبكة خاصة أو محلية. فعّل السماح بالشبكة الخاصة لاستخدامه.
+The language id on your runner (Judge0: GET /languages),رقم اللغة على المشغّل لديك (Judge0: GET /languages),TCD Runner Language
 The lesson is not part of the selected course.,الدرس ليس ضمن الدورة المختارة.
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The lesson this assignment belongs to,الدرس الذي يتبعه هذا التكليف,TCD Assignment
 The monthly AI budget is used up.,انتهت ميزانية الذكاء الاصطناعي لهذا الشهر.
 The question has {0} blanks but {1} answer lines.,في السؤال {0} فراغات لكن عدد أسطر الإجابات {1}.
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
+The runner URL must be an http(s) URL.,يجب أن يكون رابط المشغّل http(s).
+"The runner re-runs the learner's code for grading, so the output from the learner's device is not trusted. Always on for languages that only the runner supports.",المشغّل يعيد تشغيل كود المتعلم للتصحيح، فلا يُعتمد على نتيجة جهاز المتعلم. مفعّل دائمًا للغات التي يدعمها المشغّل فقط.,TCD Question
 The template blocks replace the current blocks.,كتل القالب ستحل محل الكتل الحالية.
 "This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
 This assignment is not active.,هذا التكليف غير مفعّل.
@@ -1237,6 +1295,9 @@ This quiz is not active.,هذا الاختبار غير مفعّل.
 This record is written automatically and cannot be changed.,يُكتب هذا السجل تلقائيًا ولا يمكن تعديله.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 This submission is already graded.,تم تصحيح هذا التسليم بالفعل.
+Time (ms),الوقت (مللي ثانية),TCD Code Run
+Time Limit,تجاوز الوقت
+Time Limit,تجاوز الوقت,TCD Code Run
 Time Limit (minutes),الوقت المحدد (دقائق),TCD Quiz
 Time is over,انتهى الوقت
 Time left: {0},الوقت المتبقي: {0}
@@ -1260,6 +1321,7 @@ To Course,إلى الدورة,TCD Content Relation
 To Date,إلى تاريخ
 To Grade,بانتظار التصحيح
 To Learning Path,إلى مسار التعلّم,TCD Content Relation
+Too many runs. Wait a minute and try again.,تشغيلات كثيرة. انتظر دقيقة وحاول مرة أخرى.
 Training Compliance,الالتزام بالتدريب
 Training Rule,قاعدة التدريب
 Training Rule,قاعدة التدريب,TCD Enrollment
@@ -1278,6 +1340,7 @@ Type,النوع,TCD Quiz Question
 Unique within the space. Generated from the title when empty,فريد داخل المساحة. يُولَّد من العنوان إذا تُرك فارغًا
 Unknown AI provider {0}.,مزوّد الذكاء الاصطناعي {0} غير معروف.
 Unknown block type. Edit it in the JSON section.,نوع كتلة غير معروف. عدّلها في قسم JSON.
+Unknown language ids: {0},أرقام لغات غير معروفة: {0}
 Up next,التالي
 Upload,تحميل
 Upload,رفع,TCD
@@ -1289,6 +1352,7 @@ Use a public uploaded file (/files/...).,استخدم ملفًا مرفوعًا 
 Use the submit and grade actions to change submissions.,استخدم إجراءات التسليم والتصحيح لتعديل التسليمات.
 User,المستخدم
 User,المستخدم,TCD AI Usage Log
+User,المستخدم,TCD Code Run
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
@@ -1322,6 +1386,7 @@ Visibility,الظهور,TCD Learning Path
 Visibility,الظهور,TCD Space
 Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
+Wall Time Limit (Seconds),حد الوقت الكلي (ثوانٍ),TCD Settings
 Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
 What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.
@@ -1361,6 +1426,7 @@ medium,متوسط
 medium,متوسط,TCD AI Settings
 python,بايثون
 python,بايثون,TCD Question
+python and javascript also run in the browser; the others need the code runner,python و javascript تعمل في المتصفح أيضًا؛ باقي اللغات تحتاج مشغّل الأكواد,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
 {0} already has this skill; edit the existing record.,لدى {0} هذه المهارة بالفعل؛ عدّل السجل الموجود.
@@ -1372,6 +1438,7 @@ ratings,تقييمات,TCD
 {0} of {1} found it helpful,وجدها {0} من {1} مفيدة
 {0} of {1} lessons completed,أُكمل {0} من {1} دروس
 {0} questions saved for review,تم حفظ {0} سؤال للمراجعة
+{0} runs only on the code runner. Enable the runner and add the language first.,{0} تعمل على مشغّل الأكواد فقط. فعّل المشغّل وأضف اللغة أولًا.
 {0} users enrolled,تم تسجيل {0} مستخدم
 {0}: points must be between 0 and {1}.,{0}: النقاط يجب أن تكون بين 0 و{1}.
 {} Pending,{} بانتظار الاعتماد

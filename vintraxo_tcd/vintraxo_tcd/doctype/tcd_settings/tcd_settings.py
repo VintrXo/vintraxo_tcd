@@ -9,6 +9,9 @@ RUNTIME_URL_FIELDS = ("pyodide_index_url", "sqljs_base_url")
 
 class TCDSettings(Document):
 	def validate(self):
+		from vintraxo_tcd.core import runner
+
+		runner.validate_settings(self)
 		timeout = self.playground_timeout_seconds or 0
 		if timeout < 1 or timeout > 60:
 			frappe.throw(_("Playground timeout must be between 1 and 60 seconds."))

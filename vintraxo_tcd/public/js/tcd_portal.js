@@ -461,6 +461,7 @@
 			output.textContent = this.t.running || "Running...";
 			const res = await window.TCDPlayground.run(question.language, fs.querySelector(".tcd-code-answer").value, {
 				setup: question.setup_code,
+				server: question.run_on_server,
 			});
 			const text = res.error || (res.timedOut ? this.t.stopped : window.TCDPlayground.canonicalOutput(question.language, res));
 			output.textContent = text || this.t.no_output || "";

@@ -22,7 +22,7 @@ const TCD_BLOCK_TYPES = {
 	playground: {
 		label: __("Playground", null, "TCD Block"),
 		fields: [
-			["language", "select", __("Language", null, "TCD Block"), ["python", "sql", "javascript", "html"]],
+			["language", "select", __("Language", null, "TCD Block"), ["python", "sql", "javascript", "html", "java", "cpp", "c", "go", "csharp", "bash"]],
 			["code", "code", __("Starter Code", null, "TCD Block")],
 			["expected_output", "code", __("Expected Output (optional)", null, "TCD Block")],
 		],

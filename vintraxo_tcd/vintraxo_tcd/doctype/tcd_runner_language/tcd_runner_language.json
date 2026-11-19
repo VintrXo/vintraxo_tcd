@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 05:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "language",
+  "label",
+  "runner_language_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "language",
+   "fieldtype": "Data",
+   "label": "Language",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Name used in lessons and questions, e.g. java"
+  },
+  {
+   "fieldname": "label",
+   "fieldtype": "Data",
+   "label": "Label",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "runner_language_id",
+   "fieldtype": "Int",
+   "label": "Runner Language ID",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "The language id on your runner (Judge0: GET /languages)"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 05:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Runner Language",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

@@ -118,7 +118,7 @@ class TestP1Content(TCDTestCase):
 			json.dumps([{"type": "video", "url": "x"}]),
 			json.dumps([{"type": "paragraph"}]),
 			json.dumps([{"type": "heading", "text": "h", "level": 9}]),
-			json.dumps([{"type": "playground", "language": "bash", "code": "rm -rf /"}]),
+			json.dumps([{"type": "playground", "language": "cobol", "code": "DISPLAY 1"}]),
 			json.dumps([{"type": "image", "url": "javascript:alert(1)"}]),
 			json.dumps([{"type": "list", "items": [1, 2]}]),
 		]

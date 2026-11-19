@@ -192,7 +192,13 @@ def _parse_answers(answers) -> dict:
 		frappe.throw(_("Answers must be an object of question id -> answer."))
 	if len(json.dumps(answers)) > 200000:
 		frappe.throw(_("The answers are too long."))
-	return {str(k): v for k, v in answers.items()}
+	clean = {}
+	for k, v in answers.items():
+		if isinstance(v, dict):
+			# only grading may set the runner's output; a value sent by the learner is dropped
+			v = {key: val for key, val in v.items() if key != "server_output"}
+		clean[str(k)] = v
+	return clean
 
 
 def grade(quiz, user: str, answers) -> dict:
@@ -229,7 +235,18 @@ def _grade_paper(quiz, sub, given: dict, review: dict | None = None):
 		item = assessment.load_item(ref["key"], ref["source"], quiz)
 		if not item:
 			continue
-		r = assessment.grade_item(item, given.get(item["key"]))
+		answer = given.get(item["key"])
+		if isinstance(answer, dict) and "server_output" not in answer:
+			from vintraxo_tcd.core import runner
+
+			if runner.grades_on_server(item):
+				answer["server_output"] = runner.grade_output(
+					item,
+					answer.get("code"),
+					sub.user,
+					("TCD Quiz Submission", sub.name) if sub.name else None,
+				)
+		r = assessment.grade_item(item, answer)
 		if r["manual"]:
 			if item["key"] in review:
 				r["earned"] = assessment.review_points(item, review[item["key"]])

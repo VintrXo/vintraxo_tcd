@@ -1,6 +1,7 @@
 # Phase 10 — Server-side code runner: isolation design (FOR APPROVAL, nothing built)
 
-Status: **proposal, waiting for the owner's approval**. No code, container or service exists for this phase.
+Status: **Frappe side built (ADR-0019), runner host not set up yet.** The owner chose to continue on the current
+server; the runner (Judge0 on an isolated VM, sections 2–3) will be installed with the production server.
 Ground rule kept: untrusted code never runs on the Frappe server.
 
 ## 1. Why a server runner at all

@@ -40,6 +40,12 @@ def _readable_content(name: str):
 	return doc
 
 
+def runner_languages() -> set:
+	from vintraxo_tcd.core import runner
+
+	return set(runner.languages())
+
+
 def playground_config() -> dict:
 	settings = frappe.get_cached_doc("TCD Settings")
 	return {
@@ -47,6 +53,7 @@ def playground_config() -> dict:
 		"timeout_seconds": settings.playground_timeout_seconds or 5,
 		"pyodide_index_url": settings.pyodide_index_url or DEFAULT_PYODIDE_URL,
 		"sqljs_base_url": settings.sqljs_base_url or DEFAULT_SQLJS_URL,
+		"runner_languages": sorted(runner_languages()),
 	}
 
 
@@ -734,3 +741,24 @@ def ai_draft_lesson(space: str, title: str, instructions: str = "", sources=None
 	if isinstance(sources, str):
 		sources = frappe.parse_json(sources)
 	return ai.draft_lesson(space, title, instructions, frappe.session.user, sources or [])
+
+
+# ---------------------------------------------------------------- code runner (Phase 10)
+
+
+@frappe.whitelist(methods=["POST"])
+def run_code(language: str, code: str, stdin: str = "") -> dict:
+	"""Practice run on the isolated code runner (never on this server)."""
+	if frappe.session.user == "Guest":
+		raise frappe.PermissionError
+	from vintraxo_tcd.core import runner
+
+	return runner.run(language, code, frappe.session.user, purpose="Practice", stdin=stdin)
+
+
+@frappe.whitelist(methods=["POST"])
+def test_runner() -> dict:
+	frappe.has_permission("TCD Settings", "write", throw=True)
+	from vintraxo_tcd.core import runner
+
+	return runner.test_connection()

@@ -19,7 +19,18 @@
   "video_domains",
   "column_break_media",
   "allowed_file_extensions",
-  "max_upload_mb"
+  "max_upload_mb",
+  "runner_section",
+  "runner_enabled",
+  "runner_url",
+  "runner_token",
+  "column_break_runner",
+  "runner_cpu_seconds",
+  "runner_wall_seconds",
+  "runner_memory_mb",
+  "runner_runs_per_minute",
+  "runner_languages_section",
+  "runner_languages"
  ],
  "fields": [
   {
@@ -118,12 +129,82 @@
    "fieldtype": "Int",
    "label": "Max Upload Size (MB)",
    "default": "10"
+  },
+  {
+   "fieldname": "runner_section",
+   "fieldtype": "Section Break",
+   "label": "Code Runner"
+  },
+  {
+   "fieldname": "runner_enabled",
+   "fieldtype": "Check",
+   "label": "Enable Code Runner",
+   "description": "Runs code on a separate, isolated runner service (never on this server). See docs/PHASE10_ISOLATION_DESIGN.md"
+  },
+  {
+   "fieldname": "runner_url",
+   "fieldtype": "Data",
+   "label": "Runner URL",
+   "options": "URL",
+   "depends_on": "runner_enabled",
+   "description": "Base URL of the runner (Judge0 compatible), e.g. http://10.0.0.5:2358"
+  },
+  {
+   "fieldname": "runner_token",
+   "fieldtype": "Password",
+   "label": "Runner Token",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "column_break_runner",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "runner_cpu_seconds",
+   "fieldtype": "Float",
+   "label": "CPU Time Limit (Seconds)",
+   "default": "5",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "runner_wall_seconds",
+   "fieldtype": "Float",
+   "label": "Wall Time Limit (Seconds)",
+   "default": "10",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "runner_memory_mb",
+   "fieldtype": "Int",
+   "label": "Memory Limit (MB)",
+   "default": "256",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "runner_runs_per_minute",
+   "fieldtype": "Int",
+   "label": "Runs per User per Minute",
+   "default": "10",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "runner_languages_section",
+   "fieldtype": "Section Break",
+   "label": "Runner Languages",
+   "depends_on": "runner_enabled"
+  },
+  {
+   "fieldname": "runner_languages",
+   "fieldtype": "Table",
+   "label": "Runner Languages",
+   "options": "TCD Runner Language",
+   "description": "Languages the runner may execute. Check the ids with Test Runner."
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-19 09:00:00.000000",
+ "modified": "2026-11-20 05:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

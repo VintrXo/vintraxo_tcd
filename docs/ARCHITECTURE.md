@@ -43,6 +43,7 @@
 
 | integrations.py | Connector validation (SSRF guard), event emit to the outbox, signed delivery, retry/backoff, rate limit, cron queue, purge |
 | ai.py | AI gateway: providers, access/limits/budget, redaction, usage log, permission-filtered retrieval, assistant with citations, smart search, summary, question and lesson drafts |
+| runner.py | Code runner client (Judge0 API): settings, limits, practice runs, grading output, run log, connection test |
 | training.py | HR link (guarded Employee lookup), training rules (match, enroll, mandatory, due), role guides, training compliance |
 
 ## Public API (`vintraxo_tcd.api.*`)
@@ -89,6 +90,8 @@
 | ai_summarize | POST | Summary of a readable page |
 | ai_generate_questions | POST | Single-choice questions saved as Needs Review (TCD Question create) |
 | ai_draft_lesson | POST | Lesson saved as Draft with ai_generated (TCD Content create) |
+| run_code | POST | Practice run on the isolated code runner (logged-in, rate-limited) |
+| test_runner | POST | Runner version and language check (TCD Settings write) |
 
 ## Learner portal (P3)
 | Route | Page | Content |

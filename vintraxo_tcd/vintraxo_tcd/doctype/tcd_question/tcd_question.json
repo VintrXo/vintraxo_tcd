@@ -19,6 +19,7 @@
   "accepted_answers",
   "pairs",
   "code_language",
+  "grade_on_server",
   "starter_code",
   "setup_code",
   "expected_output",
@@ -130,8 +131,16 @@
    "fieldname": "code_language",
    "fieldtype": "Select",
    "label": "Code Language",
-   "options": "\npython\njavascript",
-   "depends_on": "eval:['Code'].includes(doc.question_type)"
+   "options": "\npython\njavascript\njava\ncpp\nc\ngo\ncsharp\nbash",
+   "depends_on": "eval:['Code'].includes(doc.question_type)",
+   "description": "python and javascript also run in the browser; the others need the code runner"
+  },
+  {
+   "fieldname": "grade_on_server",
+   "fieldtype": "Check",
+   "label": "Grade on the Code Runner",
+   "depends_on": "eval:doc.question_type=='Code'",
+   "description": "The runner re-runs the learner's code for grading, so the output from the learner's device is not trusted. Always on for languages that only the runner supports."
   },
   {
    "fieldname": "starter_code",
@@ -184,7 +193,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 03:00:00.000000",
+ "modified": "2026-11-20 05:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Question",

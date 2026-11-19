@@ -267,6 +267,15 @@ Employee ↔ learner: ERPNext `Employee.user_id` (read only, guarded by `trainin
 
 TCD Content gains `ai_generated`; TCD Question gains `ai_status` (Needs Review / Reviewed) and `ai_source`.
 
+## Phase 10: code runner client
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Code Run | Log of every run on the runner (read-only, admins) | user, language, purpose (Practice/Grading), status, time_ms, memory_kb, code_hash, output, error, reference |
+| TCD Runner Language (child of TCD Settings) | Language → runner id | language, label, runner_language_id |
+
+TCD Settings gains the Code Runner section (enabled, URL, token, limits, languages). TCD Question gains
+`grade_on_server`; `code_language` adds java, cpp, c, go, csharp, bash.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

@@ -123,6 +123,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 8 — Integrations | 483639f | 129 | Connector registry, signed webhooks with outbox/retry/rate limit, training rules (auto/mandatory enrollment by role and HR), role guides, training compliance |
 | Phase 9 — AI gateway | d02dc01 | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
 | Phase 11 — Hardening and release | 4accf76 | 146 | Security review + tests, code-answer review option, indexes, load test, backup check, Arabic/RTL pass, user/admin/developer/deployment docs, release notes |
+| Phase 10 — Code runner (Frappe side) | this commit | 154 | Judge0 client, run log, practice runs for Java/C++/C/Go/C#/Bash, server grading that ignores device output, Test Runner; runner host not set up |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -195,7 +196,6 @@ MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
 
 ## Blocked / needs decision
 
-- Phase 10 (server-side code runner): waiting for the owner's approval of `docs/PHASE10_ISOLATION_DESIGN.md`
-  (approve or skip; Judge0 on an isolated VM vs own runner; a separate VM; first languages). Nothing is built.
-  Finding while writing it: code questions are graded on the output the browser reports, so a learner can fake it;
-  only a server runner (or manual review) fixes that.
+- Phase 10 runner host: Frappe side built (ADR-0019); the isolated Judge0 VM is to be set up with the production
+  server, then enabled in Learning Settings. Until then code runs in the browser (and graded exams can use
+  "Instructor Reviews Code Answers").

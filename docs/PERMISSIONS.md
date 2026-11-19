@@ -100,6 +100,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - Quiz questions: need create permission on TCD Question; saved as "Needs Review", unusable in quizzes until reviewed.
 - Lesson drafts: need create permission on TCD Content and read on the space; inserted with normal permissions.
 
+## Phase 10: code runner
+- `api.run_code`: logged-in users only, per-user runs per minute; `api.test_runner`: write on TCD Settings.
+- TCD Code Run: System Manager and TCD Administrator read/delete; stores a hash, not the code.
+- Grading output comes from the runner only; a learner cannot supply it.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

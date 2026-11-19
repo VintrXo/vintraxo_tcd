@@ -195,6 +195,36 @@
 		return String(template || "").replace(/\{(\d+)\}/g, (_, i) => args[i]);
 	}
 
+	/** Languages the browser cannot run go to the isolated code runner (Phase 10) through the API. */
+	function onRunner(language, cfg) {
+		return !workerSource(language, cfg) && language !== "html" && (cfg.runner_languages || []).includes(language);
+	}
+
+	async function runOnServer(language, code) {
+		const res = await fetch("/api/method/vintraxo_tcd.api.run_code", {
+			method: "POST",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				"X-Frappe-CSRF-Token": (window.frappe && window.frappe.csrf_token) || "",
+			},
+			body: JSON.stringify({ language: language, code: code }),
+		});
+		const data = await res.json().catch(() => ({}));
+		if (!res.ok) {
+			let msg = res.statusText;
+			try {
+				const msgs = JSON.parse(data._server_messages || "[]").map((m) => JSON.parse(m).message);
+				if (msgs.length) msg = new DOMParser().parseFromString(msgs.join(" "), "text/html").body.textContent;
+			} catch (_) {
+				/* keep statusText */
+			}
+			throw new Error(msg);
+		}
+		return data.message; // {status, output, error, time_ms, memory_kb}
+	}
+
 	class Playground {
 		constructor(section, cfg, t) {
 			this.section = section;
@@ -305,6 +335,7 @@
 				return;
 			}
 
+			if (onRunner(this.language, this.cfg)) return this.runServer(code);
 			const source = workerSource(this.language, this.cfg);
 			if (!source) return this.status(this.language + ": unsupported", "error");
 
@@ -356,6 +387,26 @@
 			}
 		}
 
+		async runServer(code) {
+			this.running = true;
+			this.runBtn.disabled = true;
+			this.status(this.t.running_on_server || this.t.running || "Running...");
+			try {
+				const r = await runOnServer(this.language, code);
+				this.output.querySelector(".tcd-run-status")?.remove();
+				if (r.output) this.write(r.output, "stdout");
+				if (r.error) this.write(r.error, "stderr");
+				if (r.status === "Finished") {
+					this.finish(format(this.t.done_in, r.time_ms), "ok");
+					this.checkExpected();
+				} else {
+					this.finish(this.t["runner_" + r.status.toLowerCase().replace(/ /g, "_")] || r.status, "error");
+				}
+			} catch (err) {
+				this.finish(err.message, "error");
+			}
+		}
+
 		checkExpected() {
 			if (this.expected === null) return;
 			const norm = (s) => s.replace(/\r/g, "").trim();
@@ -389,6 +440,13 @@
 	 */
 	function runHeadless(language, code, options = {}) {
 		const cfg = config();
+		if (onRunner(language, cfg) || options.server) {
+			const full = (options.setup ? options.setup + "\n" : "") + code;
+			return runOnServer(language, full).then(
+				(r) => ({ stdout: r.output || "", stderr: r.error || "", tables: [], error: r.status === "Finished" ? null : r.error || r.status, timedOut: r.status === "Time Limit" }),
+				(err) => ({ stdout: "", stderr: "", tables: [], error: err.message, timedOut: false })
+			);
+		}
 		const source = workerSource(language, cfg);
 		if (!source) return Promise.resolve({ error: language + ": unsupported" });
 		const timeout = options.timeout || cfg.timeout_seconds || 5;
