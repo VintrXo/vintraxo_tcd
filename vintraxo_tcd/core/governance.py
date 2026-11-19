@@ -104,9 +104,10 @@ def on_update(doc):
 		)
 		version.flags.from_governance = True
 		version.insert(ignore_permissions=True)
-		from vintraxo_tcd.core import notify
+		from vintraxo_tcd.core import integrations, notify
 
 		notify.acknowledgment_due(doc)
+		integrations.emit("Policy Activated", doc)
 
 
 def current_version(name: str):
@@ -220,6 +221,9 @@ def acknowledge(name: str, user: str):
 	)
 	ack.flags.from_governance = True
 	ack.insert(ignore_permissions=True)
+	from vintraxo_tcd.core import integrations
+
+	integrations.emit("Policy Acknowledged", ack)
 	return ack
 
 

@@ -337,8 +337,19 @@ add_to_apps_screen = [
 app_include_js = ["/assets/vintraxo_tcd/js/tcd_desk.js"]
 
 scheduler_events = {
+	"cron": {
+		"*/5 * * * *": ["vintraxo_tcd.core.integrations.process_queue"],
+	},
 	"daily": [
 		"vintraxo_tcd.core.credentials.expire_certificates",
 		"vintraxo_tcd.core.governance.daily",
+		"vintraxo_tcd.core.training.daily",
+		"vintraxo_tcd.core.integrations.purge_sent",
 	],
+}
+
+# Employee exists only with ERPNext/HRMS; without it this event simply never fires.
+doc_events = {
+	"User": {"on_update": "vintraxo_tcd.core.training.on_user_update"},
+	"Employee": {"on_update": "vintraxo_tcd.core.training.on_employee_update"},
 }

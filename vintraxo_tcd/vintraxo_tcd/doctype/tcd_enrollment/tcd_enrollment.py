@@ -17,6 +17,9 @@ class TCDEnrollment(Document):
 				)
 
 	def after_insert(self):
+		from vintraxo_tcd.core import integrations
+
+		integrations.emit("Enrollment Created", self)
 		if self.course:
 			courses.refresh_course(self.user, self.course)
 		elif self.learning_path:

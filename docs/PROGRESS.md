@@ -36,7 +36,7 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 4 — Assessment engine | 808a9a8 | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
 | Phase 5 — Skills and certificates | fb009c3 | 106 | Skills, competency gap, certificates with PDF, public verification, expiry/renewal |
 | Phase 6 — Governance | 2a150a2 | 112 | Policies/SOPs/documents, versions, acknowledgments, reminders, compliance report |
-| Phase 7 — Notifications and analytics | this commit | 118 | 7 standard notifications, data-driven notifications, 3 reports, workspace number cards |
+| Phase 7 — Notifications and analytics | 4cdc2a9 | 118 | 7 standard notifications, data-driven notifications, 3 reports, workspace number cards |
 
 ## Phase 1 — LMS core: status
 
@@ -120,6 +120,7 @@ Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialo
 
 Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old dates, so the daily jobs would have
 expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
+| Phase 8 — Integrations | this commit | 129 | Connector registry, signed webhooks with outbox/retry/rate limit, training rules (auto/mandatory enrollment by role and HR), role guides, training compliance |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -131,6 +132,18 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 
 Found while testing: standard notifications with a `.md` template failed silently (Frappe converts Markdown to HTML
 before rendering Jinja). Templates are HTML now.
+
+## Phase 8 — Integrations: status
+
+| Requirement | State |
+|---|---|
+| Connector registry, webhooks, event mapping, logs, retry, rate limits | Done (TCD Connector, TCD Integration Event outbox, HMAC signature, backoff, per-minute limit, SSRF guard, ADR-0017) |
+| Employee ↔ learner | Done, guarded (`Employee.user_id`, read only). tcd.localhost has no ERPNext: tested with the HR lookup mocked, not against a real ERPNext site |
+| Automatic / mandatory enrollment by role / department | Done (TCD Training Rule: roles + department/designation/company filters, due date, on save / user change / daily) |
+| Training compliance | Done (TCD Training Compliance report, mandatory badge on /learn/my) |
+| ERPNext tutorials by role, process guides | Done as Content rules → "Guides for your role" on /learn/my |
+| `company` as a Link only with ERPNext | Changed: Data field validated against ERPNext when installed (no conditional schema; see ADR-0017) |
+| Writing results back into HRMS (Training Event / Result) | Not done: one-way read; can be a connector later |
 
 ## Incident 2026-11-19: test run wiped development data
 

@@ -657,3 +657,33 @@ def set_governance_status(code: str, status: str) -> dict:
 	doc.status = status
 	doc.save(ignore_permissions=is_approver_activation)
 	return {"name": doc.name, "status": doc.status, "version": doc.version}
+
+
+# ---------------------------------------------------------------- integrations (Phase 8)
+
+
+@frappe.whitelist(methods=["POST"])
+def test_connector(name: str) -> dict:
+	frappe.has_permission("TCD Connector", "write", name, throw=True)
+	from vintraxo_tcd.core import integrations
+
+	return integrations.test_connector(name)
+
+
+@frappe.whitelist(methods=["POST"])
+def retry_integration_event(name: str):
+	connector = frappe.db.get_value("TCD Integration Event", name, "connector")
+	if not connector:
+		raise frappe.DoesNotExistError
+	frappe.has_permission("TCD Connector", "write", connector, throw=True)
+	from vintraxo_tcd.core import integrations
+
+	integrations.retry(name)
+
+
+@frappe.whitelist(methods=["POST"])
+def apply_training_rule(name: str) -> int:
+	frappe.has_permission("TCD Training Rule", "write", name, throw=True)
+	from vintraxo_tcd.core import training
+
+	return training.apply_rule(name)

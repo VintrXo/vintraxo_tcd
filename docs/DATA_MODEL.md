@@ -247,6 +247,18 @@ Reports: TCD Course Report (all courses: enrollments, completion, time to comple
 TCD Knowledge Usage (per page: unique readers, completions, helpful %, backlinks), TCD Compliance Overview
 (per acknowledged document + certificate expiries). Number cards on the VX workspace.
 
+## Phase 8: integrations and training rules
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Connector | Integration registry (admins) | connector_name (name), enabled, endpoint_url, payload_format (JSON/Slack), secret (Password), allow_private_network, events (TCD Connector Event), max_attempts, timeout_seconds, rate_limit_per_minute |
+| TCD Connector Event (child) | Subscribed event | event (Enrollment Created/Completed, Certificate Issued/Revoked, Policy Activated/Acknowledged) |
+| TCD Integration Event | Outbox + delivery log (read-only) | connector, event, status (Queued/Sent/Failed), attempts, next_attempt_on, sent_on, response_code, reference_doctype/name, payload (JSON), last_error |
+| TCD Training Rule | Automatic / mandatory enrollment, role guides | title, enabled, target_type (Course/Learning Path/Content), course / learning_path / content, mandatory, due_in_days, roles (TCD Rule Role), hr_filters (TCD Rule HR Filter), last_applied_on |
+| TCD Rule HR Filter (child) | HR criterion | filter_type (Department/Designation/Company), value (Data, validated against ERPNext when installed) |
+
+TCD Enrollment gains `mandatory` and `training_rule` (read-only, set by rules).
+Employee ↔ learner: ERPNext `Employee.user_id` (read only, guarded by `training.hr_available()`).
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

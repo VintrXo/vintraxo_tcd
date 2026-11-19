@@ -14,6 +14,8 @@
   "status",
   "batch",
   "due_date",
+  "mandatory",
+  "training_rule",
   "progress_section",
   "percent",
   "score",
@@ -105,6 +107,20 @@
    "label": "Due Date"
   },
   {
+   "fieldname": "mandatory",
+   "fieldtype": "Check",
+   "label": "Mandatory",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "training_rule",
+   "fieldtype": "Link",
+   "label": "Training Rule",
+   "options": "TCD Training Rule",
+   "read_only": 1
+  },
+  {
    "fieldname": "progress_section",
    "fieldtype": "Section Break",
    "label": "Progress"
@@ -153,7 +169,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 08:00:00.000000",
+ "modified": "2026-11-20 02:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Enrollment",

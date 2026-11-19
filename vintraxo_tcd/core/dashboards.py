@@ -4,6 +4,7 @@ import frappe
 from frappe.utils import flt, getdate, nowdate
 
 from vintraxo_tcd.core import courses as course_svc
+from vintraxo_tcd.core import training
 from vintraxo_tcd.core.permissions import instructed, is_admin
 
 
@@ -23,7 +24,17 @@ def my_learning(user: str) -> dict:
 	for e in frappe.get_list(
 		"TCD Enrollment",
 		filters={"user": user, "status": ("!=", "Withdrawn")},
-		fields=["name", "course", "learning_path", "status", "percent", "score", "due_date", "completed_on"],
+		fields=[
+			"name",
+			"course",
+			"learning_path",
+			"status",
+			"percent",
+			"score",
+			"due_date",
+			"completed_on",
+			"mandatory",
+		],
 		order_by="modified desc",
 		limit_page_length=200,
 	):
@@ -135,6 +146,7 @@ def my_learning(user: str) -> dict:
 		"skills": skills,
 		"recommendations": connect.recommendations(user),
 		"tutorials": tutorials,
+		"role_guides": training.role_guides(user),
 		"recent": recent,
 		"enrollments": enrollments,
 		"assignments": sorted(

@@ -41,6 +41,9 @@
 | wiki.py | Internal links, Markdown (sanitized), page tree, backlinks, version compare/restore, page feedback, tags, templates |
 | connect.py | Cross-pillar relations, prerequisites, used-in, course navigation, unified search, recommendations |
 
+| integrations.py | Connector validation (SSRF guard), event emit to the outbox, signed delivery, retry/backoff, rate limit, cron queue, purge |
+| training.py | HR link (guarded Employee lookup), training rules (match, enroll, mandatory, due), role guides, training compliance |
+
 ## Public API (`vintraxo_tcd.api.*`)
 | Method | HTTP | Purpose |
 |---|---|---|
@@ -77,6 +80,9 @@
 | renew_certificate(name) / revoke_certificate(name, reason) | POST | Instructor renews; admin revokes |
 | verify_certificate(code) | GET (guest) | Public minimal certificate facts |
 | my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
+| test_connector | POST | Send a signed ping to a connector (connector write permission) |
+| retry_integration_event | POST | Re-queue a failed/queued event (connector write permission) |
+| apply_training_rule | POST | Apply a training rule now, returns users enrolled (rule write permission) |
 
 ## Learner portal (P3)
 | Route | Page | Content |

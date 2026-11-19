@@ -80,6 +80,18 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   or an admin.
 - TCD Acknowledgment: created only through `api.acknowledge`; the user reads own rows; admins and reviewers read all.
 
+## Phase 8: integrations and training rules
+- TCD Connector: System Manager and TCD Administrator only. The secret is a Password field (never returned to the
+  client). "Send Test" needs write permission on the connector.
+- TCD Integration Event: read/delete for the same roles; nobody creates or edits it by hand (outbox written by the
+  services). Retry needs write permission on its connector. Payloads contain user ids, so learners never see them.
+- TCD Training Rule: admins full; TCD Instructor read only. "Apply Now" needs write permission on the rule.
+- Rule enrollments go through `courses.enroll`, so the course/path access check (space, visibility, roles) still
+  applies; a user who cannot access the course is skipped and an Error Log is written.
+- TCD Training Compliance report: System Manager, TCD Administrator, TCD Instructor; rows come from `get_list`, so
+  instructors see only enrollments their permission layer allows.
+- Role guides on /learn/my are filtered by `can_access_content` and Published status.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

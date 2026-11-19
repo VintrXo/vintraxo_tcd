@@ -1,0 +1,159 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 02:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "enabled",
+  "target_type",
+  "course",
+  "learning_path",
+  "content",
+  "column_break_1",
+  "mandatory",
+  "due_in_days",
+  "last_applied_on",
+  "audience_section",
+  "roles",
+  "hr_filters"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "target_type",
+   "fieldtype": "Select",
+   "label": "Target",
+   "options": "Course\nLearning Path\nContent",
+   "default": "Course",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "TCD Course",
+   "depends_on": "eval:doc.target_type=='Course'",
+   "mandatory_depends_on": "eval:doc.target_type=='Course'"
+  },
+  {
+   "fieldname": "learning_path",
+   "fieldtype": "Link",
+   "label": "Learning Path",
+   "options": "TCD Learning Path",
+   "depends_on": "eval:doc.target_type=='Learning Path'",
+   "mandatory_depends_on": "eval:doc.target_type=='Learning Path'"
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "label": "Content",
+   "options": "TCD Content",
+   "depends_on": "eval:doc.target_type=='Content'",
+   "mandatory_depends_on": "eval:doc.target_type=='Content'",
+   "description": "A tutorial or process guide recommended to matching users"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mandatory",
+   "fieldtype": "Check",
+   "label": "Mandatory",
+   "default": "1",
+   "depends_on": "eval:doc.target_type!='Content'"
+  },
+  {
+   "fieldname": "due_in_days",
+   "fieldtype": "Int",
+   "label": "Due In (Days)",
+   "non_negative": 1,
+   "depends_on": "eval:doc.target_type!='Content'",
+   "description": "Due date counted from the enrollment day; 0 means no due date"
+  },
+  {
+   "fieldname": "last_applied_on",
+   "fieldtype": "Datetime",
+   "label": "Last Applied On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "audience_section",
+   "fieldtype": "Section Break",
+   "label": "Audience"
+  },
+  {
+   "fieldname": "roles",
+   "fieldtype": "Table",
+   "label": "Roles",
+   "options": "TCD Rule Role",
+   "description": "Users with any of these roles. Empty means every user with a learning role."
+  },
+  {
+   "fieldname": "hr_filters",
+   "fieldtype": "Table",
+   "label": "HR Filters",
+   "options": "TCD Rule HR Filter",
+   "description": "Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match."
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 02:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Training Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "title_field": "title",
+ "show_title_field_in_link": 1,
+ "track_changes": 1
+}

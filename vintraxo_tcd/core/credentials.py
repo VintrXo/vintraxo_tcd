@@ -59,6 +59,9 @@ def user_level(user: str, skill: str) -> int:
 
 def on_completed(enrollment):
 	"""Called when an enrollment becomes Completed (automatic or approved)."""
+	from vintraxo_tcd.core import integrations
+
+	integrations.emit("Enrollment Completed", enrollment)
 	kind = "Course" if enrollment.course else "Learning Path"
 	doctype, field = TARGETS[kind]
 	target = enrollment.get(field)
@@ -101,6 +104,9 @@ def issue_certificate(user: str, kind: str, target: str, replaces: str | None = 
 	cert.insert(ignore_permissions=True)
 	if replaces:
 		frappe.db.set_value("TCD Certificate", replaces, {"status": "Renewed", "renewed_by": cert.name})
+	from vintraxo_tcd.core import integrations
+
+	integrations.emit("Certificate Issued", cert)
 	return cert
 
 
@@ -124,6 +130,9 @@ def revoke_certificate(name: str, reason: str):
 	if not (reason or "").strip():
 		frappe.throw(_("Give a reason for revoking the certificate."))
 	frappe.db.set_value("TCD Certificate", name, {"status": "Revoked", "revoked_reason": reason.strip()})
+	from vintraxo_tcd.core import integrations
+
+	integrations.emit("Certificate Revoked", frappe.get_doc("TCD Certificate", name))
 
 
 def expire_certificates():

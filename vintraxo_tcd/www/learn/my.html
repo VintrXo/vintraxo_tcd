@@ -23,6 +23,7 @@
 				<a href="{{ e.url|e }}">
 					<span class="tcd-badge">{{ _("Learning Path") if e.kind == "path" else _("Course", context="TCD") }}</span>
 					<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>
+					{% if e.mandatory %}<span class="tcd-badge tcd-badge-warn">{{ _("Mandatory") }}</span>{% endif %}
 					<strong>{{ e.title|e }}</strong>
 					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ e.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ e.percent|int }}%"></span></span>
 					<span class="tcd-muted">{{ e.percent|int }}%{% if e.due_date %} · {{ _("Due") }} {{ frappe.format_date(e.due_date) }}{% endif %}{% if e.overdue %} · <span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}</span>
@@ -101,6 +102,17 @@
 					<span class="tcd-muted tcd-small">{{ {"continue": _("Continue your course"), "follow_up": _("Follows what you completed"), "popular": _("Popular in your spaces")}[r.reason] }}</span>
 				</a>
 			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if data.role_guides %}
+	<section class="tcd-section">
+		<h2>{{ _("Guides for your role") }}</h2>
+		<ul class="tcd-lessons tcd-role-guides">
+			{% for g in data.role_guides %}
+			<li class="tcd-lesson{{ ' tcd-status-completed' if g.completed else '' }}">{% if g.completed %}✓ {% endif %}<a href="{{ g.url|e }}">{{ g.title|e }}</a> <span class="tcd-badge">{{ _(g.content_type, context="TCD") }}</span></li>
 			{% endfor %}
 		</ul>
 	</section>
