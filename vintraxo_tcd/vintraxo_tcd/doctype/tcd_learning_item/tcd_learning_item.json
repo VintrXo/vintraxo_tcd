@@ -16,7 +16,8 @@
    "options": "TCD Content",
    "label": "Content",
    "in_list_view": 1,
-   "description": "Lesson, Article or Reference (chapters)"
+   "description": "Lesson, Article or Reference (chapters)",
+   "search_index": 1
   },
   {
    "fieldname": "course",
@@ -24,7 +25,8 @@
    "options": "TCD Course",
    "label": "Course",
    "in_list_view": 1,
-   "description": "Course (learning paths)"
+   "description": "Course (learning paths)",
+   "search_index": 1
   },
   {
    "fieldname": "item_title",
@@ -41,7 +43,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 05:00:00.000000",
+ "modified": "2026-11-20 04:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Learning Item",

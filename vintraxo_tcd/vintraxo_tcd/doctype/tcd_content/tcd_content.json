@@ -46,7 +46,8 @@
    "fieldname": "slug",
    "fieldtype": "Data",
    "label": "Slug",
-   "description": "Unique within the space. Generated from the title when empty"
+   "description": "Unique within the space. Generated from the title when empty",
+   "search_index": 1
   },
   {
    "fieldname": "content_type",
@@ -131,7 +132,8 @@
    "fieldtype": "Link",
    "options": "TCD Content",
    "label": "Parent Page",
-   "description": "Places this page under another page of the same space (wiki tree)"
+   "description": "Places this page under another page of the same space (wiki tree)",
+   "search_index": 1
   },
   {
    "fieldname": "body_section",
@@ -230,7 +232,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 03:00:00.000000",
+ "modified": "2026-11-20 04:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

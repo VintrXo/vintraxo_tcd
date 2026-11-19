@@ -14,6 +14,7 @@
   "shuffle_questions",
   "show_answers_after_submit",
   "shuffle_options",
+  "review_code_answers",
   "time_limit_minutes",
   "is_active",
   "questions_section",
@@ -89,6 +90,12 @@
    "label": "Shuffle Options"
   },
   {
+   "fieldname": "review_code_answers",
+   "fieldtype": "Check",
+   "label": "Instructor Reviews Code Answers",
+   "description": "Code and SQL answers are checked on the learner's device, which a learner can alter. Tick this for graded exams: an instructor confirms each answer."
+  },
+  {
    "fieldname": "time_limit_minutes",
    "fieldtype": "Int",
    "label": "Time Limit (minutes)",
@@ -126,7 +133,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 17:00:00.000000",
+ "modified": "2026-11-20 04:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Quiz",

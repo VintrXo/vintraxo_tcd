@@ -13,7 +13,7 @@ import frappe
 from vintraxo_tcd.tests.base import TCDTestCase
 
 LANG_CODES = re.compile(r"^[a-z]{2}$")
-NOT_TRANSLATED = {"VX"}  # brand
+NOT_TRANSLATED = {"VX", "JSON", "SQL"}  # brand and technical names
 LAYOUT = {"Section Break", "Column Break", "Tab Break"}
 
 
@@ -71,6 +71,21 @@ class TestArabicTranslations(TCDTestCase):
 					texts += [o for o in f["options"].split("\n") if o and not LANG_CODES.match(o)]
 				missing += [f"{dt}: {t}" for t in texts if not self.translated(t, dt)]
 		self.assertEqual(missing, [], "Labels/descriptions/options without Arabic")
+
+	def test_grid_and_list_values_have_plain_keys(self):
+		"""Frappe translates Select values (lists, grids) and table descriptions WITHOUT context."""
+		missing = []
+		for d in app_doctypes():
+			for f in d["fields"]:
+				texts = []
+				if f["fieldtype"] == "Select" and f.get("options"):
+					texts += [o for o in f["options"].split("\n") if o and not LANG_CODES.match(o)]
+				if f["fieldtype"] in ("Table", "Table MultiSelect") and f.get("description"):
+					texts.append(f["description"])
+				missing += [
+					f"{d['name']}: {x}" for x in texts if x not in self.plain and x not in NOT_TRANSLATED
+				]
+		self.assertEqual(missing, [], "Values shown in lists/grids without a plain Arabic key")
 
 	def test_no_tcd_prefix_in_arabic(self):
 		bad = [k for k, v in self.plain.items() if "TCD" in v]

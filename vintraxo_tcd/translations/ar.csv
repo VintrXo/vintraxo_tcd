@@ -5,23 +5,29 @@
 0 = unlimited,0 = بلا حد
 0 means no limit,0 يعني بلا حد,TCD AI Settings
 0 means no limit,0 يعني بلا حد,TCD Connector
+1,1 - مبتدئ
 1,1 - مبتدئ,TCD Competency Requirement
 1,1 - مبتدئ,TCD Skill Award
 1,1 - مبتدئ,TCD User Skill
+2,2 - أساسي
 2,2 - أساسي,TCD Competency Requirement
 2,2 - أساسي,TCD Skill Award
 2,2 - أساسي,TCD User Skill
+3,3 - متوسط
 3,3 - متوسط,TCD Competency Requirement
 3,3 - متوسط,TCD Skill Award
 3,3 - متوسط,TCD User Skill
+4,4 - متقدم
 4,4 - متقدم,TCD Competency Requirement
 4,4 - متقدم,TCD Skill Award
 4,4 - متقدم,TCD User Skill
+5,5 - خبير
 5,5 - خبير,TCD Competency Requirement
 5,5 - خبير,TCD Skill Award
 5,5 - خبير,TCD User Skill
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
+"A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف,TCD Quiz
 A new version is being prepared. This is the version in force.,يجري إعداد نسخة جديدة. هذه هي النسخة السارية.
 A page cannot be its own parent.,لا يمكن أن تكون الصفحة أبًا لنفسها.
@@ -113,6 +119,7 @@ Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSO
 Apply,تطبيق
 Apply Now,طبّق الآن
 Apply Template,تطبيق قالب
+Approval,الاعتماد
 Approval,الاعتماد,TCD Governance Document
 Approve,اعتماد
 Approve Completion,اعتماد الإكمال
@@ -146,8 +153,10 @@ Assessment,التقييم
 Assignment,تكليف,TCD Assignment Submission
 Assignment,تكليف,TCD Content
 Assignment,تكليف,TCD Content Template
+Assignment,مهمة
 Assignments,التكليفات,TCD
 Assignments,تعيينات
+Assistant,المساعد
 Assistant,المساعد,TCD AI Usage Log
 Attach a file.,أرفق ملفًا.
 Attachment,المرفق,TCD
@@ -219,8 +228,10 @@ Category Name,اسم التصنيف
 Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
 Certificate For,الشهادة عن,TCD Certificate
+Certificate Issued,إصدار شهادة
 Certificate Issued,إصدار شهادة,TCD Connector Event
 Certificate Issued,إصدار شهادة,TCD Integration Event
+Certificate Revoked,إلغاء شهادة
 Certificate Revoked,إلغاء شهادة,TCD Connector Event
 Certificate Revoked,إلغاء شهادة,TCD Integration Event
 Certificate Validity (months),صلاحية الشهادة (بالأشهر),TCD Course
@@ -240,6 +251,7 @@ Choose what to enroll in.,اختر ما تريد التسجيل فيه.
 Code,رمز
 Code,كود,TCD Block
 Code Language,لغة الكود,TCD Question
+"Code and SQL answers are checked on the learner's device, which a learner can alter. Tick this for graded exams: an instructor confirms each answer.",إجابات الأكواد و SQL تُفحص على جهاز المتعلم، ويمكن للمتعلم التلاعب بها. فعّل هذا الخيار في الاختبارات المحتسبة: يعتمد المدرّب كل إجابة.,TCD Quiz
 Code editor,محرر الأكواد
 Code/SQL output comes from the learner's browser and can be forged; tick this for high-stakes questions,مخرجات الكود/SQL تأتي من متصفح المتعلم ويمكن تزويرها؛ فعّل هذا للأسئلة المهمة,TCD Question
 "Code: exact printed output. SQL: header line then one line per row, values separated by |",الكود: المخرجات المطبوعة بالضبط. SQL: سطر العناوين ثم سطر لكل صف، والقيم مفصولة بـ |,TCD Question
@@ -249,6 +261,7 @@ Comment,التعليق,TCD Content Feedback
 Comment,التعليق,TCD Course Feedback
 Comment (optional),تعليق (اختياري)
 Company,الشركة,TCD Rule HR Filter
+Company,شركة
 Compare with Current,مقارنة بالنسخة الحالية
 Competency Gap,فجوة الكفاءات
 Competency Profile,ملف الكفاءات
@@ -398,12 +411,15 @@ Enroll Student Group,تسجيل مجموعة متعلمين
 Enroll in the course before rating it.,سجّل في الدورة قبل تقييمها.
 Enrolled,مسجّل
 Enrolled On,تاريخ التسجيل
+Enrolled Only,للمسجّلين فقط
 Enrolled Only,للمسجّلين فقط,TCD
 Enrolled Only,للمسجّلين فقط,TCD Course
 Enrolled Only: lessons used only by Enrolled Only courses are hidden from learners who are not enrolled,للمسجّلين فقط: الدروس المستخدمة في دورات للمسجّلين فقط تُخفى عن المتعلمين غير المسجّلين,TCD Course
 Enrolled: {0},تم تسجيل: {0}
+Enrollment Completed,إكمال تسجيل
 Enrollment Completed,إكمال تسجيل,TCD Connector Event
 Enrollment Completed,إكمال تسجيل,TCD Integration Event
+Enrollment Created,تسجيل جديد
 Enrollment Created,تسجيل جديد,TCD Connector Event
 Enrollment Created,تسجيل جديد,TCD Integration Event
 Enrollment For,التسجيل في
@@ -411,6 +427,7 @@ Enrollments,التسجيلات
 Enrollments complete automatically or through approval.,تكتمل التسجيلات تلقائيًا أو عبر الاعتماد.
 Error,خطأ
 Error,خطأ,TCD AI Usage Log
+Essay,مقالي
 Essay,مقالي,TCD Question
 Event,الحدث,TCD Connector Event
 Event,الحدث,TCD Integration Event
@@ -421,6 +438,7 @@ Expand Search Queries,توسيع عبارات البحث,TCD AI Settings
 Expected Output,المخرجات المتوقعة,TCD Question
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
+Expired,انتهى
 Expired,منتهية,TCD
 Expired,منتهية,TCD Certificate
 Expired on its expiry date; moved to Revision.,انتهت صلاحيته؛ نُقل إلى المراجعة.
@@ -428,10 +446,12 @@ Expires On,تنتهي في,TCD Certificate
 Expiry Date,تاريخ الانتهاء,TCD Governance Document
 Expiry date must be after the effective date.,يجب أن يكون تاريخ الانتهاء بعد تاريخ السريان.
 Explanation,الشرح
+External,خارجي
 External,رابط خارجي,TCD Content
 External,رابط خارجي,TCD Content Template
 External Link,رابط خارجي,TCD Block
 External links must start with https://,يجب أن تبدأ الروابط الخارجية بـ https://
+Failed,باءت بالفشل
 Failed,فشل,TCD Integration Event
 False,خطأ
 Feature,الميزة,TCD AI Usage Log
@@ -439,6 +459,7 @@ Feedback,الملاحظات,TCD
 Feedback,الملاحظات,TCD Assignment Submission
 Feedback,ملاحظات
 File,رفع ملف,TCD Question
+File,ملف
 File,ملف,TCD
 File,ملف,TCD Assignment
 File,ملف,TCD Block
@@ -446,6 +467,7 @@ File is larger than {0} MB.,الملف أكبر من {0} ميجابايت.
 File type .{0} is not allowed for this assignment.,نوع الملف .{0} غير مسموح في هذا التكليف.
 File type .{0} is not allowed.,نوع الملف .{0} غير مسموح.
 Files must be uploaded first.,يجب رفع الملفات أولًا.
+Fill Blank,املأ الفراغ
 Fill Blank,املأ الفراغ,TCD Question
 "Fill Blank: one line per blank, alternatives separated by |. Short Answer: one accepted answer per line",املأ الفراغ: سطر لكل فراغ والبدائل مفصولة بـ |. إجابة قصيرة: إجابة مقبولة في كل سطر,TCD Question
 Filter,الفلتر,TCD Rule HR Filter
@@ -470,6 +492,7 @@ Give the lesson a title.,اكتب عنوانًا للدرس.
 Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
+Graded,مُصحَّح
 Graded,مُصحَّح,TCD
 Graded,مُصحَّح,TCD Assignment Submission
 Graded,مُصحَّح,TCD Quiz Submission
@@ -508,12 +531,15 @@ Input Price per Million Tokens (USD),سعر المدخلات لكل مليون �
 Input Tokens,رموز المدخلات,TCD AI Usage Log
 Instructions,التعليمات,TCD Assignment
 Instructor Dashboard,لوحة المدرّب
+Instructor Reviews Code Answers,المدرّب يراجع إجابات الأكواد,TCD Quiz
 Instructors,المدرّبون,TCD Course
 Instructors,المدرّبون,TCD Learning Path
+"Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح
 "Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح,TCD Course
 "Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح,TCD Learning Path
 Integration Connectors,موصّلات التكامل
 Integration Log,سجل التكامل
+Interactive Tutorial,شرح تفاعلي
 Interactive Tutorial,شرح تفاعلي,TCD Content
 Interactive Tutorial,شرح تفاعلي,TCD Content Template
 Internal,داخلي
@@ -558,6 +584,7 @@ Learner Portal,بوابة المتعلمين
 Learner Progress,تقدّم المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
+Learners must complete these courses before enrolling themselves,يجب على المتعلم إكمال هذه الدورات قبل التسجيل بنفسه
 Learners must complete these courses before enrolling themselves,يجب على المتعلم إكمال هذه الدورات قبل التسجيل بنفسه,TCD Course
 Learning,التعلّم
 Learning Path,المسار التعليمي,TCD Training Rule
@@ -571,6 +598,7 @@ Lesson,درس
 Lesson,درس,TCD
 Lesson,درس,TCD Content
 Lesson,درس,TCD Tutorial Lesson
+Lesson Draft,مسودة درس
 Lesson Draft,مسودة درس,TCD AI Usage Log
 Lesson Type,نوع الدرس,TCD Content
 Lesson Type,نوع الدرس,TCD Content Template
@@ -597,6 +625,7 @@ Looking in the pages you can access...,جارٍ البحث في الصفحات �
 Mandatory,إلزامي
 Mandatory,إلزامي,TCD Enrollment
 Mandatory,إلزامي,TCD Training Rule
+Manual,يدوي
 Manual,يدوي,TCD User Skill
 Manual Approval,اعتماد يدوي
 Manual Approval,اعتماد يدوي,TCD
@@ -606,6 +635,7 @@ Manual Review,المراجعة اليدوية,TCD Quiz Submission
 Mark as complete,تحديد كمكتمل
 Markdown,ماركداون,TCD Block
 Markdown (links: [[page-slug]]),ماركداون (الروابط: [[معرّف-الصفحة]]),TCD Block
+Matching,توصيل
 Matching,توصيل,TCD Question
 Matching pairs must look like: left => right,أزواج التوصيل يجب أن تكون بالشكل: يسار => يمين
 Max Attempts,أقصى عدد للمحاولات,TCD Connector
@@ -642,7 +672,9 @@ My courses,دوراتي
 My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
+Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.,TCD Training Rule
+Needs Review,يحتاج مراجعة
 Needs Review,يحتاج مراجعة,TCD Question
 Never Send Restricted Content,لا ترسل المحتوى المقيّد أبدًا,TCD AI Settings
 Never read,لم تُقرأ قط
@@ -703,6 +735,7 @@ Only not acknowledged,غير المُقرّين فقط
 Only submissions waiting for review can be reviewed.,يمكن مراجعة المحاولات التي تنتظر المراجعة فقط.
 Only the approver or an administrator can activate the document.,المعتمِد أو المسؤول فقط يمكنه تفعيل المستند.
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
+Open,فتح
 Open,مفتوح,TCD
 Open,مفتوح,TCD Course
 Open Gaps,فجوات مفتوحة
@@ -714,6 +747,7 @@ Optional,اختياري,TCD Learning Item
 Optional context shown above the question,سياق اختياري يظهر أعلى السؤال,TCD Question
 Options,الخيارات,TCD Quiz Question
 Options,خيارات
+Ordering,ترتيب
 Ordering,ترتيب,TCD Question
 Original File,الملف الأصلي,TCD Governance Document
 Original File,الملف الأصلي,TCD Governance Version
@@ -759,6 +793,7 @@ Pending Approval,في انتظار الاعتماد,TCD
 Pending Approval,في انتظار الاعتماد,TCD Enrollment
 Pending Approval,في انتظار الموافقة
 Pending Review,بانتظار المراجعة,TCD Quiz Submission
+Pending Review,في انتظار المراجعة
 Per-question Results,نتائج كل سؤال
 Percent,النسبة,TCD Enrollment
 Percent,النسبة,TCD Progress
@@ -778,10 +813,13 @@ Points must be between 0 and {0}.,النقاط يجب أن تكون بين 0 و{
 Points must be greater than zero.,النقاط يجب أن تكون أكبر من صفر.
 Policies and Procedures,السياسات والإجراءات
 Policies and procedures,السياسات والإجراءات
+Policy,السياسة
 Policy,سياسة,TCD
 Policy,سياسة,TCD Governance Document
+Policy Acknowledged,إقرار بسياسة
 Policy Acknowledged,إقرار بسياسة,TCD Connector Event
 Policy Acknowledged,إقرار بسياسة,TCD Integration Event
+Policy Activated,اعتماد سياسة
 Policy Activated,اعتماد سياسة,TCD Connector Event
 Policy Activated,اعتماد سياسة,TCD Integration Event
 Popular in your spaces,شائع في مساحاتك
@@ -800,6 +838,7 @@ Progress,تقدم
 Progress Records,سجلات التقدّم
 Progress for this user and content already exists.,التقدّم لهذا المستخدم وهذا المحتوى موجود بالفعل.
 Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
+Project,مشروع
 Project,مشروع,TCD Content
 Project,مشروع,TCD Content Template
 Prompt,نص الطلب,TCD AI Usage Log
@@ -831,9 +870,11 @@ Question {0}: correct answers must be between 1 and {1}.,السؤال {0}: ال�
 Question {0}: exactly one correct answer is allowed.,السؤال {0}: يُسمح بإجابة صحيحة واحدة فقط.
 Questions,الأسئلة
 Queued,في الانتظار,TCD Integration Event
+Queued,قائمة الانتظار
 Quiz,الاختبار
 Quiz Analytics,تحليلات الاختبارات
 Quiz Attempts,محاولات الاختبارات
+Quiz Questions,أسئلة اختبار
 Quiz Questions,أسئلة اختبار,TCD AI Usage Log
 Quiz answers to review,إجابات اختبارات بانتظار المراجعة
 Quiz answers to review: {0} ({1}),إجابات اختبار للمراجعة: {0} ({1})
@@ -860,6 +901,7 @@ Reference Name,اسم المرجع,TCD Integration Event
 Reference Type,نوع المرجع,TCD AI Usage Log
 Reference Type,نوع المرجع,TCD Integration Event
 Referenced by,مُشار إليه في
+Refused,مرفوض
 Refused,مرفوض,TCD AI Usage Log
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
@@ -871,6 +913,7 @@ Relation Type,نوع العلاقة
 Remove E-mails and Phone Numbers,إزالة البريد الإلكتروني وأرقام الهواتف,TCD AI Settings
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
 Renew,تجديد
+Renewed,مُجدَّدة
 Renewed,مُجدَّدة,TCD
 Renewed,مُجدَّدة,TCD Certificate
 Renewed By,جُدّدت بالشهادة,TCD Certificate
@@ -904,6 +947,8 @@ Return,مرتجع
 Return for changes,إرجاع للتعديل
 Returned,أُعيد للتعديل,TCD
 Returned,أُعيد للتعديل,TCD Assignment Submission
+Returned,تم إرجاعه
+Review,إعادة النظر
 Review,المراجعة,TCD Governance Document
 Review,المراجعة,TCD Quiz Submission
 Review & Publishing,المراجعة والنشر
@@ -911,10 +956,13 @@ Review Answers,مراجعة الإجابات
 Review Cycle (months),دورة المراجعة (بالأشهر),TCD Governance Document
 Review cycle cannot be negative.,لا يمكن أن تكون دورة المراجعة سالبة.
 Review due on {0}: {1},موعد المراجعة {0}: {1}
+Reviewed,تمت المراجعة
 Reviewed,تمت المراجعة,TCD Question
+Revision,قيد التعديل
 Revision,قيد التعديل,TCD Governance Document
 Revocation,الإلغاء,TCD Certificate
 Revoke,سحب
+Revoked,إلغاء
 Revoked,ملغاة,TCD
 Revoked,ملغاة,TCD Certificate
 Revoked Reason,سبب الإلغاء,TCD Certificate
@@ -941,6 +989,7 @@ Run,تشغيل
 Run your code before submitting; the output is checked.,شغّل الكود قبل الإرسال؛ يتم فحص المخرجات.
 Running...,جارٍ التشغيل...
 "Runs before the learner's query (create tables, insert rows)",يُنفَّذ قبل استعلام المتعلم (إنشاء الجداول وإدخال الصفوف),TCD Question
+SOP,إجراء تشغيلي
 SOP,إجراء تشغيلي,TCD
 SOP,إجراء تشغيلي,TCD Governance Document
 SQL,SQL,TCD Question
@@ -965,18 +1014,21 @@ Select a competency profile.,اختر ملف كفاءات.
 Select a document.,اختر مستندًا.
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
+Semantic Search,البحث الذكي
 Semantic Search,البحث الذكي,TCD AI Usage Log
 Semantic search: the model adds synonyms and related terms (only the query is sent),البحث الذكي: يضيف النموذج مرادفات وكلمات قريبة (تُرسل عبارة البحث فقط),TCD AI Settings
 Send,إرسال
 Send Test,إرسال تجربة
 Send for Approval,إرسال للاعتماد
 Send for Review,إرسال للمراجعة
+Sent,أرسلت
 Sent,تم الإرسال,TCD Integration Event
 Sent On,تاريخ الإرسال,TCD Integration Event
 Set the API key in AI Settings.,أدخل مفتاح API في إعدادات الذكاء الاصطناعي.
 Set the model.,حدد النموذج.
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
+Short Answer,إجابة قصيرة
 Short Answer,إجابة قصيرة,TCD Question
 "Short reference, e.g. POL-HR-001",مرجع قصير، مثل POL-HR-001,TCD Governance Document
 "Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
@@ -1000,6 +1052,7 @@ Skills and Certificate,المهارات والشهادة,TCD Course
 Skills and Certificate,المهارات والشهادة,TCD Learning Path
 Skills and Certificates,المهارات والشهادات
 Skipped: {0},تم التخطي: {0}
+Slack,سلاك
 Slack,سلاك,TCD Connector
 Slug,المعرف اللطيف
 Slug,المعرّف في الرابط,TCD Content
@@ -1059,10 +1112,12 @@ Submit,إرسال
 Submit again,إرسال مرة أخرى
 Submit answers,إرسال الإجابات
 Submit for Review,إرسال للمراجعة
+Submitted,مُرحَّل
 Submitted,مُسلَّم,TCD
 Submitted,مُسلَّم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Quiz Submission
+Success,نجاح
 Success,نجاح,TCD AI Usage Log
 Suggested Courses,دورات مقترحة
 Summarize,تلخيص
@@ -1146,6 +1201,7 @@ Test sent ({0}),تم إرسال التجربة ({0})
 Text,النص,TCD Block
 Text,نص
 Text,نص,TCD
+Text and File,نص وملف
 Text and File,نص وملف,TCD
 Text and File,نص وملف,TCD Assignment
 Thank you for your feedback.,شكرًا على ملاحظتك.
@@ -1238,6 +1294,7 @@ User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
 User Skills,مهارات المتعلمين
 Users,المستخدمين
+Users with any of these roles. Empty means every user with a learning role.,المستخدمون الذين لديهم أي من هذه الأدوار. تركها فارغة يعني كل من لديه دور تعليمي.
 Users with any of these roles. Empty means every user with a learning role.,المستخدمون الذين لديهم أي من هذه الأدوار. تركها فارغة يعني كل من لديه دور تعليمي.,TCD Training Rule
 Users with this role are checked against the profile,يُقارن أصحاب هذا الدور بهذا الملف,TCD Competency Profile
 Valid certificate,شهادة صالحة
@@ -1267,6 +1324,7 @@ Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
 Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
 What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
+Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.,TCD AI Settings
 Withdrawn,منسحب
 Withdrawn,منسحب,TCD
@@ -1293,10 +1351,15 @@ You earned a certificate for this course.,حصلت على شهادة لهذه ا
 You reached today's limit of AI requests.,وصلت إلى حد طلبات الذكاء الاصطناعي لليوم.
 Your answer,إجابتك
 Your question,سؤالك
+high,مرتفع
 high,مرتفع,TCD AI Settings
+javascript,جافاسكربت
 javascript,جافاسكربت,TCD Question
+low,منخفض
 low,منخفض,TCD AI Settings
+medium,متوسط
 medium,متوسط,TCD AI Settings
+python,بايثون
 python,بايثون,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD

@@ -104,9 +104,16 @@ def load_item(key: str, source: str, quiz=None) -> dict | None:
 	if source == "bank":
 		if not frappe.db.exists("TCD Question", key):
 			return None
-		return item_from_bank(frappe.get_doc("TCD Question", key))
-	row = next((r for r in (quiz.questions if quiz else []) if r.name == key), None)
-	return item_from_inline(row) if row else None
+		item = item_from_bank(frappe.get_doc("TCD Question", key))
+	else:
+		row = next((r for r in (quiz.questions if quiz else []) if r.name == key), None)
+		if not row:
+			return None
+		item = item_from_inline(row)
+	if quiz and quiz.get("review_code_answers") and item["type"] in ("Code", "SQL"):
+		# the device reports the output and a learner can change it: an instructor confirms instead
+		item["manual_review"] = 1
+	return item
 
 
 def is_manual(item) -> bool:

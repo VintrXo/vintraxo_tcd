@@ -122,6 +122,7 @@ Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old 
 expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
 | Phase 8 — Integrations | 483639f | 129 | Connector registry, signed webhooks with outbox/retry/rate limit, training rules (auto/mandatory enrollment by role and HR), role guides, training compliance |
 | Phase 9 — AI gateway | d02dc01 | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
+| Phase 11 — Hardening and release | this commit | 146 | Security review + tests, code-answer review option, indexes, load test, backup check, Arabic/RTL pass, user/admin/developer/deployment docs, release notes |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -133,6 +134,22 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 
 Found while testing: standard notifications with a `.md` template failed silently (Frappe converts Markdown to HTML
 before rendering Jinja). Templates are HTML now.
+
+## Phase 11 — Hardening and release: status
+
+| Requirement | State |
+|---|---|
+| Security review: XSS on blocks | Done: Markdown sanitized, inline links escaped; stored `html` keys dropped on save and ignored on render (test) |
+| Security review: uploads | Done earlier (Phase 1: extension/size validation, private files); unchanged |
+| Security review: API permissions | Done: only `verify_certificate` is open to guests; all other 40+ endpoints refuse guests (test) |
+| Security review: data isolation | Done: a learner sees only own progress, enrollments, submissions, certificates, skills, acknowledgments; no access to connectors, outbox, AI settings/log (test) |
+| Finding: code answers graded on device output | Fixed as an option: "Instructor Reviews Code Answers" on the quiz (full fix needs Phase 10) |
+| Performance: indexes | Added on outbox (status, connector, next_attempt_on), AI log (user), content (slug, parent_content), learning item (content, course) |
+| Load test | Done on `bench serve`: 1 worker p50 75 ms / p95 174 ms; 20 workers ~10.5 req/s (dev server is single-process), search API p50 311 ms. 1–1.5% of requests failed with a Frappe core router error (`get_dynamic_web_pages` returned None) that also happens on `/login` — Frappe core + dev server, not this app; not changed (core rule). Production (gunicorn) load test not run |
+| Migration patches | Reviewed: new fields need no data patch; existing patches unchanged |
+| Install on a clean site / restore test | Not run: needs a second site and the rule is tcd.localhost only. Backup verified (gzip OK, all 48 TCD tables with data). Needs owner OK for a throw-away site |
+| Arabic/RTL pass | Done: portal and Desk pages swept in Arabic; fixed Select values / table descriptions that Frappe translates without context (63 plain keys, new test); "Slack" upstream mistranslation overridden |
+| Docs | USER_GUIDE (ar), ADMIN_GUIDE (ar), DEVELOPER, DEPLOYMENT (install/upgrade/backup), RELEASE_NOTES |
 
 ## Phase 9 — AI gateway: status
 

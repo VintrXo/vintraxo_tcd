@@ -103,6 +103,7 @@ def prepare_blocks(blocks: list, space: str) -> list:
 	out = []
 	for block in blocks:
 		b = dict(block)
+		b.pop("html", None)  # only this function produces html; never trust a stored one
 		if b.get("type") == "markdown":
 			b["html"] = render_markdown(b.get("text"), space)
 		elif b.get("type") in ("paragraph", "callout") and LINK_RE.search(b.get("text") or ""):
