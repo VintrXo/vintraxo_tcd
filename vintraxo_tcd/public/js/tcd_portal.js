@@ -643,9 +643,9 @@
 		initWithdraw();
 		initBuy();
 		initScorm();
+		const t0 = labels();
 		initProfile(t0);
 		initJobs(t0);
-		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);
 		initHelpful(t0);
