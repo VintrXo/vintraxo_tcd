@@ -16,6 +16,7 @@
   "due_date",
   "mandatory",
   "training_rule",
+  "hr_training_event",
   "progress_section",
   "percent",
   "score",
@@ -121,6 +122,13 @@
    "read_only": 1
   },
   {
+   "fieldname": "hr_training_event",
+   "fieldtype": "Data",
+   "label": "HR Training Event",
+   "read_only": 1,
+   "description": "Training Event created in HRMS when the course was completed"
+  },
+  {
    "fieldname": "progress_section",
    "fieldtype": "Section Break",
    "label": "Progress"
@@ -169,7 +177,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 02:00:00.000000",
+ "modified": "2026-11-20 09:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Enrollment",

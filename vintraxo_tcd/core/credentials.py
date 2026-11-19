@@ -62,6 +62,9 @@ def on_completed(enrollment):
 	from vintraxo_tcd.core import integrations
 
 	integrations.emit("Enrollment Completed", enrollment)
+	from vintraxo_tcd.core import hr_sync
+
+	hr_sync.on_completed(enrollment)
 	kind = "Course" if enrollment.course else "Learning Path"
 	doctype, field = TARGETS[kind]
 	target = enrollment.get(field)

@@ -20,7 +20,7 @@
 		{% if e %}
 		<div class="tcd-progress-row">
 			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ data.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ data.percent|int }}%"></span></span>
-			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}</span>
+			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}{% if data.minimum_attendance %} · <span class="tcd-attendance-rule">{{ _("Attendance {0}% of {1}% required").format(data.attendance|int if data.attendance is not none else 0, data.minimum_attendance|int) }}</span>{% endif %}</span>
 		</div>
 		{% if certificate %}
 		<p class="tcd-callout tcd-callout-tip">{{ _("You earned a certificate for this course.") }}

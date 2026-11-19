@@ -1,0 +1,57 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
+
+{% block page_content %}
+{% set s = data.summary %}
+<div class="tcd-page">
+	<header class="tcd-hero"><h1>{{ _("My Team") }}</h1>
+		{% if data.teams|length > 1 or (data.teams and data.has_direct_reports) %}
+		<form method="get" action="/learn/team" class="tcd-search">
+			<select name="team" class="tcd-select" aria-label="{{ _('Team') }}" onchange="this.form.submit()">
+				<option value="">{{ _("Everyone I follow") }}</option>
+				{% if data.has_direct_reports %}<option value="direct" {% if data.team == 'direct' %}selected{% endif %}>{{ _("My direct reports") }}</option>{% endif %}
+				{% for t in data.teams %}<option value="{{ t|e }}" {% if t == data.team %}selected{% endif %}>{{ t|e }}</option>{% endfor %}
+			</select>
+		</form>
+		{% endif %}
+	</header>
+
+	<ul class="tcd-stats">
+		<li><strong>{{ s.members }}</strong><span>{{ _("Members") }}</span></li>
+		<li><strong>{{ s.compliance|int }}%</strong><span>{{ _("Mandatory training done") }}</span></li>
+		<li class="{{ 'tcd-stat-warn' if s.overdue else '' }}"><strong>{{ s.overdue }}</strong><span>{{ _("Overdue") }}</span></li>
+		<li class="{{ 'tcd-stat-warn' if s.expiring_certificates else '' }}"><strong>{{ s.expiring_certificates }}</strong><span>{{ _("Certificates expiring in 30 days") }}</span></li>
+		<li class="{{ 'tcd-stat-warn' if s.pending_acknowledgments else '' }}"><strong>{{ s.pending_acknowledgments }}</strong><span>{{ _("Documents not acknowledged") }}</span></li>
+	</ul>
+
+	<section class="tcd-section">
+		{% if data.members %}
+		<div class="tcd-table-wrap">
+		<table class="table table-sm tcd-team-table">
+			<thead><tr>
+				<th>{{ _("Member") }}</th><th>{{ _("Mandatory") }}</th><th>{{ _("Overdue") }}</th>
+				<th>{{ _("Active", context="TCD") }}</th><th>{{ _("Completed", context="TCD") }}</th>
+				<th>{{ _("Certificates expiring") }}</th><th>{{ _("Not acknowledged") }}</th><th>{{ _("Last activity") }}</th>
+			</tr></thead>
+			<tbody>
+			{% for m in data.members %}
+			<tr>
+				<td><strong>{{ m.full_name|e }}</strong>{% if m.department %}<br><span class="tcd-muted tcd-small">{{ m.department|e }}</span>{% endif %}</td>
+				<td>{% if m.mandatory %}{{ m.mandatory_done }}/{{ m.mandatory }} ({{ m.compliance|int }}%){% else %}—{% endif %}</td>
+				<td class="{{ 'tcd-error' if m.overdue else '' }}">{{ m.overdue }}</td>
+				<td>{{ m.active }}</td><td>{{ m.completed }}</td>
+				<td class="{{ 'tcd-error' if m.expiring_certificates else '' }}">{{ m.expiring_certificates }}</td>
+				<td class="{{ 'tcd-error' if m.pending_acknowledgments else '' }}">{{ m.pending_acknowledgments }}</td>
+				<td class="tcd-muted tcd-small">{{ frappe.utils.pretty_date(m.last_activity) if m.last_activity else _("No activity yet") }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		</div>
+		{% else %}
+		<p class="tcd-muted">{{ _("No team members yet. Ask your administrator to set up your team.") }}</p>
+		{% endif %}
+	</section>
+</div>
+{% endblock %}

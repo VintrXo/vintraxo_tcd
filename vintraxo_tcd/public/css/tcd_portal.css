@@ -204,3 +204,7 @@
 .tcd-badge-ok { color: #15803d; }
 .tcd-reply-form { display: flex; gap: 0.5rem; align-items: flex-start; }
 .tcd-reply-form textarea { flex: 1; }
+
+/* manager dashboard (Phase 13) */
+.tcd-team-table th, .tcd-team-table td { white-space: nowrap; text-align: start; }
+.tcd-attendance-rule { white-space: nowrap; }

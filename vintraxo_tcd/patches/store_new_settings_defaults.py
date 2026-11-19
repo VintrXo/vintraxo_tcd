@@ -4,6 +4,7 @@ import frappe
 # which would silently turn these features off on existing sites.
 DEFAULTS = {
 	"enable_discussions": 1,
+	"sync_training_to_hr": 1,
 	"default_review_months": 12,
 	"runner_cpu_seconds": 5,
 	"runner_wall_seconds": 10,

@@ -98,6 +98,9 @@ def home_context(
 	from vintraxo_tcd.core import ai
 
 	ctx["ai_enabled"] = ai.can_use(user)
+	from vintraxo_tcd.core import teams
+
+	ctx["is_manager"] = teams.is_manager(user)
 	ctx["labels_json"] = json_for_script(js_labels())
 
 	in_progress = readable_list(

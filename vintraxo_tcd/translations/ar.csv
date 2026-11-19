@@ -26,6 +26,7 @@
 5,5 - خبير,TCD Competency Requirement
 5,5 - خبير,TCD Skill Award
 5,5 - خبير,TCD User Skill
+A .json file made with Export Space on another site,ملف ‎.json‎ مصدَّر بزر «تصدير المساحة» من موقع آخر,TCD Content Import
 A cancelled session has no attendance.,الجلسة الملغاة ليس لها حضور.
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
@@ -177,6 +178,7 @@ Attendance,الحضور
 Attendance,الحضور,TCD Session
 Attendance,الحضور,TCD Session Attendance
 Attendance can be taken once the session starts.,يُسجَّل الحضور بعد بدء الجلسة.
+Attendance {0}% of {1}% required,الحضور {0}% من {1}% مطلوب
 Audience,الجمهور المستهدف
 Audience,الجمهور المستهدف,TCD Training Rule
 Audience Departments,الأقسام المستهدفة,TCD Governance Document
@@ -261,6 +263,7 @@ Certificate verification,التحقق من الشهادة
 Certificates,الشهادات
 Certificates are issued automatically on completion.,تُصدر الشهادات تلقائيًا عند الإكمال.
 Certificates cannot be reassigned.,لا يمكن نقل الشهادة لشخص آخر.
+Certificates expiring,شهادات قاربت على الانتهاء
 Certificates expiring in 30 days,شهادات تنتهي خلال 30 يومًا
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
@@ -301,6 +304,7 @@ Complete these courses first: {0},أكمل هذه الدورات أولًا: {0}
 Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
 Completed,اكتمل
 Completed,انتهت,TCD Session
+Completed,تم,TCD Content Import
 Completed,مكتمل,TCD
 Completed,مكتمل,TCD Enrollment
 Completed,مكتمل,TCD Progress
@@ -329,6 +333,7 @@ Content,المحتوى,TCD Training Rule
 Content,محتوى
 Content Editor,محرر المحتوى
 Content Freshness,حداثة المحتوى
+Content Import,استيراد المحتوى
 Content In Review,محتوى قيد المراجعة
 Content Owner,مسؤول المحتوى
 Content Owner,مسؤول المحتوى,TCD Content
@@ -370,6 +375,7 @@ Course feedback is given from the course page.,يُضاف تقييم الدور�
 Course whose instructors grade the submissions,الدورة التي يصحّح مدرّبوها التسليمات,TCD Assignment
 Courses,الدورات
 Courses and learning paths,الدورات ومسارات التعلّم
+Created Space,المساحة المُنشأة,TCD Content Import
 Criterion,المعيار,TCD Rubric Criterion
 Current,تيار
 Current Approved Version,النسخة المعتمدة الحالية
@@ -398,6 +404,7 @@ Description,الوصف,TCD Category
 Description,الوصف,TCD Session
 Description,الوصف,TCD Space
 Description,الوصف,TCD Student Group
+Description,الوصف,TCD Team
 Description,وصف
 Designation,المسمى الوظيفي
 Designation,المسمى الوظيفي,TCD Rule HR Filter
@@ -414,6 +421,7 @@ Document,وثيقة
 Document Owner,مالك المستند,TCD Governance Document
 Document not found.,المستند غير موجود.
 Documents,المستندات
+Documents not acknowledged,مستندات لم يُقرّ بها
 Documents to acknowledge,مستندات تنتظر إقرارك
 Done in {0} ms,انتهى في {0} مللي ثانية
 Download PDF,تحميل PDF
@@ -479,6 +487,7 @@ Event,الحدث,TCD Connector Event
 Event,الحدث,TCD Integration Event
 Event {0} is listed twice.,تم إدراج الحدث {0} مرتين.
 Events,الأحداث,TCD Connector
+Everyone I follow,كل من أتابعهم
 Everyone Present,الكل حاضر
 Exactly one correct answer is allowed.,يُسمح بإجابة صحيحة واحدة فقط.
 Excused,بعذر
@@ -496,12 +505,15 @@ Expires On,تنتهي في,TCD Certificate
 Expiry Date,تاريخ الانتهاء,TCD Governance Document
 Expiry date must be after the effective date.,يجب أن يكون تاريخ الانتهاء بعد تاريخ السريان.
 Explanation,الشرح
+Export File,ملف التصدير,TCD Content Import
+Export Space,تصدير المساحة
 External,خارجي
 External,رابط خارجي,TCD Content
 External,رابط خارجي,TCD Content Template
 External Link,رابط خارجي,TCD Block
 External links must start with https://,يجب أن تبدأ الروابط الخارجية بـ https://
 Failed,باءت بالفشل
+Failed,فشل,TCD Content Import
 Failed,فشل,TCD Integration Event
 False,خطأ
 Feature,الميزة,TCD AI Usage Log
@@ -532,6 +544,7 @@ From Content,من المحتوى
 From Date,من تاريخ
 From the Question Bank,من بنك الأسئلة,TCD Quiz
 Full Name,الاسم,TCD Session Attendance
+Full Name,الاسم,TCD Team Member
 Full Name,الاسم الكامل
 Full Name,الاسم الكامل,TCD Enrollment
 Full Name,الاسم الكامل,TCD Student Group Member
@@ -562,6 +575,7 @@ Group Name,اسم المجموعة
 Group Name,اسم المجموعة,TCD Student Group
 Guides for your role,أدلة خاصة بدورك
 HR Filters,فلاتر الموارد البشرية,TCD Training Rule
+HR Training Event,حدث التدريب في الموارد البشرية,TCD Enrollment
 HR filters need ERPNext/HRMS. Until it is installed this rule matches nobody.,فلاتر الموارد البشرية تحتاج ERPNext/HRMS. حتى يتم تثبيته لن تنطبق هذه القاعدة على أحد.
 Heading,الترويسة
 Heading,عنوان,TCD Block
@@ -581,6 +595,7 @@ Image,صورة
 Image,صورة,TCD Block
 Image URL,رابط الصورة
 Image URL,رابط الصورة,TCD Block
+Importing...,جارٍ الاستيراد...
 In Progress,في تَقَدم
 In Progress,قيد التقدّم,TCD
 In Progress,قيد التقدّم,TCD Progress
@@ -651,6 +666,7 @@ Last Error,آخر خطأ,TCD Integration Event
 Last Reviewed On,آخر مراجعة
 Last Reviewed On,آخر مراجعة,TCD Content
 Last Viewed On,آخر مشاهدة
+Last activity,آخر نشاط
 Last reviewed on {0}.,آخر مراجعة في {0}.
 Late,متأخر
 Late,متأخر,TCD
@@ -672,6 +688,7 @@ Learning Path,مسار تعلّم
 Learning Path,مسار تعلّم,TCD
 Learning Paths,مسارات التعلّم
 Learning Settings,إعدادات التعلّم
+Leave empty to keep the original space name (it must not exist on this site),اتركه فارغًا للإبقاء على اسم المساحة الأصلي (يجب ألا يكون موجودًا على هذا الموقع),TCD Content Import
 Leave this {0}? Your progress is kept if you enroll again.,هل تريد الانسحاب من {0}؟ يُحفظ تقدمك إذا سجّلت مرة أخرى.
 Lesson,الدرس,TCD Assignment
 Lesson,الدرس,TCD Assignment Submission
@@ -704,10 +721,13 @@ Location,الموقع
 Location,الموقع,TCD Content
 Locked,مغلق
 Locked,مقفل,TCD
+Log,السجل,TCD Content Import
 Looking in the pages you can access...,جارٍ البحث في الصفحات المتاحة لك...
+Manager,المدير,TCD Team
 Mandatory,إلزامي
 Mandatory,إلزامي,TCD Enrollment
 Mandatory,إلزامي,TCD Training Rule
+Mandatory training done,إنجاز التدريب الإلزامي
 Manual,يدوي
 Manual,يدوي,TCD User Skill
 Manual Approval,اعتماد يدوي
@@ -735,10 +755,13 @@ Max attempts cannot be negative.,لا يمكن أن يكون الحد الأقص
 Max score must be greater than zero.,الدرجة العظمى يجب أن تكون أكبر من صفر.
 Media and Uploads,الوسائط والملفات,TCD Settings
 Meeting Link,رابط الاجتماع,TCD Session
+Member,العضو
 Members,الأعضاء
 Members,الأعضاء,TCD Student Group
+Members,الأعضاء,TCD Team
 Memory (KB),الذاكرة (كيلوبايت),TCD Code Run
 Memory Limit (MB),حد الذاكرة (ميجابايت),TCD Settings
+Minimum Attendance (%),الحد الأدنى للحضور (%),TCD Course
 Minimum Score,الحد الأدنى للدرجة
 Minimum Score,الحد الأدنى للدرجة,TCD
 Minimum Score,الحد الأدنى للدرجة,TCD Course
@@ -755,19 +778,23 @@ Move the learning path back to Draft to change its courses.,أعد مسار ال
 Move up,تحريك لأعلى
 Multiple Choice,اختيار متعدد
 My Learning,تعلّمي
+My Team,فريقي
 My attendance,حضوري
 My certificates,شهاداتي
 My courses,دوراتي
+My direct reports,تابعيّ المباشرون
 My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
 "Name used in lessons and questions, e.g. java",الاسم المستخدم في الدروس والأسئلة، مثال: java,TCD Runner Language
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.,TCD Training Rule
+Needs HRMS: a completed course becomes a Training Event and Training Result for the employee,يحتاج HRMS: الدورة المكتملة تُسجَّل كحدث تدريب ونتيجة تدريب للموظف,TCD Settings
 Needs Review,يحتاج مراجعة
 Needs Review,يحتاج مراجعة,TCD Question
 Never Send Restricted Content,لا ترسل المحتوى المقيّد أبدًا,TCD AI Settings
 Never read,لم تُقرأ قط
+New Space Name,اسم المساحة الجديدة,TCD Content Import
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 New documents start as Draft.,المستندات الجديدة تبدأ كمسودة.
 New question on {0},سؤال جديد على {0}
@@ -781,6 +808,7 @@ Next Review Date,موعد المراجعة القادم,TCD Governance Document
 Next Review Date,موعد المراجعة القادمة,TCD Content
 No,لا
 No Review Needed,لا تحتاج مراجعة,TCD Content
+No activity yet,لا يوجد نشاط بعد
 No answer,لا توجد إجابة
 No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
 No attempts left.,لا توجد محاولات متبقية.
@@ -792,6 +820,7 @@ No documents are addressed to you.,لا توجد مستندات موجهة إل�
 No questions yet. Be the first to ask.,لا توجد أسئلة بعد. كن أول من يسأل.
 No ratings yet,لا توجد تقييمات بعد
 No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
+No team members yet. Ask your administrator to set up your team.,لا يوجد أعضاء بعد. اطلب من المسؤول إعداد فريقك.
 Not Started,لم تبدأ
 Not Started,لم يبدأ,TCD
 Not Submitted,لم يُسلَّم,TCD
@@ -825,6 +854,7 @@ Only a reviewer can publish.,المراجع فقط يمكنه النشر.
 Only a reviewer can send a document for approval.,المراجع فقط يمكنه إرسال المستند للاعتماد.
 Only active documents can be acknowledged.,يمكن الإقرار بالمستندات السارية فقط.
 Only active or expired certificates can be renewed.,يمكن تجديد الشهادات السارية أو المنتهية فقط.
+Only administrators can export or import spaces.,المسؤولون فقط يمكنهم تصدير المساحات أو استيرادها.
 Only an administrator can revoke certificates.,المسؤول فقط يمكنه إلغاء الشهادات.
 Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
 Only an instructor of this course can approve completion.,مدرّب هذه الدورة فقط يمكنه اعتماد الإكمال.
@@ -901,6 +931,8 @@ Passed,ناجح,TCD Quiz Submission
 Past review date,متأخرة عن موعد المراجعة
 Payload,البيانات المرسلة,TCD Integration Event
 Payload Format,صيغة البيانات,TCD Connector
+Pending,قيد الانتظار,TCD Content Import
+Pending,معلق
 Pending Approval,في انتظار الاعتماد,TCD
 Pending Approval,في انتظار الاعتماد,TCD Enrollment
 Pending Approval,في انتظار الموافقة
@@ -1015,6 +1047,7 @@ Readers,القرّاء
 Reason,سبب
 Recently completed,أُنجز مؤخرًا
 Recommended for you,مقترح لك
+Record Completed Courses in HRMS,تسجيل الدورات المكتملة في HRMS,TCD Settings
 Reference,مرجع
 Reference,مرجع,TCD
 Reference,مرجع,TCD Content
@@ -1065,6 +1098,7 @@ Restricted,مقيّد,TCD Course
 Restricted,مقيّد,TCD Learning Path
 Restricted,مقيّد,TCD Settings
 Restricted,مقيّد,TCD Space
+Result,النتيجة,TCD Content Import
 Results for {0},نتائج البحث عن {0}
 Retry Now,أعد المحاولة الآن
 Return,إرجاع,TCD
@@ -1174,6 +1208,7 @@ Set the API key in AI Settings.,أدخل مفتاح API في إعدادات ال
 Set the model.,حدد النموذج.
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
+"Share of the sessions held so far that the learner must attend (Late counts, Excused is left out); 0 means attendance does not count",نسبة الجلسات المنعقدة التي يجب أن يحضرها المتعلم (التأخير يُحسب حضورًا، والغياب بعذر لا يُحسب)؛ 0 يعني أن الحضور لا يؤثر,TCD Course
 Short Answer,إجابة قصيرة
 Short Answer,إجابة قصيرة,TCD Question
 "Short reference, e.g. POL-HR-001",مرجع قصير، مثل POL-HR-001,TCD Governance Document
@@ -1230,10 +1265,12 @@ Space,المساحة,TCD Progress
 Space,المساحة,TCD Quiz
 Space ID,معرّف المساحة
 "Space ID must be 2-80 characters: lowercase letters, digits, - or _.",معرّف المساحة من 2 إلى 80 حرفًا: حروف إنجليزية صغيرة وأرقام و- أو _.
+Space {0} already exists. Choose another target space name.,المساحة {0} موجودة بالفعل. اختر اسمًا آخر.
 Spaces,المساحات
 Staff Answer,إجابة من الفريق,TCD Discussion Post
 Staff answer,إجابة من الفريق
 Start Date,تاريخ البدء,TCD Batch
+Start Import,بدء الاستيراد
 Start Revision,بدء مراجعة
 Start the quiz,ابدأ الاختبار
 Start the quiz first.,ابدأ الاختبار أولًا.
@@ -1246,6 +1283,7 @@ Status,الحالة
 Status,الحالة,TCD AI Usage Log
 Status,الحالة,TCD Code Run
 Status,الحالة,TCD Content
+Status,الحالة,TCD Content Import
 Status,الحالة,TCD Course
 Status,الحالة,TCD Discussion Post
 Status,الحالة,TCD Enrollment
@@ -1306,6 +1344,7 @@ TCD Connector Event,حدث الموصّل
 TCD Content,محتوى تعليمي
 TCD Content Feedback,تقييم صفحة
 TCD Content Freshness,حداثة المحتوى
+TCD Content Import,استيراد محتوى
 TCD Content Relation,علاقة محتوى
 TCD Content Template,قالب محتوى
 TCD Content Version,نسخة محتوى معتمدة
@@ -1348,6 +1387,8 @@ TCD Space,مساحة تعليمية
 TCD Space Role,دور المساحة
 TCD Student Group,مجموعة متعلمين
 TCD Student Group Member,عضو مجموعة
+TCD Team,فريق
+TCD Team Member,عضو فريق
 TCD Training Compliance,الالتزام بالتدريب الإلزامي
 TCD Training Rule,قاعدة تدريب
 TCD Tutorial Lesson,درس المسار
@@ -1355,6 +1396,9 @@ TCD User Skill,مهارة متعلم
 Target,الهدف,TCD Training Rule
 Target Type,نوع الهدف,TCD Content Relation
 Target Type,نوع الهدف,TCD Governance Link
+Team,الفريق
+Team Name,اسم الفريق,TCD Team
+Teams,الفرق
 Tell the learner what to change before returning the submission.,اكتب للمتعلم ما يجب تعديله قبل إرجاع التسليم.
 Template,قالب
 Template Name,اسم القالب,TCD Content Template
@@ -1386,10 +1430,15 @@ The code runner returned an error ({0}).,أعاد مشغّل الأكواد خط
 The code runner sent an unreadable answer.,أرسل مشغّل الأكواد ردًا غير مقروء.
 The endpoint must be an http(s) URL.,يجب أن يكون العنوان رابط http(s).
 The endpoint resolves to a private or local address. Allow the private network to use it.,العنوان يشير إلى شبكة خاصة أو محلية. فعّل السماح بالشبكة الخاصة لاستخدامه.
+The file is larger than 20 MB.,الملف أكبر من 20 ميجابايت.
+The file is not a VintraXo TCD space export.,الملف ليس ملف تصدير مساحة من منصة التعلّم VX.
+The file is not a valid export (JSON).,الملف ليس تصديرًا صالحًا (JSON).
+The file was made by a newer version of the app. Update the app first.,الملف صُنع بإصدار أحدث من التطبيق. حدّث التطبيق أولًا.
 The language id on your runner (Judge0: GET /languages),رقم اللغة على المشغّل لديك (Judge0: GET /languages),TCD Runner Language
 The lesson is not part of the selected course.,الدرس ليس ضمن الدورة المختارة.
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The lesson this assignment belongs to,الدرس الذي يتبعه هذا التكليف,TCD Assignment
+The manager is not a member of their own team.,المدير ليس عضوًا في فريقه.
 The meeting link must be an http(s) URL.,يجب أن يكون رابط الاجتماع http(s).
 The monthly AI budget is used up.,انتهت ميزانية الذكاء الاصطناعي لهذا الشهر.
 The question has {0} blanks but {1} answer lines.,في السؤال {0} فراغات لكن عدد أسطر الإجابات {1}.
@@ -1406,6 +1455,7 @@ This document does not need an acknowledgment.,هذا المستند لا يحت
 This document has no approved version yet.,لا توجد نسخة معتمدة لهذا المستند بعد.
 This document is not addressed to you.,هذا المستند غير موجه إليك.
 This event was already sent.,تم إرسال هذا الحدث بالفعل.
+This import is already done.,تم هذا الاستيراد بالفعل.
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
 This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
@@ -1446,6 +1496,7 @@ To Grade,بانتظار التصحيح
 To Learning Path,إلى مسار التعلّم,TCD Content Relation
 Too many runs. Wait a minute and try again.,تشغيلات كثيرة. انتظر دقيقة وحاول مرة أخرى.
 Training Compliance,الالتزام بالتدريب
+Training Event created in HRMS when the course was completed,حدث تدريب يُنشأ في HRMS عند إكمال الدورة,TCD Enrollment
 Training Rule,قاعدة التدريب
 Training Rule,قاعدة التدريب,TCD Enrollment
 Training Rules,قواعد التدريب
@@ -1484,6 +1535,7 @@ User,المستخدم,TCD Discussion Post
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
+User,المستخدم,TCD Team Member
 User Skills,مهارات المتعلمين
 Users,المستخدمين
 Users with any of these roles. Empty means every user with a learning role.,المستخدمون الذين لديهم أي من هذه الأدوار. تركها فارغة يعني كل من لديه دور تعليمي.
@@ -1519,6 +1571,8 @@ Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
 What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.,TCD AI Settings
+"With ERPNext/HRMS, the manager's direct reports are added automatically",مع ERPNext/HRMS يُضاف التابعون المباشرون للمدير تلقائيًا
+"With ERPNext/HRMS, the manager's direct reports are added automatically",مع ERPNext/HRMS يُضاف التابعون المباشرون للمدير تلقائيًا,TCD Team
 Withdraw,انسحاب
 Withdrawn,منسحب
 Withdrawn,منسحب,TCD

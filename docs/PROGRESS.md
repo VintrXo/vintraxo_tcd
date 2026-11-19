@@ -125,6 +125,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 11 — Hardening and release | 4accf76 | 146 | Security review + tests, code-answer review option, indexes, load test, backup check, Arabic/RTL pass, user/admin/developer/deployment docs, release notes |
 | Phase 10 — Code runner (Frappe side) | 4defe64 | 154 | Judge0 client, run log, practice runs for Java/C++/C/Go/C#/Bash, server grading that ignores device output, Test Runner; runner host not set up |
 | Phase 12 — Gaps from the vision review | c931dd8 | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
+| Phase 13 — Manager, attendance rule, HRMS, export/import | this commit | 172 | /learn/team, minimum attendance, Training Event/Result write-back, space export/import; fixed /learn/team route clash |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -212,8 +213,8 @@ All plan phases (0–11) are built. Open items, each waiting for an input from t
 | Code runner host (Judge0 on an isolated VM) | The production server (or a separate VM) |
 | Live AI check | An API key in AI Settings |
 
-Optional, not in the plan: writing training results back into HRMS; vector (embedding) search, which needs an
-embedding provider.
+Optional, not in the plan: vector (embedding) search, which needs an embedding provider.
+HRMS write-back (Phase 13) is built but only tested with HRMS mocked.
 
 ## Blocked / needs decision
 

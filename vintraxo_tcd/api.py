@@ -184,6 +184,8 @@ def get_course(name: str) -> dict:
 		"chapters": visible,
 		"percent": state["percent"],
 		"score": state["score"],
+		"attendance": state.get("attendance"),
+		"minimum_attendance": state.get("minimum_attendance"),
 		"enrollment": enrollment,
 		"access": course.access,
 		"rating": course_rating(course.name),
@@ -839,3 +841,34 @@ def discussion_hide(name: str, hidden: int = 1):
 	from vintraxo_tcd.core import discussions
 
 	discussions.set_hidden(name, hidden, frappe.session.user)
+
+
+# ---------------------------------------------------------------- manager dashboard (Phase 13)
+
+
+@frappe.whitelist()
+def team_overview(team: str | None = None) -> dict:
+	from vintraxo_tcd.core import teams
+
+	return teams.overview(frappe.session.user, team)
+
+
+# ---------------------------------------------------------------- space export / import (Phase 13)
+
+
+@frappe.whitelist()
+def export_space(space: str):
+	"""Download a space as a JSON file (administrators only)."""
+	from vintraxo_tcd.core import transfer
+
+	bundle = transfer.export_space(space)
+	frappe.response["filename"] = f"tcd-space-{frappe.scrub(space)}-{frappe.utils.nowdate()}.json"
+	frappe.response["filecontent"] = frappe.as_json(bundle, indent=1)
+	frappe.response["type"] = "download"
+
+
+@frappe.whitelist(methods=["POST"])
+def run_content_import(name: str) -> dict:
+	from vintraxo_tcd.core import transfer
+
+	return transfer.run_import(name)

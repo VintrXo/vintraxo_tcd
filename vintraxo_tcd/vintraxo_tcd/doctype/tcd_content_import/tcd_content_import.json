@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "import_file",
+  "target_space",
+  "column_break_1",
+  "status",
+  "created_space",
+  "log_section",
+  "log"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_file",
+   "fieldtype": "Attach",
+   "label": "Export File",
+   "reqd": 1,
+   "description": "A .json file made with Export Space on another site"
+  },
+  {
+   "fieldname": "target_space",
+   "fieldtype": "Data",
+   "label": "New Space Name",
+   "description": "Leave empty to keep the original space name (it must not exist on this site)"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nCompleted\nFailed",
+   "default": "Pending",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "created_space",
+   "fieldtype": "Link",
+   "label": "Created Space",
+   "options": "TCD Space",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "log_section",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "log",
+   "fieldtype": "Long Text",
+   "label": "Log",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Content Import",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "track_changes": 1
+}

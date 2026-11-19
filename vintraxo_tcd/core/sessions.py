@@ -94,6 +94,8 @@ def validate(doc):
 def on_update(doc):
 	from vintraxo_tcd.core import notify
 
+	refresh_completion(doc)
+
 	before = doc.get_doc_before_save()
 	when = frappe.utils.format_datetime(doc.starts_on, "dd-MM-yyyy HH:mm")
 	if not before and doc.status == "Scheduled":
@@ -110,6 +112,35 @@ def on_update(doc):
 		notify._send(
 			invited(doc), _("Session moved: {0} is now on {1}").format(doc.title, when), doc.doctype, doc.name
 		)
+
+
+def attendance_percent(user: str, course: str) -> float | None:
+	"""Attended / (held - excused) over the course's sessions that have started; None when none was held."""
+	held = attended = 0
+	for name in frappe.get_all(
+		"TCD Session",
+		filters=[["course", "=", course], ["status", "!=", "Cancelled"], ["starts_on", "<=", now_datetime()]],
+		pluck="name",
+	):
+		s = frappe.get_doc("TCD Session", name)
+		if user not in invited(s):
+			continue
+		mark = next((r.status for r in s.attendance if r.user == user), None)
+		if mark == "Excused":
+			continue
+		held += 1
+		attended += mark in ATTENDED
+	return round(attended * 100 / held, 1) if held else None
+
+
+def refresh_completion(doc):
+	"""Attendance can complete (or block) a course with a minimum attendance."""
+	if not frappe.db.get_value("TCD Course", doc.course, "minimum_attendance"):
+		return
+	from vintraxo_tcd.core.courses import refresh_course
+
+	for row in doc.attendance:
+		refresh_course(row.user, doc.course)
 
 
 def load_learners(name: str) -> int:

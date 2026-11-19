@@ -115,6 +115,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - Reports: TCD Attendance (admins, instructors — rows from their sessions only), TCD Content Freshness (admins,
   reviewers).
 
+## Phase 13
+- `/learn/team` and `api.team_overview`: managers of a TCD Team (or with HRMS direct reports) see training status of
+  those people only; admins any team. TCD Team and TCD Content Import: admins only.
+- `api.export_space` / `api.run_content_import`: administrators only (bundles include quiz answers).
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

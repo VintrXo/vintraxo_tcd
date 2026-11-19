@@ -320,6 +320,7 @@ website_route_rules = [
 	{"from_route": "/learn/policies/<code>", "to_route": "learn/policy"},
 	{"from_route": "/verify/<code>", "to_route": "verify"},
 	{"from_route": "/learn/instructor", "to_route": "learn/instructor"},
+	{"from_route": "/learn/team", "to_route": "learn/team"},
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
 	{"from_route": "/learn/<space>/course/<slug>", "to_route": "learn/course"},
 	{"from_route": "/learn/<space>/path/<slug>", "to_route": "learn/path"},

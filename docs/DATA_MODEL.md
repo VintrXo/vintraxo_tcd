@@ -286,6 +286,14 @@ TCD Settings gains the Code Runner section (enabled, URL, token, limits, languag
 TCD Content gains content_owner, review_cycle_months, skip_review, last_reviewed_on, next_review_date.
 TCD Settings gains default_review_months and enable_discussions.
 
+## Phase 13
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Team / TCD Team Member | A manager and the people they follow | team_name, manager, members (user) |
+| TCD Content Import | One import of a space bundle | import_file, target_space, status, created_space, log |
+
+TCD Course gains minimum_attendance; TCD Enrollment gains hr_training_event; TCD Settings gains sync_training_to_hr.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

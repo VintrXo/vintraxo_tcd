@@ -47,6 +47,9 @@
 | sessions.py | Sessions: permissions, invited learners, attendance validation, notifications, learner views, attendance report |
 | discussions.py | Lesson Q&A: posting, moderation, best answer, notifications, rate limit |
 | freshness.py | Content owner and review cycle, overdue notice, review reminders, freshness report |
+| teams.py | Manager dashboard: team membership (TCD Team + HR direct reports), member status rows, summary |
+| hr_sync.py | Completed course → HRMS Training Program / Event / Result (guarded, background) |
+| transfer.py | Space export bundle and import with link rewriting |
 | training.py | HR link (guarded Employee lookup), training rules (match, enroll, mandatory, due), role guides, training compliance |
 
 ## Public API (`vintraxo_tcd.api.*`)
@@ -99,6 +102,9 @@
 | confirm_content_review | POST | Mark a published page as still accurate |
 | load_session_learners / course_sessions | POST / GET | Fill attendance with invited learners / learner's sessions in a course |
 | discussion_list / discussion_post / discussion_accept / discussion_hide | GET / POST | Lesson Q&A |
+| team_overview | GET | Manager dashboard data |
+| export_space | GET | Download a space bundle (admins) |
+| run_content_import | POST | Run a TCD Content Import (admins) |
 
 ## Learner portal (P3)
 | Route | Page | Content |

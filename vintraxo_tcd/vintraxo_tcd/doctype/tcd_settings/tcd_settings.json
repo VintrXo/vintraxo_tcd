@@ -11,6 +11,7 @@
   "default_visibility",
   "default_review_months",
   "enable_discussions",
+  "sync_training_to_hr",
   "require_approval_before_publish",
   "playground_section",
   "enable_playgrounds",
@@ -78,6 +79,13 @@
    "label": "Enable Lesson Discussions",
    "default": "1",
    "description": "Learners can ask questions under lessons and articles; staff answer and moderate"
+  },
+  {
+   "fieldname": "sync_training_to_hr",
+   "fieldtype": "Check",
+   "label": "Record Completed Courses in HRMS",
+   "default": "1",
+   "description": "Needs HRMS: a completed course becomes a Training Event and Training Result for the employee"
   },
   {
    "default": "1",
@@ -221,7 +229,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 08:00:00.000000",
+ "modified": "2026-11-20 09:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

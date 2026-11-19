@@ -15,6 +15,7 @@
   "completion_section",
   "completion_rule",
   "minimum_score",
+  "minimum_attendance",
   "column_break_2",
   "self_enrollment",
   "access_section",
@@ -110,6 +111,12 @@
    "description": "Average of the best quiz scores across the items"
   },
   {
+   "fieldname": "minimum_attendance",
+   "fieldtype": "Percent",
+   "label": "Minimum Attendance (%)",
+   "description": "Share of the sessions held so far that the learner must attend (Late counts, Excused is left out); 0 means attendance does not count"
+  },
+  {
    "fieldname": "column_break_2",
    "fieldtype": "Column Break"
   },
@@ -195,7 +202,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 20:00:00.000000",
+ "modified": "2026-11-20 09:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

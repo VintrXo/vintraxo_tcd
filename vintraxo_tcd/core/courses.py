@@ -209,7 +209,9 @@ def _best_scores(user: str, contents: list[str]) -> dict:
 
 def course_status(user: str, course: str) -> dict:
 	"""Per-item and per-chapter state plus the course result under its completion rule."""
-	rule, minimum = frappe.db.get_value("TCD Course", course, ["completion_rule", "minimum_score"])
+	rule, minimum, min_attendance = frappe.db.get_value(
+		"TCD Course", course, ["completion_rule", "minimum_score", "minimum_attendance"]
+	)
 	items = course_items(course)
 	contents = [i["content"] for i in items]
 	done = _completed_contents(user, contents)
@@ -237,6 +239,14 @@ def course_status(user: str, course: str) -> dict:
 	score = flt(sum(scores.values()) / len(scores), 2) if scores else None
 	items_done = bool(required) and completed_required == len(required)
 	meets_score = rule != "Minimum Score" or score is None or score >= flt(minimum)
+	attendance = None
+	meets_attendance = True
+	if flt(min_attendance) > 0:
+		from vintraxo_tcd.core import sessions
+
+		attendance = sessions.attendance_percent(user, course)
+		# no session held yet: the requirement is not met
+		meets_attendance = attendance is not None and attendance >= flt(min_attendance)
 	return {
 		"course": course,
 		"rule": rule,
@@ -245,7 +255,9 @@ def course_status(user: str, course: str) -> dict:
 		"percent": percent,
 		"score": score,
 		"items_done": items_done,
-		"complete": items_done and meets_score,
+		"attendance": attendance,
+		"minimum_attendance": flt(min_attendance),
+		"complete": items_done and meets_score and meets_attendance,
 	}
 
 
