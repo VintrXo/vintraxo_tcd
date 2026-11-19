@@ -4,8 +4,9 @@
 
 {% block page_content %}
 <div class="tcd-page">
-	<header class="tcd-hero">
-		<h1>{{ _("Learning") }}</h1>
+	<header class="tcd-hero tcd-hero-main">
+		<h1>{% if is_guest %}{{ _("Learning") }}{% else %}{{ _("Welcome, {0}").format(full_name|e) }}{% endif %}</h1>
+		<p class="tcd-hero-sub">{{ _("Courses, lessons and company knowledge in one place.") }}</p>
 		<form class="tcd-search" method="get" action="/learn" role="search">
 			<input type="search" name="q" value="{{ query|e }}" placeholder="{{ _('Search lessons and articles') }}"
 				aria-label="{{ _('Search') }}" minlength="2">
@@ -61,12 +62,15 @@
 	</section>
 	{% endif %}
 
-	<p class="tcd-quicklinks"><a class="btn btn-default btn-sm" href="/learn/my">{{ _("My Learning") }}</a>
-		<a class="btn btn-default btn-sm" href="/learn/policies">{{ _("Policies and procedures") }}</a>
-		{% if is_instructor %}<a class="btn btn-default btn-sm" href="/learn/instructor">{{ _("Instructor Dashboard") }}</a>{% endif %}
-		{% if is_manager %}<a class="btn btn-default btn-sm" href="/learn/team">{{ _("My Team") }}</a>{% endif %}
-		{% if not is_guest %}<a class="btn btn-default btn-sm" href="/learn/profile">{{ _("My profile") }}</a>
-		<a class="btn btn-default btn-sm" href="/learn/jobs">{{ _("Internal jobs") }}</a>{% endif %}</p>
+	{% macro tile(href, label, icon) %}<a class="tcd-tile" href="{{ href }}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{{ icon|safe }}</svg><span>{{ label }}</span></a>{% endmacro %}
+	<nav class="tcd-quicklinks" aria-label="{{ _('Quick links') }}">
+		{{ tile("/learn/my", _("My Learning"), '<path d="M2 7l10-4 10 4-10 4z"/><path d="M6 9v5c0 2 3 3.5 6 3.5s6-1.5 6-3.5V9"/>') }}
+		{{ tile("/learn/policies", _("Policies and procedures"), '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>') }}
+		{% if is_instructor %}{{ tile("/learn/instructor", _("Instructor Dashboard"), '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>') }}{% endif %}
+		{% if is_manager %}{{ tile("/learn/team", _("My Team"), '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 15c3 0 5 2 5 4.5"/>') }}{% endif %}
+		{% if not is_guest %}{{ tile("/learn/profile", _("My profile"), '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>') }}
+		{{ tile("/learn/jobs", _("Internal jobs"), '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>') }}{% endif %}
+	</nav>
 
 	{% if my_enrollments %}
 	<section class="tcd-section">

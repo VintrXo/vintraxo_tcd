@@ -14,7 +14,7 @@
 		{% if e %}<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>{% endif %}
 		<h1>{{ doc.title|e }}</h1>
 		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
-		<p class="tcd-muted">{{ _("Completion rule") }}: {{ _(doc.completion_rule, context="TCD") }}{% if doc.completion_rule == "Minimum Score" %} ({{ doc.minimum_score|int }}%){% endif %}</p>
+		<p class="tcd-muted">{{ _("Completion rule") }}: {{ _(doc.completion_rule, context="TCD") }}{% if doc.completion_rule == "Minimum Score" %} (<span class="tcd-num">{{ doc.minimum_score|int }}%</span>){% endif %}</p>
 	</header>
 	{% if data.intro %}
 	<figure class="tcd-video tcd-intro">
@@ -32,7 +32,7 @@
 		{% if e %}
 		<div class="tcd-progress-row">
 			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ data.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ data.percent|int }}%"></span></span>
-			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}{% if data.minimum_attendance %} · <span class="tcd-attendance-rule">{{ _("Attendance {0}% of {1}% required").format(data.attendance|int if data.attendance is not none else 0, data.minimum_attendance|int) }}</span>{% endif %}</span>
+			<span class="tcd-muted"><span class="tcd-num">{{ data.percent|int }}%</span>{% if data.score is not none %} · {{ _("Score") }} <span class="tcd-num">{{ data.score|int }}%</span>{% endif %}{% if data.minimum_attendance %} · <span class="tcd-attendance-rule">{{ _("Attendance {0}% of {1}% required").format(data.attendance|int if data.attendance is not none else 0, data.minimum_attendance|int) }}</span>{% endif %}</span>
 		</div>
 		{% if certificate %}
 		<p class="tcd-callout tcd-callout-tip">{{ _("You earned a certificate for this course.") }}
@@ -123,12 +123,12 @@
 
 	{% for ch in data.chapters %}
 	<section class="tcd-section tcd-chapter">
-		<h2>{{ ch.title|e }} <span class="tcd-muted tcd-small">{{ ch.percent|int }}%</span></h2>
+		<h2>{{ ch.title|e }} <span class="tcd-muted tcd-small"><span class="tcd-num">{{ ch.percent|int }}%</span></span></h2>
 		<ol class="tcd-lessons">
 			{% for it in ch["items"] %}
 			{% set st = "completed" if it.completed else ("locked" if it.locked else "not-started") %}
 			<li class="tcd-lesson tcd-status-{{ st }}">
-				{% if it.locked %}<span aria-hidden="true">🔒</span> {% endif %}
+				{% if it.locked %}<span class="tcd-lock" aria-hidden="true"></span>{% endif %}
 				<a href="{{ it.url|e }}">{{ it.title|e }}</a>
 				{% if it.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
 				<span class="tcd-status tcd-status-{{ st }}">{{ _("Completed", context="TCD") if it.completed else (_("Locked", context="TCD") if it.locked else "") }}</span>

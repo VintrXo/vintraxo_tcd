@@ -19,7 +19,7 @@
 
 	<ul class="tcd-stats">
 		<li><strong>{{ s.members }}</strong><span>{{ _("Members") }}</span></li>
-		<li><strong>{{ s.compliance|int }}%</strong><span>{{ _("Mandatory training done") }}</span></li>
+		<li><strong><span class="tcd-num">{{ s.compliance|int }}%</span></strong><span>{{ _("Mandatory training done") }}</span></li>
 		<li class="{{ 'tcd-stat-warn' if s.overdue else '' }}"><strong>{{ s.overdue }}</strong><span>{{ _("Overdue") }}</span></li>
 		<li class="{{ 'tcd-stat-warn' if s.expiring_certificates else '' }}"><strong>{{ s.expiring_certificates }}</strong><span>{{ _("Certificates expiring in 30 days") }}</span></li>
 		<li class="{{ 'tcd-stat-warn' if s.pending_acknowledgments else '' }}"><strong>{{ s.pending_acknowledgments }}</strong><span>{{ _("Documents not acknowledged") }}</span></li>
@@ -38,7 +38,7 @@
 			{% for m in data.members %}
 			<tr>
 				<td><strong>{{ m.full_name|e }}</strong>{% if m.department %}<br><span class="tcd-muted tcd-small">{{ m.department|e }}</span>{% endif %}</td>
-				<td>{% if m.mandatory %}{{ m.mandatory_done }}/{{ m.mandatory }} ({{ m.compliance|int }}%){% else %}—{% endif %}</td>
+				<td>{% if m.mandatory %}{{ m.mandatory_done }}/{{ m.mandatory }} (<span class="tcd-num">{{ m.compliance|int }}%</span>){% else %}—{% endif %}</td>
 				<td class="{{ 'tcd-error' if m.overdue else '' }}">{{ m.overdue }}</td>
 				<td>{{ m.active }}</td><td>{{ m.completed }}</td>
 				<td class="{{ 'tcd-error' if m.expiring_certificates else '' }}">{{ m.expiring_certificates }}</td>

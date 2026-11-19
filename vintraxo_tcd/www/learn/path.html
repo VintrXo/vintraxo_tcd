@@ -30,7 +30,7 @@
 		{% if e %}
 		<div class="tcd-progress-row">
 			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ data.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ data.percent|int }}%"></span></span>
-			<span class="tcd-muted">{{ data.percent|int }}%</span>
+			<span class="tcd-muted"><span class="tcd-num">{{ data.percent|int }}%</span></span>
 		</div>
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
 		{% if e.status in ("Active", "Pending Approval") and not e.mandatory and not is_staff_preview %}
@@ -57,10 +57,10 @@
 			{% for c in data.courses %}
 			{% set st = "completed" if c.completed else ("locked" if c.locked else "not-started") %}
 			<li class="tcd-lesson tcd-status-{{ st }}">
-				{% if c.locked %}<span aria-hidden="true">🔒</span> {% endif %}
+				{% if c.locked %}<span class="tcd-lock" aria-hidden="true"></span>{% endif %}
 				<a href="{{ c.url|e }}">{{ c.title|e }}</a>
 				{% if c.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
-				<span class="tcd-status tcd-status-{{ st }}">{% if c.completed %}{{ _("Completed", context="TCD") }}{% elif c.percent %}{{ c.percent|int }}%{% endif %}</span>
+				<span class="tcd-status tcd-status-{{ st }}">{% if c.completed %}{{ _("Completed", context="TCD") }}{% elif c.percent %}<span class="tcd-num">{{ c.percent|int }}%</span>{% endif %}</span>
 			</li>
 			{% endfor %}
 		</ol>

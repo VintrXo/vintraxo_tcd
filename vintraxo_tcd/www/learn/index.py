@@ -10,6 +10,7 @@ no_cache = 1
 def get_context(context):
 	portal.require_portal(allow_guest=True)
 	context.is_guest = frappe.session.user == "Guest"
+	context.full_name = "" if context.is_guest else frappe.utils.get_fullname(frappe.session.user)
 	form = frappe.form_dict
 	request = getattr(frappe.local, "request", None)
 	picked = request.args.getlist("t") if request else []

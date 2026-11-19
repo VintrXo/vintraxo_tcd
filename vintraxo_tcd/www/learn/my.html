@@ -43,7 +43,7 @@
 					{% if e.mandatory %}<span class="tcd-badge tcd-badge-warn">{{ _("Mandatory") }}</span>{% endif %}
 					<strong>{{ e.title|e }}</strong>
 					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ e.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ e.percent|int }}%"></span></span>
-					<span class="tcd-muted">{{ e.percent|int }}%{% if e.due_date %} · {{ _("Due") }} {{ frappe.format_date(e.due_date) }}{% endif %}{% if e.overdue %} · <span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}</span>
+					<span class="tcd-muted"><span class="tcd-num">{{ e.percent|int }}%</span>{% if e.due_date %} · {{ _("Due") }} {{ frappe.format_date(e.due_date) }}{% endif %}{% if e.overdue %} · <span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}</span>
 				</a>
 			</li>
 			{% endfor %}
