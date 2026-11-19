@@ -192,7 +192,17 @@ before rendering Jinja). Templates are HTML now.
 
 ## Pending
 
-MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
+All plan phases (0–11) are built. Open items, each waiting for an input from the owner:
+
+| Item | Needs |
+|---|---|
+| Install on a clean site + restore test | Owner runs `bench new-site tcd-install-test.localhost --install-app vintraxo_tcd` (MariaDB root password) |
+| Production deployment (latest v16 on a fresh bench, SSL) + production load test | Server IP / OS / domain |
+| Code runner host (Judge0 on an isolated VM) | The production server (or a separate VM) |
+| Live AI check | An API key in AI Settings |
+
+Optional, not in the plan: writing training results back into HRMS; vector (embedding) search, which needs an
+embedding provider.
 
 ## Blocked / needs decision
 
