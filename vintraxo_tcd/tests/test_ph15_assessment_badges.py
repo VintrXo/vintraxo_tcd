@@ -125,7 +125,9 @@ class TestPhase15(TCDTestCase):
 		self.assertEqual(
 			paper["examples"], [{"input": "1", "expected_output": "2"}]
 		)  # hidden cases stay on the server
-		self.assertNotIn("6", json.dumps(paper))
+		dumped = json.dumps(paper)
+		for hidden in ('"input": "5"', '"expected_output": "6"', '"input": "9"', '"expected_output": "10"'):
+			self.assertNotIn(hidden, dumped)  # exact values: random ids may contain the digits
 		with patch(POST, side_effect=judge0_by_stdin({"1": "2", "5": "6", "9": "0"})):
 			res = api.submit_quiz(
 				quiz.name, {q.name: {"code": "print(int(input())+1)", "server_cases": [True, True, True]}}

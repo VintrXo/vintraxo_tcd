@@ -20,6 +20,9 @@
 - **Dark mode:** a toggle on every portal page, remembered per browser (localStorage); default is light. Code panels
   stay dark in both themes.
 
+- **Reference table block** (`reference`: optional title and language, entries "name | description | example").
+  Rendered as an escaped table with a filter box (more than 8 rows), highlighted examples, a link anchor per row,
+  and cards instead of columns on phones.
+
 ## Consequences
-No new DocTypes or fields. The structured reference pages and more server-run languages (W3Schools items 6 and 8)
-wait for real reference content and the Judge0 server.
+No new DocTypes or fields. More server-run languages (W3Schools item 8) wait for the Judge0 server.

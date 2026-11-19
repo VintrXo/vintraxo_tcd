@@ -486,6 +486,26 @@
 		});
 	}
 
+	// reference tables (Phase 17b): filter rows as the learner types
+	function initReference() {
+		document.querySelectorAll(".tcd-reference").forEach((box) => {
+			const input = box.querySelector(".tcd-reference-filter");
+			if (!input) return;
+			const rows = [...box.querySelectorAll("tbody tr")];
+			const empty = box.querySelector(".tcd-reference-empty");
+			input.addEventListener("input", () => {
+				const q = input.value.trim().toLowerCase();
+				let shown = 0;
+				rows.forEach((r) => {
+					const hit = !q || r.textContent.toLowerCase().includes(q);
+					r.hidden = !hit;
+					if (hit) shown += 1;
+				});
+				empty.hidden = shown > 0;
+			});
+		});
+	}
+
 	// side menu of the lesson page: closed on small screens, current item scrolled into view
 	function initOutline() {
 		const outline = document.querySelector(".tcd-outline");
@@ -736,6 +756,7 @@
 		const t0 = labels();
 		if (document.querySelector(".tcd-page")) initTheme(t0);
 		initExercises(t0);
+		initReference();
 		initOutline();
 		initProfile(t0);
 		initJobs(t0);

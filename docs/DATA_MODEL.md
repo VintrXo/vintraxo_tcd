@@ -328,6 +328,7 @@ folder, token, last sync).
 ## Phase 17
 No new DocTypes. New content block `exercise` (prompt, code with `___` blanks, answers — one per blank, `a | b`
 alternatives — optional language and hint); validated in `core/content.py` (blank count must equal answer count).
+New content block `reference` (entries "name | description | example", optional title and language; at most 500 entries).
 
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson

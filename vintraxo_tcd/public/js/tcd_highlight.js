@@ -224,6 +224,17 @@
 		});
 	}
 
+	function decorateInline() {
+		document.querySelectorAll(".tcd-reference").forEach((box) => {
+			const lang = box.dataset.language || "";
+			box.querySelectorAll("code.tcd-reference-example").forEach((c) => {
+				if (c.dataset.tcdHl) return;
+				c.dataset.tcdHl = "1";
+				c.innerHTML = highlightCode(c.textContent, lang);
+			});
+		});
+	}
+
 	function decorateEditors() {
 		document.querySelectorAll(".tcd-playground textarea.tcd-editor").forEach((area) => {
 			if (area.dataset.tcdHl) return;
@@ -256,6 +267,7 @@
 	function init() {
 		const t = labels();
 		decorateBlocks(t);
+		decorateInline();
 		decorateEditors();
 	}
 

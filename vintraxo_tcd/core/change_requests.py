@@ -24,6 +24,7 @@ EDITABLE = {
 	"markdown": ("text",),
 	"code": ("code",),
 	"exercise": ("prompt", "hint"),
+	"reference": ("title", "entries"),
 }
 PER_HOUR = 5
 

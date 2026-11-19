@@ -66,6 +66,13 @@ def to_markdown(doc) -> str:
 			lines.append("> " + title + (b.get("text") or "").replace("\n", "\n> "))
 		elif t == "image":
 			lines.append(f"![{b.get('alt') or ''}]({b.get('url') or ''})")
+		elif t == "reference":
+			rows = [
+				"| " + " | ".join(p.strip() for p in [*e.split("|", 2), "", ""][:3]) + " |"
+				for e in b.get("entries") or []
+			]
+			head = f"**{b['title']}**\n\n" if b.get("title") else ""
+			lines.append(head + "| Name | Description | Example |\n|---|---|---|\n" + "\n".join(rows))
 		elif t == "exercise":
 			lines.append("> **" + (b.get("prompt") or "") + "**")
 			lines.append(f"```{b.get('language') or ''}\n{b.get('code') or ''}\n```")

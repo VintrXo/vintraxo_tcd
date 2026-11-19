@@ -470,3 +470,27 @@ html[data-tcd-theme="dark"] .tcd-preview { background: #fff; }
 .tcd-playground-bar, .tcd-playground-actions { flex-wrap: wrap; }
 .tcd-playground-actions .btn { white-space: nowrap; }
 html[data-tcd-theme="dark"] .tcd-code, html[data-tcd-theme="dark"] .tcd-editor-wrap, html[data-tcd-theme="dark"] .tcd-markdown pre { box-shadow: 0 0 0 1px #26304f; }
+
+/* reference tables (Phase 17b) */
+.tcd-reference { margin-block: 1.5rem; }
+.tcd-reference-title { margin-block: 0 0.5rem; }
+.tcd-reference-filter { max-inline-size: 360px; margin-block-end: 0.75rem; }
+.tcd-reference-table { inline-size: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--tcd-border); border-radius: var(--tcd-radius); overflow: hidden; background: var(--tcd-surface); box-shadow: var(--tcd-shadow); font-size: 0.92rem; }
+.tcd-reference-table th, .tcd-reference-table td { padding: 0.6rem 0.9rem; border-block-end: 1px solid var(--tcd-border); vertical-align: top; text-align: start; }
+.tcd-reference-table thead th { background: var(--tcd-bg-soft); font-weight: 700; color: var(--tcd-muted); font-size: 0.8rem; }
+.tcd-reference-table tbody tr:last-child > * { border-block-end: 0; }
+.tcd-reference-table tbody tr:nth-child(even) { background: var(--tcd-bg-soft); }
+.tcd-reference-table tbody tr:target { outline: 2px solid var(--tcd-brand); outline-offset: -2px; }
+.tcd-reference-table tbody th code { color: var(--tcd-brand); background: var(--tcd-brand-soft); padding: 0.1rem 0.4rem; border-radius: 6px; font-weight: 700; white-space: nowrap; }
+.tcd-reference-example { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 6px; background: #0f172a; color: #e2e8f0; white-space: pre-wrap; }
+.tcd-reference-table tbody th[dir="ltr"], .tcd-reference-table td[dir="ltr"] { text-align: left; }
+html[data-tcd-theme="dark"] .web-footer, html[data-tcd-theme="dark"] footer, html[data-tcd-theme="dark"] hr { border-color: #1e293b !important; }
+.tcd-reference-table tr[hidden] { display: none !important; }
+@media (max-width: 600px) {
+	.tcd-reference-table thead { display: none; }
+	.tcd-reference-table, .tcd-reference-table tbody, .tcd-reference-table tr { display: block; }
+	.tcd-reference-table tr { padding: 0.65rem 0.85rem; border-block-end: 1px solid var(--tcd-border); }
+	.tcd-reference-table th, .tcd-reference-table td { display: block; border: 0; padding: 0.15rem 0; }
+	.tcd-reference-table tbody th[dir="ltr"] { text-align: start; }
+	.tcd-reference-example { display: block; overflow-x: auto; white-space: pre; }
+}

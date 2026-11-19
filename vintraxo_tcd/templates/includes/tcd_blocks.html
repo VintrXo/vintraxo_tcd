@@ -58,6 +58,27 @@
 			<p class="tcd-exercise-result" role="status" hidden></p>
 			<template class="tcd-exercise-answers">{{ b.answers|tojson }}</template>
 		</section>
+	{% elif b.type == "reference" %}
+		<section class="tcd-reference" data-language="{{ (b.language or '')|e }}">
+			{% if b.title %}<h3 class="tcd-reference-title">{{ b.title|e }}</h3>{% endif %}
+			{% if b.entries|length > 8 %}<input type="search" class="form-control tcd-reference-filter" placeholder="{{ _('Filter this reference') }}" aria-label="{{ _('Filter this reference') }}">{% endif %}
+			<div class="tcd-table-wrap">
+				<table class="tcd-reference-table">
+					<thead><tr><th scope="col">{{ _("Name") }}</th><th scope="col">{{ _("Description") }}</th><th scope="col">{{ _("Example") }}</th></tr></thead>
+					<tbody>
+						{% for entry in b.entries %}
+						{% set parts = (entry.split("|", 2) + ["", ""])[:3] %}
+						<tr id="ref-{{ loop.index }}-{{ parts[0]|trim|lower|replace(' ', '-')|e }}">
+							<th scope="row" dir="ltr"><code class="nohighlight">{{ parts[0]|trim|e }}</code></th>
+							<td>{{ parts[1]|trim|e }}</td>
+							<td dir="ltr">{% if parts[2]|trim %}<code class="nohighlight tcd-reference-example">{{ parts[2]|trim|e }}</code>{% endif %}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<p class="tcd-muted tcd-small tcd-reference-empty" hidden>{{ _("Nothing found. Try a shorter word.") }}</p>
+		</section>
 	{% elif b.type == "playground" and playground.enabled %}
 		<section class="tcd-playground" data-language="{{ b.language|e }}">
 			<div class="tcd-playground-bar" dir="ltr">

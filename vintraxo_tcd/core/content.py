@@ -42,8 +42,11 @@ BLOCK_SCHEMA = {
 		"language": (str, False),
 		"hint": (str, False),
 	},
+	# structured reference table (Phase 17b): one entry per line, "name | description | example"
+	"reference": {"entries": (list, True), "title": (str, False), "language": (str, False)},
 }
 BLANK = "___"
+MAX_REFERENCE_ENTRIES = 500
 
 # fields whose text goes into search_text, per block type
 SEARCHABLE = {
@@ -59,6 +62,7 @@ SEARCHABLE = {
 	"markdown": ("text",),
 	"file": ("title",),
 	"exercise": ("prompt", "code"),
+	"reference": ("title", "entries"),
 }
 
 
@@ -131,6 +135,19 @@ def _validate_block_values(idx: int, block: dict):
 				)
 			)
 		block["answers"] = [a.strip()[:200] for a in answers]
+	if btype == "reference":
+		if not all(isinstance(e, str) for e in block["entries"]):
+			frappe.throw(_("Block {0}: every reference entry must be text.").format(idx))
+		entries = [e.strip() for e in block["entries"] if e.strip()]
+		if not entries:
+			frappe.throw(_("Block {0}: add at least one reference entry.").format(idx))
+		if len(entries) > MAX_REFERENCE_ENTRIES:
+			frappe.throw(
+				_("Block {0}: a reference can have at most {1} entries.").format(idx, MAX_REFERENCE_ENTRIES)
+			)
+		if any(not e.split("|", 1)[0].strip() for e in entries):
+			frappe.throw(_("Block {0}: every reference entry needs a name before the first |.").format(idx))
+		block["entries"] = entries
 	if btype == "image" and not re.match(r"^(https?://|/)", block["url"]):
 		frappe.throw(_("Block {0}: image URL must be absolute (http/https) or start with /.").format(idx))
 	if btype in ("video", "link", "file"):

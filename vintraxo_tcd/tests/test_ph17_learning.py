@@ -109,3 +109,39 @@ class TestPhase17Learning(TCDTestCase):
 		labels = portal.js_labels()
 		for key in ("copy", "copied", "full_screen", "exit_full_screen", "exercise_correct", "theme_dark"):
 			self.assertTrue(labels.get(key))
+
+	def test_reference_block(self):
+		entries = [f"FN{i} | Does thing {i} | SELECT FN{i}(x) FROM t" for i in range(10)] + ["<b>bad</b> | x"]
+		block = {
+			"type": "reference",
+			"title": "SQL functions",
+			"language": "sql",
+			"entries": [*entries, "  "],
+		}
+		cleaned = svc.validate_blocks([block])[0]
+		self.assertEqual(len(cleaned["entries"]), 11)  # blank line dropped
+		for bad in (
+			{**block, "entries": []},
+			{**block, "entries": [" | no name"]},
+			{**block, "entries": [1]},
+		):
+			with self.assertRaises(frappe.ValidationError):
+				svc.validate_blocks([bad])
+		page = publish(
+			make_content(
+				self.space,
+				"Reference page",
+				content_type="Reference",
+				visibility="Public",
+				blocks=json.dumps([block]),
+			)
+		)
+		status, html, _ = render(f"/learn/{self.space}/{page.slug}", self.learner)
+		self.assertEqual(status, 200)
+		self.assertEqual(html.count('<tr id="ref-'), 11)
+		self.assertIn("tcd-reference-filter", html)  # more than 8 rows: filter box
+		self.assertIn("&lt;b&gt;bad&lt;/b&gt;", html)
+		self.assertNotIn("<b>bad</b>", html)
+		self.assertIn("SELECT FN3(x) FROM t", html)
+		md = github_sync.to_markdown(frappe.get_doc("TCD Content", page.name))
+		self.assertIn("| FN0 | Does thing 0 | SELECT FN0(x) FROM t |", md)

@@ -37,6 +37,14 @@ const TCD_BLOCK_TYPES = {
 			["hint", "text", __("Hint (optional)", null, "TCD Block")],
 		],
 	},
+	reference: {
+		label: __("Reference Table", null, "TCD Block"),
+		fields: [
+			["title", "data", __("Title", null, "TCD Block")],
+			["language", "data", __("Language", null, "TCD Block"), null, "ltr"],
+			["entries", "lines", __("Entries (one per line: name | description | example)", null, "TCD Block")],
+		],
+	},
 	video: {
 		label: __("Video", null, "TCD Block"),
 		fields: [
@@ -74,6 +82,7 @@ const TCD_REQUIRED = {
 	link: "url",
 	file: "url",
 	exercise: "prompt",
+	reference: "entries",
 };
 const TCD_LOCKED = ["Approved", "Published"];
 
