@@ -83,6 +83,7 @@ importable_doctypes = ["Number Card"]
 # 	"methods": "vintraxo_tcd.utils.jinja_methods",
 # 	"filters": "vintraxo_tcd.utils.jinja_filters"
 # }
+jinja = {"methods": ["vintraxo_tcd.core.portal.asset_version"]}
 
 # Installation
 # ------------
@@ -268,6 +269,7 @@ before_uninstall = "vintraxo_tcd.uninstall.before_uninstall"
 after_install = "vintraxo_tcd.install.after_install"
 
 permission_query_conditions = {
+	"TCD Session": "vintraxo_tcd.core.sessions.session_query",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_query",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_query",
 	"TCD Content": "vintraxo_tcd.core.permissions.content_query",
@@ -290,6 +292,7 @@ permission_query_conditions = {
 }
 
 has_permission = {
+	"TCD Session": "vintraxo_tcd.core.sessions.session_has_permission",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_has_permission",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_has_permission",
 	"TCD Content": "vintraxo_tcd.core.permissions.content_has_permission",
@@ -347,6 +350,7 @@ scheduler_events = {
 		"vintraxo_tcd.core.credentials.expire_certificates",
 		"vintraxo_tcd.core.governance.daily",
 		"vintraxo_tcd.core.training.daily",
+		"vintraxo_tcd.core.freshness.daily",
 		"vintraxo_tcd.core.integrations.purge_sent",
 	],
 }
@@ -357,7 +361,7 @@ doc_events = {
 	"Employee": {"on_update": "vintraxo_tcd.core.training.on_employee_update"},
 }
 
-doctype_js = {"TCD Content": "public/js/tcd_ai_desk.js"}
+doctype_js = {"TCD Content": ["public/js/tcd_ai_desk.js", "public/js/tcd_content_review.js"]}
 doctype_list_js = {"TCD Content": "public/js/tcd_ai_list.js"}
 
 # Extra AI providers: {"Name": "dotted.path.ProviderClass"} (see core/ai.py AnthropicProvider)

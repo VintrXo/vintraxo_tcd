@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
 {% set e = data.enrollment %}
@@ -28,6 +28,9 @@
 			<a href="/verify/{{ certificate.verification_code|urlencode }}" target="_blank" rel="noopener">{{ _("Verification link") }}</a></p>
 		{% endif %}
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
+		{% if e.status in ("Active", "Pending Approval") and not e.mandatory and not is_staff_preview %}
+		<button type="button" class="btn btn-default btn-xs tcd-withdraw" data-for="Course" data-name="{{ doc.name|e }}" data-confirm="{{ _('Leave this {0}? Your progress is kept if you enroll again.').format(_("course"))|e }}">{{ _("Withdraw") }}</button>
+		{% endif %}
 		{% elif unmet_prerequisites %}
 		<p class="tcd-callout tcd-callout-warning">{{ _("Complete these courses first: {0}").format(unmet_prerequisites|join(", ")|e) }}</p>
 		{% elif data.self_enrollment and not is_staff_preview %}
@@ -37,6 +40,34 @@
 		{% endif %}
 		<p class="tcd-message" role="status" hidden></p>
 	</section>
+
+	{% if sessions.upcoming or sessions.past %}
+	<section class="tcd-section tcd-sessions">
+		<h2>{{ _("Sessions") }}</h2>
+		{% if sessions.upcoming %}
+		<ul class="tcd-lessons">
+			{% for s in sessions.upcoming %}
+			<li class="tcd-lesson tcd-session">
+				<strong>{{ s.title|e }}</strong>
+				<span class="tcd-badge">{{ _(s.session_type, context="TCD") }}</span>
+				<span class="tcd-muted" dir="ltr">{{ frappe.utils.format_datetime(s.starts_on, "dd-MM-yyyy HH:mm") }}</span>
+				{% if s.location %}<span class="tcd-muted">· {{ s.location|e }}</span>{% endif %}
+				{% if s.meeting_url %}<a class="btn btn-default btn-xs" href="{{ s.meeting_url|e }}" target="_blank" rel="noopener noreferrer">{{ _("Join") }}</a>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% if sessions.past %}
+		<h3 class="tcd-small">{{ _("My attendance") }}</h3>
+		<ul class="tcd-lessons">
+			{% for s in sessions.past %}
+			<li class="tcd-lesson"><span>{{ s.title|e }}</span> <span class="tcd-muted" dir="ltr">{{ frappe.format_date(s.starts_on) }}</span>
+				<span class="tcd-status tcd-status-{{ (s.attendance or 'none')|lower }}">{{ _(s.attendance, context="TCD") if s.attendance else _("Not recorded") }}</span></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</section>
+	{% endif %}
 
 	<section class="tcd-section tcd-rating" data-course="{{ doc.name|e }}">
 		<p class="tcd-muted">
@@ -109,4 +140,4 @@
 </article>
 {% endblock %}
 
-{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

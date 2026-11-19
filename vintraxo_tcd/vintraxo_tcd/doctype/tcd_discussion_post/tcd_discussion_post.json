@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 08:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "content",
+  "thread",
+  "user",
+  "status",
+  "column_break_1",
+  "is_staff_answer",
+  "accepted",
+  "hidden",
+  "body_section",
+  "body"
+ ],
+ "fields": [
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "label": "Content",
+   "options": "TCD Content",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "thread",
+   "fieldtype": "Link",
+   "label": "Question",
+   "options": "TCD Discussion Post",
+   "search_index": 1,
+   "read_only": 1,
+   "description": "Empty for a question; the question for a reply"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nOpen\nAnswered",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_staff_answer",
+   "fieldtype": "Check",
+   "label": "Staff Answer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accepted",
+   "fieldtype": "Check",
+   "label": "Best Answer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Check",
+   "label": "Hidden",
+   "in_standard_filter": 1,
+   "description": "Hidden posts are not shown in the portal"
+  },
+  {
+   "fieldname": "body_section",
+   "fieldtype": "Section Break",
+   "label": "Text"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Small Text",
+   "label": "Text",
+   "reqd": 1,
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 08:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Discussion Post",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "write": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "in_create": 1,
+ "title_field": "body"
+}

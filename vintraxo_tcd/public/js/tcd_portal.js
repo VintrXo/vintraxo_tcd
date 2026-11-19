@@ -78,6 +78,109 @@
 		});
 	}
 
+	function initDiscussion(t) {
+		const section = document.querySelector(".tcd-discussion[data-content]");
+		if (!section) return;
+		const content = section.dataset.content;
+		const list = section.querySelector(".tcd-discussion-list");
+		const form = section.querySelector(".tcd-discussion-form");
+
+		const postEl = (p, data, thread) => {
+			const li = el("li", { class: "tcd-post" + (p.staff ? " tcd-post-staff" : "") + (p.hidden ? " tcd-post-hidden" : "") });
+			const head = el("div", { class: "tcd-muted tcd-small" });
+			head.append(el("strong", {}, p.author), document.createTextNode(" · " + p.when));
+			if (p.staff) head.append(el("span", { class: "tcd-badge" }, t.staff_answer));
+			if (p.accepted) head.append(el("span", { class: "tcd-badge tcd-badge-ok" }, "✓ " + t.best_answer));
+			if (p.hidden) head.append(el("span", { class: "tcd-badge tcd-badge-warn" }, t.hidden_post));
+			li.append(head, el("p", { class: "tcd-post-body" }, p.body));
+			const actions = el("div", { class: "tcd-post-actions" });
+			if (thread && !p.accepted && (data.can_moderate || thread.mine)) {
+				const b = el("button", { type: "button", class: "btn btn-link btn-xs" }, t.mark_best);
+				b.addEventListener("click", () => act("discussion_accept", { name: p.name }));
+				actions.append(b);
+			}
+			if (data.can_moderate) {
+				const b = el("button", { type: "button", class: "btn btn-link btn-xs" }, p.hidden ? t.show : t.hide);
+				b.addEventListener("click", () => act("discussion_hide", { name: p.name, hidden: p.hidden ? 0 : 1 }));
+				actions.append(b);
+			}
+			if (actions.children.length) li.append(actions);
+			return li;
+		};
+
+		const render = (data) => {
+			list.replaceChildren();
+			if (!data.threads.length) {
+				list.append(el("p", { class: "tcd-muted" }, t.no_questions));
+				return;
+			}
+			const ul = el("ul", { class: "tcd-threads" });
+			data.threads.forEach((q) => {
+				const li = postEl(q, data, null);
+				const replies = el("ul", { class: "tcd-replies" });
+				q.replies.forEach((r) => replies.append(postEl(r, data, q)));
+				li.append(replies);
+				if (!q.hidden) {
+					const f = el("form", { class: "tcd-reply-form" });
+					const box = el("textarea", { rows: "1", maxlength: "2000", required: "", class: "form-control", "aria-label": t.your_reply, placeholder: t.your_reply });
+					const send = el("button", { type: "submit", class: "btn btn-default btn-xs" }, t.reply);
+					f.append(box, send);
+					f.addEventListener("submit", (e) => {
+						e.preventDefault();
+						submit(box, send, { thread: q.name });
+					});
+					li.append(f);
+				}
+				ul.append(li);
+			});
+			list.append(ul);
+		};
+
+		const load = () => call("discussion_list", { content: content }).then(render);
+		const showError = (msg) => list.prepend(el("p", { class: "tcd-error" }, msg));
+		const act = (method, args) => call(method, args, true).then(load).catch((e) => showError(e.message));
+		const submit = async (box, button, extra) => {
+			const body = box.value.trim();
+			if (!body) return;
+			button.disabled = true;
+			try {
+				await call("discussion_post", Object.assign({ content: content, body: body }, extra || {}), true);
+				box.value = "";
+				await load();
+			} catch (e) {
+				showError(e.message);
+			} finally {
+				button.disabled = false;
+			}
+		};
+		form.addEventListener("submit", (e) => {
+			e.preventDefault();
+			submit(form.body, form.querySelector("button"));
+		});
+		load().catch((e) => showError(e.message));
+	}
+
+	function initWithdraw() {
+		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
+			btn.addEventListener("click", async () => {
+				if (!window.confirm(btn.dataset.confirm)) return;
+				const message = btn.closest("section")?.querySelector(".tcd-message");
+				btn.disabled = true;
+				try {
+					await call("withdraw", { enrollment_for: btn.dataset.for, name: btn.dataset.name }, true);
+					window.location.reload();
+				} catch (e) {
+					if (message) {
+						message.textContent = e.message;
+						message.hidden = false;
+						message.classList.add("tcd-error");
+					}
+					btn.disabled = false;
+				}
+			});
+		});
+	}
+
 	async function uploadPrivate(file) {
 		const form = new FormData();
 		form.append("file", file, file.name);
@@ -263,6 +366,7 @@
 
 	function init() {
 		initEnroll();
+		initWithdraw();
 		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);
@@ -270,6 +374,7 @@
 		initAcknowledge();
 		initApprove();
 		initAssistant(t0);
+		initDiscussion(t0);
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;
 		const t = labels();

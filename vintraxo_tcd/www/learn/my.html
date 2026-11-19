@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
 {% set s = data.summary %}
@@ -13,6 +13,23 @@
 		<li><strong>{{ s.completed }}</strong><span>{{ _("Completed", context="TCD") }}</span></li>
 		<li class="{{ 'tcd-stat-warn' if s.overdue else '' }}"><strong>{{ s.overdue }}</strong><span>{{ _("Overdue") }}</span></li>
 	</ul>
+
+	{% if data.sessions %}
+	<section class="tcd-section tcd-sessions">
+		<h2>{{ _("Upcoming sessions") }}</h2>
+		<ul class="tcd-lessons">
+			{% for s in data.sessions %}
+			<li class="tcd-lesson tcd-session">
+				<strong>{{ s.title|e }}</strong> <span class="tcd-muted">{{ s.course_title|e }}</span>
+				<span class="tcd-badge">{{ _(s.session_type, context="TCD") }}</span>
+				<span class="tcd-muted" dir="ltr">{{ frappe.utils.format_datetime(s.starts_on, "dd-MM-yyyy HH:mm") }}</span>
+				{% if s.location %}<span class="tcd-muted">· {{ s.location|e }}</span>{% endif %}
+				{% if s.meeting_url %}<a class="btn btn-default btn-xs" href="{{ s.meeting_url|e }}" target="_blank" rel="noopener noreferrer">{{ _("Join") }}</a>{% endif %}
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
 
 	<section class="tcd-section">
 		<h2>{{ _("My courses") }}</h2>
@@ -153,7 +170,7 @@
 				<strong>{{ a.title|e }}</strong>
 				<span class="tcd-status tcd-status-{{ a.status|lower|replace(' ', '-') }}">{{ _(a.status, context="TCD") }}</span>
 				{% if a.score is not none and a.status == "Graded" %}<span class="tcd-muted">{{ a.score }} / {{ a.max_score }}</span>{% endif %}
-				{% if a.due_date %}<span class="tcd-muted">{{ _("Due") }} {{ frappe.format_datetime(a.due_date) }}</span>{% endif %}
+				{% if a.due_date %}<span class="tcd-muted">{{ _("Due") }} {{ frappe.utils.format_datetime(a.due_date) }}</span>{% endif %}
 				{% if a.overdue %}<span class="tcd-error">{{ _("Overdue") }}</span>{% endif %}
 				{% if a.feedback %}<p class="tcd-muted tcd-small">{{ a.feedback|e }}</p>{% endif %}
 			</li>

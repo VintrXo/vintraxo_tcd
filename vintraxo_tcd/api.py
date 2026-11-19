@@ -168,8 +168,8 @@ def get_course(name: str) -> dict:
 		visible.append({**ch, "items": items})
 	enrollment = frappe.db.get_value(
 		"TCD Enrollment",
-		{"user": user, "course": course.name},
-		["name", "status", "percent", "score"],
+		{"user": user, "course": course.name, "status": ("!=", "Withdrawn")},
+		["name", "status", "percent", "score", "mandatory"],
 		as_dict=True,
 	)
 	return {
@@ -206,8 +206,8 @@ def get_learning_path(name: str) -> dict:
 		items.append({**c, "title": course.title, "slug": course.slug})
 	enrollment = frappe.db.get_value(
 		"TCD Enrollment",
-		{"user": user, "learning_path": path.name},
-		["name", "status", "percent"],
+		{"user": user, "learning_path": path.name, "status": ("!=", "Withdrawn")},
+		["name", "status", "percent", "mandatory"],
 		as_dict=True,
 	)
 	return {
@@ -241,6 +241,34 @@ def enroll(enrollment_for: str, name: str) -> dict:
 			frappe.throw(frappe._("Complete these courses first: {0}").format(", ".join(unmet)))
 	e = courses.enroll(frappe.session.user, enrollment_for, doc.name)
 	return {"name": e.name, "status": e.status, "percent": e.percent}
+
+
+@frappe.whitelist(methods=["POST"])
+def withdraw(enrollment_for: str, name: str) -> dict:
+	"""The current user leaves a course or path (not mandatory, not completed)."""
+	if enrollment_for not in courses.OFFERINGS:
+		frappe.throw(frappe._("Invalid enrollment type."))
+	field = courses.OFFERINGS[enrollment_for][1]
+	enrollment = frappe.db.get_value(
+		"TCD Enrollment", {"user": frappe.session.user, field: name, "status": ("!=", "Withdrawn")}
+	)
+	if not enrollment:
+		raise frappe.DoesNotExistError
+	doc = frappe.get_doc("TCD Enrollment", enrollment)
+	if doc.mandatory:
+		frappe.throw(frappe._("This training is mandatory. Ask your administrator."), frappe.PermissionError)
+	if doc.status == "Completed":
+		frappe.throw(frappe._("You already completed it."))
+	doc.status = "Withdrawn"
+	doc.save(ignore_permissions=True)
+	return {"status": doc.status}
+
+
+@frappe.whitelist(methods=["POST"])
+def confirm_content_review(name: str) -> dict:
+	from vintraxo_tcd.core import freshness
+
+	return freshness.confirm_review(name)
 
 
 @frappe.whitelist(methods=["POST"])
@@ -762,3 +790,52 @@ def test_runner() -> dict:
 	from vintraxo_tcd.core import runner
 
 	return runner.test_connection()
+
+
+# ---------------------------------------------------------------- sessions (Phase 12)
+
+
+@frappe.whitelist(methods=["POST"])
+def load_session_learners(name: str) -> int:
+	from vintraxo_tcd.core import sessions
+
+	return sessions.load_learners(name)
+
+
+@frappe.whitelist()
+def course_sessions(course: str) -> dict:
+	_readable("TCD Course", course)
+	from vintraxo_tcd.core import sessions
+
+	return sessions.for_course(course, frappe.session.user)
+
+
+# ---------------------------------------------------------------- discussions (Phase 12)
+
+
+@frappe.whitelist()
+def discussion_list(content: str) -> dict:
+	from vintraxo_tcd.core import discussions
+
+	return discussions.list_for(content, frappe.session.user)
+
+
+@frappe.whitelist(methods=["POST"])
+def discussion_post(content: str, body: str, thread: str | None = None) -> dict:
+	from vintraxo_tcd.core import discussions
+
+	return discussions.post(content, body, frappe.session.user, thread)
+
+
+@frappe.whitelist(methods=["POST"])
+def discussion_accept(name: str):
+	from vintraxo_tcd.core import discussions
+
+	discussions.accept(name, frappe.session.user)
+
+
+@frappe.whitelist(methods=["POST"])
+def discussion_hide(name: str, hidden: int = 1):
+	from vintraxo_tcd.core import discussions
+
+	discussions.set_hidden(name, hidden, frappe.session.user)

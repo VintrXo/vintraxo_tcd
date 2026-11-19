@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
 {% set e = data.enrollment %}
@@ -21,6 +21,9 @@
 			<span class="tcd-muted">{{ data.percent|int }}%</span>
 		</div>
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
+		{% if e.status in ("Active", "Pending Approval") and not e.mandatory and not is_staff_preview %}
+		<button type="button" class="btn btn-default btn-xs tcd-withdraw" data-for="Learning Path" data-name="{{ doc.name|e }}" data-confirm="{{ _('Leave this {0}? Your progress is kept if you enroll again.').format(_("learning path"))|e }}">{{ _("Withdraw") }}</button>
+		{% endif %}
 		{% elif data.self_enrollment and not is_staff_preview %}
 		<button type="button" class="btn btn-primary tcd-enroll" data-for="Learning Path" data-name="{{ doc.name|e }}">{{ _("Enroll") }}</button>
 		{% else %}
@@ -46,4 +49,4 @@
 </article>
 {% endblock %}
 
-{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

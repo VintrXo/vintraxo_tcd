@@ -134,3 +134,27 @@ class TestPhase11Hardening(TCDTestCase):
 			for path in ("/learn", "/learn/my", f"/learn/{self.space}", f"/learn/{self.space}/{page.slug}"):
 				status, _, _ = render(path, user)
 				self.assertEqual(status, 200, f"{user} {path}")
+
+	def test_pages_with_assignment_due_dates(self):
+		"""Regression: templates used frappe.format_datetime, which Jinja does not expose (500 error)."""
+		from frappe.utils import add_days, now_datetime
+
+		course = make_course(self.space, "Due course", [[self.l1]])
+		frappe.get_doc(
+			{
+				"doctype": "TCD Assignment",
+				"title": "Dated task",
+				"content": self.l1.name,
+				"course": course.name,
+				"max_score": 10,
+				"pass_score": 5,
+				"required_to_complete": 0,
+				"due_date": add_days(now_datetime(), 3),
+			}
+		).insert()
+		frappe.set_user(self.learner)
+		api.enroll("Course", course.name)
+		for path in (f"/learn/{self.space}/{self.l1.slug}", "/learn/my"):
+			status, html, _ = render(path, self.learner)
+			self.assertEqual(status, 200, path)
+			self.assertIn("Dated task", html)

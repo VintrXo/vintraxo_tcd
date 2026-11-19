@@ -277,7 +277,12 @@ def content_context(
 			item["url"] = content_url(space.name, item["slug"], doc.name)
 
 	quiz_required = bool(progress.required_quiz(doc.name))
+	from vintraxo_tcd.core import freshness
+
 	return {
+		"outdated": doc.status == "Published" and freshness.is_overdue(doc),
+		"discussions_enabled": bool(frappe.db.get_single_value("TCD Settings", "enable_discussions"))
+		and user != "Guest",
 		"space": space,
 		"doc": doc,
 		"lesson": lesson,
@@ -364,6 +369,17 @@ def js_labels() -> dict:
 		"manual_note": _("An instructor reviews this answer."),
 		"thinking": _("Looking in the pages you can access..."),
 		"running_on_server": _("Running on the code runner..."),
+		"ask": _("Ask", context="TCD"),
+		"reply": _("Reply"),
+		"no_questions": _("No questions yet. Be the first to ask."),
+		"staff_answer": _("Staff answer"),
+		"best_answer": _("Best answer"),
+		"mark_best": _("Mark as best answer"),
+		"hide": _("Hide"),
+		"show": _("Show", context="TCD"),
+		"hidden_post": _("Hidden"),
+		"your_question": _("Your question about this page"),
+		"your_reply": _("Your reply"),
 		"runner_compilation_error": _("Compilation error"),
 		"runner_runtime_error": _("Runtime error"),
 		"runner_time_limit": _("Stopped: time limit reached."),
@@ -434,7 +450,10 @@ def course_context(space_name: str, slug: str) -> dict:
 		)
 		if item:
 			prereqs.append(item)
+	from vintraxo_tcd.core import sessions
+
 	return {
+		"sessions": sessions.for_course(course.name, user),
 		"space": space,
 		"doc": course,
 		"data": data,
@@ -480,3 +499,21 @@ def path_context(space_name: str, slug: str) -> dict:
 		"is_staff_preview": path.status != "Published",
 		"js_labels": js_labels(),
 	}
+
+
+# ---------------------------------------------------------------- static asset versions
+
+
+def asset_version() -> str:
+	"""Cache-busting token for the app's own portal JS/CSS (they are served with a 12-hour cache).
+	Changes whenever one of the files changes, without needing a bench build."""
+	import os
+
+	base = frappe.get_app_path("vintraxo_tcd", "public")
+	latest = 0.0
+	for folder in ("js", "css"):
+		path = os.path.join(base, folder)
+		if os.path.isdir(path):
+			for name in os.listdir(path):
+				latest = max(latest, os.path.getmtime(os.path.join(path, name)))
+	return str(int(latest))

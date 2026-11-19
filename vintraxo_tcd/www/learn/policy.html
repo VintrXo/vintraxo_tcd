@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
 {% set p = policy %}
@@ -40,4 +40,4 @@
 </article>
 {% endblock %}
 
-{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

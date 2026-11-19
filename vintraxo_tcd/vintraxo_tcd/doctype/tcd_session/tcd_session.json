@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 07:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "course",
+  "batch",
+  "status",
+  "column_break_1",
+  "session_type",
+  "starts_on",
+  "ends_on",
+  "location",
+  "meeting_url",
+  "instructor",
+  "details_section",
+  "description",
+  "attendance_section",
+  "attendance"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "TCD Course",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "TCD Batch",
+   "in_standard_filter": 1,
+   "description": "Optional: only this batch is invited and listed for attendance"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Scheduled\nCompleted\nCancelled",
+   "default": "Scheduled",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "session_type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Classroom\nOnline",
+   "default": "Classroom"
+  },
+  {
+   "fieldname": "starts_on",
+   "fieldtype": "Datetime",
+   "label": "Starts On",
+   "reqd": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "ends_on",
+   "fieldtype": "Datetime",
+   "label": "Ends On",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location",
+   "depends_on": "eval:doc.session_type=='Classroom'"
+  },
+  {
+   "fieldname": "meeting_url",
+   "fieldtype": "Data",
+   "label": "Meeting Link",
+   "options": "URL",
+   "depends_on": "eval:doc.session_type=='Online'",
+   "description": "Shown only to invited learners"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "options": "User"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "attendance_section",
+   "fieldtype": "Section Break",
+   "label": "Attendance"
+  },
+  {
+   "fieldname": "attendance",
+   "fieldtype": "Table",
+   "label": "Attendance",
+   "options": "TCD Session Attendance",
+   "description": "Use Load Learners to list the invited learners; attendance can be taken once the session starts"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 07:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Session",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "starts_on",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "title_field": "title",
+ "show_title_field_in_link": 1,
+ "track_changes": 1,
+ "is_calendar_and_gantt": 1
+}

@@ -9,6 +9,8 @@
   "enable_portal",
   "column_break_1",
   "default_visibility",
+  "default_review_months",
+  "enable_discussions",
   "require_approval_before_publish",
   "playground_section",
   "enable_playgrounds",
@@ -61,6 +63,21 @@
    "fieldtype": "Select",
    "label": "Default Visibility",
    "options": "Public\nInternal\nRestricted"
+  },
+  {
+   "fieldname": "default_review_months",
+   "fieldtype": "Int",
+   "label": "Default Review Cycle (Months)",
+   "default": "12",
+   "non_negative": 1,
+   "description": "How often published pages are checked for accuracy; 0 turns reviews off"
+  },
+  {
+   "fieldname": "enable_discussions",
+   "fieldtype": "Check",
+   "label": "Enable Lesson Discussions",
+   "default": "1",
+   "description": "Learners can ask questions under lessons and articles; staff answer and moderate"
   },
   {
    "default": "1",
@@ -204,7 +221,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 05:00:00.000000",
+ "modified": "2026-11-20 08:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

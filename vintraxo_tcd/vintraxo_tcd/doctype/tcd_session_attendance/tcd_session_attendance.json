@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 07:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "full_name",
+  "status",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "Learner",
+   "options": "User",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "fetch_from": "user.full_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Attendance",
+   "options": "\nPresent\nLate\nAbsent\nExcused",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "label": "Note",
+   "in_list_view": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 07:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Session Attendance",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

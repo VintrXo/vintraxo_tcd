@@ -276,6 +276,16 @@ TCD Content gains `ai_generated`; TCD Question gains `ai_status` (Needs Review /
 TCD Settings gains the Code Runner section (enabled, URL, token, limits, languages). TCD Question gains
 `grade_on_server`; `code_language` adds java, cpp, c, go, csharp, bash.
 
+## Phase 12: sessions, discussions, freshness
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Session | Classroom / online session of a course | title, course, batch, status (Scheduled/Completed/Cancelled), session_type, starts_on, ends_on, location, meeting_url, instructor, attendance (TCD Session Attendance) |
+| TCD Session Attendance (child) | One learner's attendance | user, status (Present/Late/Absent/Excused), note |
+| TCD Discussion Post | Question (no thread) or reply under a page | content, thread, user, body (plain text), status, is_staff_answer, accepted, hidden |
+
+TCD Content gains content_owner, review_cycle_months, skip_review, last_reviewed_on, next_review_date.
+TCD Settings gains default_review_months and enable_discussions.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

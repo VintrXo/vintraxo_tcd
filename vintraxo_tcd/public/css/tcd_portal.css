@@ -192,3 +192,15 @@
 .tcd-assistant-answer { white-space: pre-wrap; line-height: 1.8; padding: 0.75rem 1rem; border-radius: 8px; background: var(--tcd-bg-soft); }
 .tcd-assistant-answer sup a { text-decoration: none; margin-inline-start: 2px; }
 .tcd-assistant-sources { padding-inline-start: 1.5rem; }
+
+/* sessions and discussions (Phase 12) */
+.tcd-session .btn { margin-inline-start: 0.5rem; }
+.tcd-threads, .tcd-replies { list-style: none; padding-inline-start: 0; }
+.tcd-replies { padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--tcd-bg-soft); margin-block: 0.5rem; }
+.tcd-post { padding-block: 0.5rem; }
+.tcd-post-body { white-space: pre-wrap; margin: 0.25rem 0; }
+.tcd-post-staff > .tcd-post-body { border-inline-start: 3px solid var(--tcd-accent, #2563eb); padding-inline-start: 0.5rem; }
+.tcd-post-hidden { opacity: 0.55; }
+.tcd-badge-ok { color: #15803d; }
+.tcd-reply-form { display: flex; gap: 0.5rem; align-items: flex-start; }
+.tcd-reply-form textarea { flex: 1; }

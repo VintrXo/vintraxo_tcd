@@ -105,6 +105,16 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - TCD Code Run: System Manager and TCD Administrator read/delete; stores a hash, not the code.
 - Grading output comes from the runner only; a learner cannot supply it.
 
+## Phase 12
+- TCD Session: admins full; TCD Instructor create/read/write only for sessions of courses they instruct (or where
+  they are the session instructor); reviewers read. Learners have no Desk access; they see their sessions through
+  the portal, and the meeting link only when invited.
+- TCD Discussion Post: created only by `api.discussion_post` for readers of a published page; Desk edits limited to
+  moderation (hidden); moderators = page owner, instructors of courses using the page, reviewers, admins.
+- `api.withdraw`: own enrollment only, not mandatory, not completed. `api.confirm_content_review`: write on the page.
+- Reports: TCD Attendance (admins, instructors — rows from their sessions only), TCD Content Freshness (admins,
+  reviewers).
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

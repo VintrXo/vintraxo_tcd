@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% macro item_card(row) %}
 <li class="tcd-card">

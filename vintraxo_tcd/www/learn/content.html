@@ -1,7 +1,7 @@
 {% extends "templates/web.html" %}
 {% from "templates/includes/tcd_blocks.html" import render_blocks %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
 <article class="tcd-page tcd-content" dir="{{ dir }}" lang="{{ doc.language|e }}"
@@ -13,6 +13,9 @@
 	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status, context="TCD")) }}</div>
 	{% endif %}
 
+	{% if outdated %}
+	<div class="tcd-callout tcd-callout-warning tcd-outdated">{{ _("This page may be out of date: its review was due on {0}.").format(frappe.format_date(doc.next_review_date)) }}{% if doc.last_reviewed_on %} {{ _("Last reviewed on {0}.").format(frappe.format_date(doc.last_reviewed_on)) }}{% endif %}</div>
+	{% endif %}
 	<header class="tcd-hero">
 		<span class="tcd-badge">{{ _(doc.content_type, context="TCD") }}</span>
 		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress, context="TCD") }}</span>
@@ -66,7 +69,7 @@
 		{% if a.instructions %}<p class="tcd-paragraph">{{ a.instructions|e }}</p>{% endif %}
 		<p class="tcd-muted">
 			{{ _("Pass score") }}: {{ "%g"|format(a.pass_score) }} / {{ "%g"|format(a.max_score) }}
-			{% if a.due_date %} · {{ _("Due") }} {{ frappe.format_datetime(a.due_date) }}{% endif %}
+			{% if a.due_date %} · {{ _("Due") }} {{ frappe.utils.format_datetime(a.due_date) }}{% endif %}
 		</p>
 		{% if sub %}
 		<div class="tcd-callout tcd-callout-{{ 'tip' if sub.status == 'Graded' and sub.passed else ('warning' if sub.status != 'Submitted' else 'info') }}">
@@ -175,6 +178,17 @@
 		<p class="tcd-message" role="status" hidden></p>
 	</footer>
 
+	{% if discussions_enabled and doc.status == "Published" %}
+	<section class="tcd-section tcd-discussion" data-content="{{ doc.name|e }}">
+		<h2>{{ _("Questions and discussion") }}</h2>
+		<form class="tcd-discussion-form">
+			<textarea name="body" rows="2" maxlength="2000" required class="form-control" aria-label="{{ _('Your question about this page') }}" placeholder="{{ _('Your question about this page') }}"></textarea>
+			<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-sm">{{ _("Ask", context="TCD") }}</button></p>
+		</form>
+		<div class="tcd-discussion-list" aria-live="polite"></div>
+	</section>
+	{% endif %}
+
 	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 	<script type="application/json" id="tcd-playground-config">{{ playground_json }}</script>
 </article>
@@ -182,6 +196,6 @@
 
 {% block script %}
 {{ super() }}
-<script defer src="/assets/vintraxo_tcd/js/tcd_playground.js"></script>
-<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_playground.js?v={{ asset_version() }}"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>
 {% endblock %}

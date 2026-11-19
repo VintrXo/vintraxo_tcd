@@ -44,6 +44,9 @@
 | integrations.py | Connector validation (SSRF guard), event emit to the outbox, signed delivery, retry/backoff, rate limit, cron queue, purge |
 | ai.py | AI gateway: providers, access/limits/budget, redaction, usage log, permission-filtered retrieval, assistant with citations, smart search, summary, question and lesson drafts |
 | runner.py | Code runner client (Judge0 API): settings, limits, practice runs, grading output, run log, connection test |
+| sessions.py | Sessions: permissions, invited learners, attendance validation, notifications, learner views, attendance report |
+| discussions.py | Lesson Q&A: posting, moderation, best answer, notifications, rate limit |
+| freshness.py | Content owner and review cycle, overdue notice, review reminders, freshness report |
 | training.py | HR link (guarded Employee lookup), training rules (match, enroll, mandatory, due), role guides, training compliance |
 
 ## Public API (`vintraxo_tcd.api.*`)
@@ -92,6 +95,10 @@
 | ai_draft_lesson | POST | Lesson saved as Draft with ai_generated (TCD Content create) |
 | run_code | POST | Practice run on the isolated code runner (logged-in, rate-limited) |
 | test_runner | POST | Runner version and language check (TCD Settings write) |
+| withdraw | POST | Leave an optional, not-completed course or path |
+| confirm_content_review | POST | Mark a published page as still accurate |
+| load_session_learners / course_sessions | POST / GET | Fill attendance with invited learners / learner's sessions in a course |
+| discussion_list / discussion_post / discussion_accept / discussion_hide | GET / POST | Lesson Q&A |
 
 ## Learner portal (P3)
 | Route | Page | Content |

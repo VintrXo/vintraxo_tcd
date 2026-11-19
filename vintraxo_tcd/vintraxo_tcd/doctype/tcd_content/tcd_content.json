@@ -32,7 +32,14 @@
   "approved_by",
   "column_break_3",
   "approved_on",
-  "published_on"
+  "published_on",
+  "freshness_section",
+  "content_owner",
+  "skip_review",
+  "review_cycle_months",
+  "column_break_freshness",
+  "last_reviewed_on",
+  "next_review_date"
  ],
  "fields": [
   {
@@ -229,10 +236,54 @@
    "label": "Published On",
    "read_only": 1,
    "no_copy": 1
+  },
+  {
+   "fieldname": "freshness_section",
+   "fieldtype": "Section Break",
+   "label": "Review Cycle",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "content_owner",
+   "fieldtype": "Link",
+   "label": "Content Owner",
+   "options": "User",
+   "description": "Keeps this page up to date and gets the review reminders"
+  },
+  {
+   "fieldname": "skip_review",
+   "fieldtype": "Check",
+   "label": "No Review Needed",
+   "description": "For pages that do not go out of date (e.g. a glossary)"
+  },
+  {
+   "fieldname": "review_cycle_months",
+   "fieldtype": "Int",
+   "label": "Review Every (Months)",
+   "non_negative": 1,
+   "description": "0 uses the default in Learning Settings",
+   "depends_on": "eval:!doc.skip_review"
+  },
+  {
+   "fieldname": "column_break_freshness",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_reviewed_on",
+   "fieldtype": "Date",
+   "label": "Last Reviewed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date",
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "links": [],
- "modified": "2026-11-20 04:00:00.000000",
+ "modified": "2026-11-20 06:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

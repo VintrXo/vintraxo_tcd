@@ -124,6 +124,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 9 — AI gateway | d02dc01 | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
 | Phase 11 — Hardening and release | 4accf76 | 146 | Security review + tests, code-answer review option, indexes, load test, backup check, Arabic/RTL pass, user/admin/developer/deployment docs, release notes |
 | Phase 10 — Code runner (Frappe side) | 4defe64 | 154 | Judge0 client, run log, practice runs for Java/C++/C/Go/C#/Bash, server grading that ignores device output, Test Runner; runner host not set up |
+| Phase 12 — Gaps from the vision review | this commit | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -189,6 +190,16 @@ before rendering Jinja). Templates are HTML now.
   content and enrollment, 4 `tcd-*@test.local` users, 9 orphan child rows / relations, 8 notification error logs) and
   rebuilt the demo with `demo.create_demo`. Notification Logs from before the incident are not recoverable (the 08:30
   backup had none).
+
+## Phase 12 — Gaps found against the vision
+
+| Gap | State |
+|---|---|
+| Instructors run batches, but no sessions / attendance | Done: TCD Session + attendance, calendar, notifications, portal, TCD Attendance report |
+| Learners cannot ask about a page | Done: lesson discussions with moderation and best answers |
+| Articles and lessons go stale | Done: owner + review cycle, overdue notice, reminders, TCD Content Freshness report |
+| Learners cannot leave an optional course | Done: Withdraw (not for mandatory or completed) |
+| Found while building | Fixed: `frappe.format_datetime` is not available in Jinja (lesson page and My Learning crashed for assignments with a due date); withdrawn learners saw no Enroll button; portal JS cached 12 hours after updates; new settings read as off on existing sites |
 
 ## Pending
 
