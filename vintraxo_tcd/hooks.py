@@ -269,6 +269,7 @@ before_uninstall = "vintraxo_tcd.uninstall.before_uninstall"
 after_install = "vintraxo_tcd.install.after_install"
 
 permission_query_conditions = {
+	"TCD Job Application": "vintraxo_tcd.core.careers.application_query",
 	"TCD Session": "vintraxo_tcd.core.sessions.session_query",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_query",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_query",
@@ -292,6 +293,7 @@ permission_query_conditions = {
 }
 
 has_permission = {
+	"TCD Job Application": "vintraxo_tcd.core.careers.application_has_permission",
 	"TCD Session": "vintraxo_tcd.core.sessions.session_has_permission",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_has_permission",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_has_permission",
@@ -321,6 +323,8 @@ website_route_rules = [
 	{"from_route": "/verify/<code>", "to_route": "verify"},
 	{"from_route": "/learn/instructor", "to_route": "learn/instructor"},
 	{"from_route": "/learn/team", "to_route": "learn/team"},
+	{"from_route": "/learn/profile", "to_route": "learn/profile"},
+	{"from_route": "/learn/jobs", "to_route": "learn/jobs"},
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
 	{"from_route": "/learn/<space>/course/<slug>", "to_route": "learn/course"},
 	{"from_route": "/learn/<space>/path/<slug>", "to_route": "learn/path"},

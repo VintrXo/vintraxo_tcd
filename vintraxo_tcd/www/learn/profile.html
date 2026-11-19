@@ -1,0 +1,84 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
+
+{% block page_content %}
+{% set p = data %}
+<div class="tcd-page tcd-profile">
+	<header class="tcd-hero">
+		<h1>{{ p.full_name|e }}</h1>
+		{% if p.headline %}<p class="tcd-muted">{{ p.headline|e }}</p>{% endif %}
+	</header>
+
+	{% if p.bio %}<section class="tcd-section"><p class="tcd-post-body">{{ p.bio|e }}</p></section>{% endif %}
+
+	{% if p.skills %}
+	<section class="tcd-section">
+		<h2>{{ _("Skills") }}</h2>
+		<ul class="tcd-skills">
+			{% for sk in p.skills %}
+			<li><strong>{{ sk.skill|e }}</strong> <span class="tcd-level" aria-label="{{ _('Level {0} of 5').format(sk.level) }}">{% for n in range(1, 6) %}<i class="{{ 'on' if n <= sk.level|int else '' }}"></i>{% endfor %}</span></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.certificates %}
+	<section class="tcd-section">
+		<h2>{{ _("Certificates") }}</h2>
+		<ul class="tcd-lessons">
+			{% for c in p.certificates %}<li class="tcd-lesson"><a href="/verify/{{ c.verification_code|urlencode }}">{{ c.title|e }}</a> <span class="tcd-muted tcd-small">{{ frappe.format_date(c.issued_on) }}</span></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.badges %}
+	<section class="tcd-section">
+		<h2>{{ _("Badges") }}</h2>
+		<ul class="tcd-badges">
+			{% for b in p.badges %}<li>{% if b.image %}<img src="{{ b.image|e }}" alt="">{% else %}<span class="tcd-badge-icon" aria-hidden="true">🏅</span>{% endif %}<strong class="tcd-small">{{ b.badge|e }}</strong></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.experience %}
+	<section class="tcd-section">
+		<h2>{{ _("Experience") }}</h2>
+		<ul class="tcd-lessons">
+			{% for e in p.experience %}<li class="tcd-lesson"><strong>{{ e.job_title|e }}</strong> · {{ e.company|e }} <span class="tcd-muted tcd-small" dir="ltr">{{ e.from_year or "" }}–{{ e.to_year or _("now") }}</span></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.education %}
+	<section class="tcd-section">
+		<h2>{{ _("Education") }}</h2>
+		<ul class="tcd-lessons">
+			{% for e in p.education %}<li class="tcd-lesson"><strong>{{ e.degree|e }}</strong> · {{ e.institution|e }} <span class="tcd-muted tcd-small">{{ e.year or "" }}</span></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.own %}
+	<details class="tcd-section tcd-profile-edit">
+		<summary>{{ _("Edit my profile") }}</summary>
+		<form class="tcd-profile-form">
+			<label class="tcd-small">{{ _("Headline") }}<input name="headline" class="form-control" maxlength="140" value="{{ (p.headline or '')|e }}"></label>
+			<label class="tcd-small">{{ _("About") }}<textarea name="bio" class="form-control" rows="3" maxlength="2000">{{ (p.bio or '')|e }}</textarea></label>
+			<label class="tcd-small">{{ _("Experience (one per line: job title | company | from year | to year)") }}
+				<textarea name="experience" class="form-control" rows="3">{% for e in p.experience %}{{ e.job_title|e }} | {{ e.company|e }} | {{ e.from_year or "" }} | {{ e.to_year or "" }}
+{% endfor %}</textarea></label>
+			<label class="tcd-small">{{ _("Education (one per line: degree | institution | year)") }}
+				<textarea name="education" class="form-control" rows="3">{% for e in p.education %}{{ e.degree|e }} | {{ e.institution|e }} | {{ e.year or "" }}
+{% endfor %}</textarea></label>
+			<label class="tcd-small"><input type="checkbox" name="public_profile" {% if p.public_profile %}checked{% endif %}> {{ _("Visible to colleagues") }}</label>
+			<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-sm">{{ _("Save") }}</button></p>
+			<p class="tcd-muted tcd-small tcd-profile-status" aria-live="polite"></p>
+		</form>
+	</details>
+	{% endif %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

@@ -132,6 +132,14 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - TCD Badge: admins manage, everyone with a TCD role reads; TCD Badge Award: admins manage, instructors read,
   learners see their own in My Learning.
 
+## Phase 16
+- Guest: read role on portal DocTypes, narrowed by `guest_allowed()` (setting on + portal render, never `/api/`) to
+  published Public content in Public spaces; never write.
+- TCD Payment: admins read; created only by checkout; the gateway confirms through `on_payment_authorized`.
+- TCD Coupon: admins. SCORM upload and GitHub sync: administrators only.
+- TCD Learner Profile: owner edits through the portal; others see it only when shared. TCD Job Application: admins
+  and the job's hiring manager (`application_has_permission` / `application_query`).
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

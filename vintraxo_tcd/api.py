@@ -1026,3 +1026,20 @@ def github_pull(space: str) -> dict:
 	from vintraxo_tcd.core import github_sync
 
 	return github_sync.pull(space)
+
+
+# ---------------------------------------------------------------- profile and job board (Phase 16)
+
+
+@frappe.whitelist(methods=["POST"])
+def save_profile(data) -> dict:
+	from vintraxo_tcd.core import careers
+
+	return careers.save(frappe.session.user, frappe.parse_json(data) if isinstance(data, str) else data)
+
+
+@frappe.whitelist(methods=["POST"])
+def apply_for_job(job: str, cover_note: str = "", resume: str | None = None) -> str:
+	from vintraxo_tcd.core import careers
+
+	return careers.apply(job, frappe.session.user, cover_note, resume or None)

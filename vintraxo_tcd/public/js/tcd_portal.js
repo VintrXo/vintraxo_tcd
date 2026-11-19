@@ -386,6 +386,54 @@
 		window.addEventListener("pagehide", () => commit(true));
 	}
 
+	function initProfile(t) {
+		const form = document.querySelector(".tcd-profile-form");
+		if (!form) return;
+		const rows = (text, keys) =>
+			text
+				.split("\n")
+				.map((line) => line.split("|").map((x) => x.trim()))
+				.filter((parts) => parts.some(Boolean))
+				.map((parts) => Object.fromEntries(keys.map((k, i) => [k, parts[i] || ""])));
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const status = form.querySelector(".tcd-profile-status");
+			const data = {
+				headline: form.headline.value,
+				bio: form.bio.value,
+				public_profile: form.public_profile.checked ? 1 : 0,
+				experience: rows(form.experience.value, ["job_title", "company", "from_year", "to_year"]),
+				education: rows(form.education.value, ["degree", "institution", "year"]),
+			};
+			try {
+				await call("save_profile", { data: JSON.stringify(data) }, true);
+				window.location.reload();
+			} catch (err) {
+				status.textContent = err.message;
+			}
+		});
+	}
+
+	function initJobs(t) {
+		document.querySelectorAll(".tcd-job[data-job] .tcd-apply-form").forEach((form) => {
+			form.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				const status = form.querySelector(".tcd-apply-status");
+				const button = form.querySelector("button");
+				button.disabled = true;
+				try {
+					const file = form.resume.files[0];
+					const resume = file ? await uploadPrivate(file) : null;
+					await call("apply_for_job", { job: form.closest(".tcd-job").dataset.job, cover_note: form.cover_note.value, resume: resume }, true);
+					window.location.reload();
+				} catch (err) {
+					status.textContent = err.message;
+					button.disabled = false;
+				}
+			});
+		});
+	}
+
 	function initWithdraw() {
 		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -595,6 +643,8 @@
 		initWithdraw();
 		initBuy();
 		initScorm();
+		initProfile(t0);
+		initJobs(t0);
 		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);

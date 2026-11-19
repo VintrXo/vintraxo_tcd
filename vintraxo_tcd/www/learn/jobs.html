@@ -1,0 +1,43 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page tcd-jobs">
+	<header class="tcd-hero"><h1>{{ _("Internal jobs") }}</h1>
+		<p class="tcd-muted">{{ _("Open positions in the company. The match shows how many required skills you already earned.") }}</p></header>
+	{% if jobs %}
+	<ul class="tcd-cards">
+		{% for j in jobs %}
+		<li class="tcd-card tcd-job" data-job="{{ j.name|e }}">
+			<div>
+				<span class="tcd-badge">{{ _(j.employment_type, context="TCD") }}</span>
+				<span class="tcd-badge {{ 'tcd-badge-ok' if j.match >= 100 else '' }}">{{ _("Match {0}%").format(j.match|int) }}</span>
+				<strong>{{ j.title|e }}</strong>
+				<span class="tcd-muted tcd-small">{{ (j.department or "")|e }}{% if j.location %} · {{ j.location|e }}{% endif %}{% if j.closes_on %} · {{ _("Closes on {0}").format(frappe.format_date(j.closes_on)) }}{% endif %}</span>
+				{% if j.description %}<p class="tcd-post-body tcd-small">{{ j.description|e }}</p>{% endif %}
+				{% if j.skills %}<p class="tcd-small">{% for s in j.skills %}<span class="tcd-badge">{{ s.skill|e }} · {{ s.level }}</span> {% endfor %}</p>{% endif %}
+				{% if j.applied %}
+				<p class="tcd-status tcd-status-completed">{{ _("Applied") }}</p>
+				{% else %}
+				<details><summary>{{ _("Apply") }}</summary>
+					<form class="tcd-apply-form">
+						<textarea name="cover_note" class="form-control" rows="3" maxlength="2000" placeholder="{{ _('Why are you a good fit?') }}" aria-label="{{ _('Cover note') }}"></textarea>
+						<label class="tcd-small">{{ _("CV (optional)") }} <input type="file" name="resume" accept=".pdf,.doc,.docx"></label>
+						<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-sm">{{ _("Send application") }}</button></p>
+						<p class="tcd-muted tcd-small tcd-apply-status" aria-live="polite"></p>
+					</form>
+				</details>
+				{% endif %}
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p class="tcd-muted">{{ _("No open positions right now.") }}</p>
+	{% endif %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

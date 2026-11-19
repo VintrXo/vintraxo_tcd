@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Published Content\", \"col\": 4}}, {\"id\": \"tcd-nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Content In Review\", \"col\": 4}}, {\"id\": \"tcd-nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Enrollments\", \"col\": 4}}, {\"id\": \"tcd-nc3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Submissions To Grade\", \"col\": 4}}, {\"id\": \"tcd-nc4\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Acknowledgment Compliance\", \"col\": 4}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Courses\", \"col\": 3}}, {\"id\": \"tcd-sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Enrollments\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}, {\"id\": \"7qaQnjUDw6\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"lrZuAp0uc8\", \"type\": \"card\", \"data\": {\"card_name\": \"Content\", \"col\": 4}}, {\"id\": \"nnXMQv8aka\", \"type\": \"card\", \"data\": {\"card_name\": \"Courses and Learning\", \"col\": 4}}, {\"id\": \"gGBQOLRVDn\", \"type\": \"card\", \"data\": {\"card_name\": \"Training and Sessions\", \"col\": 4}}, {\"id\": \"D6aP7FEGUp\", \"type\": \"card\", \"data\": {\"card_name\": \"Assessment\", \"col\": 4}}, {\"id\": \"ZMX4iH8kPs\", \"type\": \"card\", \"data\": {\"card_name\": \"Skills and Certificates\", \"col\": 4}}, {\"id\": \"1WN3hAWbai\", \"type\": \"card\", \"data\": {\"card_name\": \"Governance\", \"col\": 4}}, {\"id\": \"0NzVQPdt8x\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}, {\"id\": \"epVeGGqmk9\", \"type\": \"card\", \"data\": {\"card_name\": \"Integrations and AI\", \"col\": 4}}, {\"id\": \"OMCZLcut7z\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings\", \"col\": 4}}]",
+ "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Published Content\", \"col\": 4}}, {\"id\": \"tcd-nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Content In Review\", \"col\": 4}}, {\"id\": \"tcd-nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Enrollments\", \"col\": 4}}, {\"id\": \"tcd-nc3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Submissions To Grade\", \"col\": 4}}, {\"id\": \"tcd-nc4\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Acknowledgment Compliance\", \"col\": 4}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Courses\", \"col\": 3}}, {\"id\": \"tcd-sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Enrollments\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}, {\"id\": \"7qaQnjUDw6\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"lrZuAp0uc8\", \"type\": \"card\", \"data\": {\"card_name\": \"Content\", \"col\": 4}}, {\"id\": \"nnXMQv8aka\", \"type\": \"card\", \"data\": {\"card_name\": \"Courses and Learning\", \"col\": 4}}, {\"id\": \"gGBQOLRVDn\", \"type\": \"card\", \"data\": {\"card_name\": \"Training and Sessions\", \"col\": 4}}, {\"id\": \"D6aP7FEGUp\", \"type\": \"card\", \"data\": {\"card_name\": \"Assessment\", \"col\": 4}}, {\"id\": \"ZMX4iH8kPs\", \"type\": \"card\", \"data\": {\"card_name\": \"Skills and Certificates\", \"col\": 4}}, {\"id\": \"1WN3hAWbai\", \"type\": \"card\", \"data\": {\"card_name\": \"Governance\", \"col\": 4}}, {\"id\": \"0NzVQPdt8x\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}, {\"id\": \"epVeGGqmk9\", \"type\": \"card\", \"data\": {\"card_name\": \"Integrations and AI\", \"col\": 4}}, {\"id\": \"OMCZLcut7z\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings\", \"col\": 4}}, {\"id\": \"cardSalesand\", \"type\": \"card\", \"data\": {\"card_name\": \"Sales and Careers\", \"col\": 4}}]",
  "creation": "2026-11-19 01:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -613,9 +613,67 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales and Careers",
+   "link_count": 5,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupons",
+   "link_count": 0,
+   "link_to": "TCD Coupon",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Payments",
+   "link_count": 0,
+   "link_to": "TCD Payment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Openings",
+   "link_count": 0,
+   "link_to": "TCD Job Opening",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Job Applications",
+   "link_count": 0,
+   "link_to": "TCD Job Application",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Learner Profiles",
+   "link_count": 0,
+   "link_to": "TCD Learner Profile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-11-20 14:30:00.000000",
+ "modified": "2026-11-20 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VintraXo TCD",

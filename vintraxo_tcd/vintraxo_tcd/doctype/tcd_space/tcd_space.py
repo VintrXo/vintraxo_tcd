@@ -4,7 +4,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
-RESERVED = {"my", "instructor", "course", "path", "search", "policies", "team"}
+RESERVED = {"my", "instructor", "course", "path", "search", "policies", "team", "profile", "jobs"}
 
 
 class TCDSpace(Document):

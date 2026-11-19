@@ -313,6 +313,18 @@ video_percent, video_watch; TCD Settings gains enable_change_requests.
 TCD Quiz gains negative_marking, negative_mark_percent, enable_proctoring, max_violations; TCD Quiz Submission gains
 violations, flagged.
 
+## Phase 16
+| DocType | Purpose |
+|---|---|
+| TCD Coupon (+ TCD Coupon Item), TCD Payment | Coupons and payments of paid courses / paths |
+| TCD Learner Profile (+ Education, Experience) | Learner profile (private by default) |
+| TCD Job Opening (+ TCD Job Skill), TCD Job Application | Internal job board |
+
+New fields: TCD Settings (enable_guest_access, meeting provider + Zoom credentials + Google Calendar, payment_gateway,
+allow_scorm); TCD Session (conferencing, meeting_id, host_url, calendar_event); TCD Course / Path (paid, price,
+currency); TCD Content (scorm_package, scorm_launch); TCD Progress (scorm_data); TCD Space (GitHub repository, branch,
+folder, token, last sync).
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

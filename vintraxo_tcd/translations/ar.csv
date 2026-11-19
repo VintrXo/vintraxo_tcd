@@ -61,6 +61,7 @@ API Key,مفتاح API,TCD AI Settings
 About,حول
 About,نبذة,TCD
 About,نبذة,TCD Course
+About,نبذة,TCD Learner Profile
 About,نبذة,TCD Learning Path
 Absent,غائب
 Absent,غائب,TCD
@@ -68,6 +69,7 @@ Absent,غائب,TCD Session Attendance
 Accept,قبول
 Accepted,مقبول
 Accepted,مقبول,TCD Change Request
+Accepted,مقبول,TCD Job Application
 Accepted Answers,الإجابات المقبولة,TCD Question
 Access,الوصول
 Access Token,مفتاح الوصول,TCD Space
@@ -143,6 +145,10 @@ Answers must be an object of question id -> answer.,يجب أن تكون الإ�
 Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
 Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
 Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
+Applicant,المتقدّم,TCD Job Application
+Application,الطلب,TCD Job Application
+Applications are sent from the job board.,الطلبات تُرسل من لوحة الوظائف.
+Applied,تم التقديم
 Applies To,ينطبق على,TCD Coupon
 Apply,تطبيق
 Apply Now,طبّق الآن
@@ -255,6 +261,8 @@ Browse spaces,تصفّح المساحات
 Buy,الشراء
 Buy,شراء,TCD
 CPU Time Limit (Seconds),حد وقت المعالج (ثوانٍ),TCD Settings
+CV,السيرة الذاتية,TCD Job Application
+CV (optional),السيرة الذاتية (اختياري)
 Calendar Event,حدث التقويم,TCD Session
 Callout,تنبيه
 Callout,تنبيه,TCD Block
@@ -309,6 +317,10 @@ Choose what to enroll in.,اختر ما تريد التسجيل فيه.
 Classroom,حضوري
 Classroom,حضوري,TCD
 Classroom,حضوري,TCD Session
+Closed,مغلق
+Closed,مغلقة,TCD Job Opening
+Closes On,يُغلق في,TCD Job Opening
+Closes on {0},يُغلق في {0}
 Code,الكود,TCD Coupon
 Code,رمز
 Code,كود,TCD Block
@@ -327,6 +339,7 @@ Comment,التعليق,TCD Content Feedback
 Comment,التعليق,TCD Course Feedback
 Comment,تعليق
 Comment (optional),تعليق (اختياري)
+Company,الشركة,TCD Profile Experience
 Company,الشركة,TCD Rule HR Filter
 Company,شركة
 Compare with Current,مقارنة بالنسخة الحالية
@@ -388,6 +401,9 @@ Content versions are created automatically on approval.,تُنشأ نسخ الم
 Content versions cannot be changed.,لا يمكن تعديل نسخ المحتوى.
 Continue learning,تابع التعلّم
 Continue your course,تابع دورتك
+Contract,عقد
+Contract,عقد,TCD
+Contract,عقد,TCD Job Opening
 Copied Text,نسخ نص
 Copied Text,نسخ نص,TCD Quiz Violation
 Copy,نسخ
@@ -402,6 +418,7 @@ Could not read the Vimeo video id.,تعذّر قراءة معرّف فيديو V
 Could not read the YouTube video id.,تعذّر قراءة معرّف فيديو YouTube.
 Coupon,كود الخصم,TCD Payment
 Coupon code,كود الخصم
+Coupons,أكواد الخصم
 Course,الدورة,TCD Assignment
 Course,الدورة,TCD Assignment Submission
 Course,الدورة,TCD Coupon Item
@@ -428,6 +445,8 @@ Courses and Paths,الدورات والمسارات,TCD Coupon
 Courses and learning paths,الدورات ومسارات التعلّم
 Cover Image,صورة الغلاف,TCD Course
 Cover Image,صورة الغلاف,TCD Learning Path
+Cover Note,رسالة التقديم,TCD Job Application
+Cover note,رسالة التقديم
 Create Meeting With,إنشاء الاجتماع عبر,TCD Session
 Create Meetings With,إنشاء الاجتماعات عبر,TCD Settings
 Created Space,المساحة المُنشأة,TCD Content Import
@@ -449,10 +468,12 @@ Default Content Language,لغة المحتوى الافتراضية
 Default Review Cycle (Months),دورة المراجعة الافتراضية (شهور),TCD Settings
 Default Visibility,الظهور الافتراضي
 Defaults to TCD Settings > Default Visibility,القيمة الافتراضية من إعدادات التعلّم > الظهور الافتراضي
+Degree,الدرجة,TCD Profile Education
 Delete,حذف
 Delete this block?,حذف هذه الكتلة؟
 Delivery,الإرسال,TCD Connector
 Department,القسم,TCD Governance Department
+Department,القسم,TCD Job Opening
 Department,القسم,TCD Rule HR Filter
 Department,قسم
 Department name as in ERPNext; ignored when ERPNext is not installed,اسم القسم كما في ERPNext؛ يُتجاهل إذا لم يكن ERPNext مثبتًا,TCD Governance Department
@@ -461,6 +482,7 @@ Description,الوصف,TCD Badge
 Description,الوصف,TCD Batch
 Description,الوصف,TCD Block
 Description,الوصف,TCD Category
+Description,الوصف,TCD Job Opening
 Description,الوصف,TCD Session
 Description,الوصف,TCD Space
 Description,الوصف,TCD Student Group
@@ -469,6 +491,7 @@ Description,وصف
 Designation,المسمى الوظيفي
 Designation,المسمى الوظيفي,TCD Rule HR Filter
 Details,التفاصيل,TCD AI Usage Log
+Details,التفاصيل,TCD Job Opening
 Details,التفاصيل,TCD Session
 Discount,الخصم,TCD Coupon
 Discount,الخصم,TCD Payment
@@ -507,16 +530,22 @@ Duplicate,مكررة
 Each case runs on the code runner with its input; points are shared by the cases that pass,كل حالة تعمل على مشغّل الأكواد بمدخلاتها؛ الدرجة تُوزَّع على الحالات الناجحة
 Each case runs on the code runner with its input; points are shared by the cases that pass,كل حالة تعمل على مشغّل الأكواد بمدخلاتها؛ الدرجة تُوزَّع على الحالات الناجحة,TCD Question
 Each role can be listed only once.,لا يمكن تكرار الدور.
+Edit my profile,تعديل ملفي
 Edits Accepted,تعديلات مقبولة
 Edits Accepted,تعديلات مقبولة,TCD Badge
+Education,التعليم
+Education,التعليم,TCD Learner Profile
+Education (one per line: degree | institution | year),التعليم (سطر لكل مؤهل: الدرجة | الجهة | السنة)
 Effective Date,تاريخ السريان,TCD Governance Document
 Effective Date,تاريخ السريان,TCD Governance Version
 Effective from {0},ساري من {0}
 Effort,مستوى الجهد,TCD AI Settings
 Employee,الموظف
+Employment Type,نوع التوظيف,TCD Job Opening
 Empty for a question; the question for a reply,فارغ للسؤال؛ ويحدد السؤال عند الرد,TCD Discussion Post
 Empty means every paid course and path,فارغ يعني كل الدورات والمسارات المدفوعة
 Empty means every paid course and path,فارغ يعني كل الدورات والمسارات المدفوعة,TCD Coupon
+Empty means until now,فارغ يعني حتى الآن,TCD Profile Experience
 Empty: paste your own meeting link,فارغ: الصق رابط الاجتماع بنفسك,TCD Session
 Enable AI,تفعيل الذكاء الاصطناعي,TCD AI Settings
 Enable Code Runner,تفعيل مشغّل الأكواد,TCD Settings
@@ -573,6 +602,9 @@ Expected Output,المخرجات المتوقعة,TCD Question Test Case
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
 Expected output,المخرجات المتوقعة
+Experience,الخبرة
+Experience,الخبرة,TCD Learner Profile
+Experience (one per line: job title | company | from year | to year),الخبرة (سطر لكل وظيفة: المسمى | الشركة | من سنة | إلى سنة)
 Expired,انتهى
 Expired,منتهية,TCD
 Expired,منتهية,TCD Certificate
@@ -623,6 +655,7 @@ For pages that do not go out of date (e.g. a glossary),للصفحات التي �
 For the instructor only (starts the meeting as host),للمدرّب فقط (يبدأ الاجتماع كمضيف),TCD Session
 Free,مجاني
 Free,مجاني,TCD Payment
+From,من,TCD Profile Experience
 From Content,من المحتوى
 From Date,من تاريخ
 From a Zoom Server-to-Server OAuth app with the meeting:write scope,من تطبيق Zoom من نوع Server-to-Server OAuth بصلاحية meeting:write,TCD Settings
@@ -632,12 +665,16 @@ Full Name,الاسم,TCD Team Member
 Full Name,الاسم الكامل
 Full Name,الاسم الكامل,TCD Enrollment
 Full Name,الاسم الكامل,TCD Student Group Member
+Full-time,دوام كامل
+Full-time,دوام كامل,TCD
+Full-time,دوام كامل,TCD Job Opening
 Fully Competent,مكتمل الكفاءة
 Gap,الفجوة
 General,عام
 General,عام,TCD AI Settings
 Generate,إنشاء
 Generate quiz questions,إنشاء أسئلة اختبار
+Gets the applications,تصله الطلبات,TCD Job Opening
 GitHub Sync,المزامنة مع GitHub,TCD Space
 GitHub refused the update of {0} ({1}).,رفض GitHub تحديث {0} ({1}).
 GitHub returned an error ({0}).,أعاد GitHub خطأ ({0}).
@@ -671,6 +708,8 @@ HR Training Event,حدث التدريب في الموارد البشرية,TCD E
 HR filters need ERPNext/HRMS. Until it is installed this rule matches nobody.,فلاتر الموارد البشرية تحتاج ERPNext/HRMS. حتى يتم تثبيته لن تنطبق هذه القاعدة على أحد.
 Heading,الترويسة
 Heading,عنوان,TCD Block
+Headline,نبذة قصيرة
+Headline,نبذة قصيرة,TCD Learner Profile
 Helpful,مفيدة,TCD Content Feedback
 Helpful %,نسبة الإفادة
 Hidden,مخفي
@@ -678,6 +717,7 @@ Hidden,مخفي,TCD Discussion Post
 Hidden,مخفية,TCD Question Test Case
 Hidden posts are not shown in the portal,المشاركات المخفية لا تظهر في البوابة,TCD Discussion Post
 Hide,إخفاء
+Hiring Manager,مدير التوظيف,TCD Job Opening
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
 Host Link,رابط المضيف,TCD Session
@@ -704,6 +744,7 @@ Input,المدخلات
 Input,المدخلات,TCD Question Test Case
 Input Price per Million Tokens (USD),سعر المدخلات لكل مليون رمز (دولار),TCD AI Settings
 Input Tokens,رموز المدخلات,TCD AI Usage Log
+Institution,الجهة,TCD Profile Education
 Instructions,التعليمات,TCD Assignment
 Instructor,المدرّب,TCD Session
 Instructor Dashboard,لوحة المدرّب
@@ -726,6 +767,10 @@ Internal,داخلي,TCD Learning Path
 Internal,داخلي,TCD Settings
 Internal,داخلي,TCD Space
 Internal Links,الروابط الداخلية,TCD Content
+Internal jobs,وظائف داخلية
+Internship,تدريب
+Internship,تدريب,TCD
+Internship,تدريب,TCD Job Opening
 Intro Video,فيديو تعريفي,TCD Course
 Intro Video,فيديو تعريفي,TCD Learning Path
 Intro video,فيديو تعريفي
@@ -743,6 +788,10 @@ Items (one per line),العناصر (عنصر في كل سطر)
 Items (one per line),العناصر (عنصر في كل سطر),TCD Block
 JSON,JSON,TCD Connector
 JSON sends the full event; Slack sends a short text message to an incoming webhook,JSON يرسل الحدث كاملًا؛ سلاك يرسل رسالة نصية قصيرة إلى Incoming Webhook,TCD Connector
+Job Applications,طلبات التوظيف
+Job Opening,الوظيفة,TCD Job Application
+Job Openings,الوظائف المتاحة
+Job Title,المسمى الوظيفي,TCD Profile Experience
 Join,انضم
 Keep Prompt Text in the Usage Log,حفظ نص الطلب في سجل الاستخدام,TCD AI Settings
 Keep it under {0} characters.,اجعلها أقل من {0} حرفًا.
@@ -781,6 +830,7 @@ Learner,المتعلم
 Learner,المتعلم,TCD Enrollment
 Learner,المتعلم,TCD Session Attendance
 Learner Portal,بوابة المتعلمين
+Learner Profiles,ملفات المتعلمين
 Learner Progress,تقدّم المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
@@ -823,6 +873,7 @@ Lessons Completed,دروس مكتملة
 Lessons Completed,دروس مكتملة,TCD Badge
 Level,المستوى
 Level,المستوى,TCD Block
+Level,المستوى,TCD Job Skill
 Level {0} of 5,المستوى {0} من 5
 Limits and Cost,الحدود والتكلفة,TCD AI Settings
 Link URL (https),رابط (https),TCD Block
@@ -834,6 +885,7 @@ List,قائمة,TCD Block
 "List of blocks: heading, paragraph, code, callout, list, image, playground",قائمة كتل: عنوان، فقرة، كود، تنبيه، قائمة، صورة، محرر أكواد
 Load Learners,تحميل المتعلمين
 Loading runtime (first run can take a few seconds)...,جارٍ تحميل بيئة التشغيل (أول تشغيل قد يستغرق بضع ثوانٍ)...
+Location,المكان,TCD Job Opening
 Location,المكان,TCD Session
 Location,الموقع
 Location,الموقع,TCD Content
@@ -861,6 +913,7 @@ Mark as best answer,اختيار كأفضل إجابة
 Mark as complete,تحديد كمكتمل
 Markdown,ماركداون,TCD Block
 Markdown (links: [[page-slug]]),ماركداون (الروابط: [[معرّف-الصفحة]]),TCD Block
+Match {0}%,التطابق {0}%
 Matching,توصيل
 Matching,توصيل,TCD Question
 Matching pairs must look like: left => right,أزواج التوصيل يجب أن تكون بالشكل: يسار => يمين
@@ -908,6 +961,7 @@ My certificates,شهاداتي
 My courses,دوراتي
 My direct reports,تابعيّ المباشرون
 My notes,ملاحظاتي
+My profile,ملفي
 My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
@@ -922,6 +976,7 @@ Negative Marking,الدرجات السالبة,TCD Quiz
 Never Send Restricted Content,لا ترسل المحتوى المقيّد أبدًا,TCD AI Settings
 Never read,لم تُقرأ قط
 New Space Name,اسم المساحة الجديدة,TCD Content Import
+New application for {0} from {1},طلب جديد على {0} من {1}
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 New documents start as Draft.,المستندات الجديدة تبدأ كمسودة.
 New question on {0},سؤال جديد على {0}
@@ -944,6 +999,7 @@ No certificate matches this code.,لا توجد شهادة بهذا الرمز.
 No content here yet.,لا يوجد محتوى هنا بعد.
 No differences.,لا توجد فروق.
 No documents are addressed to you.,لا توجد مستندات موجهة إليك.
+No open positions right now.,لا توجد وظائف متاحة حاليًا.
 No questions yet. Be the first to ask.,لا توجد أسئلة بعد. كن أول من يسأل.
 No ratings yet,لا توجد تقييمات بعد
 No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
@@ -1014,12 +1070,14 @@ Only the person who asked or a moderator can choose the best answer.,صاحب ا
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
 Only you can see them,لا يراها غيرك
 Open,فتح
+Open,متاحة,TCD Job Opening
 Open,مفتوح,TCD
 Open,مفتوح,TCD Change Request
 Open,مفتوح,TCD Course
 Open,مفتوح,TCD Discussion Post
 Open Gaps,فجوات مفتوحة
 Open file,فتح الملف
+Open positions in the company. The match shows how many required skills you already earned.,الوظائف المتاحة في الشركة. نسبة التطابق توضح كم من المهارات المطلوبة اكتسبتها بالفعل.
 Open the full report,افتح التقرير الكامل
 "Option numbers starting at 1, comma separated (e.g. 2 or 1,3). True False: 1 = True, 2 = False","أرقام الخيارات بدءًا من 1 مفصولة بفاصلة (مثل 2 أو 1,3). صح/خطأ: 1 = صح، 2 = خطأ"
 Optional,اختياري
@@ -1033,6 +1091,7 @@ Ordering,ترتيب,TCD Question
 Original File,الملف الأصلي,TCD Governance Document
 Original File,الملف الأصلي,TCD Governance Version
 Original file,الملف الأصلي
+"Other signed-in users can see this profile, skills, certificates and badges",يمكن لباقي المستخدمين المسجّلين رؤية هذا الملف والمهارات والشهادات والشارات,TCD Learner Profile
 Output,المخرجات,TCD Code Run
 Output Price per Million Tokens (USD),سعر المخرجات لكل مليون رمز (دولار),TCD AI Settings
 Output Tokens,رموز المخرجات,TCD AI Usage Log
@@ -1064,6 +1123,9 @@ Parent Page,الصفحة الأب,TCD Content
 Parent Page must be in the same space.,يجب أن تكون الصفحة الأب في نفس المساحة.
 Parent Page would create a loop.,الصفحة الأب ستُنشئ حلقة دائرية.
 Part of,جزء من
+Part-time,دوام جزئي
+Part-time,دوام جزئي,TCD
+Part-time,دوام جزئي,TCD Job Opening
 Pass Percentage,نسبة النجاح
 Pass Score,درجة النجاح,TCD Assignment
 Pass percentage must be between 1 and 100.,نسبة النجاح يجب أن تكون بين 1 و100.
@@ -1084,6 +1146,7 @@ Payment Gateway,بوابة الدفع,TCD Payment
 Payment Gateway,بوابة الدفع,TCD Settings
 Payment for {0},دفع مقابل {0}
 Payment received: you are enrolled in {0},تم استلام الدفع: تم تسجيلك في {0}
+Payments,المدفوعات
 Payments,المدفوعات,TCD Settings
 Payments are created by the checkout.,المدفوعات تُنشأ من صفحة الشراء.
 Pending,قيد الانتظار,TCD Content Import
@@ -1144,6 +1207,7 @@ Prices and budget cannot be negative.,لا يمكن أن تكون الأسعار
 Privacy,الخصوصية,TCD AI Settings
 Proctoring,المراقبة,TCD Quiz
 Profile Name,اسم الملف,TCD Competency Profile
+Profiles are edited from the learning portal.,الملفات تُعدّل من بوابة التعلّم.
 Progress,التقدّم,TCD
 Progress,التقدّم,TCD Enrollment
 Progress,تقدم
@@ -1239,6 +1303,7 @@ Refused,مرفوض,TCD AI Usage Log
 Reject,رفض
 Rejected,مرفوض
 Rejected,مرفوض,TCD Change Request
+Rejected,مرفوض,TCD Job Application
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
 Related Learning,التعلّم المرتبط,TCD Governance Document
@@ -1265,6 +1330,7 @@ Required Sequence,تسلسل إلزامي
 Required Sequence,تسلسل إلزامي,TCD
 Required Sequence,تسلسل إلزامي,TCD Course
 Required Sequence,تسلسل إلزامي,TCD Learning Path
+Required Skills,المهارات المطلوبة,TCD Job Opening
 Required to Complete Content,مطلوب لإكمال المحتوى
 Requirements,المتطلبات,TCD Competency Profile
 Requires Manual Review,يتطلب مراجعة يدوية,TCD Question
@@ -1305,6 +1371,8 @@ Reviewed,تمت المراجعة,TCD Question
 Reviewed On,تاريخ المراجعة,TCD Change Request
 Reviewed: still accurate.,تمت المراجعة: ما زالت صحيحة.
 Reviewer,المراجع,TCD Change Request
+Reviewing,قيد المراجعة
+Reviewing,قيد المراجعة,TCD Job Application
 Revision,قيد التعديل
 Revision,قيد التعديل,TCD Governance Document
 Revocation,الإلغاء,TCD Certificate
@@ -1358,6 +1426,7 @@ SOP,إجراء تشغيلي,TCD
 SOP,إجراء تشغيلي,TCD Governance Document
 SQL,SQL,TCD Question
 SQL.js Base URL,رابط SQL.js الأساسي
+Sales and Careers,المبيعات والوظائف
 Same block format as TCD Content,نفس صيغة كتل المحتوى التعليمي,TCD Content Template
 Save Review,حفظ المراجعة
 Save rating,حفظ التقييم
@@ -1385,6 +1454,7 @@ Semantic Search,البحث الذكي,TCD AI Usage Log
 Semantic search: the model adds synonyms and related terms (only the query is sent),البحث الذكي: يضيف النموذج مرادفات وكلمات قريبة (تُرسل عبارة البحث فقط),TCD AI Settings
 Send,إرسال
 Send Test,إرسال تجربة
+Send application,أرسل الطلب
 Send for Approval,إرسال للاعتماد
 Send for Review,إرسال للمراجعة
 Send suggestion,أرسل الاقتراح
@@ -1421,9 +1491,11 @@ Signs every request with HMAC-SHA256 (X-TCD-Signature header),يوقّع كل ط
 Single Choice,اختيار واحد
 Skill,المهارة
 Skill,المهارة,TCD Competency Requirement
+Skill,المهارة,TCD Job Skill
 Skill,المهارة,TCD Skill Award
 Skill,المهارة,TCD User Skill
 Skill Group,مجموعة المهارة,TCD Skill
+Skill Match,تطابق المهارات,TCD Job Application
 Skill Name,اسم المهارة,TCD Skill
 Skills,المهارات
 Skills Awarded,المهارات الممنوحة,TCD Course
@@ -1485,6 +1557,8 @@ Status,الحالة,TCD Course
 Status,الحالة,TCD Discussion Post
 Status,الحالة,TCD Enrollment
 Status,الحالة,TCD Integration Event
+Status,الحالة,TCD Job Application
+Status,الحالة,TCD Job Opening
 Status,الحالة,TCD Learning Path
 Status,الحالة,TCD Payment
 Status,الحالة,TCD Progress
@@ -1506,6 +1580,7 @@ Submit again,إرسال مرة أخرى
 Submit answers,إرسال الإجابات
 Submit for Review,إرسال للمراجعة
 Submitted,مُرحَّل
+Submitted,مُرسل,TCD Job Application
 Submitted,مُسلَّم,TCD
 Submitted,مُسلَّم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Assignment Submission
@@ -1573,12 +1648,18 @@ TCD Governance Role,دور مستهدف
 TCD Governance Version,نسخة مستند معتمدة
 TCD Instructor Dashboard,لوحة المدرّب
 TCD Integration Event,حدث تكامل
+TCD Job Application,طلب توظيف
+TCD Job Opening,وظيفة متاحة
+TCD Job Skill,مهارة مطلوبة
 TCD Knowledge Usage,استخدام المعرفة
+TCD Learner Profile,ملف متعلم
 TCD Learner Progress,تقدّم المتعلمين
 TCD Learning Item,عنصر تعلّم
 TCD Learning Path,مسار تعلّم
 TCD Lesson Note,ملاحظة درس
 TCD Payment,دفعة
+TCD Profile Education,مؤهل دراسي
+TCD Profile Experience,خبرة عملية
 TCD Progress,سجل تقدّم
 TCD Question,سؤال
 TCD Question Category,تصنيف أسئلة
@@ -1694,6 +1775,7 @@ This is a paid course. Use Buy.,هذه دورة مدفوعة. استخدم «ش�
 This is free. Enroll directly.,هذه مجانية. سجّل مباشرة.
 This is not a SCORM package (imsmanifest.xml is missing).,هذه ليست حزمة SCORM (ملف imsmanifest.xml غير موجود).
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
+This job opening is closed.,هذه الوظيفة مغلقة.
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
 This page has no SCORM package.,هذه الصفحة ليس بها حزمة SCORM.
 This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
@@ -1730,6 +1812,8 @@ Title,العنوان,TCD Space
 Title,العنوان,TCD Training Rule
 Title,العنوان,TCD Tutorial Lesson
 Title,اللقب
+Title,المسمى,TCD Job Opening
+To,إلى,TCD Profile Experience
 To Content,إلى المحتوى
 To Course,إلى الدورة,TCD Content Relation
 To Date,إلى تاريخ
@@ -1773,11 +1857,13 @@ Use Load Learners to list the invited learners; attendance can be taken once the
 Use a public uploaded file (/files/...).,استخدم ملفًا مرفوعًا عامًا (/files/...).
 Use the submit and grade actions to change submissions.,استخدم إجراءات التسليم والتصحيح لتعديل التسليمات.
 Used,مرات الاستخدام,TCD Coupon
+Used to show learners how well they match,تُستخدم لعرض نسبة تطابق المتعلمين,TCD Job Opening
 User,المستخدم
 User,المستخدم,TCD AI Usage Log
 User,المستخدم,TCD Badge Award
 User,المستخدم,TCD Code Run
 User,المستخدم,TCD Discussion Post
+User,المستخدم,TCD Learner Profile
 User,المستخدم,TCD Lesson Note
 User,المستخدم,TCD Payment
 User,المستخدم,TCD Progress
@@ -1819,6 +1905,8 @@ Visibility,الظهور,TCD Content
 Visibility,الظهور,TCD Course
 Visibility,الظهور,TCD Learning Path
 Visibility,الظهور,TCD Space
+Visible to Colleagues,مرئي للزملاء,TCD Learner Profile
+Visible to colleagues,مرئي لزملائي
 "Visitors can read published pages, courses and paths of Public spaces (read only, in the portal; never through the API). Everything else still needs a login.",يمكن للزوار قراءة الصفحات والدورات والمسارات المنشورة في المساحات العامة (قراءة فقط داخل البوابة، وليس عبر الـ API أبدًا). أي شيء آخر يحتاج تسجيل دخول.,TCD Settings
 Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
@@ -1832,6 +1920,7 @@ What changed and why,ما الذي غيّرته ولماذا
 What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.,TCD AI Settings
+Why are you a good fit?,لماذا أنت مناسب لهذه الوظيفة؟
 "With ERPNext/HRMS, the manager's direct reports are added automatically",مع ERPNext/HRMS يُضاف التابعون المباشرون للمدير تلقائيًا
 "With ERPNext/HRMS, the manager's direct reports are added automatically",مع ERPNext/HRMS يُضاف التابعون المباشرون للمدير تلقائيًا,TCD Team
 Withdraw,انسحاب
@@ -1847,8 +1936,10 @@ Written by AI. Check it against the page.,مكتوب بالذكاء الاصطن
 Written by AI; check the facts before sending it for review,مكتوب بالذكاء الاصطناعي؛ راجع المعلومات قبل إرسالها للمراجعة,TCD Content
 Wrong,خطأ
 Wrong answers to choice questions take points away. You can leave a question blank.,الإجابة الخاطئة في أسئلة الاختيار تخصم درجات. يمكنك ترك السؤال فارغًا.
+Year,السنة,TCD Profile Education
 Yes,نعم
 You acknowledged version {0}.,أقررت بالنسخة {0}.
+You already applied for this job.,لقد تقدّمت لهذه الوظيفة بالفعل.
 You already completed it.,لقد أكملته بالفعل.
 You already gave feedback on this page.,قيّمت هذه الصفحة بالفعل.
 You already rated this course.,قيّمت هذه الدورة بالفعل.
@@ -1868,6 +1959,7 @@ You suggested many edits in the last hour. Try again later.,اقترحت تعد�
 "YouTube, Vimeo or an uploaded mp4/webm link",رابط YouTube أو Vimeo أو ملف mp4/webm مرفوع,TCD Course
 "YouTube, Vimeo or an uploaded mp4/webm link",رابط YouTube أو Vimeo أو ملف mp4/webm مرفوع,TCD Learning Path
 Your answer,إجابتك
+Your application for {0}: {1},طلبك على {0}: {1}
 Your question,سؤالك
 Your question about this page,سؤالك عن هذه الصفحة
 Your reply,ردك
@@ -1896,6 +1988,7 @@ low,منخفض,TCD AI Settings
 markdown,ماركداون,TCD Block
 medium,متوسط
 medium,متوسط,TCD AI Settings
+now,الآن
 "owner/name, e.g. VintrXo/handbook",owner/name، مثال: VintrXo/handbook,TCD Space
 paragraph,فقرة,TCD Block
 python,بايثون
@@ -1925,3 +2018,4 @@ written,تمت كتابته
 {0}: points must be between 0 and {1}.,{0}: النقاط يجب أن تكون بين 0 و{1}.
 {} Pending,{} بانتظار الاعتماد
 {} Published,{} منشور
+"Used to show learners how well they match","تُستخدم لعرض مدى تطابق مهارات المتعلمين",
