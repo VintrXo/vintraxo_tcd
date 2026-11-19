@@ -124,7 +124,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 9 — AI gateway | d02dc01 | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
 | Phase 11 — Hardening and release | 4accf76 | 146 | Security review + tests, code-answer review option, indexes, load test, backup check, Arabic/RTL pass, user/admin/developer/deployment docs, release notes |
 | Phase 10 — Code runner (Frappe side) | 4defe64 | 154 | Judge0 client, run log, practice runs for Java/C++/C/Go/C#/Bash, server grading that ignores device output, Test Runner; runner host not set up |
-| Phase 12 — Gaps from the vision review | this commit | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
+| Phase 12 — Gaps from the vision review | c931dd8 | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
 
 ## Phase 7 — Notifications and analytics: status
 
