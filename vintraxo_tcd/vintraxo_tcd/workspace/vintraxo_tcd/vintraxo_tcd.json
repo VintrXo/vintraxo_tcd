@@ -250,7 +250,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Assessment",
-   "link_count": 4,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -297,8 +297,18 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Quiz Violations",
+   "link_count": 0,
+   "link_to": "TCD Quiz Violation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Skills and Certificates",
-   "link_count": 4,
+   "link_count": 6,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -338,6 +348,26 @@
    "label": "Certificates",
    "link_count": 0,
    "link_to": "TCD Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Badges",
+   "link_count": 0,
+   "link_to": "TCD Badge",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Badge Awards",
+   "link_count": 0,
+   "link_to": "TCD Badge Award",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -585,7 +615,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-20 13:30:00.000000",
+ "modified": "2026-11-20 14:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VintraXo TCD",

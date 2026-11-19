@@ -90,6 +90,10 @@ def item_from_bank(q) -> dict:
 		"pairs": q.pairs,
 		"code_language": q.code_language,
 		"grade_on_server": int(q.get("grade_on_server") or 0),
+		"test_cases": [
+			{"input": c.input or "", "expected_output": c.expected_output or "", "hidden": int(c.hidden or 0)}
+			for c in q.get("test_cases") or []
+		],
 		"starter_code": q.starter_code,
 		"setup_code": q.setup_code,
 		"expected_output": q.expected_output,
@@ -157,7 +161,14 @@ def validate_question(doc):
 	elif t in ("Code", "SQL"):
 		if t == "Code" and not doc.code_language:
 			frappe.throw(_("Choose the code language."))
-		if not (doc.expected_output or "").strip() and not doc.manual_review:
+		if doc.get("test_cases"):
+			from vintraxo_tcd.core import runner
+
+			if doc.code_language not in runner.languages():
+				frappe.throw(
+					_("Test cases run on the code runner. Enable it for {0} first.").format(doc.code_language)
+				)
+		elif not (doc.expected_output or "").strip() and not doc.manual_review:
 			frappe.throw(_("Add the expected output, or tick Requires Manual Review."))
 		from vintraxo_tcd.core import runner
 
@@ -248,6 +259,12 @@ def payload(item, ref) -> dict:
 
 		# languages the browser cannot run are run (for practice) through api.run_code
 		out["run_on_server"] = runner.server_only(out["language"]) and out["language"] in runner.languages()
+		# visible test cases are examples; hidden ones never leave the server
+		out["examples"] = [
+			{"input": c["input"], "expected_output": c["expected_output"]}
+			for c in item.get("test_cases") or []
+			if not c.get("hidden")
+		]
 		out["starter_code"] = item.get("starter_code") or ""
 		out["setup_code"] = item.get("setup_code") or ""
 	elif t == "File":
@@ -269,6 +286,16 @@ def grade_item(item, answer) -> dict:
 	if t == "Code" and isinstance(answer, dict):
 		from vintraxo_tcd.core import runner
 
+		if item.get("test_cases") and runner.grades_on_server(item):
+			cases = answer.get("server_cases")
+			if cases is None:  # the runner could not run them: a person decides
+				result.update(earned=None, manual=True, auto_hint=None)
+				return result
+			passed = sum(1 for c in cases if c)
+			result["earned"] = round(pts * passed / len(cases), 2) if cases else 0.0
+			result["correct"] = bool(cases) and passed == len(cases)
+			result["cases"] = {"passed": passed, "total": len(cases)}
+			return result
 		if runner.grades_on_server(item):
 			# never trust the device: use the output the runner produced at submit time
 			server = answer.get("server_output")

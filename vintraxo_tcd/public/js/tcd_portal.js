@@ -620,6 +620,8 @@
 				tick();
 				this.timer = setInterval(tick, 1000);
 			}
+			if (q.proctoring && q.proctoring.enabled && q.attempt) this.watch(form, q.proctoring);
+			if (q.negative_marking) form.append(el("p", { class: "tcd-callout tcd-callout-warning" }, t.negative_note));
 			q.questions.forEach((question, i) => form.append(this.renderQuestion(question, i)));
 			const footer = el("div", { class: "tcd-quiz-footer" });
 			const submit = el("button", { type: "submit", class: "btn btn-primary" }, t.submit || "Submit");
@@ -632,6 +634,46 @@
 			});
 			wrap.append(form);
 			this.body.replaceChildren(wrap);
+		}
+
+		/** Proctoring: leaving the tab/window or pasting is reported; at the limit the quiz is submitted. */
+		watch(form, rules) {
+			const t = this.t;
+			const banner = el("p", { class: "tcd-callout tcd-callout-info tcd-proctor", role: "status" }, format(t.proctor_note, rules.max));
+			form.append(banner);
+			let busy = false;
+			let lastBlur = 0;
+			const report = async (kind) => {
+				if (busy || form.dataset.done) return;
+				busy = true;
+				try {
+					const r = await call("report_quiz_violation", { name: this.name, kind: kind }, true);
+					banner.className = "tcd-callout tcd-callout-warning tcd-proctor";
+					banner.textContent = format(t.proctor_warning, r.violations, r.max);
+					if (r.auto_submit) {
+						form.dataset.done = "1";
+						form.requestSubmit();
+					}
+				} catch (_) {
+					/* a failed report must not break the quiz */
+				} finally {
+					busy = false;
+				}
+			};
+			const onHidden = () => document.hidden && report("tab");
+			const onBlur = () => {
+				lastBlur = Date.now();
+				setTimeout(() => !document.hidden && Date.now() - lastBlur < 1500 && !document.hasFocus() && report("window"), 1000);
+			};
+			const onPaste = () => report("paste");
+			document.addEventListener("visibilitychange", onHidden);
+			window.addEventListener("blur", onBlur);
+			form.addEventListener("paste", onPaste);
+			this.unwatch = () => {
+				document.removeEventListener("visibilitychange", onHidden);
+				window.removeEventListener("blur", onBlur);
+				form.removeEventListener("paste", onPaste);
+			};
 		}
 
 		renderQuestion(question, i) {
@@ -687,6 +729,16 @@
 				const output = el("pre", { class: "tcd-code-output", dir: "ltr", hidden: "" });
 				run.addEventListener("click", () => this.runCode(fs, question));
 				fs.append(editor, run, output, el("p", { class: "tcd-muted tcd-small" }, t.code_note));
+				if (question.examples && question.examples.length) {
+					const box = el("details", { class: "tcd-examples" });
+					box.append(el("summary", {}, t.examples));
+					question.examples.forEach((ex) => {
+						const row = el("div", { class: "tcd-example", dir: "ltr" });
+						row.append(el("strong", {}, t.input), el("pre", {}, ex.input || " "), el("strong", {}, t.expected), el("pre", {}, ex.expected_output));
+						box.append(row);
+					});
+					fs.append(box);
+				}
 			}
 			if (question.manual) fs.append(el("p", { class: "tcd-muted tcd-small" }, t.manual_note));
 			if (question.rubric && question.rubric.length) {
@@ -748,6 +800,8 @@
 				const answers = await this.collect(form);
 				const res = await call("submit_quiz", { name: this.name, answers: answers }, true);
 				clearInterval(this.timer);
+				form.dataset.done = "1";
+				if (this.unwatch) this.unwatch();
 				this.showResult(form, res);
 				if (res.passed) this.onPassed();
 			} catch (e) {
@@ -772,6 +826,7 @@
 				}
 				fs.classList.add(r.is_correct ? "tcd-correct" : "tcd-wrong");
 				const note = el("div", { class: "tcd-feedback" }, r.is_correct ? t.correct : t.wrong);
+				if (r.cases) note.textContent += " - " + format(t.cases_passed, r.cases.passed, r.cases.total);
 				if (!r.is_correct && r.correct) {
 					const labels = {};
 					fs.querySelectorAll(".tcd-option").forEach((o) => (labels[o.querySelector("input").value] = o.querySelector("span").textContent));

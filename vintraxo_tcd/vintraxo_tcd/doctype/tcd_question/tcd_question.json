@@ -20,6 +20,7 @@
   "pairs",
   "code_language",
   "grade_on_server",
+  "test_cases",
   "starter_code",
   "setup_code",
   "expected_output",
@@ -143,6 +144,14 @@
    "description": "The runner re-runs the learner's code for grading, so the output from the learner's device is not trusted. Always on for languages that only the runner supports."
   },
   {
+   "fieldname": "test_cases",
+   "fieldtype": "Table",
+   "label": "Test Cases",
+   "options": "TCD Question Test Case",
+   "depends_on": "eval:doc.question_type=='Code'",
+   "description": "Each case runs on the code runner with its input; points are shared by the cases that pass"
+  },
+  {
    "fieldname": "starter_code",
    "fieldtype": "Long Text",
    "label": "Starter Code",
@@ -193,7 +202,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 05:00:00.000000",
+ "modified": "2026-11-20 14:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Question",

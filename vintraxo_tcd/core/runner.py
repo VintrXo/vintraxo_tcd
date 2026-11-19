@@ -59,6 +59,8 @@ def grades_on_server(item) -> bool:
 	question asks for it or the language cannot run in the browser."""
 	if item.get("type") != "Code":
 		return False
+	if item.get("test_cases"):
+		return item.get("code_language") in languages()
 	language = item.get("code_language")
 	if language not in languages():
 		return False
@@ -218,6 +220,33 @@ def grade_output(item, code: str, user: str, reference=None) -> str | None:
 	if result["status"] == "Error":
 		return None
 	return result["output"] if result["status"] == "Finished" else ""
+
+
+def grade_cases(item, code: str, user: str, reference=None) -> list[bool] | None:
+	"""Run the learner's code once per test case (its input on stdin); None when the runner failed."""
+	from vintraxo_tcd.core.assessment import _norm_output
+
+	source = ((item.get("setup_code") or "") + "\n" + (code or "")).strip("\n")
+	out = []
+	for case in item.get("test_cases") or []:
+		try:
+			result = run(
+				item["code_language"],
+				source,
+				user,
+				purpose="Grading",
+				stdin=case["input"],
+				reference=reference,
+			)
+		except RunnerError:
+			return None
+		if result["status"] == "Error":
+			return None
+		out.append(
+			result["status"] == "Finished"
+			and _norm_output(result["output"]) == _norm_output(case["expected_output"])
+		)
+	return out
 
 
 def test_connection() -> dict:

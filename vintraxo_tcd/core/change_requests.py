@@ -153,6 +153,9 @@ def accept(name: str, user: str, comment: str = "") -> str:
 		{"status": "Accepted", "reviewer": user, "reviewed_on": now_datetime(), "review_comment": comment}
 	)
 	_tell(cr, _("Your suggested edit was accepted: {0}").format(doc.title))
+	from vintraxo_tcd.core import badges
+
+	badges.check(cr.user, "Edits Accepted")
 	return doc.name
 
 

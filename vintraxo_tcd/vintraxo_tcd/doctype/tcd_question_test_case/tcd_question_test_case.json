@@ -1,0 +1,46 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 14:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "input",
+  "expected_output",
+  "hidden"
+ ],
+ "fields": [
+  {
+   "fieldname": "input",
+   "fieldtype": "Small Text",
+   "label": "Input",
+   "in_list_view": 1,
+   "description": "Given to the program as standard input"
+  },
+  {
+   "fieldname": "expected_output",
+   "fieldtype": "Small Text",
+   "label": "Expected Output",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "hidden",
+   "fieldtype": "Check",
+   "label": "Hidden",
+   "in_list_view": 1,
+   "description": "Not shown to the learner"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 14:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Question Test Case",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

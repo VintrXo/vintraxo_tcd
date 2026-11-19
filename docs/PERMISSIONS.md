@@ -126,6 +126,12 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   TCD Content Reviewer / admins only; authors and reviewers read the list; learners cannot read it in the Desk.
 - `api.video_progress`: logged-in readers of the page.
 
+## Phase 15
+- TCD Quiz Violation: admins read/delete, instructors read; created only by `api.report_quiz_violation` for the
+  user's own open attempt.
+- TCD Badge: admins manage, everyone with a TCD role reads; TCD Badge Award: admins manage, instructors read,
+  learners see their own in My Learning.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

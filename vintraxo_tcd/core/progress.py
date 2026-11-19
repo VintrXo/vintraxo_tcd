@@ -115,6 +115,9 @@ def complete(user: str, content: str, from_quiz: bool = False):
 	for tutorial in tutorials_for_lesson(content):
 		refresh_tutorial(user, tutorial)
 	courses.on_content_changed(user, content)
+	from vintraxo_tcd.core import badges
+
+	badges.check(user, "Lessons Completed")
 	return doc
 
 

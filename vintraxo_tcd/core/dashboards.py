@@ -3,8 +3,8 @@
 import frappe
 from frappe.utils import flt, getdate, nowdate
 
+from vintraxo_tcd.core import badges, notes, sessions, training
 from vintraxo_tcd.core import courses as course_svc
-from vintraxo_tcd.core import notes, sessions, training
 from vintraxo_tcd.core.permissions import instructed, is_admin, readable_list
 
 
@@ -149,6 +149,7 @@ def my_learning(user: str) -> dict:
 		"role_guides": training.role_guides(user),
 		"sessions": sessions.upcoming_for(user),
 		"notes": notes.mine(user, 10),
+		"badges": badges.mine(user),
 		"recent": recent,
 		"enrollments": enrollments,
 		"assignments": sorted(

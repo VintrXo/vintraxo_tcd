@@ -77,7 +77,11 @@ def attempts_used(quiz: str, user: str) -> int:
 
 def requires_start(quiz) -> bool:
 	"""Timed quizzes and random bank picks need a fixed paper before the questions are shown."""
-	return bool(quiz.time_limit_minutes) or any(r.category for r in quiz.get("bank_items") or [])
+	return (
+		bool(quiz.time_limit_minutes)
+		or bool(quiz.get("enable_proctoring"))
+		or any(r.category for r in quiz.get("bank_items") or [])
+	)
 
 
 def open_attempt(quiz, user: str):
@@ -122,6 +126,12 @@ def learner_payload(quiz, user: str) -> dict:
 		"attempts_left": None if not quiz.max_attempts else max(quiz.max_attempts - used, 0),
 		"passed": progress.has_passed(user, quiz.name),
 		"time_limit_minutes": quiz.time_limit_minutes or 0,
+		"proctoring": {
+			"enabled": bool(quiz.get("enable_proctoring")),
+			"max": int(quiz.max_violations or 3),
+			"violations": int(attempt.get("violations") or 0) if attempt else 0,
+		},
+		"negative_marking": bool(quiz.get("negative_marking")),
 		"requires_start": requires_start(quiz) and not attempt,
 		"attempt": attempt
 		and {
@@ -195,8 +205,8 @@ def _parse_answers(answers) -> dict:
 	clean = {}
 	for k, v in answers.items():
 		if isinstance(v, dict):
-			# only grading may set the runner's output; a value sent by the learner is dropped
-			v = {key: val for key, val in v.items() if key != "server_output"}
+			# only grading may set the runner's results; values sent by the learner are dropped
+			v = {key: val for key, val in v.items() if key not in ("server_output", "server_cases")}
 		clean[str(k)] = v
 	return clean
 
@@ -236,7 +246,13 @@ def _grade_paper(quiz, sub, given: dict, review: dict | None = None):
 		if not item:
 			continue
 		answer = given.get(item["key"])
-		if isinstance(answer, dict) and "server_output" not in answer:
+		ref = ("TCD Quiz Submission", sub.name) if sub.name else None
+		if isinstance(answer, dict) and item.get("test_cases") and "server_cases" not in answer:
+			from vintraxo_tcd.core import runner
+
+			if runner.grades_on_server(item):
+				answer["server_cases"] = runner.grade_cases(item, answer.get("code"), sub.user, ref)
+		elif isinstance(answer, dict) and "server_output" not in answer:
 			from vintraxo_tcd.core import runner
 
 			if runner.grades_on_server(item):
@@ -247,6 +263,14 @@ def _grade_paper(quiz, sub, given: dict, review: dict | None = None):
 					("TCD Quiz Submission", sub.name) if sub.name else None,
 				)
 		r = assessment.grade_item(item, answer)
+		if (
+			quiz.get("negative_marking")
+			and not r["manual"]
+			and not r["correct"]
+			and item["type"] in assessment.CHOICE
+			and answer not in (None, "", [], [None])
+		):
+			r["earned"] = -round(item["points"] * flt(quiz.negative_mark_percent or 25) / 100, 2)
 		if r["manual"]:
 			if item["key"] in review:
 				r["earned"] = assessment.review_points(item, review[item["key"]])
@@ -273,17 +297,23 @@ def _grade_paper(quiz, sub, given: dict, review: dict | None = None):
 			if item["key"] in review and review[item["key"]].get("feedback"):
 				entry["feedback"] = review[item["key"]]["feedback"]
 		results.append(entry)
+		if r.get("cases"):
+			entry["cases"] = r["cases"]
 		if not entry["pending"]:
 			flags[item["key"]] = r["correct"]
-	return round(score, 2), round(max_score, 2), results, flags, pending
+	return round(max(score, 0), 2), round(max_score, 2), results, flags, pending
 
 
 def _finish(quiz, sub, given: dict, timed_out: bool = False) -> dict:
 	score, max_score, results, flags, pending = _grade_paper(quiz, sub, given)
 	percentage = flt(score * 100 / max_score, 2) if max_score else 0
 	passed = not pending and percentage >= flt(quiz.pass_percentage)
+	flagged = bool(quiz.get("enable_proctoring")) and int(sub.get("violations") or 0) >= int(
+		quiz.max_violations or 3
+	)
 	sub.update(
 		{
+			"flagged": int(flagged),
 			"answers": json.dumps(given, ensure_ascii=False),
 			"score": score,
 			"max_score": max_score,
@@ -317,6 +347,10 @@ def _finish(quiz, sub, given: dict, timed_out: bool = False) -> dict:
 def _after_grade(quiz, sub):
 	if sub.passed and quiz.required_to_complete:
 		progress.complete(sub.user, quiz.content, from_quiz=True)
+	if sub.passed:
+		from vintraxo_tcd.core import badges
+
+		badges.check(sub.user, "Quizzes Passed")
 	from vintraxo_tcd.core import courses
 
 	courses.on_content_changed(sub.user, quiz.content)  # scores feed Minimum Score rules
@@ -359,3 +393,36 @@ def review(sub, reviews, reviewer: str) -> dict:
 		"passed": bool(sub.passed),
 		"pending": pending,
 	}
+
+
+# ---------------------------------------------------------------- proctoring (Phase 15)
+
+VIOLATIONS = {
+	"tab": "Left the Tab",
+	"window": "Left the Window",
+	"paste": "Pasted Text",
+	"copy": "Copied Text",
+}
+
+
+def report_violation(quiz, user: str, kind: str) -> dict:
+	"""Count a proctoring violation on the user's open attempt. At the limit the browser submits the
+	quiz; the submission is flagged for the instructor either way."""
+	if not quiz.get("enable_proctoring") or kind not in VIOLATIONS:
+		return {"violations": 0, "max": 0, "auto_submit": False}
+	attempt = open_attempt(quiz, user)
+	if not attempt:
+		return {"violations": 0, "max": int(quiz.max_violations or 3), "auto_submit": False}
+	count = int(attempt.get("violations") or 0) + 1
+	attempt.db_set("violations", count, update_modified=False)
+	frappe.get_doc(
+		{
+			"doctype": "TCD Quiz Violation",
+			"user": user,
+			"quiz": quiz.name,
+			"submission": attempt.name,
+			"kind": VIOLATIONS[kind],
+		}
+	).insert(ignore_permissions=True)
+	limit = int(quiz.max_violations or 3)
+	return {"violations": count, "max": limit, "auto_submit": count >= limit}

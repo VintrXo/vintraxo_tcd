@@ -254,6 +254,17 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
+   "label": "Quiz Violations",
+   "link_to": "TCD Quiz Violation",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
    "label": "Progress Records",
    "link_to": "TCD Progress",
    "link_type": "DocType",
@@ -344,6 +355,28 @@
    "keep_closed": 0,
    "label": "Certificates",
    "link_to": "TCD Certificate",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Badges",
+   "link_to": "TCD Badge",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Badge Awards",
+   "link_to": "TCD Badge Award",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -646,7 +679,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-20 13:30:00.000000",
+ "modified": "2026-11-20 14:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

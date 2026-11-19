@@ -96,6 +96,21 @@
 	</section>
 	{% endif %}
 
+	{% if data.badges %}
+	<section class="tcd-section">
+		<h2>{{ _("My badges") }}</h2>
+		<ul class="tcd-badges">
+			{% for b in data.badges %}
+			<li title="{{ (b.description or '')|e }}">
+				{% if b.image %}<img src="{{ b.image|e }}" alt="">{% else %}<span class="tcd-badge-icon" aria-hidden="true">🏅</span>{% endif %}
+				<strong class="tcd-small">{{ b.badge|e }}</strong>
+				<span class="tcd-muted tcd-small">{{ frappe.format_date(b.awarded_on) }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.skills %}
 	<section class="tcd-section">
 		<h2>{{ _("My skills") }}</h2>

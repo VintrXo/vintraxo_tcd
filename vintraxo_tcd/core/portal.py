@@ -389,6 +389,19 @@ def js_labels() -> dict:
 		"your_question": _("Your question about this page"),
 		"your_reply": _("Your reply"),
 		"suggestion_sent": _("Thank you. A reviewer will check your suggestion."),
+		"proctor_note": _(
+			"This quiz is proctored: leaving this page or pasting text counts as a violation ({0} allowed)."
+		),
+		"proctor_warning": _(
+			"Warning: you left the quiz or pasted text ({0} of {1}). At the limit the quiz is submitted."
+		),
+		"negative_note": _(
+			"Wrong answers to choice questions take points away. You can leave a question blank."
+		),
+		"examples": _("Examples"),
+		"input": _("Input"),
+		"expected": _("Expected output"),
+		"cases_passed": _("Test cases passed: {0} of {1}"),
 		"runner_compilation_error": _("Compilation error"),
 		"runner_runtime_error": _("Runtime error"),
 		"runner_time_limit": _("Stopped: time limit reached."),

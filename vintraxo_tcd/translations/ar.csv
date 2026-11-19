@@ -39,6 +39,7 @@ A reviewer checks it before the page changes,يراجعه أحد المراجع�
 A role is listed twice.,تم إدراج دور مرتين.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 A tutorial or process guide recommended to matching users,شرح أو دليل إجراءات يُقترح على المستخدمين المطابقين,TCD Training Rule
+A wrong answer to a choice question takes points away (a blank answer does not),الإجابة الخاطئة في سؤال اختيار تخصم درجات (الإجابة الفارغة لا تخصم),TCD Quiz
 AI,الذكاء الاصطناعي
 AI Draft,مسودة ذكاء اصطناعي,TCD Content
 AI Review,مراجعة الذكاء الاصطناعي,TCD Question
@@ -115,6 +116,7 @@ Allowed Roles,الأدوار المسموح بها
 Allowed Roles,الأدوار المسموح لها,TCD AI Settings
 Allowed Roles,الأدوار المسموحة,TCD Space
 Allowed Video Hosts,مواقع الفيديو المسموحة,TCD Settings
+Allowed Violations,المخالفات المسموحة,TCD Quiz
 Also searched for: {0},تم البحث أيضًا عن: {0}
 Alt Text,النص البديل
 Alt Text,النص البديل,TCD Block
@@ -123,6 +125,8 @@ Answer,الإجابة,TCD Assignment Submission
 Answered,أجابوا
 Answered,تمت الإجابة,TCD Discussion Post
 Answers,الإجابات
+Answers Accepted,إجابات مقبولة
+Answers Accepted,إجابات مقبولة,TCD Badge
 Answers are written by AI from pages you can access. Check the sources before you act on them.,الإجابات يكتبها الذكاء الاصطناعي من الصفحات المتاحة لك. راجع المصادر قبل العمل بها.
 Answers must be an object of question id -> answer.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> الإجابة.
 Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
@@ -192,9 +196,15 @@ Audit records cannot be deleted.,لا يمكن حذف سجلات التدقيق.
 Average Days to Complete,متوسط أيام الإكمال
 Average Score,متوسط الدرجة
 Average of the best quiz scores across the items,متوسط أفضل درجات الاختبارات في العناصر
+Awarded On,تاريخ المنح,TCD Badge Award
 Awarded On,تاريخ المنح,TCD User Skill
+Awarded When,تُمنح عند,TCD Badge
 Back to Draft,إرجاع لمسودة
 Back to Learning,العودة إلى التعلّم
+Badge,الشارة,TCD Badge Award
+Badge Awards,الشارات الممنوحة
+Badge Name,اسم الشارة,TCD Badge
+Badges,الشارات
 Bank Questions,أسئلة البنك,TCD Quiz
 Bank row {0}: category {1} has only {2} questions.,سطر البنك {0}: التصنيف {1} فيه {2} أسئلة فقط.
 Bank row {0}: choose a question or a category (not both).,سطر البنك {0}: اختر سؤالًا أو تصنيفًا (وليس الاثنين).
@@ -254,6 +264,8 @@ Category,فئة
 Category Name,اسم التصنيف
 Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
+Certificate Earned,الحصول على شهادة
+Certificate Earned,الحصول على شهادة,TCD Badge
 Certificate For,الشهادة عن,TCD Certificate
 Certificate Issued,إصدار شهادة
 Certificate Issued,إصدار شهادة,TCD Connector Event
@@ -357,6 +369,8 @@ Content versions are created automatically on approval.,تُنشأ نسخ الم
 Content versions cannot be changed.,لا يمكن تعديل نسخ المحتوى.
 Continue learning,تابع التعلّم
 Continue your course,تابع دورتك
+Copied Text,نسخ نص
+Copied Text,نسخ نص,TCD Quiz Violation
 Copy,نسخ
 Correct,صحيح
 Correct %,نسبة الصحيح
@@ -378,6 +392,8 @@ Course,دورة,TCD Chapter
 Course,دورة,TCD Enrollment
 Course,دورة,TCD Learning Item
 Course (learning paths),دورة (لمسارات التعلّم)
+Course Completed,إكمال دورة
+Course Completed,إكمال دورة,TCD Badge
 Course Feedback,تقييمات الدورات
 Course Report,تقرير الدورات
 Course and path skills are awarded automatically on completion.,تُمنح مهارات الدورات والمسارات تلقائيًا عند الإكمال.
@@ -412,6 +428,7 @@ Department,القسم,TCD Rule HR Filter
 Department,قسم
 Department name as in ERPNext; ignored when ERPNext is not installed,اسم القسم كما في ERPNext؛ يُتجاهل إذا لم يكن ERPNext مثبتًا,TCD Governance Department
 Department {0} does not exist.,القسم {0} غير موجود.
+Description,الوصف,TCD Badge
 Description,الوصف,TCD Batch
 Description,الوصف,TCD Block
 Description,الوصف,TCD Category
@@ -455,7 +472,11 @@ Due In (Days),الاستحقاق خلال (أيام),TCD Training Rule
 Due date counted from the enrollment day; 0 means no due date,يُحسب الاستحقاق من يوم التسجيل؛ 0 يعني بدون موعد استحقاق,TCD Training Rule
 Due days cannot be negative.,لا يمكن أن تكون أيام الاستحقاق سالبة.
 Duplicate,مكررة
+Each case runs on the code runner with its input; points are shared by the cases that pass,كل حالة تعمل على مشغّل الأكواد بمدخلاتها؛ الدرجة تُوزَّع على الحالات الناجحة
+Each case runs on the code runner with its input; points are shared by the cases that pass,كل حالة تعمل على مشغّل الأكواد بمدخلاتها؛ الدرجة تُوزَّع على الحالات الناجحة,TCD Question
 Each role can be listed only once.,لا يمكن تكرار الدور.
+Edits Accepted,تعديلات مقبولة
+Edits Accepted,تعديلات مقبولة,TCD Badge
 Effective Date,تاريخ السريان,TCD Governance Document
 Effective Date,تاريخ السريان,TCD Governance Version
 Effective from {0},ساري من {0}
@@ -468,6 +489,7 @@ Enable Learner Portal,تفعيل بوابة المتعلمين
 Enable Lesson Discussions,تفعيل النقاش على الدروس,TCD Settings
 Enable Playgrounds,تفعيل محرر الأكواد
 Enabled,مفعّل,TCD Connector
+Enabled,مفعّلة,TCD Badge
 Enabled,مفعّلة,TCD Training Rule
 End Date,تاريخ الانتهاء,TCD Batch
 End date cannot be before start date.,لا يمكن أن يسبق تاريخ الانتهاء تاريخ البدء.
@@ -505,13 +527,16 @@ Events,الأحداث,TCD Connector
 Everyone I follow,كل من أتابعهم
 Everyone Present,الكل حاضر
 Exactly one correct answer is allowed.,يُسمح بإجابة صحيحة واحدة فقط.
+Examples,أمثلة
 Excused,بعذر
 Excused,بعذر,TCD
 Excused,بعذر,TCD Session Attendance
 Expand Search Queries,توسيع عبارات البحث,TCD AI Settings
 Expected Output,المخرجات المتوقعة,TCD Question
+Expected Output,المخرجات المتوقعة,TCD Question Test Case
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
+Expected output,المخرجات المتوقعة
 Expired,انتهى
 Expired,منتهية,TCD
 Expired,منتهية,TCD Certificate
@@ -550,6 +575,7 @@ Fill Blank,املأ الفراغ,TCD Question
 Filter,الفلتر,TCD Rule HR Filter
 Finished,انتهى,TCD Code Run
 Finished,تم الانتهاء من
+Flagged,مُعلَّم,TCD Quiz Submission
 Folder that contains pyodide.js (self-host for offline sites). Must end with /,المجلد الذي يحتوي pyodide.js (استضفه محليًا للمواقع غير المتصلة). يجب أن ينتهي بـ /
 Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
 Follows what you completed,يكمّل ما أنهيته
@@ -571,6 +597,7 @@ Generate,إنشاء
 Generate quiz questions,إنشاء أسئلة اختبار
 Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
 Give the lesson a title.,اكتب عنوانًا للدرس.
+Given to the program as standard input,تُعطى للبرنامج كمدخلات قياسية,TCD Question Test Case
 Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
@@ -598,14 +625,17 @@ Helpful,مفيدة,TCD Content Feedback
 Helpful %,نسبة الإفادة
 Hidden,مخفي
 Hidden,مخفي,TCD Discussion Post
+Hidden,مخفية,TCD Question Test Case
 Hidden posts are not shown in the portal,المشاركات المخفية لا تظهر في البوابة,TCD Discussion Post
 Hide,إخفاء
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
+How Many,العدد,TCD Badge
 How Many,العدد,TCD Quiz Bank Item
 How often published pages are checked for accuracy; 0 turns reviews off,كل كم شهر تُراجع الصفحات المنشورة للتأكد من صحتها؛ 0 يوقف المراجعات,TCD Settings
 I could not find pages you can access that answer this question.,لم أجد صفحات متاحة لك تجيب عن هذا السؤال.
 I have read and understood this document and agree to follow it.,قرأت هذا المستند وفهمته وأوافق على الالتزام به.
+Image,الصورة,TCD Badge
 Image,صورة
 Image,صورة,TCD Block
 Image URL,رابط الصورة
@@ -619,6 +649,8 @@ In Review,قيد المراجعة
 In Review,قيد المراجعة,TCD
 In Review,قيد المراجعة,TCD Content
 Inline Questions,أسئلة مباشرة,TCD Quiz
+Input,المدخلات
+Input,المدخلات,TCD Question Test Case
 Input Price per Million Tokens (USD),سعر المدخلات لكل مليون رمز (دولار),TCD AI Settings
 Input Tokens,رموز المدخلات,TCD AI Usage Log
 Instructions,التعليمات,TCD Assignment
@@ -666,6 +698,7 @@ Keep it under {0} characters.,اجعلها أقل من {0} حرفًا.
 Keeps this page up to date and gets the review reminders,يحافظ على تحديث الصفحة ويستلم تذكيرات المراجعة,TCD Content
 Kind,النوع
 Kind,النوع,TCD Governance Document
+Kind,النوع,TCD Quiz Violation
 Knowledge Usage,استخدام المعرفة
 Label,الاسم الظاهر,TCD Runner Language
 Language,اللغة
@@ -705,10 +738,17 @@ Learning,التعلّم
 Learning Path,المسار التعليمي,TCD Training Rule
 Learning Path,مسار تعلّم
 Learning Path,مسار تعلّم,TCD
+Learning Path Completed,إكمال مسار
+Learning Path Completed,إكمال مسار,TCD Badge
 Learning Paths,مسارات التعلّم
 Learning Settings,إعدادات التعلّم
 Leave empty to keep the original space name (it must not exist on this site),اتركه فارغًا للإبقاء على اسم المساحة الأصلي (يجب ألا يكون موجودًا على هذا الموقع),TCD Content Import
 Leave this {0}? Your progress is kept if you enroll again.,هل تريد الانسحاب من {0}؟ يُحفظ تقدمك إذا سجّلت مرة أخرى.
+Leaving the quiz tab or pasting text counts as a violation; the quiz is submitted and flagged at the limit,مغادرة تبويب الاختبار أو لصق نص يُحسب مخالفة؛ وعند الحد يُسلَّم الاختبار ويُعلَّم,TCD Quiz
+Left the Tab,مغادرة التبويب
+Left the Tab,مغادرة التبويب,TCD Quiz Violation
+Left the Window,مغادرة النافذة
+Left the Window,مغادرة النافذة,TCD Quiz Violation
 Lesson,الدرس,TCD Assignment
 Lesson,الدرس,TCD Assignment Submission
 Lesson,درس
@@ -722,6 +762,8 @@ Lesson Type,نوع الدرس,TCD Content Template
 Lesson navigation,التنقل بين الدروس
 "Lesson, Article or Reference (chapters)",درس أو مقال أو مرجع (للفصول)
 Lessons,الدروس
+Lessons Completed,دروس مكتملة
+Lessons Completed,دروس مكتملة,TCD Badge
 Level,المستوى
 Level,المستوى,TCD Block
 Level {0} of 5,المستوى {0} من 5
@@ -748,6 +790,7 @@ Mandatory,إلزامي,TCD Enrollment
 Mandatory,إلزامي,TCD Training Rule
 Mandatory training done,إنجاز التدريب الإلزامي
 Manual,يدوي
+Manual,يدوي,TCD Badge
 Manual,يدوي,TCD User Skill
 Manual Approval,اعتماد يدوي
 Manual Approval,اعتماد يدوي,TCD
@@ -799,6 +842,7 @@ Multiple Choice,اختيار متعدد
 My Learning,تعلّمي
 My Team,فريقي
 My attendance,حضوري
+My badges,شاراتي
 My certificates,شهاداتي
 My courses,دوراتي
 My direct reports,تابعيّ المباشرون
@@ -812,6 +856,7 @@ Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the s
 Needs HRMS: a completed course becomes a Training Event and Training Result for the employee,يحتاج HRMS: الدورة المكتملة تُسجَّل كحدث تدريب ونتيجة تدريب للموظف,TCD Settings
 Needs Review,يحتاج مراجعة
 Needs Review,يحتاج مراجعة,TCD Question
+Negative Marking,الدرجات السالبة,TCD Quiz
 Never Send Restricted Content,لا ترسل المحتوى المقيّد أبدًا,TCD AI Settings
 Never read,لم تُقرأ قط
 New Space Name,اسم المساحة الجديدة,TCD Content Import
@@ -848,6 +893,7 @@ Not acknowledged,لم يُقر
 Not passed yet,لم تنجح بعد
 Not permitted,غير مسموح به
 Not recorded,لم يُسجَّل
+Not shown to the learner,لا تظهر للمتعلم,TCD Question Test Case
 Note,الملاحظة,TCD Lesson Note
 Note,ملاحظة,TCD Session Attendance
 Notes are limited to {0} characters.,الملاحظات محدودة بـ {0} حرف.
@@ -870,6 +916,8 @@ Online,عن بُعد
 Online,عن بُعد,TCD
 Online,عن بُعد,TCD Session
 Only Gaps,الفجوات فقط
+Only This Course,لهذه الدورة فقط,TCD Badge
+Only This Learning Path,لهذا المسار فقط,TCD Badge
 "Only YouTube, Vimeo or uploaded videos are supported.",المدعوم فقط فيديوهات YouTube وVimeo أو الفيديوهات المرفوعة.
 Only a reply can be the best answer.,الرد فقط يمكن أن يكون أفضل إجابة.
 Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
@@ -956,6 +1004,8 @@ Passed,تم الاجتياز بنجاح
 Passed,ناجح,TCD Assignment Submission
 Passed,ناجح,TCD Quiz Submission
 Past review date,متأخرة عن موعد المراجعة
+Pasted Text,لصق نص
+Pasted Text,لصق نص,TCD Quiz Violation
 Payload,البيانات المرسلة,TCD Integration Event
 Payload Format,صيغة البيانات,TCD Connector
 Pending,قيد الانتظار,TCD Content Import
@@ -980,6 +1030,7 @@ Playgrounds,محررات الأكواد
 Please read and acknowledge: {0} (version {1}),يُرجى القراءة والإقرار: {0} (النسخة {1})
 Points,النقاط
 Points (0-{0}),النقاط (0-{0})
+Points Taken for a Wrong Answer (%),نسبة الخصم للإجابة الخاطئة (%),TCD Quiz
 Points must be between 0 and {0}.,النقاط يجب أن تكون بين 0 و{0}.
 Points must be greater than zero.,النقاط يجب أن تكون أكبر من صفر.
 Policies and Procedures,السياسات والإجراءات
@@ -1008,6 +1059,7 @@ Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
 Prices and budget cannot be negative.,لا يمكن أن تكون الأسعار أو الميزانية سالبة.
 Privacy,الخصوصية,TCD AI Settings
+Proctoring,المراقبة,TCD Quiz
 Profile Name,اسم الملف,TCD Competency Profile
 Progress,التقدّم,TCD
 Progress,التقدّم,TCD Enrollment
@@ -1057,14 +1109,18 @@ Questions and discussion,أسئلة ونقاش
 Queued,في الانتظار,TCD Integration Event
 Queued,قائمة الانتظار
 Quiz,الاختبار
+Quiz,الاختبار,TCD Quiz Violation
 Quiz Analytics,تحليلات الاختبارات
 Quiz Attempts,محاولات الاختبارات
 Quiz Questions,أسئلة اختبار
 Quiz Questions,أسئلة اختبار,TCD AI Usage Log
+Quiz Violations,مخالفات الاختبارات
 Quiz answers to review,إجابات اختبارات بانتظار المراجعة
 Quiz answers to review: {0} ({1}),إجابات اختبار للمراجعة: {0} ({1})
 Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
 Quizzes,الاختبارات
+Quizzes Passed,اختبارات ناجحة
+Quizzes Passed,اختبارات ناجحة,TCD Badge
 Random from Category,عشوائي من تصنيف,TCD Quiz Bank Item
 Rate Limit Per Minute,الحد الأقصى في الدقيقة,TCD Connector
 Rate this course,قيّم هذه الدورة
@@ -1073,10 +1129,12 @@ Rating,تقييم
 Rating (1-5),التقييم (1-5),TCD Course Feedback
 Rating must be between 1 and 5.,التقييم يجب أن يكون بين 1 و5.
 Ratings,التقييمات
+Reached the allowed number of proctoring violations,وصل إلى الحد المسموح من مخالفات المراقبة,TCD Quiz Submission
 Read Since,قُرئت منذ
 Readers,القرّاء
 Readers Can Suggest Edits,يمكن للقرّاء اقتراح تعديلات,TCD Settings
 Readers propose text changes to published pages; a reviewer accepts or rejects them,يقترح القرّاء تعديلات على نصوص الصفحات المنشورة؛ ويقبلها المراجع أو يرفضها,TCD Settings
+Reason,السبب,TCD Badge Award
 Reason,سبب
 Recently completed,أُنجز مؤخرًا
 Recommended for you,مقترح لك
@@ -1342,6 +1400,7 @@ Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت ال
 Stopped: time limit reached.,توقف: انتهى الوقت المسموح.
 Student Group,مجموعة متعلمين
 Student Groups,مجموعات المتعلمين
+Submission,المحاولة,TCD Quiz Violation
 Submission Type,نوع التسليم,TCD Assignment
 Submission to grade: {0} ({1}),تسليم بانتظار التصحيح: {0} ({1})
 Submissions,التسليمات
@@ -1381,6 +1440,8 @@ TCD Acknowledgment Status,حالة الإقرارات
 TCD Assignment,تكليف
 TCD Assignment Submission,تسليم تكليف
 TCD Attendance,تقرير الحضور
+TCD Badge,شارة
+TCD Badge Award,منح شارة
 TCD Batch,دفعة
 TCD Batch Member,عضو دفعة
 TCD Category,تصنيف محتوى
@@ -1423,11 +1484,13 @@ TCD Lesson Note,ملاحظة درس
 TCD Progress,سجل تقدّم
 TCD Question,سؤال
 TCD Question Category,تصنيف أسئلة
+TCD Question Test Case,حالة اختبار
 TCD Quiz,اختبار
 TCD Quiz Analytics,تحليلات الاختبارات
 TCD Quiz Bank Item,سؤال من البنك
 TCD Quiz Question,سؤال اختبار
 TCD Quiz Submission,محاولة اختبار
+TCD Quiz Violation,مخالفة اختبار
 TCD Rubric Criterion,معيار تقييم
 TCD Rule HR Filter,فلتر موارد بشرية للقاعدة
 TCD Rule Role,دور القاعدة
@@ -1457,7 +1520,10 @@ Tell the learner what to change before returning the submission.,اكتب للم
 Template,قالب
 Template Name,اسم القالب,TCD Content Template
 Templates,القوالب
+Test Cases,حالات الاختبار,TCD Question
 Test Runner,اختبار المشغّل
+Test cases passed: {0} of {1},حالات الاختبار الناجحة: {0} من {1}
+Test cases run on the code runner. Enable it for {0} first.,حالات الاختبار تعمل على مشغّل الأكواد. فعّله للغة {0} أولًا.
 Test failed: {0},فشلت التجربة: {0}
 Test sent ({0}),تم إرسال التجربة ({0})
 Text,النص,TCD Block
@@ -1521,6 +1587,7 @@ This page may be out of date: its review was due on {0}.,قد تكون هذه ا
 This part of the page cannot be edited.,هذا الجزء من الصفحة لا يمكن تعديله.
 This question is not available.,هذا السؤال غير متاح.
 This quiz is not active.,هذا الاختبار غير مفعّل.
+This quiz is proctored: leaving this page or pasting text counts as a violation ({0} allowed).,هذا الاختبار مراقَب: مغادرة الصفحة أو لصق نص يُحسب مخالفة (المسموح {0}).
 This record is written automatically and cannot be changed.,يُكتب هذا السجل تلقائيًا ولا يمكن تعديله.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 This submission is already graded.,تم تصحيح هذا التسليم بالفعل.
@@ -1591,11 +1658,13 @@ Use a public uploaded file (/files/...).,استخدم ملفًا مرفوعًا 
 Use the submit and grade actions to change submissions.,استخدم إجراءات التسليم والتصحيح لتعديل التسليمات.
 User,المستخدم
 User,المستخدم,TCD AI Usage Log
+User,المستخدم,TCD Badge Award
 User,المستخدم,TCD Code Run
 User,المستخدم,TCD Discussion Post
 User,المستخدم,TCD Lesson Note
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
+User,المستخدم,TCD Quiz Violation
 User,المستخدم,TCD Student Group Member
 User,المستخدم,TCD Team Member
 User Skills,مهارات المتعلمين
@@ -1623,6 +1692,7 @@ Video Watch Data,بيانات المشاهدة,TCD Progress
 Video Watched,نسبة المشاهدة,TCD Progress
 Video host {0} is not allowed. See TCD Settings.,موقع الفيديو {0} غير مسموح. راجع إعدادات التعلّم.
 View in Portal,عرض في البوابة
+Violations,المخالفات,TCD Quiz Submission
 Visibility,الرؤية
 Visibility,الظهور,TCD Content
 Visibility,الظهور,TCD Course
@@ -1631,6 +1701,7 @@ Visibility,الظهور,TCD Space
 Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
 Wall Time Limit (Seconds),حد الوقت الكلي (ثوانٍ),TCD Settings
+Warning: you left the quiz or pasted text ({0} of {1}). At the limit the quiz is submitted.,تنبيه: غادرت الاختبار أو لصقت نصًا ({0} من {1}). عند الحد يُسلَّم الاختبار تلقائيًا.
 Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
 Watch Before Completing (%),نسبة المشاهدة قبل الإكمال (%),TCD Content
 Watch at least {0}% of the videos first.,شاهد {0}% على الأقل من الفيديوهات أولًا.
@@ -1653,6 +1724,7 @@ Writing the draft...,جارٍ كتابة المسودة...
 Written by AI. Check it against the page.,مكتوب بالذكاء الاصطناعي. راجعه مقابل الصفحة.
 Written by AI; check the facts before sending it for review,مكتوب بالذكاء الاصطناعي؛ راجع المعلومات قبل إرسالها للمراجعة,TCD Content
 Wrong,خطأ
+Wrong answers to choice questions take points away. You can leave a question blank.,الإجابة الخاطئة في أسئلة الاختيار تخصم درجات. يمكنك ترك السؤال فارغًا.
 Yes,نعم
 You acknowledged version {0}.,أقررت بالنسخة {0}.
 You already completed it.,لقد أكملته بالفعل.
@@ -1666,6 +1738,7 @@ You can only submit files you uploaded.,يمكنك تسليم الملفات ا�
 You cannot use this page with AI.,لا يمكنك استخدام هذه الصفحة مع الذكاء الاصطناعي.
 You cannot write in this space.,لا يمكنك الكتابة في هذه المساحة.
 You earned a certificate for this course.,حصلت على شهادة لهذه الدورة.
+You earned the badge: {0},حصلت على شارة: {0}
 You posted a lot in the last hour. Try again later.,نشرت كثيرًا خلال الساعة الماضية. حاول لاحقًا.
 You reached today's limit of AI requests.,وصلت إلى حد طلبات الذكاء الاصطناعي لليوم.
 You suggested many edits in the last hour. Try again later.,اقترحت تعديلات كثيرة خلال الساعة الماضية. حاول لاحقًا.
@@ -1698,6 +1771,7 @@ python,بايثون,TCD Question
 python and javascript also run in the browser; the others need the code runner,python و javascript تعمل في المتصفح أيضًا؛ باقي اللغات تحتاج مشغّل الأكواد,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
+{0} already has this badge.,{0} لديه هذه الشارة بالفعل.
 {0} already has this skill; edit the existing record.,لدى {0} هذه المهارة بالفعل؛ عدّل السجل الموجود.
 {0} cannot access this course or learning path.,لا يستطيع {0} الوصول إلى هذه الدورة أو مسار التعلّم.
 {0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.

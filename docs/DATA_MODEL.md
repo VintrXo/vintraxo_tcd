@@ -303,6 +303,16 @@ TCD Course gains minimum_attendance; TCD Enrollment gains hr_training_event; TCD
 TCD Course / TCD Learning Path gain cover_image, intro_video; TCD Content gains min_video_percent; TCD Progress gains
 video_percent, video_watch; TCD Settings gains enable_change_requests.
 
+## Phase 15
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Question Test Case (child) | Input / expected output of a Code question | input, expected_output, hidden |
+| TCD Quiz Violation | One proctoring event | user, quiz, submission, kind |
+| TCD Badge / TCD Badge Award | Badges and who earned them | badge_name, event, threshold, course, learning_path / user, badge, awarded_on, reason |
+
+TCD Quiz gains negative_marking, negative_mark_percent, enable_proctoring, max_violations; TCD Quiz Submission gains
+violations, flagged.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

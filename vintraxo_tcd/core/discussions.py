@@ -142,6 +142,9 @@ def accept(name: str, user: str):
 		)
 	frappe.db.set_value(DOCTYPE, {"thread": thread.name, "accepted": 1}, "accepted", 0)
 	frappe.db.set_value(DOCTYPE, p.name, "accepted", 1)
+	from vintraxo_tcd.core import badges
+
+	badges.check(p.user, "Answers Accepted")
 	frappe.db.set_value(DOCTYPE, thread.name, "status", "Answered")
 
 

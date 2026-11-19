@@ -62,9 +62,13 @@ def on_completed(enrollment):
 	from vintraxo_tcd.core import integrations
 
 	integrations.emit("Enrollment Completed", enrollment)
-	from vintraxo_tcd.core import hr_sync
+	from vintraxo_tcd.core import badges, hr_sync
 
 	hr_sync.on_completed(enrollment)
+	if enrollment.course:
+		badges.check(enrollment.user, "Course Completed", course=enrollment.course)
+	else:
+		badges.check(enrollment.user, "Learning Path Completed", learning_path=enrollment.learning_path)
 	kind = "Course" if enrollment.course else "Learning Path"
 	doctype, field = TARGETS[kind]
 	target = enrollment.get(field)
@@ -110,6 +114,9 @@ def issue_certificate(user: str, kind: str, target: str, replaces: str | None = 
 	from vintraxo_tcd.core import integrations
 
 	integrations.emit("Certificate Issued", cert)
+	from vintraxo_tcd.core import badges
+
+	badges.check(user, "Certificate Earned")
 	return cert
 
 

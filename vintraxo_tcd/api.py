@@ -944,3 +944,13 @@ def reject_change_request(name: str, comment: str = ""):
 	from vintraxo_tcd.core import change_requests
 
 	change_requests.reject(name, frappe.session.user, comment)
+
+
+# ---------------------------------------------------------------- proctoring (Phase 15)
+
+
+@frappe.whitelist(methods=["POST"])
+def report_quiz_violation(name: str, kind: str) -> dict:
+	from vintraxo_tcd.core import quiz as svc_quiz_mod
+
+	return svc_quiz_mod.report_violation(_quiz_for_user(name), frappe.session.user, kind)

@@ -127,6 +127,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 12 — Gaps from the vision review | c931dd8 | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
 | Phase 13 — Manager, attendance rule, HRMS, export/import | 9e1a648 | 172 | /learn/team, minimum attendance, Training Event/Result write-back, space export/import; fixed /learn/team route clash |
 | Phase 14 — Learner experience (vs LMS / Wiki) | bce6d30 | 179 | Table of contents, course cover + intro video, video watch tracking + rule, private notes, suggested edits with review |
+| Phase 15 — Assessment and badges | this commit | 183 | Negative marking, proctoring with violation log, multi test-case code questions on the runner, badges |
 
 ## Phase 7 — Notifications and analytics: status
 

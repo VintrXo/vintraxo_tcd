@@ -17,6 +17,8 @@
   "max_score",
   "percentage",
   "passed",
+  "violations",
+  "flagged",
   "answers_section",
   "answers",
   "results",
@@ -121,6 +123,20 @@
    "in_standard_filter": 1
   },
   {
+   "fieldname": "violations",
+   "fieldtype": "Int",
+   "label": "Violations",
+   "read_only": 1
+  },
+  {
+   "fieldname": "flagged",
+   "fieldtype": "Check",
+   "label": "Flagged",
+   "in_standard_filter": 1,
+   "read_only": 1,
+   "description": "Reached the allowed number of proctoring violations"
+  },
+  {
    "fieldname": "answers_section",
    "fieldtype": "Section Break",
    "label": "Answers"
@@ -170,7 +186,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 17:00:00.000000",
+ "modified": "2026-11-20 14:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Quiz Submission",

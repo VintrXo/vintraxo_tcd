@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 14:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "quiz",
+  "submission",
+  "kind"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "quiz",
+   "fieldtype": "Link",
+   "label": "Quiz",
+   "options": "TCD Quiz",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "submission",
+   "fieldtype": "Link",
+   "label": "Submission",
+   "options": "TCD Quiz Submission",
+   "search_index": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "kind",
+   "fieldtype": "Select",
+   "label": "Kind",
+   "options": "Left the Tab\nLeft the Window\nPasted Text\nCopied Text",
+   "in_list_view": 1,
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 14:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Quiz Violation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "delete": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "report": 1,
+   "delete": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "in_create": 1
+}
