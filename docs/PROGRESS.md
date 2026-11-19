@@ -126,7 +126,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 10 — Code runner (Frappe side) | 4defe64 | 154 | Judge0 client, run log, practice runs for Java/C++/C/Go/C#/Bash, server grading that ignores device output, Test Runner; runner host not set up |
 | Phase 12 — Gaps from the vision review | c931dd8 | 167 | Sessions + attendance + calendar, lesson discussions, content review cycle + freshness report, self-withdraw; fixes: Jinja date crash, withdrawn re-enroll, 12-hour stale JS, unsaved setting defaults |
 | Phase 13 — Manager, attendance rule, HRMS, export/import | 9e1a648 | 172 | /learn/team, minimum attendance, Training Event/Result write-back, space export/import; fixed /learn/team route clash |
-| Phase 14 — Learner experience (vs LMS / Wiki) | this commit | 179 | Table of contents, course cover + intro video, video watch tracking + rule, private notes, suggested edits with review |
+| Phase 14 — Learner experience (vs LMS / Wiki) | bce6d30 | 179 | Table of contents, course cover + intro video, video watch tracking + rule, private notes, suggested edits with review |
 
 ## Phase 7 — Notifications and analytics: status
 
