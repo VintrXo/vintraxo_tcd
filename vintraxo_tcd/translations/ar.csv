@@ -27,6 +27,7 @@
 5,5 - خبير,TCD Skill Award
 5,5 - خبير,TCD User Skill
 A .json file made with Export Space on another site,ملف ‎.json‎ مصدَّر بزر «تصدير المساحة» من موقع آخر,TCD Content Import
+A calendar connected in Frappe's Google Calendar integration; events get a Meet link,تقويم مربوط بتكامل Google Calendar في Frappe؛ يُضاف للأحداث رابط Meet,TCD Settings
 A cancelled session has no attendance.,الجلسة الملغاة ليس لها حضور.
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
@@ -241,6 +242,7 @@ Body (Markdown),النص (ماركداون),TCD Governance Document
 Body (Markdown),النص (ماركداون),TCD Governance Version
 Browse spaces,تصفّح المساحات
 CPU Time Limit (Seconds),حد وقت المعالج (ثوانٍ),TCD Settings
+Calendar Event,حدث التقويم,TCD Session
 Callout,تنبيه
 Callout,تنبيه,TCD Block
 Cancelled,ألغيت
@@ -285,6 +287,7 @@ Certificates expiring,شهادات قاربت على الانتهاء
 Certificates expiring in 30 days,شهادات تنتهي خلال 30 يومًا
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
+Choose the Google Calendar in Learning Settings.,اختر تقويم Google في إعدادات التعلّم.
 Choose the code language.,اختر لغة الكود.
 Choose the target of the relation.,اختر هدف العلاقة.
 Choose the {0}.,اختر {0}.
@@ -405,6 +408,8 @@ Courses and Learning,الدورات والتعلّم
 Courses and learning paths,الدورات ومسارات التعلّم
 Cover Image,صورة الغلاف,TCD Course
 Cover Image,صورة الغلاف,TCD Learning Path
+Create Meeting With,إنشاء الاجتماع عبر,TCD Session
+Create Meetings With,إنشاء الاجتماعات عبر,TCD Settings
 Created Space,المساحة المُنشأة,TCD Content Import
 Criterion,المعيار,TCD Rubric Criterion
 Current,تيار
@@ -484,6 +489,7 @@ Effective from {0},ساري من {0}
 Effort,مستوى الجهد,TCD AI Settings
 Employee,الموظف
 Empty for a question; the question for a reply,فارغ للسؤال؛ ويحدد السؤال عند الرد,TCD Discussion Post
+Empty: paste your own meeting link,فارغ: الصق رابط الاجتماع بنفسك,TCD Session
 Enable AI,تفعيل الذكاء الاصطناعي,TCD AI Settings
 Enable Code Runner,تفعيل مشغّل الأكواد,TCD Settings
 Enable Learner Portal,تفعيل بوابة المتعلمين
@@ -582,8 +588,10 @@ Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد
 Follows what you completed,يكمّل ما أنهيته
 For enrolled learners,للمتعلمين المسجّلين
 For pages that do not go out of date (e.g. a glossary),للصفحات التي لا تتقادم (مثل قاموس المصطلحات),TCD Content
+For the instructor only (starts the meeting as host),للمدرّب فقط (يبدأ الاجتماع كمضيف),TCD Session
 From Content,من المحتوى
 From Date,من تاريخ
+From a Zoom Server-to-Server OAuth app with the meeting:write scope,من تطبيق Zoom من نوع Server-to-Server OAuth بصلاحية meeting:write,TCD Settings
 From the Question Bank,من بنك الأسئلة,TCD Quiz
 Full Name,الاسم,TCD Session Attendance
 Full Name,الاسم,TCD Team Member
@@ -599,6 +607,10 @@ Generate quiz questions,إنشاء أسئلة اختبار
 Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
 Give the lesson a title.,اكتب عنوانًا للدرس.
 Given to the program as standard input,تُعطى للبرنامج كمدخلات قياسية,TCD Question Test Case
+Google Calendar,تقويم Google,TCD Settings
+Google Meet,جوجل ميت
+Google Meet,جوجل ميت,TCD Session
+Google Meet,جوجل ميت,TCD Settings
 Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
@@ -631,6 +643,7 @@ Hidden posts are not shown in the portal,المشاركات المخفية لا 
 Hide,إخفاء
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
+Host Link,رابط المضيف,TCD Session
 How Many,العدد,TCD Badge
 How Many,العدد,TCD Quiz Bank Item
 How often published pages are checked for accuracy; 0 turns reviews off,كل كم شهر تُراجع الصفحات المنشورة للتأكد من صحتها؛ 0 يوقف المراجعات,TCD Settings
@@ -819,6 +832,7 @@ Max Upload Size (MB),أقصى حجم للرفع (ميجابايت),TCD Settings
 Max attempts cannot be negative.,لا يمكن أن يكون الحد الأقصى للمحاولات سالبًا.
 Max score must be greater than zero.,الدرجة العظمى يجب أن تكون أكبر من صفر.
 Media and Uploads,الوسائط والملفات,TCD Settings
+Meeting ID,معرّف الاجتماع,TCD Session
 Meeting Link,رابط الاجتماع,TCD Session
 Member,العضو
 Members,الأعضاء
@@ -918,6 +932,8 @@ One per line. For Ordering: the correct order,واحد في كل سطر. للت�
 Online,عن بُعد
 Online,عن بُعد,TCD
 Online,عن بُعد,TCD Session
+Online Meetings,الاجتماعات عن بُعد,TCD Settings
+Online sessions get a meeting automatically,الجلسات عن بُعد يُنشأ لها اجتماع تلقائيًا,TCD Settings
 Only Gaps,الفجوات فقط
 Only This Course,لهذه الدورة فقط,TCD Badge
 Only This Learning Path,لهذا المسار فقط,TCD Badge
@@ -1563,6 +1579,7 @@ The lesson is not part of the selected course.,الدرس ليس ضمن الدو
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The lesson this assignment belongs to,الدرس الذي يتبعه هذا التكليف,TCD Assignment
 The manager is not a member of their own team.,المدير ليس عضوًا في فريقه.
+The meeting could not be created or updated. You can paste a meeting link instead.,تعذّر إنشاء الاجتماع أو تحديثه. يمكنك لصق رابط الاجتماع يدويًا.
 The meeting link must be an http(s) URL.,يجب أن يكون رابط الاجتماع http(s).
 The monthly AI budget is used up.,انتهت ميزانية الذكاء الاصطناعي لهذا الشهر.
 The page changed after this suggestion was made. Ask for a new suggestion.,تغيّرت الصفحة بعد هذا الاقتراح. اطلب اقتراحًا جديدًا.
@@ -1754,6 +1771,13 @@ Your question about this page,سؤالك عن هذه الصفحة
 Your reply,ردك
 Your suggested edit was accepted: {0},تم قبول تعديلك المقترح: {0}
 Your suggested edit was not accepted: {0},لم يُقبل تعديلك المقترح: {0}
+Zoom,زووم
+Zoom,زووم,TCD Session
+Zoom,زووم,TCD Settings
+Zoom Account ID,معرّف حساب Zoom,TCD Settings
+Zoom Client ID,معرّف عميل Zoom,TCD Settings
+Zoom Client Secret,المفتاح السري لعميل Zoom,TCD Settings
+Zoom is not configured in Learning Settings.,Zoom غير مُعدّ في إعدادات التعلّم.
 callout,تنبيه,TCD Block
 code,كود,TCD Block
 course,الدورة

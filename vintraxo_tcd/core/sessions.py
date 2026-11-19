@@ -67,6 +67,8 @@ def validate(doc):
 	if get_datetime(doc.ends_on) <= get_datetime(doc.starts_on):
 		frappe.throw(_("The session must end after it starts."))
 	if doc.session_type == "Online":
+		if doc.is_new() and not doc.get("conferencing"):
+			doc.conferencing = frappe.db.get_single_value("TCD Settings", "meeting_provider") or None
 		url = (doc.meeting_url or "").strip()
 		if url and urlparse(url).scheme not in ("http", "https"):
 			frappe.throw(_("The meeting link must be an http(s) URL."))
@@ -92,8 +94,9 @@ def validate(doc):
 
 
 def on_update(doc):
-	from vintraxo_tcd.core import notify
+	from vintraxo_tcd.core import meetings, notify
 
+	meetings.sync(doc)
 	refresh_completion(doc)
 
 	before = doc.get_doc_before_save()
@@ -162,6 +165,8 @@ def load_learners(name: str) -> int:
 
 
 def _row(s, user: str, enrolled: bool) -> dict:
+	from vintraxo_tcd.core import meetings
+
 	mark = frappe.db.get_value("TCD Session Attendance", {"parent": s.name, "user": user}, "status")
 	return {
 		"name": s.name,
@@ -172,8 +177,8 @@ def _row(s, user: str, enrolled: bool) -> dict:
 		"session_type": s.session_type,
 		"status": s.status,
 		"location": s.location,
-		# the meeting link is only for invited learners
-		"meeting_url": s.meeting_url if enrolled else None,
+		# the meeting link is only for invited learners (Meet links arrive after Google syncs the event)
+		"meeting_url": meetings.meet_link(s) if enrolled else None,
 		"attendance": mark,
 	}
 

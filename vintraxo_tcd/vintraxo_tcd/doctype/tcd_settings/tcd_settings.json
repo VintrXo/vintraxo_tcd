@@ -35,7 +35,14 @@
   "runner_memory_mb",
   "runner_runs_per_minute",
   "runner_languages_section",
-  "runner_languages"
+  "runner_languages",
+  "meetings_section",
+  "meeting_provider",
+  "zoom_account_id",
+  "zoom_client_id",
+  "zoom_client_secret",
+  "column_break_meetings",
+  "google_calendar"
  ],
  "fields": [
   {
@@ -239,12 +246,55 @@
    "label": "Runner Languages",
    "options": "TCD Runner Language",
    "description": "Languages the runner may execute. Check the ids with Test Runner."
+  },
+  {
+   "fieldname": "meetings_section",
+   "fieldtype": "Section Break",
+   "label": "Online Meetings"
+  },
+  {
+   "fieldname": "meeting_provider",
+   "fieldtype": "Select",
+   "label": "Create Meetings With",
+   "options": "\nZoom\nGoogle Meet",
+   "description": "Online sessions get a meeting automatically"
+  },
+  {
+   "fieldname": "zoom_account_id",
+   "fieldtype": "Data",
+   "label": "Zoom Account ID",
+   "depends_on": "eval:doc.meeting_provider=='Zoom'"
+  },
+  {
+   "fieldname": "zoom_client_id",
+   "fieldtype": "Data",
+   "label": "Zoom Client ID",
+   "depends_on": "eval:doc.meeting_provider=='Zoom'"
+  },
+  {
+   "fieldname": "zoom_client_secret",
+   "fieldtype": "Password",
+   "label": "Zoom Client Secret",
+   "depends_on": "eval:doc.meeting_provider=='Zoom'",
+   "description": "From a Zoom Server-to-Server OAuth app with the meeting:write scope"
+  },
+  {
+   "fieldname": "column_break_meetings",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "google_calendar",
+   "fieldtype": "Link",
+   "label": "Google Calendar",
+   "options": "Google Calendar",
+   "depends_on": "eval:doc.meeting_provider=='Google Meet'",
+   "description": "A calendar connected in Frappe's Google Calendar integration; events get a Meet link"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 15:00:00.000000",
+ "modified": "2026-11-20 15:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

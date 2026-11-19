@@ -14,6 +14,10 @@
   "ends_on",
   "location",
   "meeting_url",
+  "conferencing",
+  "meeting_id",
+  "host_url",
+  "calendar_event",
   "instructor",
   "details_section",
   "description",
@@ -95,6 +99,37 @@
    "description": "Shown only to invited learners"
   },
   {
+   "fieldname": "conferencing",
+   "fieldtype": "Select",
+   "label": "Create Meeting With",
+   "options": "\nZoom\nGoogle Meet",
+   "depends_on": "eval:doc.session_type=='Online'",
+   "description": "Empty: paste your own meeting link"
+  },
+  {
+   "fieldname": "meeting_id",
+   "fieldtype": "Data",
+   "label": "Meeting ID",
+   "depends_on": "meeting_id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "host_url",
+   "fieldtype": "Small Text",
+   "label": "Host Link",
+   "depends_on": "host_url",
+   "read_only": 1,
+   "description": "For the instructor only (starts the meeting as host)"
+  },
+  {
+   "fieldname": "calendar_event",
+   "fieldtype": "Link",
+   "label": "Calendar Event",
+   "options": "Event",
+   "depends_on": "calendar_event",
+   "read_only": 1
+  },
+  {
    "fieldname": "instructor",
    "fieldtype": "Link",
    "label": "Instructor",
@@ -124,7 +159,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 07:00:00.000000",
+ "modified": "2026-11-20 15:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Session",
