@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Published Content\", \"col\": 4}}, {\"id\": \"tcd-nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Content In Review\", \"col\": 4}}, {\"id\": \"tcd-nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Enrollments\", \"col\": 4}}, {\"id\": \"tcd-nc3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Submissions To Grade\", \"col\": 4}}, {\"id\": \"tcd-nc4\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Acknowledgment Compliance\", \"col\": 4}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Courses\", \"col\": 3}}, {\"id\": \"tcd-sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Enrollments\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}]",
+ "content": "[{\"id\": \"tcd-h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>VintraXo TCD</b></span>\", \"col\": 12}}, {\"id\": \"tcd-nc0\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Published Content\", \"col\": 4}}, {\"id\": \"tcd-nc1\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Content In Review\", \"col\": 4}}, {\"id\": \"tcd-nc2\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Active Enrollments\", \"col\": 4}}, {\"id\": \"tcd-nc3\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Submissions To Grade\", \"col\": 4}}, {\"id\": \"tcd-nc4\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Acknowledgment Compliance\", \"col\": 4}}, {\"id\": \"tcd-s0\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Content\", \"col\": 3}}, {\"id\": \"tcd-sc1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Courses\", \"col\": 3}}, {\"id\": \"tcd-sc2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Enrollments\", \"col\": 3}}, {\"id\": \"tcd-s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Spaces\", \"col\": 3}}, {\"id\": \"tcd-s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quizzes\", \"col\": 3}}, {\"id\": \"tcd-s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Progress\", \"col\": 3}}, {\"id\": \"tcd-s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Quiz Analytics\", \"col\": 3}}, {\"id\": \"tcd-s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learner Portal\", \"col\": 3}}, {\"id\": \"tcd-s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Learning Settings\", \"col\": 3}}, {\"id\": \"7qaQnjUDw6\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"lrZuAp0uc8\", \"type\": \"card\", \"data\": {\"card_name\": \"Content\", \"col\": 4}}, {\"id\": \"nnXMQv8aka\", \"type\": \"card\", \"data\": {\"card_name\": \"Courses and Learning\", \"col\": 4}}, {\"id\": \"gGBQOLRVDn\", \"type\": \"card\", \"data\": {\"card_name\": \"Training and Sessions\", \"col\": 4}}, {\"id\": \"D6aP7FEGUp\", \"type\": \"card\", \"data\": {\"card_name\": \"Assessment\", \"col\": 4}}, {\"id\": \"ZMX4iH8kPs\", \"type\": \"card\", \"data\": {\"card_name\": \"Skills and Certificates\", \"col\": 4}}, {\"id\": \"1WN3hAWbai\", \"type\": \"card\", \"data\": {\"card_name\": \"Governance\", \"col\": 4}}, {\"id\": \"0NzVQPdt8x\", \"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}, {\"id\": \"epVeGGqmk9\", \"type\": \"card\", \"data\": {\"card_name\": \"Integrations and AI\", \"col\": 4}}, {\"id\": \"OMCZLcut7z\", \"type\": \"card\", \"data\": {\"card_name\": \"Settings\", \"col\": 4}}]",
  "creation": "2026-11-19 01:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -11,8 +11,571 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "VintraXo TCD",
- "links": [],
- "modified": "2026-11-20 00:40:00.000000",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Content",
+   "link_count": 8,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Spaces",
+   "link_count": 0,
+   "link_to": "TCD Space",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Categories",
+   "link_count": 0,
+   "link_to": "TCD Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Content",
+   "link_count": 0,
+   "link_to": "TCD Content",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Templates",
+   "link_count": 0,
+   "link_to": "TCD Content Template",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Content Relations",
+   "link_count": 0,
+   "link_to": "TCD Content Relation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Approved Versions",
+   "link_count": 0,
+   "link_to": "TCD Content Version",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Page Feedback",
+   "link_count": 0,
+   "link_to": "TCD Content Feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Discussions",
+   "link_count": 0,
+   "link_to": "TCD Discussion Post",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Courses and Learning",
+   "link_count": 9,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Courses",
+   "link_count": 0,
+   "link_to": "TCD Course",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Chapters",
+   "link_count": 0,
+   "link_to": "TCD Chapter",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Learning Paths",
+   "link_count": 0,
+   "link_to": "TCD Learning Path",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Batches",
+   "link_count": 0,
+   "link_to": "TCD Batch",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Enrollments",
+   "link_count": 0,
+   "link_to": "TCD Enrollment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assignments",
+   "link_count": 0,
+   "link_to": "TCD Assignment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Submissions",
+   "link_count": 0,
+   "link_to": "TCD Assignment Submission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Course Feedback",
+   "link_count": 0,
+   "link_to": "TCD Course Feedback",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Progress Records",
+   "link_count": 0,
+   "link_to": "TCD Progress",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Training and Sessions",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sessions",
+   "link_count": 0,
+   "link_to": "TCD Session",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Training Rules",
+   "link_count": 0,
+   "link_to": "TCD Training Rule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Teams",
+   "link_count": 0,
+   "link_to": "TCD Team",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Assessment",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quizzes",
+   "link_count": 0,
+   "link_to": "TCD Quiz",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Question Bank",
+   "link_count": 0,
+   "link_to": "TCD Question",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Question Categories",
+   "link_count": 0,
+   "link_to": "TCD Question Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Quiz Attempts",
+   "link_count": 0,
+   "link_to": "TCD Quiz Submission",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Skills and Certificates",
+   "link_count": 4,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Skills",
+   "link_count": 0,
+   "link_to": "TCD Skill",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Competency Profiles",
+   "link_count": 0,
+   "link_to": "TCD Competency Profile",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "User Skills",
+   "link_count": 0,
+   "link_to": "TCD User Skill",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Certificates",
+   "link_count": 0,
+   "link_to": "TCD Certificate",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Governance",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Policies and Procedures",
+   "link_count": 0,
+   "link_to": "TCD Governance Document",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Approved Document Versions",
+   "link_count": 0,
+   "link_to": "TCD Governance Version",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Acknowledgments",
+   "link_count": 0,
+   "link_to": "TCD Acknowledgment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 11,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Learner Progress",
+   "link_count": 0,
+   "link_to": "TCD Learner Progress",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Course Report",
+   "link_count": 0,
+   "link_to": "TCD Course Report",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Quiz Analytics",
+   "link_count": 0,
+   "link_to": "TCD Quiz Analytics",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Instructor Dashboard",
+   "link_count": 0,
+   "link_to": "TCD Instructor Dashboard",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Attendance",
+   "link_count": 0,
+   "link_to": "TCD Attendance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Training Compliance",
+   "link_count": 0,
+   "link_to": "TCD Training Compliance",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Competency Gap",
+   "link_count": 0,
+   "link_to": "TCD Competency Gap",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Acknowledgment Status",
+   "link_count": 0,
+   "link_to": "TCD Acknowledgment Status",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Compliance Overview",
+   "link_count": 0,
+   "link_to": "TCD Compliance Overview",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Knowledge Usage",
+   "link_count": 0,
+   "link_to": "TCD Knowledge Usage",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Content Freshness",
+   "link_count": 0,
+   "link_to": "TCD Content Freshness",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Integrations and AI",
+   "link_count": 6,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Integration Connectors",
+   "link_count": 0,
+   "link_to": "TCD Connector",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Integration Log",
+   "link_count": 0,
+   "link_to": "TCD Integration Event",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AI Settings",
+   "link_count": 0,
+   "link_to": "TCD AI Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "AI Usage",
+   "link_count": 0,
+   "link_to": "TCD AI Usage Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Code Runs",
+   "link_count": 0,
+   "link_to": "TCD Code Run",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Content Import",
+   "link_count": 0,
+   "link_to": "TCD Content Import",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Learning Settings",
+   "link_count": 0,
+   "link_to": "TCD Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-11-20 11:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VintraXo TCD",

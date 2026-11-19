@@ -374,6 +374,7 @@ Course and path skills are awarded automatically on completion.,تُمنح مه�
 Course feedback is given from the course page.,يُضاف تقييم الدورة من صفحة الدورة.
 Course whose instructors grade the submissions,الدورة التي يصحّح مدرّبوها التسليمات,TCD Assignment
 Courses,الدورات
+Courses and Learning,الدورات والتعلّم
 Courses and learning paths,الدورات ومسارات التعلّم
 Created Space,المساحة المُنشأة,TCD Content Import
 Criterion,المعيار,TCD Rubric Criterion
@@ -410,6 +411,7 @@ Designation,المسمى الوظيفي
 Designation,المسمى الوظيفي,TCD Rule HR Filter
 Details,التفاصيل,TCD AI Usage Log
 Details,التفاصيل,TCD Session
+Discussions,النقاشات
 Discussions are turned off.,النقاشات متوقفة.
 Document,المستند,TCD Acknowledgment
 Document,المستند,TCD Governance Version
@@ -617,6 +619,7 @@ Instructors,المدرّبون,TCD Learning Path
 "Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح,TCD Learning Path
 Integration Connectors,موصّلات التكامل
 Integration Log,سجل التكامل
+Integrations and AI,التكامل والذكاء الاصطناعي
 Interactive Tutorial,شرح تفاعلي
 Interactive Tutorial,شرح تفاعلي,TCD Content
 Interactive Tutorial,شرح تفاعلي,TCD Content Template
@@ -1500,6 +1503,7 @@ Training Event created in HRMS when the course was completed,حدث تدريب �
 Training Rule,قاعدة التدريب
 Training Rule,قاعدة التدريب,TCD Enrollment
 Training Rules,قواعد التدريب
+Training and Sessions,التدريب والجلسات
 True,صح
 True False,صح أو خطأ
 Try again,حاول مرة أخرى

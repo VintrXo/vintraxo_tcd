@@ -87,6 +87,17 @@ class TestArabicTranslations(TCDTestCase):
 				]
 		self.assertEqual(missing, [], "Values shown in lists/grids without a plain Arabic key")
 
+	def test_workspace_labels(self):
+		"""Every label on the VX workspace page and sidebar has Arabic."""
+		ws = json.load(
+			open(
+				glob.glob(frappe.get_app_path("vintraxo_tcd", "vintraxo_tcd", "workspace", "*", "*.json"))[0]
+			)
+		)
+		side = json.load(open(frappe.get_app_path("vintraxo_tcd", "workspace_sidebar", "vx.json")))
+		labels = {x["label"] for x in ws["links"] + ws["shortcuts"] + side["items"]}
+		self.assertEqual(sorted(x for x in labels if x not in self.plain and x not in NOT_TRANSLATED), [])
+
 	def test_no_tcd_prefix_in_arabic(self):
 		bad = [k for k, v in self.plain.items() if "TCD" in v]
 		bad += [f"{k} ({c})" for (k, c), v in self.context.items() if "TCD" in v]

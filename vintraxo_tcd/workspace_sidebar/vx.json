@@ -67,6 +67,17 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
+   "label": "Discussions",
+   "link_to": "TCD Discussion Post",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
    "label": "Content Relations",
    "link_to": "TCD Content Relation",
    "link_type": "DocType",
@@ -624,7 +635,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-20 10:00:00.000000",
+ "modified": "2026-11-20 11:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",
