@@ -286,6 +286,7 @@ def content_context(
 		for item in lesson["tutorial"]["lessons"]:
 			item["url"] = content_url(space.name, item["slug"], doc.name)
 
+	outline = lesson_outline(user, doc, space.name, tutorial, course)
 	quiz_required = bool(progress.required_quiz(doc.name))
 	from vintraxo_tcd.core import change_requests, freshness, notes
 
@@ -301,6 +302,7 @@ def content_context(
 		"doc": doc,
 		"lesson": lesson,
 		"nav": nav,
+		"outline": outline,
 		"dir": direction(doc.language),
 		"title": doc.title,
 		"parents": [{**p, "route": p["route"].rstrip("/")} for p in parents],
@@ -335,6 +337,71 @@ def content_context(
 	}
 
 
+def lesson_outline(user: str, doc, space: str, tutorial: str | None, course: str | None) -> dict | None:
+	"""Side menu of the lesson page (Phase 17): every item of the course or tutorial being followed,
+	with its state. Only items the user can read are listed."""
+	if (
+		course
+		and frappe.db.exists("TCD Course", course)
+		and frappe.has_permission("TCD Course", "read", course)
+	):
+		from vintraxo_tcd.core import courses as course_svc
+
+		c = frappe.db.get_value("TCD Course", course, ["title", "slug", "space"], as_dict=True)
+		status = course_svc.course_status(user, course)
+		groups = []
+		for ch in status["chapters"]:
+			items = []
+			for it in ch["items"]:
+				if it["content"] != doc.name and not frappe.has_permission(
+					"TCD Content", "read", it["content"]
+				):
+					continue
+				t = frappe.db.get_value(
+					"TCD Content", it["content"], ["title", "slug", "space"], as_dict=True
+				)
+				items.append(
+					{
+						"title": t.title,
+						"url": content_url(t.space, t.slug) + "?course=" + quote(course),
+						"state": "completed" if it["completed"] else ("locked" if it["locked"] else "open"),
+						"current": it["content"] == doc.name,
+					}
+				)
+			if items:
+				groups.append({"title": ch["title"], "items": items})
+		return {
+			"title": c.title,
+			"url": course_url(c.space, c.slug),
+			"percent": status["percent"],
+			"groups": groups,
+		}
+	owner = tutorial or (doc.name if doc.content_type == "Tutorial" else None)
+	if (
+		owner
+		and frappe.db.exists("TCD Content", owner)
+		and frappe.has_permission("TCD Content", "read", owner)
+	):
+		summary = progress.tutorial_summary(user, owner)
+		t = frappe.db.get_value("TCD Content", owner, ["title", "slug"], as_dict=True)
+		items = [
+			{
+				"title": item["title"],
+				"url": content_url(space, item["slug"], owner),
+				"state": "completed" if item["status"] == "Completed" else "open",
+				"current": item["lesson"] == doc.name,
+			}
+			for item in summary["lessons"]
+		]
+		return {
+			"title": t.title,
+			"url": content_url(space, t.slug),
+			"percent": summary["percent"],
+			"groups": [{"title": None, "items": items}],
+		}
+	return None
+
+
 def js_labels() -> dict:
 	"""UI strings for portal JS, translated on the server."""
 	return {
@@ -365,6 +432,14 @@ def js_labels() -> dict:
 		"true": _("True"),
 		"false": _("False"),
 		"preview": _("Preview"),
+		"copy": _("Copy", context="TCD"),
+		"copied": _("Copied", context="TCD"),
+		"full_screen": _("Full screen", context="TCD"),
+		"exit_full_screen": _("Exit full screen", context="TCD"),
+		"exercise_correct": _("Well done! All blanks are correct."),
+		"exercise_partly": _("{0} of {1} blanks are correct. Try again."),
+		"theme_dark": _("Dark mode"),
+		"theme_light": _("Light mode"),
 		"enrolled": _("Enrolled"),
 		"uploading": _("Uploading..."),
 		"saved": _("Saved."),

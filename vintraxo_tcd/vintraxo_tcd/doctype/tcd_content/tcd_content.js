@@ -27,6 +27,16 @@ const TCD_BLOCK_TYPES = {
 			["expected_output", "code", __("Expected Output (optional)", null, "TCD Block")],
 		],
 	},
+	exercise: {
+		label: __("Exercise", null, "TCD Block"),
+		fields: [
+			["prompt", "text", __("Question", null, "TCD Block")],
+			["language", "data", __("Language", null, "TCD Block"), null, "ltr"],
+			["code", "code", __("Code (write ___ for each blank)", null, "TCD Block")],
+			["answers", "lines", __("Answers (one per blank, in order; a | b accepts either)", null, "TCD Block")],
+			["hint", "text", __("Hint (optional)", null, "TCD Block")],
+		],
+	},
 	video: {
 		label: __("Video", null, "TCD Block"),
 		fields: [
@@ -63,6 +73,7 @@ const TCD_REQUIRED = {
 	video: "url",
 	link: "url",
 	file: "url",
+	exercise: "prompt",
 };
 const TCD_LOCKED = ["Approved", "Published"];
 

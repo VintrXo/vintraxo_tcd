@@ -434,6 +434,96 @@
 		});
 	}
 
+	// practice exercises (Phase 17): checked in the browser, nothing is recorded
+	function initExercises(t) {
+		const norm = (v, sql) => {
+			v = String(v || "").trim().replace(/\s+/g, " ");
+			return sql ? v.toLowerCase() : v;
+		};
+		document.querySelectorAll(".tcd-exercise").forEach((box) => {
+			let answers = [];
+			try {
+				answers = JSON.parse(box.querySelector("template.tcd-exercise-answers").content.textContent);
+			} catch (_) {
+				return;
+			}
+			const sql = (box.dataset.language || "").toLowerCase() === "sql";
+			// read the blanks on every use: other scripts may re-render the code block
+			const blanks = () => [...box.querySelectorAll(".tcd-blank-input")];
+			const result = box.querySelector(".tcd-exercise-result");
+			const say = (text, ok) => {
+				result.textContent = text;
+				result.hidden = false;
+				result.className = "tcd-exercise-result " + (ok ? "tcd-status-completed" : "tcd-error");
+			};
+			box.querySelector(".tcd-exercise-check").addEventListener("click", () => {
+				let right = 0;
+				const inputs = blanks();
+				inputs.forEach((input, i) => {
+					const ok = (answers[i] || "").split("|").some((a) => norm(a, sql) === norm(input.value, sql));
+					input.classList.toggle("is-right", ok);
+					input.classList.toggle("is-wrong", !ok);
+					input.setAttribute("aria-invalid", ok ? "false" : "true");
+					if (ok) right += 1;
+				});
+				if (right === inputs.length) say(t.exercise_correct || "Well done!", true);
+				else say(format(t.exercise_partly || "{0} of {1}", right, inputs.length), false);
+			});
+			box.querySelector(".tcd-exercise-show").addEventListener("click", () => {
+				blanks().forEach((input, i) => {
+					input.value = (answers[i] || "").split("|")[0].trim();
+					input.classList.remove("is-wrong");
+					input.classList.add("is-shown");
+				});
+				result.hidden = true;
+			});
+			box.addEventListener("keydown", (e) => {
+				if (e.key !== "Enter" || !e.target.classList.contains("tcd-blank-input")) return;
+				e.preventDefault();
+				const inputs = blanks();
+				(inputs[inputs.indexOf(e.target) + 1] || box.querySelector(".tcd-exercise-check")).focus();
+			});
+		});
+	}
+
+	// side menu of the lesson page: closed on small screens, current item scrolled into view
+	function initOutline() {
+		const outline = document.querySelector(".tcd-outline");
+		if (!outline) return;
+		if (window.matchMedia("(max-width: 991px)").matches) outline.open = false;
+		const current = outline.querySelector(".is-current");
+		const list = outline.querySelector("nav");
+		if (current && list && list.scrollHeight > list.clientHeight) {
+			list.scrollTop = current.offsetTop - list.clientHeight / 2;
+		}
+	}
+
+	// dark / light mode (Phase 17): remembered per browser; the first paint is set by an inline script
+	function initTheme(t) {
+		const root = document.documentElement;
+		const btn = document.createElement("button");
+		btn.type = "button";
+		btn.className = "tcd-theme-btn";
+		const paint = () => {
+			const dark = root.dataset.tcdTheme === "dark";
+			btn.textContent = dark ? "☀" : "☾";
+			btn.setAttribute("aria-label", dark ? t.theme_light || "Light mode" : t.theme_dark || "Dark mode");
+			btn.title = btn.getAttribute("aria-label");
+			btn.setAttribute("aria-pressed", dark ? "true" : "false");
+		};
+		btn.addEventListener("click", () => {
+			root.dataset.tcdTheme = root.dataset.tcdTheme === "dark" ? "light" : "dark";
+			try {
+				localStorage.setItem("tcd-theme", root.dataset.tcdTheme);
+			} catch (_) {
+				// private mode: the choice lasts for this page only
+			}
+			paint();
+		});
+		paint();
+		document.body.append(btn);
+	}
+
 	function initWithdraw() {
 		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -644,6 +734,9 @@
 		initBuy();
 		initScorm();
 		const t0 = labels();
+		if (document.querySelector(".tcd-page")) initTheme(t0);
+		initExercises(t0);
+		initOutline();
 		initProfile(t0);
 		initJobs(t0);
 		initAssignment(t0);

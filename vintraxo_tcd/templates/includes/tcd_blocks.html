@@ -10,7 +10,7 @@
 	{% elif b.type == "markdown" %}
 		<div class="tcd-markdown">{{ b.html or "" }}</div>
 	{% elif b.type == "code" %}
-		<pre class="tcd-code" dir="ltr"><code{% if b.language %} class="language-{{ b.language|e }}"{% endif %}>{{ b.code|e }}</code></pre>
+		<pre class="tcd-code nohighlight" dir="ltr"><code class="nohighlight{% if b.language %} language-{{ b.language|e }}{% endif %}">{{ b.code|e }}</code></pre>
 	{% elif b.type == "callout" %}
 		<aside class="tcd-callout tcd-callout-{{ (b.variant or 'info')|e }}">
 			{% if b.title %}<strong class="tcd-callout-title">{{ b.title|e }}</strong>{% endif %}
@@ -45,6 +45,19 @@
 		</a>
 	{% elif b.type == "file" %}
 		<a class="tcd-file" href="{{ b.url|e }}" download rel="noopener">📄 {{ b.title|e }}</a>
+	{% elif b.type == "exercise" %}
+		<section class="tcd-exercise" data-language="{{ (b.language or '')|e }}">
+			<p class="tcd-exercise-prompt"><span class="tcd-badge">{{ _("Exercise", context="TCD Block") }}</span> {{ b.prompt|e }}</p>
+			{% set parts = b.code.split("___") %}
+			<pre class="tcd-code tcd-exercise-code nohighlight" dir="ltr"><code class="nohighlight">{% for part in parts %}{{ part|e }}{% if not loop.last %}{% set ans = (b.answers[loop.index0] or "").split("|")[0]|trim %}<input class="tcd-blank-input" type="text" size="{{ [ans|length + 1, 4]|max }}" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="{{ _('Blank {0}').format(loop.index) }}">{% endif %}{% endfor %}</code></pre>
+			<p class="tcd-assistant-actions">
+				<button type="button" class="btn btn-primary btn-sm tcd-exercise-check">{{ _("Check", context="TCD") }}</button>
+				<button type="button" class="btn btn-default btn-sm tcd-exercise-show">{{ _("Show answer") }}</button>
+			</p>
+			{% if b.hint %}<details class="tcd-exercise-hint"><summary>{{ _("Hint") }}</summary><p class="tcd-paragraph">{{ b.hint|e }}</p></details>{% endif %}
+			<p class="tcd-exercise-result" role="status" hidden></p>
+			<template class="tcd-exercise-answers">{{ b.answers|tojson }}</template>
+		</section>
 	{% elif b.type == "playground" and playground.enabled %}
 		<section class="tcd-playground" data-language="{{ b.language|e }}">
 			<div class="tcd-playground-bar" dir="ltr">

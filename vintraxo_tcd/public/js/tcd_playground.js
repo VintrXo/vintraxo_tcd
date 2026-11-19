@@ -251,9 +251,33 @@
 			this.stopBtn.addEventListener("click", () => this.finish(this.t.stopped || "Stopped.", "warn"));
 			this.resetBtn.addEventListener("click", () => {
 				this.editor.value = this.original;
+				this.editor.dispatchEvent(new Event("input"));
 				this.clearOutput();
 			});
-			bar.append(this.runBtn, this.stopBtn, this.resetBtn);
+			this.fullBtn = el("button", { type: "button", class: "btn btn-default btn-xs tcd-full-btn", "aria-pressed": "false" }, this.t.full_screen || "Full screen");
+			this.fullBtn.addEventListener("click", () => this.toggleFull());
+			bar.append(this.runBtn, this.stopBtn, this.resetBtn, this.fullBtn);
+		}
+
+		// "Try it yourself" (Phase 17): the editor and the result side by side over the whole window
+		toggleFull(force) {
+			const on = force === undefined ? !this.section.classList.contains("tcd-playground-full") : force;
+			this.section.classList.toggle("tcd-playground-full", on);
+			document.documentElement.classList.toggle("tcd-no-scroll", on);
+			this.fullBtn.setAttribute("aria-pressed", on ? "true" : "false");
+			this.fullBtn.textContent = on ? this.t.exit_full_screen || "Exit full screen" : this.t.full_screen || "Full screen";
+			if (on) {
+				this.output.hidden = false;
+				this.editor.focus();
+				this.onEsc = (e) => {
+					if (e.key === "Escape") this.toggleFull(false);
+				};
+				document.addEventListener("keydown", this.onEsc);
+			} else {
+				if (!this.output.childElementCount) this.output.hidden = true;
+				document.removeEventListener("keydown", this.onEsc);
+				this.fullBtn.focus();
+			}
 		}
 
 		enableTabKey() {
@@ -263,6 +287,7 @@
 					const { selectionStart: s, selectionEnd: end, value } = this.editor;
 					this.editor.value = value.slice(0, s) + "    " + value.slice(end);
 					this.editor.selectionStart = this.editor.selectionEnd = s + 4;
+					this.editor.dispatchEvent(new Event("input"));
 				} else if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
 					e.preventDefault();
 					this.run();

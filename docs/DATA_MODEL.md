@@ -325,6 +325,10 @@ allow_scorm); TCD Session (conferencing, meeting_id, host_url, calendar_event); 
 currency); TCD Content (scorm_package, scorm_launch); TCD Progress (scorm_data); TCD Space (GitHub repository, branch,
 folder, token, last sync).
 
+## Phase 17
+No new DocTypes. New content block `exercise` (prompt, code with `___` blanks, answers — one per blank, `a | b`
+alternatives — optional language and hint); validated in `core/content.py` (blank count must equal answer count).
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

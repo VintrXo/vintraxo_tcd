@@ -34,7 +34,16 @@ BLOCK_SCHEMA = {
 	"link": {"url": (str, True), "title": (str, True), "description": (str, False)},
 	"markdown": {"text": (str, True)},
 	"file": {"url": (str, True), "title": (str, True)},
+	# practice exercise (Phase 17): code with ___ blanks, one answer per blank ("a | b" accepts either)
+	"exercise": {
+		"prompt": (str, True),
+		"code": (str, True),
+		"answers": (list, True),
+		"language": (str, False),
+		"hint": (str, False),
+	},
 }
+BLANK = "___"
 
 # fields whose text goes into search_text, per block type
 SEARCHABLE = {
@@ -49,6 +58,7 @@ SEARCHABLE = {
 	"link": ("title", "description"),
 	"markdown": ("text",),
 	"file": ("title",),
+	"exercise": ("prompt", "code"),
 }
 
 
@@ -109,6 +119,18 @@ def _validate_block_values(idx: int, block: dict):
 				idx, ", ".join(PLAYGROUND_LANGUAGES)
 			)
 		)
+	if btype == "exercise":
+		answers = block["answers"]
+		if not answers or not all(isinstance(a, str) and a.strip() for a in answers):
+			frappe.throw(_("Block {0}: every exercise answer must be filled in.").format(idx))
+		blanks = block["code"].count(BLANK)
+		if blanks != len(answers):
+			frappe.throw(
+				_("Block {0}: the code has {1} blanks (___) but {2} answers.").format(
+					idx, blanks, len(answers)
+				)
+			)
+		block["answers"] = [a.strip()[:200] for a in answers]
 	if btype == "image" and not re.match(r"^(https?://|/)", block["url"]):
 		frappe.throw(_("Block {0}: image URL must be absolute (http/https) or start with /.").format(idx))
 	if btype in ("video", "link", "file"):

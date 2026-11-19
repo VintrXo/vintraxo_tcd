@@ -2022,3 +2022,25 @@ written,تمت كتابته
 "Welcome, {0}","أهلًا، {0}",
 "Courses, lessons and company knowledge in one place.","الدورات والدروس ومعرفة الشركة في مكان واحد.",
 "Quick links","روابط سريعة",
+Check,تحقق,TCD
+Previous,السابق,TCD
+Next,التالي,TCD
+Copy,نسخ,TCD
+Copied,تم النسخ,TCD
+Full screen,ملء الشاشة,TCD
+Exit full screen,الخروج من ملء الشاشة,TCD
+Exercise,تمرين,TCD Block
+Question,السؤال,TCD Block
+Code (write ___ for each blank),الكود (اكتب ___ مكان كل فراغ),TCD Block
+"Answers (one per blank, in order; a | b accepts either)",الإجابات (واحدة لكل فراغ بالترتيب؛ a | b تقبل أيًّا منهما),TCD Block
+Hint (optional),تلميح (اختياري),TCD Block
+Show answer,أظهر الإجابة
+Hint,تلميح
+Contents,المحتويات
+Overview,نظرة عامة
+Well done! All blanks are correct.,أحسنت! كل الفراغات صحيحة.
+{0} of {1} blanks are correct. Try again.,{0} من {1} فراغات صحيحة. حاول مرة أخرى.
+Dark mode,الوضع الليلي
+Light mode,الوضع النهاري
+Block {0}: every exercise answer must be filled in.,الكتلة {0}: يجب ملء كل إجابات التمرين.
+Block {0}: the code has {1} blanks (___) but {2} answers.,الكتلة {0}: الكود فيه {1} فراغات (___) لكن الإجابات {2}.

@@ -1,11 +1,32 @@
 {% extends "templates/web.html" %}
 {% from "templates/includes/tcd_blocks.html" import render_blocks %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}"><script>try{if(localStorage.getItem("tcd-theme")==="dark")document.documentElement.dataset.tcdTheme="dark"}catch(e){}</script>{% endblock %}
 
 {% block page_content %}
-<article class="tcd-page tcd-content{% if is_guest %} tcd-guest{% endif %}" dir="{{ dir }}" lang="{{ doc.language|e }}"
+<article class="tcd-page tcd-content{% if is_guest %} tcd-guest{% endif %}{% if outline %} tcd-with-outline{% endif %}" dir="{{ dir }}" lang="{{ doc.language|e }}"
 	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
+	{% if outline %}
+	<details class="tcd-outline" open>
+		<summary><strong>{{ outline.title|e }}</strong> <span class="tcd-num tcd-small">{{ outline.percent|int }}%</span></summary>
+		<nav aria-label="{{ _('Contents') }}">
+			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ outline.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ outline.percent|int }}%"></span></span>
+			<a class="tcd-outline-home tcd-small" href="{{ outline.url|e }}">{{ _("Overview") }}</a>
+			{% for g in outline.groups %}
+			{% if g.title %}<p class="tcd-outline-group">{{ g.title|e }}</p>{% endif %}
+			<ol class="tcd-outline-list">
+				{% for it in g["items"] %}
+				<li class="tcd-outline-item is-{{ it.state }}{% if it.current %} is-current{% endif %}">
+					<a href="{{ it.url|e }}"{% if it.current %} aria-current="page"{% endif %}>{{ it.title|e }}</a>
+					{% if it.state == "completed" %}<span class="sr-only">{{ _("Completed", context="TCD") }}</span>{% elif it.state == "locked" %}<span class="sr-only">{{ _("Locked", context="TCD") }}</span>{% endif %}
+				</li>
+				{% endfor %}
+			</ol>
+			{% endfor %}
+		</nav>
+	</details>
+	{% endif %}
+	<div class="tcd-main">
 
 	{% if doc.status == "Archived" %}
 	<div class="tcd-callout tcd-callout-danger">{{ _("This page is archived and kept for reference only.") }}</div>
@@ -23,6 +44,13 @@
 		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
 		{% if tags %}<p class="tcd-tags">{% for t in tags %}<a class="tcd-chip" href="/learn?tag={{ t|urlencode }}">#{{ t|e }}</a>{% endfor %}</p>{% endif %}
 	</header>
+
+	{% if nav.prev or nav.next %}
+	<nav class="tcd-nav-top" aria-label="{{ _('Lesson navigation') }}">
+		{% if nav.prev %}<a class="btn btn-default btn-sm tcd-prev" href="{{ nav.prev.url|e }}" title="{{ nav.prev.title|e }}">{{ _("Previous", context="TCD") }}</a>{% else %}<span></span>{% endif %}
+		{% if nav.next %}<a class="btn btn-primary btn-sm tcd-next" href="{{ nav.next.url|e }}" title="{{ nav.next.title|e }}">{{ _("Next", context="TCD") }}</a>{% endif %}
+	</nav>
+	{% endif %}
 
 	{% if lesson.tutorial %}
 	{% set t = lesson.tutorial %}
@@ -234,6 +262,7 @@
 	</section>
 	{% endif %}
 
+	</div>
 	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 	<script type="application/json" id="tcd-playground-config">{{ playground_json }}</script>
 </article>
@@ -241,6 +270,7 @@
 
 {% block script %}
 {{ super() }}
+<script defer src="/assets/vintraxo_tcd/js/tcd_highlight.js?v={{ asset_version() }}"></script>
 <script defer src="/assets/vintraxo_tcd/js/tcd_playground.js?v={{ asset_version() }}"></script>
 <script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>
 {% endblock %}

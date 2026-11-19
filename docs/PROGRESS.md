@@ -129,6 +129,7 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 14 — Learner experience (vs LMS / Wiki) | bce6d30 | 179 | Table of contents, course cover + intro video, video watch tracking + rule, private notes, suggested edits with review |
 | Phase 15 — Assessment and badges | 3ad749c | 183 | Negative marking, proctoring with violation log, multi test-case code questions on the runner, badges |
 | Phase 16 — Visitors, meetings, payments, SCORM, GitHub, careers | this commit | 200 | Guest pages (guarded), Zoom / Meet, paid courses + coupons, SCORM, GitHub docs sync, profiles + internal jobs |
+| Phase 17 — Learner experience (W3Schools gaps) | this commit | 205 | Lesson side menu, top prev/next, syntax highlighting + copy, full-screen try-it, practice exercises, dark mode |
 
 ## Phase 7 — Notifications and analytics: status
 

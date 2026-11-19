@@ -66,6 +66,9 @@ def to_markdown(doc) -> str:
 			lines.append("> " + title + (b.get("text") or "").replace("\n", "\n> "))
 		elif t == "image":
 			lines.append(f"![{b.get('alt') or ''}]({b.get('url') or ''})")
+		elif t == "exercise":
+			lines.append("> **" + (b.get("prompt") or "") + "**")
+			lines.append(f"```{b.get('language') or ''}\n{b.get('code') or ''}\n```")
 		elif t in ("link", "video", "file"):
 			lines.append(f"[{b.get('title') or b.get('url')}]({b.get('url') or ''})")
 	front = {

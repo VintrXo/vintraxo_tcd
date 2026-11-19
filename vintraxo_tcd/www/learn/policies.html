@@ -1,6 +1,6 @@
 {% extends "templates/web.html" %}
 
-{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}"><script>try{if(localStorage.getItem("tcd-theme")==="dark")document.documentElement.dataset.tcdTheme="dark"}catch(e){}</script>{% endblock %}
 
 {% block page_content %}
 <div class="tcd-page" dir="rtl">
