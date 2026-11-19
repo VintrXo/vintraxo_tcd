@@ -9,7 +9,17 @@
 		<form class="tcd-search" method="get" action="/learn" role="search">
 			<input type="search" name="q" value="{{ query|e }}" placeholder="{{ _('Search lessons and articles') }}"
 				aria-label="{{ _('Search') }}" minlength="2">
+			<select name="space" aria-label="{{ _('Space') }}" class="tcd-select">
+				<option value="">{{ _("All spaces") }}</option>
+				{% for sp in spaces %}<option value="{{ sp.name|e }}" {% if sp.name == selected_space %}selected{% endif %}>{{ sp.title|e }}</option>{% endfor %}
+			</select>
 			<button type="submit" class="btn btn-primary btn-sm">{{ _("Search") }}</button>
+			<fieldset class="tcd-chips">
+				<legend class="sr-only">{{ _("Type") }}</legend>
+				{% for t in search_types %}
+				<label class="tcd-chip"><input type="checkbox" name="t" value="{{ t|e }}" {% if t in selected_types %}checked{% endif %}> {{ _(t, context="TCD") }}</label>
+				{% endfor %}
+			</fieldset>
 		</form>
 	</header>
 
@@ -21,7 +31,7 @@
 			{% for r in results %}
 			<li class="tcd-card">
 				<a href="{{ r.url|e }}" dir="{{ 'rtl' if r.language == 'ar' else 'ltr' }}">
-					<span class="tcd-badge">{{ _(r.content_type, context="TCD") }}</span>
+					<span class="tcd-badge">{{ _(r.kind, context="TCD") }}</span>
 					<strong>{{ r.title|e }}</strong>
 					{% if r.summary %}<span class="tcd-muted">{{ r.summary|e }}</span>
 					{% elif r.snippet %}<span class="tcd-muted tcd-snippet">{{ r.snippet|e }}</span>{% endif %}

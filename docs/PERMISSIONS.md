@@ -57,6 +57,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   course/path, and admins only.
 - Enrolled Only courses: their lessons are hidden from non-enrolled learners in `has_permission` and list queries.
 
+## Phase 2
+- Relations: visible only when the source content and the target (content, course or path) are both readable.
+- Search results, "used in" lists, related items and recommendations are built from permission-filtered queries
+  (`get_list` / `has_permission`), never from `ignore_permissions` lists shown to the user.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

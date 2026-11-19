@@ -83,7 +83,7 @@ def portal_page(build):
 # ---------------------------------------------------------------- pages
 
 
-def home_context(query: str | None = None) -> dict:
+def home_context(query: str | None = None, types: str | None = None, space: str | None = None) -> dict:
 	user = frappe.session.user
 	spaces = frappe.get_list(
 		"TCD Space",
@@ -106,11 +106,14 @@ def home_context(query: str | None = None) -> dict:
 		user
 	) or "TCD Administrator" in frappe.get_roles(user)
 
+	from vintraxo_tcd.core.connect import SEARCH_TYPES, search_all
+
+	selected = [t for t in (types or "").split(",") if t in SEARCH_TYPES]
+	ctx["search_types"] = list(SEARCH_TYPES)
+	ctx["selected_types"] = selected
+	ctx["selected_space"] = space if space in {s.name for s in spaces} else ""
 	if query:
-		rows = search(query, limit=50)
-		for row in rows:
-			row.url = content_url(row.space, row.slug)
-		ctx["results"] = rows
+		ctx["results"] = search_all(query, selected or None, ctx["selected_space"] or None, limit=50)
 	return ctx
 
 
@@ -236,6 +239,14 @@ def content_context(
 		c = frappe.db.get_value("TCD Course", course, ["title", "slug"], as_dict=True)
 		parents.append({"route": course_url(space.name, c.slug), "title": c.title})
 	blockers = course_svc.sequence_blockers(user, doc.name)
+	from vintraxo_tcd.core import connect
+
+	related = connect.related_for_content(user, doc.name)
+	unmet = connect.unmet_prerequisites(user, doc.name)
+	if course and not nav:
+		cnav = connect.course_navigation(user, course, doc.name)
+		for key, item in cnav.items():
+			nav[key] = {"title": item["title"], "url": item["url"] + "?course=" + quote(course)}
 
 	if lesson.get("tutorial"):
 		for item in lesson["tutorial"]["lessons"]:
@@ -253,9 +264,12 @@ def content_context(
 		"can_complete": doc.content_type != "Tutorial"
 		and lesson["progress"] != "Completed"
 		and not (quiz_required and not (lesson["quiz"] or {}).get("passed"))
-		and not blockers,
+		and not blockers
+		and not unmet,
 		"quiz_required": quiz_required,
 		"sequence_blockers": blockers,
+		"unmet_prerequisites": unmet,
+		"related": related,
 		"is_staff_preview": doc.status != "Published",
 		"user": user,
 		"js_labels": js_labels(),
@@ -349,6 +363,16 @@ def course_context(space_name: str, slug: str) -> dict:
 	for ch in data["chapters"]:
 		for item in ch["items"]:
 			item["url"] = content_url(space.name, item["slug"]) + "?course=" + quote(course.name)
+	from vintraxo_tcd.core import connect
+
+	user = frappe.session.user
+	prereqs = []
+	for row in course.get("prerequisites") or []:
+		item = connect._item(
+			"TCD Course", row.course, satisfied=connect.is_satisfied(user, "TCD Course", row.course)
+		)
+		if item:
+			prereqs.append(item)
 	return {
 		"space": space,
 		"doc": course,
@@ -360,6 +384,9 @@ def course_context(space_name: str, slug: str) -> dict:
 			{"route": content_url(space.name, "").rstrip("/"), "title": space.title},
 		],
 		"is_staff_preview": course.status != "Published",
+		"prerequisites": prereqs,
+		"unmet_prerequisites": [p["title"] for p in prereqs if not p["satisfied"]],
+		"referenced_by": connect.related_for_course(course.name),
 		"js_labels": js_labels(),
 	}
 

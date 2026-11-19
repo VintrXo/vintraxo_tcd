@@ -128,6 +128,7 @@ def create_demo():
 		).insert(ignore_permissions=True)
 	_demo_course(l1, l2, l3)
 	_demo_lms(l3)
+	_demo_relations(l1, l2, l3)
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -219,3 +220,26 @@ def _demo_lms(sql_lesson):
 				"instructions": "اكتب استعلام SQL يعرض الطلاب الحاصلين على أكثر من 70 مرتّبين تنازليًا.",
 			}
 		).insert(ignore_permissions=True)
+
+
+def _demo_relations(l1, l2, l3):
+	"""Phase 2 demo: prerequisites, next and related links across pillars."""
+	course = frappe.db.get_value("TCD Course", {"space": SPACE, "title": "أساسيات بايثون"})
+	video = frappe.db.get_value("TCD Content", {"space": SPACE, "title": "شرح بالفيديو"})
+	links = [
+		(l2.name, "Prerequisite", "Content", l1.name),
+		(video, "Next", "Content", l1.name),
+		(l3.name, "Related", "Course", course),
+	]
+	field = {"Content": "to_content", "Course": "to_course"}
+	for source, kind, target_type, target in links:
+		if not (source and target):
+			continue
+		filters = {
+			"from_content": source,
+			"relation_type": kind,
+			"target_type": target_type,
+			field[target_type]: target,
+		}
+		if not frappe.db.exists("TCD Content Relation", filters):
+			frappe.get_doc({"doctype": "TCD Content Relation", **filters}).insert(ignore_permissions=True)

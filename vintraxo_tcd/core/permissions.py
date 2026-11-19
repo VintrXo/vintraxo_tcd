@@ -200,10 +200,18 @@ def _via_content(column: str, user: str) -> str:
 
 def relation_query(user=None, doctype=None):
 	user = user or frappe.session.user
-	cond = _via_content("`tabTCD Content Relation`.from_content", user)
-	if not cond:
+	table = "`tabTCD Content Relation`"
+	source = _via_content(f"{table}.from_content", user)
+	if not source:
 		return ""
-	return f"({cond} and {_via_content('`tabTCD Content Relation`.to_content', user)})"
+	targets = " or ".join(
+		[
+			f"({table}.target_type = 'Content' and {_via_content(f'{table}.to_content', user)})",
+			f"({table}.target_type = 'Course' and {_via('TCD Course', f'{table}.to_course', user)})",
+			f"({table}.target_type = 'Learning Path' and {_via('TCD Learning Path', f'{table}.to_learning_path', user)})",
+		]
+	)
+	return f"({source} and ({targets}))"
 
 
 def version_query(user=None, doctype=None):
@@ -242,9 +250,16 @@ def _content_doc_ok(name, user) -> bool:
 
 def relation_has_permission(doc, ptype=None, user=None, debug=False):
 	user = user or frappe.session.user
-	return is_admin(user) or (
-		_content_doc_ok(doc.from_content, user) and _content_doc_ok(doc.to_content, user)
-	)
+	if is_admin(user):
+		return True
+	if not _content_doc_ok(doc.from_content, user):
+		return False
+	target_type = doc.get("target_type") or "Content"
+	if target_type == "Course":
+		return _offering_ok("TCD Course", doc.to_course, user)
+	if target_type == "Learning Path":
+		return _offering_ok("TCD Learning Path", doc.to_learning_path, user)
+	return _content_doc_ok(doc.to_content, user)
 
 
 def version_has_permission(doc, ptype=None, user=None, debug=False):

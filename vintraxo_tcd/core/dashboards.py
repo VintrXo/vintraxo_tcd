@@ -75,7 +75,34 @@ def my_learning(user: str) -> dict:
 		order_by="creation desc",
 		limit_page_length=5,
 	)
+	from vintraxo_tcd.core import connect
+
+	tutorials = []
+	for row in frappe.get_list(
+		"TCD Progress",
+		filters={"user": user, "content_type": "Tutorial"},
+		fields=["content", "status", "percent"],
+		order_by="modified desc",
+		limit_page_length=10,
+	):
+		item = connect._item("TCD Content", row.content, status=row.status, percent=row.percent)
+		if item:
+			tutorials.append(item)
+	recent = []
+	for row in frappe.get_list(
+		"TCD Progress",
+		filters={"user": user, "status": "Completed", "content_type": ("!=", "Tutorial")},
+		fields=["content", "completed_on"],
+		order_by="completed_on desc",
+		limit_page_length=5,
+	):
+		item = connect._item("TCD Content", row.content, completed_on=row.completed_on)
+		if item:
+			recent.append(item)
 	return {
+		"recommendations": connect.recommendations(user),
+		"tutorials": tutorials,
+		"recent": recent,
 		"enrollments": enrollments,
 		"assignments": sorted(
 			assignments, key=lambda a: (a.status != "Returned", a.status != "Not Submitted")

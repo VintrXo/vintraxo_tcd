@@ -21,6 +21,11 @@ function tcd_offering_buttons(frm, enrollment_for) {
 							d.hide();
 							const m = r.message || {};
 							let msg = __("Enrolled: {0}", [m.enrolled?.length || 0]);
+							if (m.warnings?.length) {
+								msg += "<br>" + __("Missing prerequisites: {0}", [m.warnings.length]) + "<ul>";
+								m.warnings.forEach((w) => (msg += `<li>${frappe.utils.escape_html(w.user)}: ${frappe.utils.escape_html(w.missing.join(", "))}</li>`));
+								msg += "</ul>";
+							}
 							if (m.skipped?.length) {
 								msg += "<br>" + __("Skipped: {0}", [m.skipped.length]) + "<ul>";
 								m.skipped.forEach((s) => (msg += `<li>${frappe.utils.escape_html(s.user)}: ${frappe.utils.escape_html(s.reason)}</li>`));

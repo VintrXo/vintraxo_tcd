@@ -3,8 +3,8 @@
 import frappe
 
 from vintraxo_tcd.core import assignments as svc_assignments
+from vintraxo_tcd.core import connect, courses, progress
 from vintraxo_tcd.core import content as svc_content
-from vintraxo_tcd.core import courses, progress
 from vintraxo_tcd.core import dashboards as svc_dashboards
 from vintraxo_tcd.core import quiz as svc_quiz
 from vintraxo_tcd.core.permissions import is_instructor_of
@@ -228,6 +228,10 @@ def enroll(enrollment_for: str, name: str) -> dict:
 		frappe.throw(
 			frappe._("Self enrollment is not allowed here. Ask your instructor."), frappe.PermissionError
 		)
+	if doctype == "TCD Course":
+		unmet = connect.unmet_course_prerequisites(frappe.session.user, doc.name)
+		if unmet:
+			frappe.throw(frappe._("Complete these courses first: {0}").format(", ".join(unmet)))
 	e = courses.enroll(frappe.session.user, enrollment_for, doc.name)
 	return {"name": e.name, "status": e.status, "percent": e.percent}
 
@@ -245,17 +249,21 @@ def enroll_batch(batch: str, enrollment_for: str, name: str, due_date: str | Non
 		frappe.throw(
 			frappe._("Only an instructor of this course can enroll a batch."), frappe.PermissionError
 		)
-	enrolled, skipped = [], []
+	enrolled, skipped, warnings = [], [], []
 	for row in group.members:
 		frappe.db.savepoint("tcd_enroll_member")
 		try:
 			courses.enroll(row.user, enrollment_for, target.name, group.name, due_date)
 			enrolled.append(row.user)
+			if doctype == "TCD Course" and (
+				unmet := connect.unmet_course_prerequisites(row.user, target.name)
+			):
+				warnings.append({"user": row.user, "missing": unmet})
 		except frappe.ValidationError as e:
 			frappe.db.rollback(save_point="tcd_enroll_member")
 			frappe.clear_last_message()
 			skipped.append({"user": row.user, "reason": frappe.utils.strip_html(str(e))})
-	return {"enrolled": enrolled, "skipped": skipped}
+	return {"enrolled": enrolled, "skipped": skipped, "warnings": warnings}
 
 
 @frappe.whitelist(methods=["POST"])
@@ -379,3 +387,24 @@ def my_learning() -> dict:
 @frappe.whitelist()
 def instructor_dashboard() -> dict:
 	return svc_dashboards.instructor_dashboard(frappe.session.user)
+
+
+# ---------------------------------------------------------------- Phase 2: unified experience
+
+
+@frappe.whitelist()
+def search_all(query: str, types: str | None = None, space: str | None = None, limit: int = 30) -> list:
+	"""Unified, permission-filtered search over content, courses and learning paths."""
+	wanted = [t for t in (types or "").split(",") if t] or None
+	return connect.search_all(query, wanted, space, limit)
+
+
+@frappe.whitelist()
+def get_related(name: str) -> dict:
+	doc = _readable_content(name)
+	return connect.related_for_content(frappe.session.user, doc.name)
+
+
+@frappe.whitelist()
+def get_recommendations(limit: int = 6) -> list:
+	return connect.recommendations(frappe.session.user, int(limit or 6))

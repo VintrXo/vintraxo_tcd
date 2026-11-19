@@ -70,6 +70,11 @@ def completion_blockers(user: str, content: str) -> list[str]:
 	assignment = required_assignment(content)
 	if assignment and not has_passed_assignment(user, assignment):
 		missing.append(_("Pass the assignment to complete this lesson."))
+	from vintraxo_tcd.core.connect import unmet_prerequisites
+
+	unmet = unmet_prerequisites(user, content)
+	if unmet:
+		missing.append(_("Complete the prerequisites first: {0}").format(", ".join(unmet)))
 	return missing
 
 

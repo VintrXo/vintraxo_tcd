@@ -28,6 +28,10 @@
 	</section>
 	{% endif %}
 
+	{% if unmet_prerequisites %}
+	<div class="tcd-callout tcd-callout-warning">{{ _("Complete the prerequisites first: {0}").format(unmet_prerequisites|join(", ")|e) }}</div>
+	{% endif %}
+
 	{% if sequence_blockers %}
 	<div class="tcd-callout tcd-callout-warning">{{ _("This item is locked by the course order. Complete these items first: {0}").format(sequence_blockers|join(", ")|e) }}</div>
 	{% endif %}
@@ -92,6 +96,33 @@
 		{% if quiz_required %}<p class="tcd-muted">{{ _("Pass this quiz to complete the lesson.") }}</p>{% endif %}
 		<div class="tcd-quiz-body"></div>
 	</section>
+	{% endif %}
+
+	{% set rel = related %}
+	{% if rel.prerequisites or rel.next or rel.related or rel.referenced_by or rel.used_in %}
+	<aside class="tcd-section tcd-related" aria-label="{{ _('Related') }}">
+		{% if rel.prerequisites %}
+		<h2>{{ _("Prerequisites") }}</h2>
+		<ul class="tcd-lessons">
+			{% for p in rel.prerequisites %}
+			<li class="tcd-lesson tcd-status-{{ 'completed' if p.satisfied else 'not-started' }}">
+				<span aria-hidden="true">{{ "✓" if p.satisfied else "○" }}</span>
+				<a href="{{ p.url|e }}">{{ p.title|e }}</a> <span class="tcd-badge">{{ _(p.kind, context="TCD") }}</span>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% for key, label in [("next", _("Up next")), ("related", _("Related")), ("referenced_by", _("Referenced by")), ("used_in", _("Part of"))] %}
+		{% if rel[key] %}
+		<h2>{{ label }}</h2>
+		<ul class="tcd-cards">
+			{% for r in rel[key] %}
+			<li class="tcd-card"><a href="{{ r.url|e }}"><span class="tcd-badge">{{ _(r.kind, context="TCD") }}</span><strong>{{ r.title|e }}</strong></a></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endfor %}
+	</aside>
 	{% endif %}
 
 	<footer class="tcd-footer">

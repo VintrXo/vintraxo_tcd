@@ -23,6 +23,8 @@
 			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}</span>
 		</div>
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
+		{% elif unmet_prerequisites %}
+		<p class="tcd-callout tcd-callout-warning">{{ _("Complete these courses first: {0}").format(unmet_prerequisites|join(", ")|e) }}</p>
 		{% elif data.self_enrollment and not is_staff_preview %}
 		<button type="button" class="btn btn-primary tcd-enroll" data-for="Course" data-name="{{ doc.name|e }}">{{ _("Enroll") }}</button>
 		{% else %}
@@ -50,6 +52,19 @@
 		{% endif %}
 	</section>
 
+	{% if prerequisites %}
+	<section class="tcd-section">
+		<h2>{{ _("Prerequisites") }}</h2>
+		<ul class="tcd-lessons">
+			{% for p in prerequisites %}
+			<li class="tcd-lesson tcd-status-{{ 'completed' if p.satisfied else 'not-started' }}">
+				<span aria-hidden="true">{{ "✓" if p.satisfied else "○" }}</span> <a href="{{ p.url|e }}">{{ p.title|e }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% for ch in data.chapters %}
 	<section class="tcd-section tcd-chapter">
 		<h2>{{ ch.title|e }} <span class="tcd-muted tcd-small">{{ ch.percent|int }}%</span></h2>
@@ -68,6 +83,16 @@
 	{% else %}
 	<p class="tcd-muted">{{ _("No content here yet.") }}</p>
 	{% endfor %}
+	{% if referenced_by %}
+	<section class="tcd-section">
+		<h2>{{ _("Related reading") }}</h2>
+		<ul class="tcd-cards">
+			{% for r in referenced_by %}
+			<li class="tcd-card"><a href="{{ r.url|e }}"><span class="tcd-badge">{{ _(r.kind, context="TCD") }}</span><strong>{{ r.title|e }}</strong></a></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
 	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 </article>
 {% endblock %}

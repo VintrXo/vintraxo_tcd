@@ -2,7 +2,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
-from vintraxo_tcd.core import courses
+from vintraxo_tcd.core import connect, courses
 from vintraxo_tcd.core.content import ensure_unique_slug
 from vintraxo_tcd.vintraxo_tcd.doctype.tcd_course.tcd_course import set_offering_defaults
 
@@ -12,6 +12,7 @@ class TCDLearningPath(Document):
 		set_offering_defaults(self)
 		ensure_unique_slug(self)
 		courses.validate_path_items(self)
+		self.search_text = connect.course_search_text(self)
 		before = self.get_doc_before_save()
 		if before and before.status == "Published" and self.status == "Published":
 			if [(r.course, r.is_optional) for r in before.items] != [

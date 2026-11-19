@@ -7,7 +7,10 @@
   "from_content",
   "relation_type",
   "column_break_1",
+  "target_type",
   "to_content",
+  "to_course",
+  "to_learning_path",
   "sort_order"
  ],
  "fields": [
@@ -28,20 +31,50 @@
    "default": "Related",
    "reqd": 1,
    "in_list_view": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "description": "Prerequisite: the source requires the target. Next: after the source, go to the target"
   },
   {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
   },
   {
+   "fieldname": "target_type",
+   "fieldtype": "Select",
+   "label": "Target Type",
+   "options": "Content\nCourse\nLearning Path",
+   "default": "Content",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
    "fieldname": "to_content",
    "fieldtype": "Link",
    "options": "TCD Content",
    "label": "To Content",
-   "reqd": 1,
    "in_list_view": 1,
-   "search_index": 1
+   "search_index": 1,
+   "depends_on": "eval:doc.target_type=='Content'",
+   "mandatory_depends_on": "eval:doc.target_type=='Content'"
+  },
+  {
+   "fieldname": "to_course",
+   "fieldtype": "Link",
+   "options": "TCD Course",
+   "label": "To Course",
+   "search_index": 1,
+   "depends_on": "eval:doc.target_type=='Course'",
+   "mandatory_depends_on": "eval:doc.target_type=='Course'",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "to_learning_path",
+   "fieldtype": "Link",
+   "options": "TCD Learning Path",
+   "label": "To Learning Path",
+   "search_index": 1,
+   "depends_on": "eval:doc.target_type=='Learning Path'",
+   "mandatory_depends_on": "eval:doc.target_type=='Learning Path'"
   },
   {
    "fieldname": "sort_order",
@@ -51,7 +84,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-18 21:00:00.000000",
+ "modified": "2026-11-19 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content Relation",

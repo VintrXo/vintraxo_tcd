@@ -121,6 +121,26 @@ Draft -> In Review -> Approved -> Published -> Archived
   score ≥ pass_score passes; a required assignment must pass before its lesson can be completed (like a required quiz).
 - **Feedback**: one rating per learner per course, only when enrolled.
 
+## Phase 2: unified experience
+| DocType / field | Key fields |
+|---|---|
+| TCD Content Relation (extended) | from_content, relation_type, target_type (Content / Course / Learning Path), to_content, to_course, to_learning_path, sort_order |
+| TCD Course: `prerequisites` (TCD Course Prerequisite child) | course |
+| TCD Course / TCD Learning Path: `search_text` | derived on save (title, summary, chapter titles / course titles), Arabic-normalized |
+
+### Rules
+- Relation direction: **from_content → target**. `Prerequisite` means "from_content requires the target"; `Next` means
+  "after from_content, go to the target". Exactly one target field is set, matching target_type.
+- A relation is visible only when both ends are readable.
+- Prerequisites are enforced for learners (staff are not blocked):
+  - content: a lesson cannot be completed while a prerequisite (content completed / course or path enrollment
+    Completed) is missing; the page shows what is missing.
+  - course: self-enrollment is refused while a prerequisite course is not Completed; staff enrollment is allowed and
+    reported as a warning.
+- Unified search: content, courses and learning paths in one ranked, permission-filtered list with type and space filters.
+- Recommendations (simple, explainable): next unlocked item of active enrollments, Next/Related targets of completed
+  content, popular self-enrollable courses in the learner's spaces.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

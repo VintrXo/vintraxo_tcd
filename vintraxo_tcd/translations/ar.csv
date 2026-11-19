@@ -1,6 +1,7 @@
 (no output),(لا توجد مخرجات)
 0 = unlimited,0 = بلا حد
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
+A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 About,حول
 About,نبذة,TCD
@@ -26,6 +27,7 @@ All Items,كل العناصر,TCD
 All Items,كل العناصر,TCD Course
 All Items,كل العناصر,TCD Learning Path
 All items are done. Waiting for your instructor's approval.,أنهيت كل العناصر. في انتظار اعتماد المدرّب.
+All spaces,كل المساحات
 Allow Self Enrollment,السماح بالتسجيل الذاتي
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Assignment
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Settings
@@ -118,6 +120,7 @@ Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
+Choose the target of the relation.,اختر هدف العلاقة.
 Choose what to enroll in.,اختر ما تريد التسجيل فيه.
 Code,رمز
 Code,كود,TCD Block
@@ -126,6 +129,8 @@ Code editor,محرر الأكواد
 Comma separated; empty uses TCD Settings,مفصولة بفواصل؛ إذا تُركت فارغة تُستخدم إعدادات التعلّم,TCD Assignment
 Comment,التعليق,TCD Course Feedback
 Comment (optional),تعليق (اختياري)
+Complete the prerequisites first: {0},أكمل المتطلبات السابقة أولًا: {0}
+Complete these courses first: {0},أكمل هذه الدورات أولًا: {0}
 Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
 Completed,اكتمل
 Completed,مكتمل,TCD
@@ -157,6 +162,7 @@ Content must be reviewed and approved before publishing.,يجب مراجعة ا�
 Content versions are created automatically on approval.,تُنشأ نسخ المحتوى تلقائيًا عند الاعتماد.
 Content versions cannot be changed.,لا يمكن تعديل نسخ المحتوى.
 Continue learning,تابع التعلّم
+Continue your course,تابع دورتك
 Copy,نسخ
 Correct,صحيح
 Correct %,نسبة الصحيح
@@ -243,6 +249,7 @@ File type .{0} is not allowed.,نوع الملف .{0} غير مسموح.
 Files must be uploaded first.,يجب رفع الملفات أولًا.
 Folder that contains pyodide.js (self-host for offline sites). Must end with /,المجلد الذي يحتوي pyodide.js (استضفه محليًا للمواقع غير المتصلة). يجب أن ينتهي بـ /
 Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
+Follows what you completed,يكمّل ما أنهيته
 For enrolled learners,للمتعلمين المسجّلين
 From Content,من المحتوى
 From Date,من تاريخ
@@ -307,8 +314,10 @@ Learner Portal,بوابة المتعلمين
 Learner Progress,تقدّم المتعلمين
 Learners,المتعلمون
 Learners Passed,نسبة الناجحين
+Learners must complete these courses before enrolling themselves,يجب على المتعلم إكمال هذه الدورات قبل التسجيل بنفسه,TCD Course
 Learning,التعلّم
 Learning Path,مسار تعلّم
+Learning Path,مسار تعلّم,TCD
 Learning Paths,مسارات التعلّم
 Learning Settings,إعدادات التعلّم
 Lesson,الدرس,TCD Assignment
@@ -352,6 +361,7 @@ Minimum Score,الحد الأدنى للدرجة,TCD
 Minimum Score,الحد الأدنى للدرجة,TCD Course
 Minimum Score,الحد الأدنى للدرجة,TCD Learning Path
 Minimum score must be between 1 and 100.,الحد الأدنى للدرجة يجب أن يكون بين 1 و100.
+Missing prerequisites: {0},متطلبات سابقة ناقصة: {0}
 Most Common Wrong Answer,أكثر إجابة خاطئة
 Move down,تحريك لأسفل
 Move the course back to Draft to change its chapters.,أعد الدورة إلى مسودة لتعديل فصولها.
@@ -410,6 +420,7 @@ Paragraph,فقرة,TCD Block
 Parent Category,التصنيف الأب
 Parent Category must belong to the same space.,يجب أن يكون التصنيف الأب في نفس المساحة.
 Parent Category would create a loop.,التصنيف الأب سيُنشئ حلقة دائرية.
+Part of,جزء من
 Pass Percentage,نسبة النجاح
 Pass Score,درجة النجاح,TCD Assignment
 Pass percentage must be between 1 and 100.,نسبة النجاح يجب أن تكون بين 1 و100.
@@ -436,7 +447,11 @@ Playground Timeout (seconds),مهلة محرر الأكواد (ثوانٍ)
 Playground timeout must be between 1 and 60 seconds.,مهلة محرر الأكواد يجب أن تكون بين 1 و60 ثانية.
 Playgrounds,محررات الأكواد
 Points,النقاط
+Popular in your spaces,شائع في مساحاتك
 Prerequisite,متطلب سابق
+Prerequisite Courses,الدورات المطلوبة مسبقًا,TCD Course
+"Prerequisite: the source requires the target. Next: after the source, go to the target",متطلب سابق: المصدر يتطلب الهدف. التالي: بعد المصدر انتقل إلى الهدف,TCD Content Relation
+Prerequisites,المتطلبات السابقة
 Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
 Progress,التقدّم,TCD
@@ -478,11 +493,15 @@ Rating,تقييم
 Rating (1-5),التقييم (1-5),TCD Course Feedback
 Rating must be between 1 and 5.,التقييم يجب أن يكون بين 1 و5.
 Ratings,التقييمات
+Recently completed,أُنجز مؤخرًا
+Recommended for you,مقترح لك
 Reference,مرجع
 Reference,مرجع,TCD
 Reference,مرجع,TCD Content
+Referenced by,مُشار إليه في
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
+Related reading,قراءات ذات صلة
 Relation Type,نوع العلاقة
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
 Reports,تقارير
@@ -607,6 +626,7 @@ TCD Content Version,نسخة محتوى معتمدة
 TCD Course,دورة
 TCD Course Feedback,تقييم دورة
 TCD Course Instructor,مدرّب الدورة
+TCD Course Prerequisite,متطلب دورة
 TCD Enrollment,تسجيل
 TCD Instructor Dashboard,لوحة المدرّب
 TCD Learner Progress,تقدّم المتعلمين
@@ -623,6 +643,7 @@ TCD Space Role,دور المساحة
 TCD Student Group,مجموعة متعلمين
 TCD Student Group Member,عضو مجموعة
 TCD Tutorial Lesson,درس المسار
+Target Type,نوع الهدف,TCD Content Relation
 Tell the learner what to change before returning the submission.,اكتب للمتعلم ما يجب تعديله قبل إرجاع التسليم.
 Text,النص,TCD Block
 Text,نص
@@ -654,19 +675,23 @@ Title,العنوان,TCD Space
 Title,العنوان,TCD Tutorial Lesson
 Title,اللقب
 To Content,إلى المحتوى
+To Course,إلى الدورة,TCD Content Relation
 To Date,إلى تاريخ
 To Grade,بانتظار التصحيح
+To Learning Path,إلى مسار التعلّم,TCD Content Relation
 True,صح
 True False,صح أو خطأ
 Try again,حاول مرة أخرى
 Tutorial,مسار تعليمي
 Tutorial,مسار تعليمي,TCD
 Tutorial,مسار تعليمي,TCD Content
+Tutorials,المسارات التعليمية
 Tutorials complete automatically when their lessons are completed.,تكتمل المسارات تلقائيًا عند إكمال دروسها.
 Type,النوع
 Type,النوع,TCD Quiz Question
 Unique within the space. Generated from the title when empty,فريد داخل المساحة. يُولَّد من العنوان إذا تُرك فارغًا
 Unknown block type. Edit it in the JSON section.,نوع كتلة غير معروف. عدّلها في قسم JSON.
+Up next,التالي
 Upload,تحميل
 Upload,رفع,TCD
 Uploaded file not found: {0},الملف المرفوع غير موجود: {0}

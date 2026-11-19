@@ -35,6 +35,49 @@
 		{% endif %}
 	</section>
 
+	{% if data.recommendations %}
+	<section class="tcd-section">
+		<h2>{{ _("Recommended for you") }}</h2>
+		<ul class="tcd-cards">
+			{% for r in data.recommendations %}
+			<li class="tcd-card">
+				<a href="{{ r.url|e }}">
+					<span class="tcd-badge">{{ _(r.kind, context="TCD") }}</span>
+					<strong>{{ r.title|e }}</strong>
+					<span class="tcd-muted tcd-small">{{ {"continue": _("Continue your course"), "follow_up": _("Follows what you completed"), "popular": _("Popular in your spaces")}[r.reason] }}</span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if data.tutorials %}
+	<section class="tcd-section">
+		<h2>{{ _("Tutorials") }}</h2>
+		<ul class="tcd-cards">
+			{% for t in data.tutorials %}
+			<li class="tcd-card">
+				<a href="{{ t.url|e }}">
+					<span class="tcd-status tcd-status-{{ t.status|lower|replace(' ', '-') }}">{{ _(t.status, context="TCD") }}</span>
+					<strong>{{ t.title|e }}</strong>
+					<span class="tcd-progress" role="progressbar" aria-valuenow="{{ t.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ t.percent|int }}%"></span></span>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if data.recent %}
+	<section class="tcd-section">
+		<h2>{{ _("Recently completed") }}</h2>
+		<ul class="tcd-lessons">
+			{% for r in data.recent %}<li class="tcd-lesson tcd-status-completed">✓ <a href="{{ r.url|e }}">{{ r.title|e }}</a></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.assignments %}
 	<section class="tcd-section">
 		<h2>{{ _("Assignments") }}</h2>

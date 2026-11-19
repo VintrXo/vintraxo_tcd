@@ -27,7 +27,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Desk polish | f8bddb7 … 4d16f87 | 48 | VX icon, workspace, sidebar, navbar link, real 404 |
 | Phase 0 — cleanup | e553fd6 + this commit | 52 | Arabic names without TCD, short labels, translated badge, translation coverage test, VISION/PROGRESS/ADR docs |
 | Phase 1 (partial, previous plan) | 648097e | 65 | Course, Chapter, Learning Path, Learning Item, Enrollment, Student Group, 4 completion rules, roll-up, course/path portal pages |
-| Phase 1 — LMS core | this commit | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
+| Phase 1 — LMS core | 46af804 | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
+| Phase 2 — Unified experience | this commit | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
 
 ## Phase 1 — LMS core: status
 
@@ -45,9 +46,22 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 
 Not verified: actual YouTube/Vimeo playback (headless Chromium shows the embed with the right URL but does not play it).
 
+## Phase 2 — Unified experience: status
+
+| Requirement | State |
+|---|---|
+| Unified viewer + navigation | Done: one viewer; course prev/next with ?course=; breadcrumbs through tutorial/course |
+| Cross-pillar relations in the UI | Done: relations to content/course/path; "Prerequisites", "Up next", "Related", "Referenced by", "Part of" (ADR-0010) |
+| Unified search | Done: content + courses + paths, type and space filters, Arabic-normalized, permission-filtered (ADR-0011) |
+| Unified learner dashboard | Done: /learn/my with courses, tutorials, recently completed, assignments, recommendations |
+| Prerequisites enforcement | Done: content (completion) and course (self-enrollment); staff warned, not blocked |
+| Simple recommendations | Done: continue / follow-up / popular |
+
+**MVP GATE:** test script in [MVP_TEST_SCRIPT.md](MVP_TEST_SCRIPT.md). Phase 3 starts after the owner's feedback.
+
 ## Pending
 
-Phase 2 (unified experience), then the MVP gate; Phases 3–11 after (see PLAN.md).
+MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
 
 ## Blocked / needs decision
 

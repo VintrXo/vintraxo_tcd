@@ -2,7 +2,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
-from vintraxo_tcd.core import courses
+from vintraxo_tcd.core import connect, courses
 from vintraxo_tcd.core.content import ensure_unique_slug
 
 
@@ -21,6 +21,8 @@ class TCDCourse(Document):
 		if self.category and frappe.db.get_value("TCD Category", self.category, "space") != self.space:
 			frappe.throw(_("Category must belong to the same space."))
 		ensure_unique_slug(self)
+		connect.validate_course_prerequisites(self)
+		self.search_text = connect.course_search_text(self)
 		courses.validate_offering_status(self)
 
 	def on_trash(self):

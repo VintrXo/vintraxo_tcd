@@ -20,6 +20,8 @@
   "access_section",
   "access",
   "instructors",
+  "prerequisites",
+  "search_text",
   "about_section",
   "summary"
  ],
@@ -135,6 +137,21 @@
    "description": "Instructors see enrollments, submissions and feedback of this course and can approve and grade"
   },
   {
+   "fieldname": "prerequisites",
+   "fieldtype": "Table",
+   "options": "TCD Course Prerequisite",
+   "label": "Prerequisite Courses",
+   "description": "Learners must complete these courses before enrolling themselves"
+  },
+  {
+   "fieldname": "search_text",
+   "fieldtype": "Long Text",
+   "label": "Search Text",
+   "read_only": 1,
+   "hidden": 1,
+   "no_copy": 1
+  },
+  {
    "fieldname": "about_section",
    "fieldtype": "Section Break",
    "label": "About"
@@ -146,7 +163,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 08:30:00.000000",
+ "modified": "2026-11-19 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

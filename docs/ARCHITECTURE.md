@@ -33,6 +33,7 @@
 | assignments.py | Assignment validation, submission, grading, completion |
 | media.py | Video/link/file blocks, video host allowlist, upload validation |
 | dashboards.py | My Learning and instructor dashboard data |
+| connect.py | Cross-pillar relations, prerequisites, used-in, course navigation, unified search, recommendations |
 
 ## Public API (`vintraxo_tcd.api.*`)
 | Method | HTTP | Purpose |
@@ -54,6 +55,9 @@
 | submit_assignment(name, answer_text?, attachment?) | POST | Create/update the learner's submission (file must be the learner's own upload) |
 | grade_submission(name, action, score?, feedback?) | POST | Instructor of the course: Graded or Returned |
 | rate_course(name, rating, comment?) | POST | Enrolled learner: 1-5 rating, one per course |
+| search_all(query, types?, space?, limit?) | GET | Unified search over content, courses and paths |
+| get_related(name) | GET | Prerequisites (with state), next, related, referenced by, part of |
+| get_recommendations(limit?) | GET | Continue / follow-up / popular suggestions |
 | my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
 
 ## Learner portal (P3)

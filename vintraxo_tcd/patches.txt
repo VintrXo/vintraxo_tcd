@@ -10,3 +10,4 @@ vintraxo_tcd.patches.rename_student_group_to_batch
 vintraxo_tcd.patches.add_learning_navbar_link
 vintraxo_tcd.patches.set_vx_desktop_icon
 vintraxo_tcd.patches.copy_enrollment_batch
+vintraxo_tcd.patches.backfill_offering_search_text

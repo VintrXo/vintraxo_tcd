@@ -18,6 +18,7 @@
   "self_enrollment",
   "access_section",
   "instructors",
+  "search_text",
   "about_section",
   "summary",
   "items_section",
@@ -119,6 +120,14 @@
    "description": "Instructors see enrollments, submissions and feedback of this course and can approve and grade"
   },
   {
+   "fieldname": "search_text",
+   "fieldtype": "Long Text",
+   "label": "Search Text",
+   "read_only": 1,
+   "hidden": 1,
+   "no_copy": 1
+  },
+  {
    "fieldname": "about_section",
    "fieldtype": "Section Break",
    "label": "About"
@@ -141,7 +150,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 08:30:00.000000",
+ "modified": "2026-11-19 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Learning Path",
