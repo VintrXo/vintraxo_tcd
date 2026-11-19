@@ -298,6 +298,10 @@ def _apply(enrollment, state: dict):
 	elif enrollment.status == "Pending Approval":
 		values["status"] = "Active"
 	enrollment.db_set(values)
+	if values.get("status") == "Pending Approval":
+		from vintraxo_tcd.core import notify
+
+		notify.enrollment_pending(enrollment)
 	if values.get("status") == "Completed":
 		from vintraxo_tcd.core import credentials
 

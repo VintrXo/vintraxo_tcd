@@ -104,6 +104,9 @@ def on_update(doc):
 		)
 		version.flags.from_governance = True
 		version.insert(ignore_permissions=True)
+		from vintraxo_tcd.core import notify
+
+		notify.acknowledgment_due(doc)
 
 
 def current_version(name: str):

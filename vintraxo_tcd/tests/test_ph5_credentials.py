@@ -1,16 +1,16 @@
 import frappe
-from frappe.tests import IntegrationTestCase
 from frappe.utils import add_days, getdate, nowdate
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import credentials
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_space, make_user
 from vintraxo_tcd.tests.test_p3 import render
 from vintraxo_tcd.tests.test_ph1_courses import CLEAN, enrollment, lesson, make_course
 from vintraxo_tcd.vintraxo_tcd.report.tcd_competency_gap import tcd_competency_gap as gap_report
 
 
-class TestPhase5Credentials(IntegrationTestCase):
+class TestPhase5Credentials(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

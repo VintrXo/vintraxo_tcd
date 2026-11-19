@@ -2,11 +2,11 @@ import json
 from urllib.parse import parse_qsl, quote, unquote
 
 import frappe
-from frappe.tests import IntegrationTestCase
 from frappe.utils import set_request
 from frappe.website.serve import get_response
 
 from vintraxo_tcd.core.portal import json_for_script
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 
 XSS_TITLE = "<script>alert('t')</script> عنوان"
@@ -24,7 +24,7 @@ def render(url: str, user: str):
 	return response.status_code, response.get_data(as_text=True), response.headers.get("Location", "")
 
 
-class TestP3Portal(IntegrationTestCase):
+class TestP3Portal(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

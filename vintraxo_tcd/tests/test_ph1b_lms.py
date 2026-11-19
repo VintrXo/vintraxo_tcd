@@ -1,12 +1,12 @@
 import json
 
 import frappe
-from frappe.tests import IntegrationTestCase
 from frappe.utils import add_days, now_datetime
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import permissions
 from vintraxo_tcd.core.dashboards import instructor_dashboard, my_learning
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 from vintraxo_tcd.tests.test_p3 import render
 from vintraxo_tcd.tests.test_ph1_courses import CLEAN, enrollment, lesson, make_course
@@ -27,7 +27,7 @@ def make_file(name, content=b"data", private=1, user=None):
 	return doc
 
 
-class TestPhase1LMS(IntegrationTestCase):
+class TestPhase1LMS(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

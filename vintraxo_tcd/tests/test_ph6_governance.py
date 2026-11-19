@@ -1,16 +1,16 @@
 import frappe
-from frappe.tests import IntegrationTestCase
 from frappe.utils import add_days, add_months, getdate, nowdate
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import governance
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_space, make_user
 from vintraxo_tcd.tests.test_p3 import render
 from vintraxo_tcd.tests.test_ph1_courses import CLEAN, lesson
 from vintraxo_tcd.vintraxo_tcd.report.tcd_acknowledgment_status import tcd_acknowledgment_status as ack_report
 
 
-class TestPhase6Governance(IntegrationTestCase):
+class TestPhase6Governance(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

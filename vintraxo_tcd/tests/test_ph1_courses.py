@@ -1,8 +1,8 @@
 import frappe
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import courses
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 from vintraxo_tcd.tests.test_p2 import make_quiz
 from vintraxo_tcd.tests.test_p3 import render
@@ -67,7 +67,7 @@ def enrollment(user, course=None, path=None):
 	return frappe.get_doc("TCD Enrollment", name) if name else None
 
 
-class TestPhase1Courses(IntegrationTestCase):
+class TestPhase1Courses(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

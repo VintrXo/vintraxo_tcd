@@ -35,7 +35,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 3 — Wiki completion | bbbbb24 | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
 | Phase 4 — Assessment engine | 808a9a8 | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
 | Phase 5 — Skills and certificates | fb009c3 | 106 | Skills, competency gap, certificates with PDF, public verification, expiry/renewal |
-| Phase 6 — Governance | this commit | 112 | Policies/SOPs/documents, versions, acknowledgments, reminders, compliance report |
+| Phase 6 — Governance | 2a150a2 | 112 | Policies/SOPs/documents, versions, acknowledgments, reminders, compliance report |
+| Phase 7 — Notifications and analytics | this commit | 118 | 7 standard notifications, data-driven notifications, 3 reports, workspace number cards |
 
 ## Phase 1 — LMS core: status
 
@@ -120,10 +121,33 @@ Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialo
 Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old dates, so the daily jobs would have
 expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
 
+## Phase 7 — Notifications and analytics: status
+
+| Requirement | State |
+|---|---|
+| Review requests, enrollment, deadlines, certificate issued, acknowledgment due | Done (7 standard Notifications + data-driven ones in `core/notify.py`, ADR-0016) |
+| Course, learner, instructor, knowledge usage, compliance analytics | Done (TCD Course Report, TCD Knowledge Usage, TCD Compliance Overview + earlier reports, number cards) |
+| Learners see their notifications | Done (section in /learn/my) |
+
+Found while testing: standard notifications with a `.md` template failed silently (Frappe converts Markdown to HTML
+before rendering Jinja). Templates are HTML now.
+
+## Incident 2026-11-19: test run wiped development data
+
+- What happened: test `setUp` methods delete whole TCD tables and relied on the transaction rollback. The Phase 7 test
+  for "due soon" notifications called Frappe's `trigger_daily_alerts`, which commits internally. That commit made the
+  deletes permanent on tcd.localhost: demo content/courses/quizzes/policies and **all Notification Logs**.
+- Evidence of impact: the automatic backup of 2026-11-19 08:30 contained only Administrator-owned demo data in the
+  TCD tables and no Notification Logs. Backups: `sites/tcd.localhost/private/backups/`.
+- Fix: `tests/base.py` (`TCDTestCase`) makes `frappe.db.commit` a no-op while a TCD test class runs; every test class
+  uses it. Verified: a full run (118 tests) left all record counts unchanged.
+- Pending owner decision: remove the committed test leftovers (space `ph7-space`, `tcd-*@test.local` users, orphan
+  child rows) and rebuild the demo, or restore the 08:30 backup.
+
 ## Pending
 
 MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
 
 ## Blocked / needs decision
 
-- None.
+- Data cleanup after the 2026-11-19 incident (see above).

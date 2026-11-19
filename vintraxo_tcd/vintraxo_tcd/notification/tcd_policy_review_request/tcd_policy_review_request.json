@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.status == \"Review\"",
+ "condition_type": "Python",
+ "creation": "2026-11-20 00:00:00.000000",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "TCD Governance Document",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>أُرسل المستند <b>{{ doc.title | e }}</b> ({{ doc.name | e }}) للمراجعة.</p>",
+ "message_type": "HTML",
+ "minutes_offset": 0,
+ "modified": "2026-11-20 01:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Policy Review Request",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "TCD Content Reviewer"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "مستند بانتظار المراجعة: {{ doc.title }}",
+ "value_changed": "status"
+}

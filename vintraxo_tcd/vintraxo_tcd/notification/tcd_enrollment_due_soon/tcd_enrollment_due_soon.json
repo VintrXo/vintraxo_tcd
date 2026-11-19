@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.status == \"Active\"",
+ "condition_type": "Python",
+ "creation": "2026-11-20 00:00:00.000000",
+ "days_in_advance": 3,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "TCD Enrollment",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>باقي 3 أيام على الموعد النهائي لإكمال {{ frappe.db.get_value('TCD Course', doc.course, 'title') if doc.course else frappe.db.get_value('TCD Learning Path', doc.learning_path, 'title') }}.</p>",
+ "message_type": "HTML",
+ "minutes_offset": 0,
+ "modified": "2026-11-20 01:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Enrollment Due Soon",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_document_field": "user"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "الموعد النهائي يقترب: {{ doc.due_date }}",
+ "date_changed": "due_date"
+}

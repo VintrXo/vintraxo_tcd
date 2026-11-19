@@ -1,0 +1,1 @@
+frappe.query_reports["TCD Knowledge Usage"] = { filters: [{fieldname:"space",label:__("Space"),fieldtype:"Link",options:"TCD Space"},{fieldname:"content_type",label:__("Type"),fieldtype:"Select",options:"\nArticle\nTutorial\nLesson\nReference"},{fieldname:"from_date",label:__("Read Since"),fieldtype:"Date"}] };

@@ -1,0 +1,1 @@
+frappe.query_reports["TCD Course Report"] = { filters: [{fieldname:"space",label:__("Space"),fieldtype:"Link",options:"TCD Space"},{fieldname:"status",label:__("Status"),fieldtype:"Select",options:"\nDraft\nPublished\nArchived"}] };

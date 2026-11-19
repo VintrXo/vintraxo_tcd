@@ -272,6 +272,10 @@ def _finish(quiz, sub, given: dict, timed_out: bool = False) -> dict:
 	sub.flags.from_quiz = True
 	sub.save(ignore_permissions=True)
 	_after_grade(quiz, sub)
+	if pending:
+		from vintraxo_tcd.core import notify
+
+		notify.quiz_pending_review(sub)
 	return {
 		"submission": sub.name,
 		"attempt": sub.attempt,

@@ -1,0 +1,1 @@
+<p>باقي 3 أيام على الموعد النهائي لإكمال {{ frappe.db.get_value('TCD Course', doc.course, 'title') if doc.course else frappe.db.get_value('TCD Learning Path', doc.learning_path, 'title') }}.</p>

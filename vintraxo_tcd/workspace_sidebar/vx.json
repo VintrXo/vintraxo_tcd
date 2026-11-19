@@ -386,6 +386,39 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
+   "label": "Course Report",
+   "link_to": "TCD Course Report",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Knowledge Usage",
+   "link_to": "TCD Knowledge Usage",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Compliance Overview",
+   "link_to": "TCD Compliance Overview",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
    "label": "Learner Progress",
    "link_to": "TCD Learner Progress",
    "link_type": "Report",
@@ -459,7 +492,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 23:30:00.000000",
+ "modified": "2026-11-20 00:40:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

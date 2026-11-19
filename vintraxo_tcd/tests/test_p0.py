@@ -1,10 +1,10 @@
 import frappe
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd.install import TCD_ROLES
+from vintraxo_tcd.tests.base import TCDTestCase
 
 
-class TestP0Foundation(IntegrationTestCase):
+class TestP0Foundation(TCDTestCase):
 	def test_roles_exist(self):
 		for role in TCD_ROLES:
 			self.assertTrue(frappe.db.exists("Role", role), f"Missing role {role}")

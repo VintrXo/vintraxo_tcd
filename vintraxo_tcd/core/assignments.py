@@ -80,6 +80,9 @@ def submit(assignment, user: str, answer_text: str | None = None, attachment: st
 	)
 	doc.flags.from_api = True
 	doc.save(ignore_permissions=True)
+	from vintraxo_tcd.core import notify
+
+	notify.assignment_submitted(doc)
 	return doc
 
 

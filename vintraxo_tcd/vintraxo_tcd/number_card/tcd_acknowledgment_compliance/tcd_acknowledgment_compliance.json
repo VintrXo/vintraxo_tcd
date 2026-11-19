@@ -1,0 +1,17 @@
+{
+ "creation": "2026-11-20 00:30:00",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Acknowledgment Compliance",
+ "modified": "2026-11-20 00:30:00",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Acknowledgment Compliance",
+ "owner": "Administrator",
+ "show_percentage_stats": 0,
+ "type": "Custom",
+ "method": "vintraxo_tcd.core.analytics.compliance_card"
+}

@@ -1,9 +1,9 @@
 import json
 
 import frappe
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd import api
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 
 
@@ -35,7 +35,7 @@ def make_quiz(content, **kw):
 	).insert()
 
 
-class TestP2Learning(IntegrationTestCase):
+class TestP2Learning(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

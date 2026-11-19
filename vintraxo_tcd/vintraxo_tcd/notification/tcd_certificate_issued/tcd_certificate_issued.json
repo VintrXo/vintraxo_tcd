@@ -1,0 +1,30 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "",
+ "creation": "2026-11-20 00:00:00.000000",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "TCD Certificate",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>مبروك! حصلت على شهادة <b>{{ doc.title | e }}</b> برقم {{ doc.name | e }}.</p>",
+ "message_type": "HTML",
+ "minutes_offset": 0,
+ "modified": "2026-11-20 01:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Certificate Issued",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_document_field": "user"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "حصلت على شهادة: {{ doc.title }}"
+}

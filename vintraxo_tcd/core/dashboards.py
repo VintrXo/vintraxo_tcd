@@ -121,7 +121,15 @@ def my_learning(user: str) -> dict:
 	)
 	from vintraxo_tcd.core import governance
 
+	notifications = frappe.get_all(
+		"Notification Log",
+		filters={"for_user": user},
+		fields=["subject", "read", "creation", "document_type", "document_name"],
+		order_by="creation desc",
+		limit_page_length=8,
+	)
 	return {
+		"notifications": notifications,
 		"pending_policies": governance.pending_for(user),
 		"certificates": certificates,
 		"skills": skills,

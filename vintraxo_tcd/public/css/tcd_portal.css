@@ -181,3 +181,7 @@
 .tcd-ack { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--tcd-border); border-radius: 10px; }
 .tcd-ack-check { display: flex; gap: 0.5rem; align-items: flex-start; font-weight: normal; }
 .tcd-ack-check input { appearance: auto; -webkit-appearance: checkbox; inline-size: 1.1rem; block-size: 1.1rem; margin-block-start: 0.3rem; flex: none; }
+
+/* notifications (Phase 7) */
+.tcd-notifications .tcd-unread { font-weight: 600; }
+.tcd-notifications .tcd-unread::before { content: "● "; color: var(--tcd-accent); }

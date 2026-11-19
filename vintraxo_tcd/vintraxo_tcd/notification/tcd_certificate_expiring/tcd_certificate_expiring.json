@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.status == \"Active\"",
+ "condition_type": "Python",
+ "creation": "2026-11-20 00:00:00.000000",
+ "days_in_advance": 30,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "TCD Certificate",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>تنتهي صلاحية شهادة <b>{{ doc.title | e }}</b> في {{ doc.expires_on | e }}. تواصل مع المدرّب للتجديد.</p>",
+ "message_type": "HTML",
+ "minutes_offset": 0,
+ "modified": "2026-11-20 01:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Certificate Expiring",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_document_field": "user"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "شهادتك تنتهي قريبًا: {{ doc.title }}",
+ "date_changed": "expires_on"
+}

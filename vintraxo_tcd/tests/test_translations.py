@@ -9,7 +9,8 @@ import os
 import re
 
 import frappe
-from frappe.tests import IntegrationTestCase
+
+from vintraxo_tcd.tests.base import TCDTestCase
 
 LANG_CODES = re.compile(r"^[a-z]{2}$")
 NOT_TRANSLATED = {"VX"}  # brand
@@ -42,7 +43,7 @@ def app_reports():
 			yield json.load(f)["name"]
 
 
-class TestArabicTranslations(IntegrationTestCase):
+class TestArabicTranslations(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

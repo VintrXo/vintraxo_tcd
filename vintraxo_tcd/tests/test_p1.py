@@ -1,11 +1,11 @@
 import json
 
 import frappe
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd.api import search_content
 from vintraxo_tcd.core.content import slugify
 from vintraxo_tcd.core.search import normalize_text
+from vintraxo_tcd.tests.base import TCDTestCase
 
 USERS = {
 	"author": ("tcd-author@test.local", ["TCD Content Author"]),
@@ -63,7 +63,7 @@ def publish(doc):
 	return doc
 
 
-class TestP1Content(IntegrationTestCase):
+class TestP1Content(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

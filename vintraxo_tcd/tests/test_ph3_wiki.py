@@ -2,10 +2,10 @@ import json
 
 import frappe
 from frappe.desk.doctype.tag.tag import add_tag
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import wiki
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 from vintraxo_tcd.tests.test_p3 import render
 from vintraxo_tcd.tests.test_ph1_courses import CLEAN
@@ -19,7 +19,7 @@ def article(space, title, **kw):
 	return publish(make_content(space, title, content_type="Article", visibility="Public", **kw))
 
 
-class TestPhase3Wiki(IntegrationTestCase):
+class TestPhase3Wiki(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

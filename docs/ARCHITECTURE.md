@@ -29,6 +29,8 @@
 | progress.py | Lesson/tutorial progress and roll-up |
 | quiz.py | Quiz validation, attempts (start/resume/deadline), learner payload, grading, manual review |
 | governance.py | Policies/SOPs/documents: lifecycle, snapshots, audience, acknowledgments, daily expiry + review reminders |
+| notify.py | Data-driven notifications (instructors, policy audiences), deduplicated |
+| analytics.py | Course report, knowledge usage, compliance overview, number card methods |
 | credentials.py | Skills (award/keep highest), certificates (issue, expire, renew, revoke, verify), competency gaps |
 | assessment.py | Question items (inline + bank), papers, payloads without answers, grading per type, rubric points |
 | portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
@@ -137,3 +139,8 @@ page (site origin)
 - DocType/report names are translated without the "TCD" prefix (e.g. TCD Content = محتوى تعليمي).
 - `tests/test_translations.py` fails the build when any DocType name, report name, field label, description or
   Select option lacks Arabic, or when Arabic text still contains "TCD". Every phase must keep it green.
+
+## Testing safety
+All test classes inherit `vintraxo_tcd.tests.base.TCDTestCase`, which turns `frappe.db.commit` into a no-op while
+the class runs. Tests clean tables in `setUp` and depend on the final rollback; a Frappe function that commits
+internally must never make that cleanup permanent on a development site.

@@ -36,6 +36,7 @@ Acknowledge,إقرار
 Acknowledged,تم الإقرار
 Acknowledged On,تاريخ الإقرار
 Acknowledged On,تاريخ الإقرار,TCD Acknowledgment
+Acknowledgment Compliance,نسبة الالتزام بالإقرارات
 Acknowledgment Status,حالة الإقرارات
 Acknowledgment required,الإقرار مطلوب
 Acknowledgments,الإقرارات
@@ -50,6 +51,7 @@ Active,نشط
 Active,نشط,TCD
 Active,نشط,TCD Enrollment
 Active,نشط,TCD Student Group
+Active Enrollments,تسجيلات نشطة
 Active Version,النسخة السارية,TCD Governance Document
 Active documents cannot be edited. Start a revision first.,لا يمكن تعديل المستند الساري. ابدأ مراجعة أولًا.
 Add at least one question.,أضف سؤالًا واحدًا على الأقل.
@@ -130,6 +132,7 @@ Audience Departments,الأقسام المستهدفة,TCD Governance Document
 Audience Roles,الأدوار المستهدفة,TCD Governance Document
 Audience and Acknowledgment,الجمهور والإقرار,TCD Governance Document
 Audit records cannot be deleted.,لا يمكن حذف سجلات التدقيق.
+Average Days to Complete,متوسط أيام الإكمال
 Average Score,متوسط الدرجة
 Average of the best quiz scores across the items,متوسط أفضل درجات الاختبارات في العناصر
 Awarded On,تاريخ المنح,TCD User Skill
@@ -189,6 +192,7 @@ Certificate verification,التحقق من الشهادة
 Certificates,الشهادات
 Certificates are issued automatically on completion.,تُصدر الشهادات تلقائيًا عند الإكمال.
 Certificates cannot be reassigned.,لا يمكن نقل الشهادة لشخص آخر.
+Certificates expiring in 30 days,شهادات تنتهي خلال 30 يومًا
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
 Choose the code language.,اختر لغة الكود.
@@ -226,7 +230,9 @@ Completion,الإكمال,TCD Learning Path
 Completion Rate,نسبة الإكمال
 Completion Rule,قاعدة الإكمال
 Completion rule,قاعدة الإكمال
+Completion waiting for your approval: {0} ({1}),إكمال ينتظر اعتمادك: {0} ({1})
 Compliance,نسبة الالتزام
+Compliance Overview,نظرة على الالتزام
 Content,المحتوى,TCD Content Version
 Content,المحتوى,TCD Learning Item
 Content,المحتوى,TCD Progress
@@ -234,6 +240,7 @@ Content,المحتوى,TCD Quiz
 Content,المحتوى,TCD Quiz Submission
 Content,محتوى
 Content Editor,محرر المحتوى
+Content In Review,محتوى قيد المراجعة
 Content Relations,علاقات المحتوى
 Content Type,نوع المحتوى
 Content Type,نوع المحتوى,TCD Content
@@ -263,6 +270,7 @@ Course,دورة,TCD Enrollment
 Course,دورة,TCD Learning Item
 Course (learning paths),دورة (لمسارات التعلّم)
 Course Feedback,تقييمات الدورات
+Course Report,تقرير الدورات
 Course and path skills are awarded automatically on completion.,تُمنح مهارات الدورات والمسارات تلقائيًا عند الإكمال.
 Course feedback is given from the course page.,يُضاف تقييم الدورة من صفحة الدورة.
 Course whose instructors grade the submissions,الدورة التي يصحّح مدرّبوها التسليمات,TCD Assignment
@@ -299,6 +307,7 @@ Document,مستند,TCD Governance Document
 Document,وثيقة
 Document Owner,مالك المستند,TCD Governance Document
 Document not found.,المستند غير موجود.
+Documents,المستندات
 Documents to acknowledge,مستندات تنتظر إقرارك
 Done in {0} ms,انتهى في {0} مللي ثانية
 Download PDF,تحميل PDF
@@ -396,6 +405,7 @@ Group Name,اسم المجموعة,TCD Student Group
 Heading,الترويسة
 Heading,عنوان,TCD Block
 Helpful,مفيدة,TCD Content Feedback
+Helpful %,نسبة الإفادة
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
 How Many,العدد,TCD Quiz Bank Item
@@ -441,6 +451,7 @@ Items (one per line),العناصر (عنصر في كل سطر)
 Items (one per line),العناصر (عنصر في كل سطر),TCD Block
 Kind,النوع
 Kind,النوع,TCD Governance Document
+Knowledge Usage,استخدام المعرفة
 Language,اللغة
 Language,اللغة,TCD Block
 Language,اللغة,TCD Content
@@ -477,6 +488,7 @@ Level,المستوى
 Level,المستوى,TCD Block
 Level {0} of 5,المستوى {0} من 5
 Link URL (https),رابط (https),TCD Block
+Linked From,مرتبطة من
 Linked Tutorials and Courses,مسارات ودورات مرتبطة,TCD Governance Document
 Linked from,مرتبطة من
 List,قائمة
@@ -526,10 +538,12 @@ My certificates,شهاداتي
 My courses,دوراتي
 My skills,مهاراتي
 Name,اسم
+Never read,لم تُقرأ قط
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 New documents start as Draft.,المستندات الجديدة تبدأ كمسودة.
 Next,التالي
 Next,التالي,TCD Content Relation
+Next Review Date,موعد المراجعة القادم
 Next Review Date,موعد المراجعة القادم,TCD Governance Document
 No,لا
 No answer,لا توجد إجابة
@@ -552,6 +566,7 @@ Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة �
 Nothing to grade.,لا يوجد ما يُصحَّح.
 Nothing to review.,لا يوجد ما يُراجَع.
 Nothing waiting.,لا يوجد ما ينتظر.
+Notifications,الإشعارات
 Numbered,مرقّمة
 Numbered,مرقّمة,TCD Block
 One host per line. Supported providers: YouTube and Vimeo. Uploaded mp4/webm files are always allowed,موقع في كل سطر. المواقع المدعومة: YouTube وVimeo. ملفات mp4/webm المرفوعة مسموحة دائمًا,TCD Settings
@@ -601,6 +616,7 @@ Page Feedback,تقييمات الصفحات
 Page feedback is given from the page.,يُضاف تقييم الصفحة من الصفحة نفسها.
 Page not found,الصفحة غير موجودة
 Page tree,شجرة الصفحات
+Pages,الصفحات
 Pages in this section,صفحات هذا القسم
 Pages tagged {0},الصفحات الموسومة بـ {0}
 Pairs,الأزواج,TCD Question
@@ -641,6 +657,7 @@ Playground,محرر أكواد,TCD Block
 Playground Timeout (seconds),مهلة محرر الأكواد (ثوانٍ)
 Playground timeout must be between 1 and 60 seconds.,مهلة محرر الأكواد يجب أن تكون بين 1 و60 ثانية.
 Playgrounds,محررات الأكواد
+Please read and acknowledge: {0} (version {1}),يُرجى القراءة والإقرار: {0} (النسخة {1})
 Points,النقاط
 Points (0-{0}),النقاط (0-{0})
 Points must be between 0 and {0}.,النقاط يجب أن تكون بين 0 و{0}.
@@ -678,6 +695,7 @@ Published,منشور,TCD Content
 Published,منشور,TCD Course
 Published,منشور,TCD Learning Path
 Published,نشرت
+Published Content,المحتوى المنشور
 Published On,تاريخ النشر
 Pyodide Base URL,رابط Pyodide الأساسي
 Question,السؤال
@@ -693,6 +711,7 @@ Quiz,الاختبار
 Quiz Analytics,تحليلات الاختبارات
 Quiz Attempts,محاولات الاختبارات
 Quiz answers to review,إجابات اختبارات بانتظار المراجعة
+Quiz answers to review: {0} ({1}),إجابات اختبار للمراجعة: {0} ({1})
 Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
 Quizzes,الاختبارات
 Random from Category,عشوائي من تصنيف,TCD Quiz Bank Item
@@ -702,6 +721,8 @@ Rating,تقييم
 Rating (1-5),التقييم (1-5),TCD Course Feedback
 Rating must be between 1 and 5.,التقييم يجب أن يكون بين 1 و5.
 Ratings,التقييمات
+Read Since,قُرئت منذ
+Readers,القرّاء
 Reason,سبب
 Recently completed,أُنجز مؤخرًا
 Recommended for you,مقترح لك
@@ -877,7 +898,9 @@ Stopped: time limit of {0} seconds reached.,تم الإيقاف: انتهت ال
 Student Group,مجموعة متعلمين
 Student Groups,مجموعات المتعلمين
 Submission Type,نوع التسليم,TCD Assignment
+Submission to grade: {0} ({1}),تسليم بانتظار التصحيح: {0} ({1})
 Submissions,التسليمات
+Submissions To Grade,تسليمات بانتظار التصحيح
 Submissions to grade,تسليمات بانتظار التصحيح
 Submit,إرسال
 Submit again,إرسال مرة أخرى
@@ -905,6 +928,7 @@ TCD Chapter,فصل
 TCD Competency Gap,فجوة الكفاءات
 TCD Competency Profile,ملف كفاءات
 TCD Competency Requirement,متطلب كفاءة
+TCD Compliance Overview,نظرة على الالتزام
 TCD Content,محتوى تعليمي
 TCD Content Feedback,تقييم صفحة
 TCD Content Relation,علاقة محتوى
@@ -914,6 +938,7 @@ TCD Course,دورة
 TCD Course Feedback,تقييم دورة
 TCD Course Instructor,مدرّب الدورة
 TCD Course Prerequisite,متطلب دورة
+TCD Course Report,تقرير الدورات
 TCD Enrollment,تسجيل
 TCD Governance Department,قسم مستهدف
 TCD Governance Document,سياسة / إجراء
@@ -921,6 +946,7 @@ TCD Governance Link,رابط تعلّم
 TCD Governance Role,دور مستهدف
 TCD Governance Version,نسخة مستند معتمدة
 TCD Instructor Dashboard,لوحة المدرّب
+TCD Knowledge Usage,استخدام المعرفة
 TCD Learner Progress,تقدّم المتعلمين
 TCD Learning Item,عنصر تعلّم
 TCD Learning Path,مسار تعلّم

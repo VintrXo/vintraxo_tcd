@@ -1,10 +1,10 @@
 import json
 
 import frappe
-from frappe.tests import IntegrationTestCase
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core.search import snippet, tokenize
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_content, make_space, make_user, publish
 from vintraxo_tcd.tests.test_p2 import make_quiz
 from vintraxo_tcd.vintraxo_tcd.report.tcd_learner_progress import tcd_learner_progress as progress_report
@@ -15,7 +15,7 @@ def para(text):
 	return json.dumps([{"type": "paragraph", "text": text}], ensure_ascii=False)
 
 
-class TestP4(IntegrationTestCase):
+class TestP4(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()

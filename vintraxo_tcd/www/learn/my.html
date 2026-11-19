@@ -35,6 +35,17 @@
 		{% endif %}
 	</section>
 
+	{% if data.notifications %}
+	<section class="tcd-section">
+		<h2>{{ _("Notifications") }}</h2>
+		<ul class="tcd-lessons tcd-notifications">
+			{% for n in data.notifications %}
+			<li class="tcd-lesson{{ '' if n.read else ' tcd-unread' }}">{{ n.subject|striptags|e }} <span class="tcd-muted tcd-small">{{ frappe.utils.pretty_date(n.creation) }}</span></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.pending_policies %}
 	<section class="tcd-section">
 		<h2>{{ _("Documents to acknowledge") }}</h2>

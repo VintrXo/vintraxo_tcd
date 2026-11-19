@@ -229,6 +229,24 @@ Draft -> In Review -> Approved -> Published -> Archived
 - Scheduler (daily): Active documents past expiry move to Revision; documents whose review is due within 7 days get
   an open ToDo for the document owner (once per review date).
 
+## Phase 7: notifications and analytics
+No new DocTypes. Standard **Notification** records (System Notification channel, editable by admins) and
+code-driven notification logs for recipients that depend on data.
+
+| Event | Recipients | Mechanism |
+|---|---|---|
+| Content sent for review | TCD Content Reviewer role | Standard Notification (Value Change: status = In Review) |
+| Governance document sent for review / approval | Reviewers / the named approver | Standard Notifications |
+| Enrollment created | the learner | Standard Notification (New) |
+| Enrollment due in 3 days | the learner | Standard Notification (Days Before due_date, Active only) |
+| Certificate issued / expiring in 30 days | the learner | Standard Notifications |
+| Assignment submitted, enrollment pending approval, quiz waiting for review | instructors of the course | `core/notify.py` (Notification Log, deduplicated) |
+| New policy version requiring acknowledgment | the document audience | `core/notify.py` (enqueued, deduplicated) |
+
+Reports: TCD Course Report (all courses: enrollments, completion, time to complete, overdue, rating),
+TCD Knowledge Usage (per page: unique readers, completions, helpful %, backlinks), TCD Compliance Overview
+(per acknowledged document + certificate expiries). Number cards on the VX workspace.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

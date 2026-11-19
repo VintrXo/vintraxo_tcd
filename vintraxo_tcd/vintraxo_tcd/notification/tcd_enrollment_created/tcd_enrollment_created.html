@@ -1,0 +1,1 @@
+<p>تم تسجيلك في {{ frappe.db.get_value('TCD Course', doc.course, 'title') if doc.course else frappe.db.get_value('TCD Learning Path', doc.learning_path, 'title') }}.{% if doc.due_date %} الموعد النهائي: {{ doc.due_date | e }}{% endif %}</p>

@@ -1,11 +1,11 @@
 import json
 
 import frappe
-from frappe.tests import IntegrationTestCase
 from frappe.utils import add_to_date, now_datetime
 
 from vintraxo_tcd import api
 from vintraxo_tcd.core import assessment
+from vintraxo_tcd.tests.base import TCDTestCase
 from vintraxo_tcd.tests.test_p1 import USERS, make_space, make_user
 from vintraxo_tcd.tests.test_ph1_courses import CLEAN, lesson, make_course
 from vintraxo_tcd.vintraxo_tcd.report.tcd_quiz_analytics import tcd_quiz_analytics as quiz_report
@@ -17,7 +17,7 @@ def question(qtype, text="Q", category=None, **kw):
 	).insert()
 
 
-class TestPhase4Assessment(IntegrationTestCase):
+class TestPhase4Assessment(TCDTestCase):
 	@classmethod
 	def setUpClass(cls):
 		super().setUpClass()
