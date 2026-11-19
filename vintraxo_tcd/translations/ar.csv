@@ -108,6 +108,7 @@ All languages found.,كل اللغات موجودة.
 All spaces,كل المساحات
 Allow Private Network,السماح بالشبكة الخاصة,TCD Connector
 Allow Self Enrollment,السماح بالتسجيل الذاتي
+Allow Visitors Without Login,السماح للزوار بدون تسجيل دخول,TCD Settings
 Allow plain HTTP and local or private addresses. Only for trusted internal services.,يسمح بـ HTTP العادي والعناوين المحلية أو الخاصة. للخدمات الداخلية الموثوقة فقط.,TCD Connector
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Assignment
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Question
@@ -783,6 +784,8 @@ Location,الموقع,TCD Content
 Locked,مغلق
 Locked,مقفل,TCD
 Log,السجل,TCD Content Import
+Log in,سجّل الدخول
+Log in to enroll,سجّل الدخول للتسجيل
 Looking in the pages you can access...,جارٍ البحث في الصفحات المتاحة لك...
 Manager,المدير,TCD Team
 Mandatory,إلزامي
@@ -1698,6 +1701,7 @@ Visibility,الظهور,TCD Content
 Visibility,الظهور,TCD Course
 Visibility,الظهور,TCD Learning Path
 Visibility,الظهور,TCD Space
+"Visitors can read published pages, courses and paths of Public spaces (read only, in the portal; never through the API). Everything else still needs a login.",يمكن للزوار قراءة الصفحات والدورات والمسارات المنشورة في المساحات العامة (قراءة فقط داخل البوابة، وليس عبر الـ API أبدًا). أي شيء آخر يحتاج تسجيل دخول.,TCD Settings
 Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
 Wall Time Limit (Seconds),حد الوقت الكلي (ثوانٍ),TCD Settings
@@ -1771,6 +1775,7 @@ python,بايثون,TCD Question
 python and javascript also run in the browser; the others need the code runner,python و javascript تعمل في المتصفح أيضًا؛ باقي اللغات تحتاج مشغّل الأكواد,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
+"to take quizzes, track your progress and ask questions.",لتحل الاختبارات وتتابع تقدّمك وتسأل.
 {0} already has this badge.,{0} لديه هذه الشارة بالفعل.
 {0} already has this skill; edit the existing record.,لدى {0} هذه المهارة بالفعل؛ عدّل السجل الموجود.
 {0} cannot access this course or learning path.,لا يستطيع {0} الوصول إلى هذه الدورة أو مسار التعلّم.

@@ -7,6 +7,7 @@
   "general_section",
   "default_language",
   "enable_portal",
+  "enable_guest_access",
   "column_break_1",
   "default_visibility",
   "default_review_months",
@@ -54,6 +55,12 @@
    "fieldname": "enable_portal",
    "fieldtype": "Check",
    "label": "Enable Learner Portal"
+  },
+  {
+   "fieldname": "enable_guest_access",
+   "fieldtype": "Check",
+   "label": "Allow Visitors Without Login",
+   "description": "Visitors can read published pages, courses and paths of Public spaces (read only, in the portal; never through the API). Everything else still needs a login."
   },
   {
    "fieldname": "column_break_1",
@@ -237,7 +244,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 13:00:00.000000",
+ "modified": "2026-11-20 15:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

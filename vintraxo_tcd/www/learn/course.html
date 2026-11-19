@@ -45,6 +45,8 @@
 		{% endif %}
 		{% elif unmet_prerequisites %}
 		<p class="tcd-callout tcd-callout-warning">{{ _("Complete these courses first: {0}").format(unmet_prerequisites|join(", ")|e) }}</p>
+		{% elif is_guest %}
+		<p><a class="btn btn-primary" href="/login?redirect-to={{ (frappe.request.path if frappe.request else '/learn')|urlencode }}">{{ _("Log in to enroll") }}</a></p>
 		{% elif data.self_enrollment and not is_staff_preview %}
 		<button type="button" class="btn btn-primary tcd-enroll" data-for="Course" data-name="{{ doc.name|e }}">{{ _("Enroll") }}</button>
 		{% else %}

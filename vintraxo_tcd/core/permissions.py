@@ -35,8 +35,20 @@ def is_staff(user: str) -> bool:
 	return bool(_roles(user) & STAFF_ROLES)
 
 
+def guest_allowed() -> bool:
+	"""Visitors may read only while a portal page is rendered, when the site allows it. Any API request
+	(/api/...) gets nothing, so records (with owner e-mails etc.) never leave through REST."""
+	if not frappe.db.get_single_value("TCD Settings", "enable_guest_access"):
+		return False
+	request = getattr(frappe.local, "request", None)
+	path = getattr(request, "path", "") or ""
+	return not path.startswith("/api/")
+
+
 def _space_access(user: str) -> tuple[set, set]:
 	"""Return (accessible spaces, spaces where the user holds an allowed role)."""
+	if user == "Guest" and not guest_allowed():
+		return set(), set()
 	roles = _roles(user)
 	staff = bool(roles & STAFF_ROLES)
 
@@ -72,6 +84,10 @@ def accessible_spaces(user: str) -> set | None:
 def can_access_content(doc, user: str) -> bool:
 	if is_admin(user):
 		return True
+	if user == "Guest" and (
+		doc.get("visibility") != "Public" or doc.get("status") not in (None, "Published")
+	):
+		return False
 	accessible, role_spaces = _space_access(user)
 	if doc.space not in accessible:
 		return False

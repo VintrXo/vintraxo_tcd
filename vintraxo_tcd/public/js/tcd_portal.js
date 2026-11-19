@@ -536,7 +536,7 @@
 			if (completeBtn) completeBtn.hidden = true;
 		};
 
-		if (page.dataset.progress === "Not Started") {
+		if (page.dataset.progress === "Not Started" && !page.classList.contains("tcd-guest")) {
 			call("track_view", { name: name }, true).catch(() => {});
 		}
 

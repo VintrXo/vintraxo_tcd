@@ -36,6 +36,8 @@
 		{% if e.status in ("Active", "Pending Approval") and not e.mandatory and not is_staff_preview %}
 		<button type="button" class="btn btn-default btn-xs tcd-withdraw" data-for="Learning Path" data-name="{{ doc.name|e }}" data-confirm="{{ _('Leave this {0}? Your progress is kept if you enroll again.').format(_("learning path"))|e }}">{{ _("Withdraw") }}</button>
 		{% endif %}
+		{% elif is_guest %}
+		<p><a class="btn btn-primary" href="/login?redirect-to={{ (frappe.request.path if frappe.request else '/learn')|urlencode }}">{{ _("Log in to enroll") }}</a></p>
 		{% elif data.self_enrollment and not is_staff_preview %}
 		<button type="button" class="btn btn-primary tcd-enroll" data-for="Learning Path" data-name="{{ doc.name|e }}">{{ _("Enroll") }}</button>
 		{% else %}

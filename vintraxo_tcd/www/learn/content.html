@@ -4,7 +4,7 @@
 {% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}">{% endblock %}
 
 {% block page_content %}
-<article class="tcd-page tcd-content" dir="{{ dir }}" lang="{{ doc.language|e }}"
+<article class="tcd-page tcd-content{% if is_guest %} tcd-guest{% endif %}" dir="{{ dir }}" lang="{{ doc.language|e }}"
 	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
 
 	{% if doc.status == "Archived" %}
@@ -70,7 +70,11 @@
 	</section>
 	{% endif %}
 
-	{% if lesson.assignment %}
+	{% if is_guest %}
+	<p class="tcd-callout tcd-callout-info"><a href="/login?redirect-to={{ (frappe.request.path if frappe.request else '/learn')|urlencode }}">{{ _("Log in") }}</a> {{ _("to take quizzes, track your progress and ask questions.") }}</p>
+	{% endif %}
+
+	{% if lesson.assignment and not is_guest %}
 	{% set a = lesson.assignment %}
 	{% set sub = a.submission %}
 	<section class="tcd-section tcd-assignment" data-assignment="{{ a.name|e }}" data-type="{{ a.submission_type|e }}">
@@ -105,7 +109,7 @@
 	</section>
 	{% endif %}
 
-	{% if lesson.quiz %}
+	{% if lesson.quiz and not is_guest %}
 	<section class="tcd-section tcd-quiz" data-quiz="{{ lesson.quiz.name|e }}">
 		<h2>{{ lesson.quiz.title|e }}</h2>
 		{% if quiz_required %}<p class="tcd-muted">{{ _("Pass this quiz to complete the lesson.") }}</p>{% endif %}
@@ -163,7 +167,7 @@
 	</section>
 	{% endif %}
 
-	{% if doc.content_type in ("Article", "Reference") %}
+	{% if doc.content_type in ("Article", "Reference") and not is_guest %}
 	<section class="tcd-section tcd-helpful" data-content="{{ doc.name|e }}">
 		<p><strong>{{ _("Was this page helpful?") }}</strong>
 			{% if feedback.total %}<span class="tcd-muted tcd-small">({{ _("{0} of {1} found it helpful").format(feedback.helpful, feedback.total) }})</span>{% endif %}</p>
@@ -177,7 +181,7 @@
 	{% endif %}
 
 	<footer class="tcd-footer">
-		{% if doc.content_type != "Tutorial" %}
+		{% if doc.content_type != "Tutorial" and not is_guest %}
 		<button type="button" class="btn btn-primary tcd-complete" {% if not can_complete %}hidden{% endif %}>{{ _("Mark as complete") }}</button>
 		{% endif %}
 		<nav class="tcd-nav" aria-label="{{ _('Lesson navigation') }}">

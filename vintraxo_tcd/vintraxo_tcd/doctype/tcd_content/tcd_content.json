@@ -290,7 +290,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 12:00:00.000000",
+ "modified": "2026-11-20 15:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",
@@ -345,6 +345,10 @@
   },
   {
    "role": "TCD Learner",
+   "read": 1
+  },
+  {
+   "role": "Guest",
    "read": 1
   }
  ],

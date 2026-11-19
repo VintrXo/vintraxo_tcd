@@ -15,10 +15,16 @@ CONTENT_LIST_FIELDS = ["name", "title", "slug", "summary", "content_type", "lang
 # ---------------------------------------------------------------- guards
 
 
-def require_portal():
-	"""Portal must be enabled and the visitor logged in."""
+def require_portal(allow_guest: bool = False):
+	"""Portal must be enabled and the visitor logged in (or a reading page with visitors allowed)."""
 	if not frappe.db.get_single_value("TCD Settings", "enable_portal"):
 		raise frappe.PageDoesNotExistError
+	if (
+		frappe.session.user == "Guest"
+		and allow_guest
+		and frappe.db.get_single_value("TCD Settings", "enable_guest_access")
+	):
+		return
 	if frappe.session.user == "Guest":
 		request = getattr(frappe.local, "request", None)
 		path = request.full_path.rstrip("?") if request else "/learn"
