@@ -4,7 +4,7 @@
 {% for b in blocks %}
 	{% if b.type == "heading" %}
 		{% set level = (b.level or 2) + 1 %}
-		<h{{ level }} class="tcd-heading">{{ b.text|e }}</h{{ level }}>
+		<h{{ level }} class="tcd-heading"{% if b.anchor %} id="{{ b.anchor|e }}"{% endif %}>{{ b.text|e }}</h{{ level }}>
 	{% elif b.type == "paragraph" %}
 		<p class="tcd-paragraph">{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</p>
 	{% elif b.type == "markdown" %}
@@ -27,11 +27,11 @@
 			{% if b.caption %}<figcaption>{{ b.caption|e }}</figcaption>{% endif %}
 		</figure>
 	{% elif b.type == "video" and b.embed_url %}
-		<figure class="tcd-video">
+		<figure class="tcd-video" data-video-index="{{ b.video_index }}" data-provider="{{ b.provider|e }}">
 			{% if b.provider == "file" %}
 			<video controls preload="metadata" src="{{ b.embed_url|e }}"{% if b.title %} aria-label="{{ b.title|e }}"{% endif %}></video>
 			{% else %}
-			<iframe src="{{ b.embed_url|e }}" title="{{ (b.title or _('Video'))|e }}" loading="lazy"
+			<iframe src="{{ b.embed_url|e }}{% if b.provider == 'youtube' %}?enablejsapi=1{% endif %}" title="{{ (b.title or _('Video'))|e }}" loading="lazy"
 				sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
 				allow="fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 			{% endif %}

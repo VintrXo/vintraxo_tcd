@@ -16,7 +16,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Content",
-   "link_count": 8,
+   "link_count": 9,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -96,6 +96,16 @@
    "label": "Discussions",
    "link_count": 0,
    "link_to": "TCD Discussion Post",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Suggested Edits",
+   "link_count": 0,
+   "link_to": "TCD Change Request",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -575,7 +585,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-20 11:00:00.000000",
+ "modified": "2026-11-20 13:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VintraXo TCD",

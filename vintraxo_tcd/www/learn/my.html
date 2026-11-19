@@ -152,6 +152,17 @@
 	</section>
 	{% endif %}
 
+	{% if data.notes %}
+	<section class="tcd-section">
+		<h2>{{ _("My notes") }}</h2>
+		<ul class="tcd-lessons">
+			{% for n in data.notes %}
+			<li class="tcd-lesson"><a href="{{ n.url|e }}">{{ n.title|e }}</a> <span class="tcd-muted tcd-small">{{ n.note|e }}</span></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.recent %}
 	<section class="tcd-section">
 		<h2>{{ _("Recently completed") }}</h2>

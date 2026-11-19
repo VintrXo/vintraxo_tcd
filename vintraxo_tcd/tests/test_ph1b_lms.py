@@ -181,7 +181,7 @@ class TestPhase1LMS(TCDTestCase):
 		)
 		status, html, _ = render(f"/learn/{self.space}/{doc.slug}", self.learner)
 		self.assertEqual(status, 200)
-		self.assertIn('src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"', html)
+		self.assertIn('src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?enablejsapi=1"', html)
 		self.assertIn('sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"', html)
 		self.assertIn('rel="noopener noreferrer nofollow"', html)
 		self.assertNotIn("<script>x</script>", html)

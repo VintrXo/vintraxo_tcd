@@ -29,7 +29,9 @@
   "issue_certificate",
   "certificate_validity_months",
   "about_section",
-  "summary"
+  "summary",
+  "cover_image",
+  "intro_video"
  ],
  "fields": [
   {
@@ -199,10 +201,22 @@
    "fieldname": "summary",
    "fieldtype": "Small Text",
    "label": "Summary"
+  },
+  {
+   "fieldname": "cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Cover Image",
+   "description": "Shown on cards and at the top of the page (public image, about 1200x600)"
+  },
+  {
+   "fieldname": "intro_video",
+   "fieldtype": "Data",
+   "label": "Intro Video",
+   "description": "YouTube, Vimeo or an uploaded mp4/webm link"
   }
  ],
  "links": [],
- "modified": "2026-11-20 09:00:00.000000",
+ "modified": "2026-11-20 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

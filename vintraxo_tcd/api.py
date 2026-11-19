@@ -149,6 +149,18 @@ def _readable(doctype: str, name: str):
 	return doc
 
 
+def _intro(url: str | None) -> dict | None:
+	if not url:
+		return None
+	from vintraxo_tcd.core import media
+
+	try:
+		provider, embed_url = media.parse_video(url)
+	except frappe.ValidationError:
+		return None  # a link that is no longer allowed is simply not shown
+	return {"provider": provider, "embed_url": embed_url}
+
+
 @frappe.whitelist()
 def get_course(name: str) -> dict:
 	"""Course outline with the learner's state (completed / locked per item, chapter percent)."""
@@ -178,6 +190,8 @@ def get_course(name: str) -> dict:
 		"slug": course.slug,
 		"space": course.space,
 		"summary": course.summary,
+		"cover_image": course.get("cover_image"),
+		"intro": _intro(course.get("intro_video")),
 		"completion_rule": course.completion_rule,
 		"minimum_score": course.minimum_score,
 		"self_enrollment": bool(course.self_enrollment),
@@ -218,6 +232,8 @@ def get_learning_path(name: str) -> dict:
 		"slug": path.slug,
 		"space": path.space,
 		"summary": path.summary,
+		"cover_image": path.get("cover_image"),
+		"intro": _intro(path.get("intro_video")),
 		"completion_rule": path.completion_rule,
 		"self_enrollment": bool(path.self_enrollment),
 		"courses": items,
@@ -872,3 +888,59 @@ def run_content_import(name: str) -> dict:
 	from vintraxo_tcd.core import transfer
 
 	return transfer.run_import(name)
+
+
+# ---------------------------------------------------------------- video watching (Phase 14)
+
+
+@frappe.whitelist(methods=["POST"])
+def video_progress(content: str, index: int, watched: float, duration: float) -> dict:
+	if frappe.session.user == "Guest":
+		raise frappe.PermissionError
+	_readable_content(content)
+	from vintraxo_tcd.core import progress
+
+	return progress.record_video(frappe.session.user, content, index, watched, duration)
+
+
+# ---------------------------------------------------------------- lesson notes (Phase 14)
+
+
+@frappe.whitelist(methods=["POST"])
+def save_note(content: str, note: str = "") -> dict:
+	_readable_content(content)
+	from vintraxo_tcd.core import notes
+
+	return notes.save(content, note, frappe.session.user)
+
+
+# ---------------------------------------------------------------- suggested edits (Phase 14)
+
+
+@frappe.whitelist(methods=["POST"])
+def propose_change(content: str, edits, title: str | None = None, summary: str = "") -> str:
+	from vintraxo_tcd.core import change_requests
+
+	return change_requests.propose(content, edits, frappe.session.user, title, summary)
+
+
+@frappe.whitelist()
+def change_request_diff(name: str) -> dict:
+	frappe.get_doc("TCD Change Request", name).check_permission("read")
+	from vintraxo_tcd.core import change_requests
+
+	return change_requests.diff(name)
+
+
+@frappe.whitelist(methods=["POST"])
+def accept_change_request(name: str, comment: str = "") -> str:
+	from vintraxo_tcd.core import change_requests
+
+	return change_requests.accept(name, frappe.session.user, comment)
+
+
+@frappe.whitelist(methods=["POST"])
+def reject_change_request(name: str, comment: str = ""):
+	from vintraxo_tcd.core import change_requests
+
+	change_requests.reject(name, frappe.session.user, comment)

@@ -160,6 +160,141 @@
 		load().catch((e) => showError(e.message));
 	}
 
+	/**
+	 * Video watching: count each second actually played (skipping ahead does not count) and report
+	 * it every 15 seconds and when the page is left. Uploaded videos use the media element; YouTube
+	 * and Vimeo use their standard postMessage player APIs (no extra scripts).
+	 */
+	function initVideoTracking(content) {
+		const figures = document.querySelectorAll(".tcd-body figure.tcd-video[data-video-index]");
+		if (!figures.length || !document.body.getAttribute("frappe-session-status")?.includes("logged-in")) return;
+		const state = new Map(); // index -> {seen:Set, duration, last, sent}
+		const tick = (index, current, duration) => {
+			const s = state.get(index) || { seen: new Set(), duration: 0, last: null, sent: 0 };
+			if (duration) s.duration = duration;
+			const sec = Math.floor(current);
+			if (s.last !== null && sec >= s.last && sec - s.last <= 2) {
+				for (let i = s.last; i <= sec; i++) s.seen.add(i);
+			}
+			s.last = sec;
+			state.set(index, s);
+		};
+		const flush = (keepalive) => {
+			state.forEach((s, index) => {
+				const watched = Math.min(s.seen.size, s.duration);
+				if (!s.duration || watched <= s.sent) return;
+				s.sent = watched;
+				fetch(API + "video_progress", {
+					method: "POST",
+					credentials: "same-origin",
+					keepalive: !!keepalive,
+					headers: {
+						"Content-Type": "application/json",
+						"X-Frappe-CSRF-Token": (window.frappe && window.frappe.csrf_token) || "",
+					},
+					body: JSON.stringify({ content: content, index: index, watched: watched, duration: s.duration }),
+				}).catch(() => {});
+			});
+		};
+		const frames = new Map(); // iframe window -> index
+		figures.forEach((fig) => {
+			const index = Number(fig.dataset.videoIndex);
+			const video = fig.querySelector("video");
+			if (video) {
+				video.addEventListener("timeupdate", () => tick(index, video.currentTime, video.duration || 0));
+				return;
+			}
+			const frame = fig.querySelector("iframe");
+			if (!frame) return;
+			const hello = () => {
+				frames.set(frame.contentWindow, index);
+				if (fig.dataset.provider === "youtube") {
+					frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: index, channel: "widget" }), "*");
+				} else if (fig.dataset.provider === "vimeo") {
+					frame.contentWindow.postMessage(JSON.stringify({ method: "addEventListener", value: "timeupdate" }), "*");
+				}
+			};
+			frame.addEventListener("load", hello);
+			hello();
+		});
+		window.addEventListener("message", (e) => {
+			if (!frames.has(e.source)) return;
+			const host = (() => {
+				try {
+					return new URL(e.origin).hostname;
+				} catch (_) {
+					return "";
+				}
+			})();
+			if (!/(^|\.)(youtube-nocookie\.com|youtube\.com|vimeo\.com)$/.test(host)) return;
+			let d = e.data;
+			try {
+				d = typeof d === "string" ? JSON.parse(d) : d;
+			} catch (_) {
+				return;
+			}
+			const index = frames.get(e.source);
+			if (d && d.event === "infoDelivery" && d.info && typeof d.info.currentTime === "number") {
+				tick(index, d.info.currentTime, d.info.duration || 0);
+			} else if (d && d.event === "timeupdate" && d.data) {
+				tick(index, d.data.seconds || 0, d.data.duration || 0);
+			}
+		});
+		setInterval(() => flush(false), 15000);
+		window.addEventListener("pagehide", () => flush(true));
+	}
+
+	function initNotes(t) {
+		const box = document.querySelector(".tcd-notes[data-content]");
+		if (!box) return;
+		const area = box.querySelector(".tcd-note");
+		const status = box.querySelector(".tcd-note-status");
+		let timer = null;
+		let last = area.value;
+		const save = async () => {
+			if (area.value === last) return;
+			const value = area.value;
+			try {
+				await call("save_note", { content: box.dataset.content, note: value }, true);
+				last = value;
+				status.textContent = t.saved || "Saved.";
+			} catch (e) {
+				status.textContent = e.message;
+			}
+		};
+		area.addEventListener("input", () => {
+			clearTimeout(timer);
+			timer = setTimeout(save, 1200);
+		});
+		area.addEventListener("blur", save);
+	}
+
+	function initSuggest(t) {
+		const box = document.querySelector(".tcd-suggest[data-content]");
+		if (!box) return;
+		const form = box.querySelector(".tcd-suggest-form");
+		const status = box.querySelector(".tcd-suggest-status");
+		const original = new Map();
+		form.querySelectorAll("textarea[data-index]").forEach((a) => original.set(a, a.value));
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const edits = [];
+			original.forEach((value, area) => {
+				if (area.value !== value) edits.push({ index: Number(area.dataset.index), field: area.dataset.field, value: area.value });
+			});
+			const button = form.querySelector("button");
+			button.disabled = true;
+			try {
+				await call("propose_change", { content: box.dataset.content, edits: JSON.stringify(edits), title: form.title.value, summary: form.summary.value }, true);
+				status.textContent = t.suggestion_sent;
+				form.querySelectorAll("textarea, input").forEach((x) => (x.disabled = true));
+			} catch (err) {
+				status.textContent = err.message;
+				button.disabled = false;
+			}
+		});
+	}
+
 	function initWithdraw() {
 		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -375,10 +510,13 @@
 		initApprove();
 		initAssistant(t0);
 		initDiscussion(t0);
+		initNotes(t0);
+		initSuggest(t0);
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;
 		const t = labels();
 		const name = page.dataset.content;
+		initVideoTracking(name);
 		const message = page.querySelector(".tcd-message");
 		const completeBtn = page.querySelector(".tcd-complete");
 		const progressLabel = page.querySelector("[data-progress-label]");

@@ -70,6 +70,13 @@ def completion_blockers(user: str, content: str) -> list[str]:
 	assignment = required_assignment(content)
 	if assignment and not has_passed_assignment(user, assignment):
 		missing.append(_("Pass the assignment to complete this lesson."))
+	min_video = frappe.db.get_value("TCD Content", content, "min_video_percent") or 0
+	if min_video and video_count(content):
+		watched = (
+			frappe.db.get_value("TCD Progress", {"user": user, "content": content}, "video_percent") or 0
+		)
+		if watched < min_video:
+			missing.append(_("Watch at least {0}% of the videos first.").format(int(min_video)))
 	from vintraxo_tcd.core.connect import unmet_prerequisites
 
 	unmet = unmet_prerequisites(user, content)
@@ -151,3 +158,36 @@ def refresh_tutorial(user: str, tutorial: str):
 	if status == "Completed" and not doc.completed_on:
 		doc.db_set("completed_on", now_datetime(), update_modified=False)
 	return doc
+
+
+# ---------------------------------------------------------------- video watching (Phase 14)
+
+
+def video_count(content: str) -> int:
+	from vintraxo_tcd.core.content import parse_blocks
+
+	blocks = parse_blocks(frappe.db.get_value("TCD Content", content, "blocks"))
+	return sum(1 for b in blocks if b.get("type") == "video")
+
+
+def record_video(user: str, content: str, index: int, watched: float, duration: float) -> dict:
+	"""Store the seconds a learner really watched of one video block (kept as the maximum reported).
+	Reported by the learner's browser: a nudge, not proof."""
+	import json
+
+	total = video_count(content)
+	index = int(index)
+	if not 0 <= index < total:
+		frappe.throw(_("Unknown video."))
+	duration = max(float(duration or 0), 0.0)
+	watched = min(max(float(watched or 0), 0.0), duration)
+	if not duration:
+		return {"video_percent": 0}
+	doc = get_progress(user, content) or track_view(user, content)
+	data = json.loads(doc.get("video_watch") or "{}")
+	prev = data.get(str(index)) or [0, duration]
+	data[str(index)] = [max(prev[0], round(watched, 1)), round(duration, 1)]
+	parts = [min(w / d, 1.0) if d else 0 for w, d in (data.get(str(i), [0, 0]) for i in range(total))]
+	percent = round(sum(parts) * 100 / total, 1)
+	doc.db_set({"video_watch": json.dumps(data), "video_percent": percent}, update_modified=False)
+	return {"video_percent": percent}

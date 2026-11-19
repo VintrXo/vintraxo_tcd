@@ -266,6 +266,8 @@ def validate_locked_fields(doc, before):
 	"""Approved/Published content is frozen; move it back to Draft to edit."""
 	if before.status not in LOCKED_STATUSES or doc.status != before.status:
 		return
+	if doc.flags.change_request:  # a suggested edit a reviewer accepted (core.change_requests.accept)
+		return
 	for field in LOCKED_FIELDS:
 		old, new = before.get(field), doc.get(field)
 		if field == "blocks":

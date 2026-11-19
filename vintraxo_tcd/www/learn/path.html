@@ -8,12 +8,24 @@
 	{% if is_staff_preview %}
 	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status, context="TCD")) }}</div>
 	{% endif %}
+	{% if data.cover_image %}<img class="tcd-cover" src="{{ data.cover_image|e }}" alt="" loading="lazy">{% endif %}
 	<header class="tcd-hero">
 		<span class="tcd-badge">{{ _("Learning Path") }}</span>
 		{% if e %}<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>{% endif %}
 		<h1>{{ doc.title|e }}</h1>
 		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
 	</header>
+	{% if data.intro %}
+	<figure class="tcd-video tcd-intro">
+		{% if data.intro.provider == "file" %}
+		<video controls preload="metadata" src="{{ data.intro.embed_url|e }}"></video>
+		{% else %}
+		<iframe src="{{ data.intro.embed_url|e }}" title="{{ _('Intro video') }}" loading="lazy"
+			sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+			allow="fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+		{% endif %}
+	</figure>
+	{% endif %}
 	<section class="tcd-section">
 		{% if e %}
 		<div class="tcd-progress-row">

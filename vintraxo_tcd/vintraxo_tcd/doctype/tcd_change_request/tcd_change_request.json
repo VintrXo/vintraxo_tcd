@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 13:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "content",
+  "user",
+  "status",
+  "column_break_1",
+  "summary",
+  "reviewer",
+  "reviewed_on",
+  "review_comment",
+  "proposal_section",
+  "proposed_title",
+  "proposed_blocks",
+  "base_hash"
+ ],
+ "fields": [
+  {
+   "fieldname": "content",
+   "fieldtype": "Link",
+   "label": "Content",
+   "options": "TCD Content",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "Proposed By",
+   "options": "User",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Open\nAccepted\nRejected\nConflict",
+   "default": "Open",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "What Changed and Why",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reviewer",
+   "fieldtype": "Link",
+   "label": "Reviewer",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reviewed_on",
+   "fieldtype": "Datetime",
+   "label": "Reviewed On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_comment",
+   "fieldtype": "Small Text",
+   "label": "Review Comment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "proposal_section",
+   "fieldtype": "Section Break",
+   "label": "Proposal"
+  },
+  {
+   "fieldname": "proposed_title",
+   "fieldtype": "Data",
+   "label": "Proposed Title",
+   "read_only": 1
+  },
+  {
+   "fieldname": "proposed_blocks",
+   "fieldtype": "Long Text",
+   "label": "Proposed Blocks",
+   "hidden": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "base_hash",
+   "fieldtype": "Data",
+   "label": "Base Hash",
+   "hidden": 1,
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 13:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Change Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "delete": 1,
+   "report": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "report": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "in_create": 1,
+ "track_changes": 1
+}

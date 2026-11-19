@@ -2,6 +2,7 @@
 version compare/restore, page feedback, templates, tags."""
 
 import difflib
+import html
 import json
 import re
 
@@ -96,6 +97,38 @@ def render_markdown(text: str, space: str) -> str:
 
 	html = md_to_html(LINK_RE.sub(to_md, text or "")) or ""
 	return sanitize_html(str(html), always_sanitize=True, disallowed_tags=DISALLOWED_TAGS)
+
+
+MD_HEADING = re.compile(r"<h([23])(?:\s[^>]*)?>(.*?)</h\1>", re.S)
+TAG = re.compile(r"<[^>]+>")
+
+
+def table_of_contents(blocks: list) -> list[dict]:
+	"""Give headings stable anchors and return [{id, text, level}] (heading blocks and Markdown h2/h3).
+	Call after prepare_blocks. Markdown html is already sanitized; the ids are generated, never user text."""
+	toc, n = [], 0
+	video = 0
+	for b in blocks:
+		if b.get("type") == "video":
+			b["video_index"] = video  # matches progress.record_video's numbering of video blocks
+			video += 1
+		if b.get("type") == "heading" and (b.get("text") or "").strip():
+			n += 1
+			b["anchor"] = f"sec-{n}"
+			toc.append(
+				{"id": b["anchor"], "text": b["text"].strip(), "level": min(int(b.get("level") or 2), 3)}
+			)
+		elif b.get("type") == "markdown" and b.get("html"):
+
+			def add_id(m):
+				nonlocal n
+				n += 1
+				text = html.unescape(TAG.sub("", m.group(2))).strip()
+				toc.append({"id": f"sec-{n}", "text": text, "level": int(m.group(1))})
+				return f'<h{m.group(1)} id="sec-{n}">{m.group(2)}</h{m.group(1)}>'
+
+			b["html"] = MD_HEADING.sub(add_id, b["html"])
+	return toc
 
 
 def prepare_blocks(blocks: list, space: str) -> list:

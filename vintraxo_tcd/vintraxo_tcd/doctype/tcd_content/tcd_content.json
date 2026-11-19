@@ -20,6 +20,7 @@
   "parent_content",
   "body_section",
   "summary",
+  "min_video_percent",
   "blocks_editor",
   "blocks_json_section",
   "blocks",
@@ -153,6 +154,12 @@
    "label": "Summary"
   },
   {
+   "fieldname": "min_video_percent",
+   "fieldtype": "Percent",
+   "label": "Watch Before Completing (%)",
+   "description": "Share of the page's videos the learner must watch before marking it complete; 0 means no rule"
+  },
+  {
    "fieldname": "blocks_editor",
    "fieldtype": "HTML",
    "label": "Content Editor"
@@ -283,7 +290,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 06:00:00.000000",
+ "modified": "2026-11-20 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

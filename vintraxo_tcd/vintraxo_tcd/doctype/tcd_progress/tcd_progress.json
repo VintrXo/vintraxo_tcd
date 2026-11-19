@@ -11,6 +11,8 @@
   "column_break_1",
   "status",
   "percent",
+  "video_percent",
+  "video_watch",
   "started_on",
   "last_viewed_on",
   "completed_on"
@@ -76,6 +78,19 @@
    "in_list_view": 1
   },
   {
+   "fieldname": "video_percent",
+   "fieldtype": "Percent",
+   "label": "Video Watched",
+   "read_only": 1
+  },
+  {
+   "fieldname": "video_watch",
+   "fieldtype": "Small Text",
+   "label": "Video Watch Data",
+   "read_only": 1,
+   "hidden": 1
+  },
+  {
    "fieldname": "started_on",
    "fieldtype": "Datetime",
    "label": "Started On",
@@ -95,7 +110,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-18 22:00:00.000000",
+ "modified": "2026-11-20 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Progress",

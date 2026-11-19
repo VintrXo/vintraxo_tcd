@@ -208,3 +208,14 @@
 /* manager dashboard (Phase 13) */
 .tcd-team-table th, .tcd-team-table td { white-space: nowrap; text-align: start; }
 .tcd-attendance-rule { white-space: nowrap; }
+
+/* table of contents (Phase 14) */
+.tcd-toc { border: 1px solid var(--tcd-bg-soft); border-radius: 8px; padding: 0.5rem 1rem; margin-block: 1rem; background: var(--tcd-bg-soft); }
+.tcd-toc summary { cursor: pointer; font-weight: 600; }
+.tcd-toc ol { margin: 0.5rem 0 0; padding-inline-start: 1.25rem; }
+.tcd-toc .tcd-toc-l3 { margin-inline-start: 1rem; list-style: circle; }
+.tcd-heading, .tcd-markdown h2, .tcd-markdown h3 { scroll-margin-top: 4.5rem; }
+@media (min-width: 1200px) { .tcd-toc { float: inline-end; inline-size: 260px; margin-inline-start: 1.5rem; position: sticky; top: 4.5rem; } }
+.tcd-cover { display: block; inline-size: 100%; max-block-size: 320px; object-fit: cover; border-radius: 12px; margin-block-end: 1rem; }
+.tcd-card-cover { display: block; inline-size: 100%; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 8px; margin-block-end: 0.5rem; }
+.tcd-intro { margin-block: 1rem; }

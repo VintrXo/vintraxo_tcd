@@ -42,6 +42,15 @@
 	<div class="tcd-callout tcd-callout-warning">{{ _("This item is locked by the course order. Complete these items first: {0}").format(sequence_blockers|join(", ")|e) }}</div>
 	{% endif %}
 
+	{% if lesson.toc|length >= 3 %}
+	<details class="tcd-toc" open>
+		<summary>{{ _("On this page") }}</summary>
+		<ol>
+			{% for h in lesson.toc %}<li class="tcd-toc-l{{ h.level }}"><a href="#{{ h.id|e }}">{{ h.text|e }}</a></li>{% endfor %}
+		</ol>
+	</details>
+	{% endif %}
+
 	<div class="tcd-body">
 		{{ render_blocks(lesson.blocks, lesson.playground) }}
 	</div>
@@ -177,6 +186,31 @@
 		</nav>
 		<p class="tcd-message" role="status" hidden></p>
 	</footer>
+
+	{% if suggest_fields %}
+	<details class="tcd-section tcd-suggest" data-content="{{ doc.name|e }}">
+		<summary>{{ _("Suggest an edit") }} <span class="tcd-muted tcd-small">{{ _("A reviewer checks it before the page changes") }}</span></summary>
+		<form class="tcd-suggest-form">
+			<label class="tcd-small">{{ _("Title") }}<input name="title" class="form-control" maxlength="140" value="{{ doc.title|e }}"></label>
+			{% for f in suggest_fields %}
+			<label class="tcd-small tcd-suggest-field">{{ _(f.type, context="TCD Block") }}
+				<textarea class="form-control" data-index="{{ f.index }}" data-field="{{ f.field|e }}" rows="{{ 4 if f.field in ('code', 'items') or f.type == 'markdown' else 2 }}"{% if f.field == 'code' %} dir="ltr"{% endif %}>{{ f.value|e }}</textarea>
+			</label>
+			{% endfor %}
+			<label class="tcd-small">{{ _("What changed and why") }}<textarea name="summary" class="form-control" rows="2" maxlength="1000" required></textarea></label>
+			<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-sm">{{ _("Send suggestion") }}</button></p>
+			<p class="tcd-muted tcd-small tcd-suggest-status" aria-live="polite"></p>
+		</form>
+	</details>
+	{% endif %}
+
+	{% if my_note is not none %}
+	<details class="tcd-section tcd-notes" data-content="{{ doc.name|e }}"{% if my_note %} open{% endif %}>
+		<summary>{{ _("My notes") }} <span class="tcd-muted tcd-small">{{ _("Only you can see them") }}</span></summary>
+		<textarea class="form-control tcd-note" rows="4" maxlength="10000" aria-label="{{ _('My notes') }}">{{ my_note|e }}</textarea>
+		<p class="tcd-muted tcd-small tcd-note-status" aria-live="polite"></p>
+	</details>
+	{% endif %}
 
 	{% if discussions_enabled and doc.status == "Published" %}
 	<section class="tcd-section tcd-discussion" data-content="{{ doc.name|e }}">

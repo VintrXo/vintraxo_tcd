@@ -294,6 +294,15 @@ TCD Settings gains default_review_months and enable_discussions.
 
 TCD Course gains minimum_attendance; TCD Enrollment gains hr_training_event; TCD Settings gains sync_training_to_hr.
 
+## Phase 14
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD Lesson Note | Private note of one user on one page | user, content, note |
+| TCD Change Request | Suggested edit of a published page | content, user, status (Open/Accepted/Rejected/Conflict), summary, proposed_title, proposed_blocks, base_hash, reviewer, review_comment |
+
+TCD Course / TCD Learning Path gain cover_image, intro_video; TCD Content gains min_video_percent; TCD Progress gains
+video_percent, video_watch; TCD Settings gains enable_change_requests.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

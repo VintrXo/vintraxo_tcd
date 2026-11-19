@@ -120,6 +120,12 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   those people only; admins any team. TCD Team and TCD Content Import: admins only.
 - `api.export_space` / `api.run_content_import`: administrators only (bundles include quiz answers).
 
+## Phase 14
+- TCD Lesson Note: no role permissions; only the author reads/writes through `api.save_note` and the page.
+- TCD Change Request: proposed by readers of the published page (`api.propose_change`); accepted or rejected by
+  TCD Content Reviewer / admins only; authors and reviewers read the list; learners cannot read it in the Desk.
+- `api.video_progress`: logged-in readers of the page.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

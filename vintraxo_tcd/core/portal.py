@@ -196,7 +196,7 @@ def space_context(space_name: str) -> dict:
 		rows_o = frappe.get_list(
 			doctype,
 			filters={"space": space.name},
-			fields=["name", "title", "slug", "summary", "language", "status"],
+			fields=["name", "title", "slug", "summary", "language", "status", "cover_image"],
 			order_by="title asc",
 			limit_page_length=200,
 		)
@@ -240,6 +240,7 @@ def content_context(
 	from vintraxo_tcd.core import wiki
 
 	lesson["blocks"] = wiki.prepare_blocks(lesson["blocks"], space.name)
+	lesson["toc"] = wiki.table_of_contents(lesson["blocks"])
 	parents = [
 		{"route": "/learn", "title": _("Learning")},
 		{"route": content_url(space.name, ""), "title": space.title},
@@ -280,10 +281,14 @@ def content_context(
 			item["url"] = content_url(space.name, item["slug"], doc.name)
 
 	quiz_required = bool(progress.required_quiz(doc.name))
-	from vintraxo_tcd.core import freshness
+	from vintraxo_tcd.core import change_requests, freshness, notes
 
 	return {
 		"outdated": doc.status == "Published" and freshness.is_overdue(doc),
+		"my_note": notes.get(doc.name, user) if user != "Guest" else None,
+		"suggest_fields": change_requests.editable_fields(doc)
+		if user != "Guest" and doc.status == "Published" and change_requests.enabled()
+		else None,
 		"discussions_enabled": bool(frappe.db.get_single_value("TCD Settings", "enable_discussions"))
 		and user != "Guest",
 		"space": space,
@@ -383,6 +388,7 @@ def js_labels() -> dict:
 		"hidden_post": _("Hidden"),
 		"your_question": _("Your question about this page"),
 		"your_reply": _("Your reply"),
+		"suggestion_sent": _("Thank you. A reviewer will check your suggestion."),
 		"runner_compilation_error": _("Compilation error"),
 		"runner_runtime_error": _("Runtime error"),
 		"runner_time_limit": _("Stopped: time limit reached."),

@@ -35,6 +35,7 @@ A course cannot be its own prerequisite.,لا يمكن أن تكون الدور�
 A new version is being prepared. This is the version in force.,يجري إعداد نسخة جديدة. هذه هي النسخة السارية.
 A page cannot be its own parent.,لا يمكن أن تكون الصفحة أبًا لنفسها.
 A provider registered by an app (hook tcd_ai_providers). Built in: Anthropic,مزوّد يسجّله تطبيق (الخطاف tcd_ai_providers). المدمج: Anthropic,TCD AI Settings
+A reviewer checks it before the page changes,يراجعه أحد المراجعين قبل تغيير الصفحة
 A role is listed twice.,تم إدراج دور مرتين.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 A tutorial or process guide recommended to matching users,شرح أو دليل إجراءات يُقترح على المستخدمين المطابقين,TCD Training Rule
@@ -58,6 +59,9 @@ About,نبذة,TCD Learning Path
 Absent,غائب
 Absent,غائب,TCD
 Absent,غائب,TCD Session Attendance
+Accept,قبول
+Accepted,مقبول
+Accepted,مقبول,TCD Change Request
 Accepted Answers,الإجابات المقبولة,TCD Question
 Access,الوصول
 Access and Instructors,الوصول والمدرّبون,TCD Course
@@ -195,6 +199,7 @@ Bank Questions,أسئلة البنك,TCD Quiz
 Bank row {0}: category {1} has only {2} questions.,سطر البنك {0}: التصنيف {1} فيه {2} أسئلة فقط.
 Bank row {0}: choose a question or a category (not both).,سطر البنك {0}: اختر سؤالًا أو تصنيفًا (وليس الاثنين).
 Bank row {0}: the AI question must be reviewed before it is used in a quiz.,صف البنك {0}: يجب مراجعة سؤال الذكاء الاصطناعي قبل استخدامه في اختبار.
+Base Hash,بصمة الأصل,TCD Change Request
 "Base URL of the runner (Judge0 compatible), e.g. http://10.0.0.5:2358",الرابط الأساسي للمشغّل (متوافق مع Judge0)، مثال: http://10.0.0.5:2358,TCD Settings
 Batch,الدفعة,TCD Session
 Batch,دفعة
@@ -289,6 +294,7 @@ Code/SQL output comes from the learner's browser and can be forged; tick this fo
 Comma separated; empty uses TCD Settings,مفصولة بفواصل؛ إذا تُركت فارغة تُستخدم إعدادات التعلّم,TCD Assignment
 Comment,التعليق,TCD Content Feedback
 Comment,التعليق,TCD Course Feedback
+Comment,تعليق
 Comment (optional),تعليق (اختياري)
 Company,الشركة,TCD Rule HR Filter
 Company,شركة
@@ -321,11 +327,15 @@ Completion rule,قاعدة الإكمال
 Completion waiting for your approval: {0} ({1}),إكمال ينتظر اعتمادك: {0} ({1})
 Compliance,نسبة الالتزام
 Compliance Overview,نظرة على الالتزام
+Conflict,تعارض
+Conflict,تعارض,TCD Change Request
 Connector,الموصّل,TCD Integration Event
 Connector Name,اسم الموصّل,TCD Connector
+Content,المحتوى,TCD Change Request
 Content,المحتوى,TCD Content Version
 Content,المحتوى,TCD Discussion Post
 Content,المحتوى,TCD Learning Item
+Content,المحتوى,TCD Lesson Note
 Content,المحتوى,TCD Progress
 Content,المحتوى,TCD Quiz
 Content,المحتوى,TCD Quiz Submission
@@ -376,6 +386,8 @@ Course whose instructors grade the submissions,الدورة التي يصحّح 
 Courses,الدورات
 Courses and Learning,الدورات والتعلّم
 Courses and learning paths,الدورات ومسارات التعلّم
+Cover Image,صورة الغلاف,TCD Course
+Cover Image,صورة الغلاف,TCD Learning Path
 Created Space,المساحة المُنشأة,TCD Content Import
 Criterion,المعيار,TCD Rubric Criterion
 Current,تيار
@@ -387,6 +399,7 @@ Daily Requests per User,الطلبات اليومية لكل مستخدم,TCD AI
 Dates,التواريخ,TCD Governance Document
 Days Overdue,أيام التأخير
 Deadline,الموعد النهائي,TCD Quiz Submission
+Decision,القرار
 Default Content Language,لغة المحتوى الافتراضية
 Default Review Cycle (Months),دورة المراجعة الافتراضية (شهور),TCD Settings
 Default Visibility,الظهور الافتراضي
@@ -630,6 +643,9 @@ Internal,داخلي,TCD Learning Path
 Internal,داخلي,TCD Settings
 Internal,داخلي,TCD Space
 Internal Links,الروابط الداخلية,TCD Content
+Intro Video,فيديو تعريفي,TCD Course
+Intro Video,فيديو تعريفي,TCD Learning Path
+Intro video,فيديو تعريفي
 Invalid enrollment type.,نوع تسجيل غير صالح.
 Invalid grading action.,إجراء تصحيح غير صالح.
 Issue Certificate on Completion,إصدار شهادة عند الإكمال,TCD Course
@@ -786,6 +802,7 @@ My attendance,حضوري
 My certificates,شهاداتي
 My courses,دوراتي
 My direct reports,تابعيّ المباشرون
+My notes,ملاحظاتي
 My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
@@ -831,16 +848,20 @@ Not acknowledged,لم يُقر
 Not passed yet,لم تنجح بعد
 Not permitted,غير مسموح به
 Not recorded,لم يُسجَّل
+Note,الملاحظة,TCD Lesson Note
 Note,ملاحظة,TCD Session Attendance
+Notes are limited to {0} characters.,الملاحظات محدودة بـ {0} حرف.
 Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة أقصر.
 Nothing to grade.,لا يوجد ما يُصحَّح.
 Nothing to review.,لا يوجد ما يُراجَع.
 Nothing waiting.,لا يوجد ما ينتظر.
+Nothing was changed.,لم يتغيّر شيء.
 Notifications,الإشعارات
 Number of questions,عدد الأسئلة
 Numbered,مرقّمة
 Numbered,مرقّمة,TCD Block
 "Off: only counts, cost and sources are kept",عند الإيقاف: تُحفظ الأعداد والتكلفة والمصادر فقط,TCD AI Settings
+On this page,في هذه الصفحة
 One host per line. Supported providers: YouTube and Vimeo. Uploaded mp4/webm files are always allowed,موقع في كل سطر. المواقع المدعومة: YouTube وVimeo. ملفات mp4/webm المرفوعة مسموحة دائمًا,TCD Settings
 One option per line (not used for True False),خيار في كل سطر (لا يُستخدم مع صح/خطأ)
 One pair per line: left => right,زوج في كل سطر: يسار => يمين,TCD Question
@@ -871,12 +892,15 @@ Only moderators can hide posts.,المشرفون فقط يمكنهم إخفاء 
 Only not acknowledged,غير المُقرّين فقط
 Only past review date,المتأخرة عن موعد المراجعة فقط
 Only published pages have a review cycle.,دورة المراجعة للصفحات المنشورة فقط.
+Only reviewers can accept or reject suggested edits.,المراجعون فقط يمكنهم قبول أو رفض التعديلات المقترحة.
 Only submissions waiting for review can be reviewed.,يمكن مراجعة المحاولات التي تنتظر المراجعة فقط.
 Only the approver or an administrator can activate the document.,المعتمِد أو المسؤول فقط يمكنه تفعيل المستند.
 Only the person who asked or a moderator can choose the best answer.,صاحب السؤال أو المشرف فقط يمكنه اختيار أفضل إجابة.
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
+Only you can see them,لا يراها غيرك
 Open,فتح
 Open,مفتوح,TCD
+Open,مفتوح,TCD Change Request
 Open,مفتوح,TCD Course
 Open,مفتوح,TCD Discussion Post
 Open Gaps,فجوات مفتوحة
@@ -995,6 +1019,10 @@ Project,مشروع
 Project,مشروع,TCD Content
 Project,مشروع,TCD Content Template
 Prompt,نص الطلب,TCD AI Usage Log
+Proposal,الاقتراح,TCD Change Request
+Proposed Blocks,الكتل المقترحة,TCD Change Request
+Proposed By,اقترحه,TCD Change Request
+Proposed Title,العنوان المقترح,TCD Change Request
 Provider,المزوّد,TCD AI Settings
 Provider,المزوّد,TCD AI Usage Log
 Public,جمهور
@@ -1047,6 +1075,8 @@ Rating must be between 1 and 5.,التقييم يجب أن يكون بين 1 و5
 Ratings,التقييمات
 Read Since,قُرئت منذ
 Readers,القرّاء
+Readers Can Suggest Edits,يمكن للقرّاء اقتراح تعديلات,TCD Settings
+Readers propose text changes to published pages; a reviewer accepts or rejects them,يقترح القرّاء تعديلات على نصوص الصفحات المنشورة؛ ويقبلها المراجع أو يرفضها,TCD Settings
 Reason,سبب
 Recently completed,أُنجز مؤخرًا
 Recommended for you,مقترح لك
@@ -1063,6 +1093,9 @@ Reference Type,نوع المرجع,TCD Integration Event
 Referenced by,مُشار إليه في
 Refused,مرفوض
 Refused,مرفوض,TCD AI Usage Log
+Reject,رفض
+Rejected,مرفوض
+Rejected,مرفوض,TCD Change Request
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
 Related Learning,التعلّم المرتبط,TCD Governance Document
@@ -1115,6 +1148,7 @@ Review,المراجعة,TCD Governance Document
 Review,المراجعة,TCD Quiz Submission
 Review & Publishing,المراجعة والنشر
 Review Answers,مراجعة الإجابات
+Review Comment,تعليق المراجع,TCD Change Request
 Review Cycle,دورة المراجعة,TCD Content
 Review Cycle (months),دورة المراجعة (بالأشهر),TCD Governance Document
 Review Every (Months),المراجعة كل (شهور),TCD Content
@@ -1124,7 +1158,9 @@ Review recorded,تم تسجيل المراجعة
 Review this page by {0}: {1},راجع هذه الصفحة قبل {0}: {1}
 Reviewed,تمت المراجعة
 Reviewed,تمت المراجعة,TCD Question
+Reviewed On,تاريخ المراجعة,TCD Change Request
 Reviewed: still accurate.,تمت المراجعة: ما زالت صحيحة.
+Reviewer,المراجع,TCD Change Request
 Revision,قيد التعديل
 Revision,قيد التعديل,TCD Governance Document
 Revocation,الإلغاء,TCD Certificate
@@ -1200,6 +1236,7 @@ Send,إرسال
 Send Test,إرسال تجربة
 Send for Approval,إرسال للاعتماد
 Send for Review,إرسال للمراجعة
+Send suggestion,أرسل الاقتراح
 Sent,أرسلت
 Sent,تم الإرسال,TCD Integration Event
 Sent On,تاريخ الإرسال,TCD Integration Event
@@ -1211,6 +1248,7 @@ Set the API key in AI Settings.,أدخل مفتاح API في إعدادات ال
 Set the model.,حدد النموذج.
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
+Share of the page's videos the learner must watch before marking it complete; 0 means no rule,نسبة ما يجب أن يشاهده المتعلم من فيديوهات الصفحة قبل إكمالها؛ 0 يعني بلا شرط,TCD Content
 "Share of the sessions held so far that the learner must attend (Late counts, Excused is left out); 0 means attendance does not count",نسبة الجلسات المنعقدة التي يجب أن يحضرها المتعلم (التأخير يُحسب حضورًا، والغياب بعذر لا يُحسب)؛ 0 يعني أن الحضور لا يؤثر,TCD Course
 Short Answer,إجابة قصيرة
 Short Answer,إجابة قصيرة,TCD Question
@@ -1219,7 +1257,10 @@ Short Answer,إجابة قصيرة,TCD Question
 Show,إظهار,TCD
 Show,تبين
 Show Answers After Submit,إظهار الإجابات بعد التسليم
+Show Changes,عرض التغييرات
 Shown after submission when enabled on the quiz,يظهر بعد التسليم إذا كان مفعّلًا في الاختبار
+"Shown on cards and at the top of the page (public image, about 1200x600)",تظهر على البطاقات وأعلى الصفحة (صورة عامة، حوالي 1200×600),TCD Course
+"Shown on cards and at the top of the page (public image, about 1200x600)",تظهر على البطاقات وأعلى الصفحة (صورة عامة، حوالي 1200×600),TCD Learning Path
 Shown only to invited learners,يظهر للمتعلمين المدعوين فقط,TCD Session
 Shuffle Options,خلط الخيارات,TCD Quiz
 Shuffle Questions,خلط الأسئلة
@@ -1284,6 +1325,7 @@ Starts On,تبدأ في,TCD Session
 Statement,نص الإقرار,TCD Acknowledgment
 Status,الحالة
 Status,الحالة,TCD AI Usage Log
+Status,الحالة,TCD Change Request
 Status,الحالة,TCD Code Run
 Status,الحالة,TCD Content
 Status,الحالة,TCD Content Import
@@ -1316,7 +1358,14 @@ Submitted On,تاريخ التسليم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Quiz Submission
 Success,نجاح
 Success,نجاح,TCD AI Usage Log
+Suggest an edit,اقترح تعديلًا
+Suggested,مقترح
 Suggested Courses,دورات مقترحة
+Suggested Edits,التعديلات المقترحة
+Suggested changes,التغييرات المقترحة
+Suggested edit on {0},تعديل مقترح على {0}
+Suggested edits are turned off.,اقتراح التعديلات متوقف.
+Suggestions are made from the page in the portal.,الاقتراحات تُكتب من الصفحة في البوابة.
 Summarize,تلخيص
 Summarize this page.,لخّص هذه الصفحة.
 Summary,الملخص,TCD AI Usage Log
@@ -1336,6 +1385,7 @@ TCD Batch,دفعة
 TCD Batch Member,عضو دفعة
 TCD Category,تصنيف محتوى
 TCD Certificate,شهادة
+TCD Change Request,تعديل مقترح
 TCD Chapter,فصل
 TCD Code Run,تشغيل كود
 TCD Competency Gap,فجوة الكفاءات
@@ -1369,6 +1419,7 @@ TCD Knowledge Usage,استخدام المعرفة
 TCD Learner Progress,تقدّم المتعلمين
 TCD Learning Item,عنصر تعلّم
 TCD Learning Path,مسار تعلّم
+TCD Lesson Note,ملاحظة درس
 TCD Progress,سجل تقدّم
 TCD Question,سؤال
 TCD Question Category,تصنيف أسئلة
@@ -1417,6 +1468,7 @@ Text and File,نص وملف
 Text and File,نص وملف,TCD
 Text and File,نص وملف,TCD Assignment
 Thank you for your feedback.,شكرًا على ملاحظتك.
+Thank you. A reviewer will check your suggestion.,شكرًا لك. سيراجع أحد المراجعين اقتراحك.
 The AI answer could not be read. Try again.,تعذّرت قراءة إجابة الذكاء الاصطناعي. حاول مرة أخرى.
 The AI declined this request.,رفض الذكاء الاصطناعي هذا الطلب.
 The AI provider is busy. Try again in a minute.,مزوّد الذكاء الاصطناعي مشغول. حاول بعد دقيقة.
@@ -1444,6 +1496,8 @@ The lesson this assignment belongs to,الدرس الذي يتبعه هذا ال
 The manager is not a member of their own team.,المدير ليس عضوًا في فريقه.
 The meeting link must be an http(s) URL.,يجب أن يكون رابط الاجتماع http(s).
 The monthly AI budget is used up.,انتهت ميزانية الذكاء الاصطناعي لهذا الشهر.
+The page changed after this suggestion was made. Ask for a new suggestion.,تغيّرت الصفحة بعد هذا الاقتراح. اطلب اقتراحًا جديدًا.
+The page changed after this suggestion.,تغيّرت الصفحة بعد هذا الاقتراح.
 The question has {0} blanks but {1} answer lines.,في السؤال {0} فراغات لكن عدد أسطر الإجابات {1}.
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
 The runner URL must be an http(s) URL.,يجب أن يكون رابط المشغّل http(s).
@@ -1464,11 +1518,13 @@ This page does not exist or you do not have access to it.,هذه الصفحة غ
 This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
 This page is past its review date.,هذه الصفحة تجاوزت موعد مراجعتها.
 This page may be out of date: its review was due on {0}.,قد تكون هذه الصفحة غير محدّثة: كان موعد مراجعتها {0}.
+This part of the page cannot be edited.,هذا الجزء من الصفحة لا يمكن تعديله.
 This question is not available.,هذا السؤال غير متاح.
 This quiz is not active.,هذا الاختبار غير مفعّل.
 This record is written automatically and cannot be changed.,يُكتب هذا السجل تلقائيًا ولا يمكن تعديله.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 This submission is already graded.,تم تصحيح هذا التسليم بالفعل.
+This suggestion is already closed.,هذا الاقتراح مُغلق بالفعل.
 This training is mandatory. Ask your administrator.,هذا التدريب إلزامي. تواصل مع المسؤول.
 Time (ms),الوقت (مللي ثانية),TCD Code Run
 Time Limit,تجاوز الوقت
@@ -1520,6 +1576,7 @@ Unique within the space. Generated from the title when empty,فريد داخل �
 Unknown AI provider {0}.,مزوّد الذكاء الاصطناعي {0} غير معروف.
 Unknown block type. Edit it in the JSON section.,نوع كتلة غير معروف. عدّلها في قسم JSON.
 Unknown language ids: {0},أرقام لغات غير معروفة: {0}
+Unknown video.,فيديو غير معروف.
 Up next,التالي
 Upcoming sessions,الجلسات القادمة
 Upload,تحميل
@@ -1536,6 +1593,7 @@ User,المستخدم
 User,المستخدم,TCD AI Usage Log
 User,المستخدم,TCD Code Run
 User,المستخدم,TCD Discussion Post
+User,المستخدم,TCD Lesson Note
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
@@ -1561,6 +1619,8 @@ Video,فيديو,TCD Block
 Video,فيديو,TCD Content
 "Video URL (YouTube, Vimeo or upload)",رابط الفيديو (YouTube أو Vimeo أو رفع),TCD Block
 Video URL must start with https:// or be an uploaded file.,رابط الفيديو يجب أن يبدأ بـ https:// أو يكون ملفًا مرفوعًا.
+Video Watch Data,بيانات المشاهدة,TCD Progress
+Video Watched,نسبة المشاهدة,TCD Progress
 Video host {0} is not allowed. See TCD Settings.,موقع الفيديو {0} غير مسموح. راجع إعدادات التعلّم.
 View in Portal,عرض في البوابة
 Visibility,الرؤية
@@ -1572,6 +1632,10 @@ Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
 Wall Time Limit (Seconds),حد الوقت الكلي (ثوانٍ),TCD Settings
 Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
+Watch Before Completing (%),نسبة المشاهدة قبل الإكمال (%),TCD Content
+Watch at least {0}% of the videos first.,شاهد {0}% على الأقل من الفيديوهات أولًا.
+What Changed and Why,ما الذي تغيّر ولماذا,TCD Change Request
+What changed and why,ما الذي غيّرته ولماذا
 What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.
 Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.,TCD AI Settings
@@ -1604,20 +1668,31 @@ You cannot write in this space.,لا يمكنك الكتابة في هذه ال�
 You earned a certificate for this course.,حصلت على شهادة لهذه الدورة.
 You posted a lot in the last hour. Try again later.,نشرت كثيرًا خلال الساعة الماضية. حاول لاحقًا.
 You reached today's limit of AI requests.,وصلت إلى حد طلبات الذكاء الاصطناعي لليوم.
+You suggested many edits in the last hour. Try again later.,اقترحت تعديلات كثيرة خلال الساعة الماضية. حاول لاحقًا.
+"YouTube, Vimeo or an uploaded mp4/webm link",رابط YouTube أو Vimeo أو ملف mp4/webm مرفوع,TCD Course
+"YouTube, Vimeo or an uploaded mp4/webm link",رابط YouTube أو Vimeo أو ملف mp4/webm مرفوع,TCD Learning Path
 Your answer,إجابتك
 Your question,سؤالك
 Your question about this page,سؤالك عن هذه الصفحة
 Your reply,ردك
+Your suggested edit was accepted: {0},تم قبول تعديلك المقترح: {0}
+Your suggested edit was not accepted: {0},لم يُقبل تعديلك المقترح: {0}
+callout,تنبيه,TCD Block
+code,كود,TCD Block
 course,الدورة
+heading,عنوان,TCD Block
 high,مرتفع
 high,مرتفع,TCD AI Settings
 javascript,جافاسكربت
 javascript,جافاسكربت,TCD Question
 learning path,المسار التعليمي
+list,قائمة,TCD Block
 low,منخفض
 low,منخفض,TCD AI Settings
+markdown,ماركداون,TCD Block
 medium,متوسط
 medium,متوسط,TCD AI Settings
+paragraph,فقرة,TCD Block
 python,بايثون
 python,بايثون,TCD Question
 python and javascript also run in the browser; the others need the code runner,python و javascript تعمل في المتصفح أيضًا؛ باقي اللغات تحتاج مشغّل الأكواد,TCD Question

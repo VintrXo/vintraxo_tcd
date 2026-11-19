@@ -13,6 +13,12 @@ def set_offering_defaults(doc):
 		doc.visibility = doc.visibility or settings.default_visibility or "Internal"
 	if doc.completion_rule == "Minimum Score" and not 0 < (doc.minimum_score or 0) <= 100:
 		frappe.throw(_("Minimum score must be between 1 and 100."))
+	from vintraxo_tcd.core import media
+
+	if doc.get("intro_video"):
+		media.parse_video(doc.intro_video)  # same rules as video blocks (allowed hosts, public files)
+	if doc.get("cover_image"):
+		media.validate_file_url(doc.cover_image, public_only=True)
 
 
 class TCDCourse(Document):

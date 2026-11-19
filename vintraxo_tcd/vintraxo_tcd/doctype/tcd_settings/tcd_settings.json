@@ -12,6 +12,7 @@
   "default_review_months",
   "enable_discussions",
   "sync_training_to_hr",
+  "enable_change_requests",
   "require_approval_before_publish",
   "playground_section",
   "enable_playgrounds",
@@ -86,6 +87,13 @@
    "label": "Record Completed Courses in HRMS",
    "default": "1",
    "description": "Needs HRMS: a completed course becomes a Training Event and Training Result for the employee"
+  },
+  {
+   "fieldname": "enable_change_requests",
+   "fieldtype": "Check",
+   "label": "Readers Can Suggest Edits",
+   "default": "1",
+   "description": "Readers propose text changes to published pages; a reviewer accepts or rejects them"
   },
   {
    "default": "1",
@@ -229,7 +237,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 09:00:00.000000",
+ "modified": "2026-11-20 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",
