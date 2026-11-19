@@ -202,6 +202,14 @@ before rendering Jinja). Templates are HTML now.
 | Learners cannot leave an optional course | Done: Withdraw (not for mandatory or completed) |
 | Found while building | Fixed: `frappe.format_datetime` is not available in Jinja (lesson page and My Learning crashed for assignments with a due date); withdrawn learners saw no Enroll button; portal JS cached 12 hours after updates; new settings read as off on existing sites |
 
+## Main site update (2026-11-20)
+
+Owner approved updating erpnext.localhost. Full backup first (`sites/erpnext.localhost/private/backups/20261120_003056-*`,
+verified: 1537 tables + 35 sequences), then `bench --site erpnext.localhost migrate`: exit 0, only vintraxo_tcd patches
+ran (no other app had pending patches). Checked: 58 TCD DocTypes, VX workspace 49 links, sidebar 57 items, Desk, /learn,
+ERPNext lists respond. The site has no active Employees yet, so the HRMS paths have nothing to act on. Tests are never
+run on this site (they delete TCD tables).
+
 ## Pending
 
 All plan phases (0–11) are built. Open items, each waiting for an input from the owner:
