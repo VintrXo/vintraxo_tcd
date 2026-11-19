@@ -88,6 +88,13 @@
 	{% else %}
 	<p class="tcd-muted">{{ _("No content here yet.") }}</p>
 	{% endfor %}
+	{% if policies %}
+	<section class="tcd-section">
+		<h2>{{ _("Related policies and procedures") }}</h2>
+		<ul class="tcd-lessons">{% for d in policies %}<li class="tcd-lesson"><a href="/learn/policies/{{ d.name|urlencode }}">{{ d.title|e }}</a> <span class="tcd-badge">{{ _(d.doc_kind, context="TCD") }}</span></li>{% endfor %}</ul>
+	</section>
+	{% endif %}
+
 	{% if referenced_by %}
 	<section class="tcd-section">
 		<h2>{{ _("Related reading") }}</h2>

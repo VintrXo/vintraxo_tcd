@@ -119,7 +119,10 @@ def my_learning(user: str) -> dict:
 		fields=["skill", "level", "source_type"],
 		order_by="skill asc",
 	)
+	from vintraxo_tcd.core import governance
+
 	return {
+		"pending_policies": governance.pending_for(user),
 		"certificates": certificates,
 		"skills": skills,
 		"recommendations": connect.recommendations(user),

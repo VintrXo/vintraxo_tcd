@@ -575,3 +575,85 @@ def verify_certificate(code: str) -> dict:
 	if not row:
 		frappe.throw(frappe._("Certificate not found."), frappe.DoesNotExistError)
 	return {k: row[k] for k in ("full_name", "title", "certificate_for", "issued_on", "expires_on", "status")}
+
+
+# ---------------------------------------------------------------- Phase 6: governance
+
+
+def _governance_for_user(code: str):
+	from vintraxo_tcd.core import governance
+
+	if not frappe.db.exists("TCD Governance Document", code):
+		frappe.throw(frappe._("Document not found."), frappe.DoesNotExistError)
+	doc = frappe.get_doc("TCD Governance Document", code)
+	if not governance.can_read(doc, frappe.session.user):
+		frappe.throw(frappe._("Document not found."), frappe.DoesNotExistError)
+	return doc
+
+
+@frappe.whitelist()
+def get_policy(code: str) -> dict:
+	"""The latest approved version of a governance document (never the draft being revised)."""
+	from vintraxo_tcd.core import governance, wiki
+
+	doc = _governance_for_user(code)
+	version = governance.current_version(doc.name)
+	if not version:
+		frappe.throw(frappe._("This document has no approved version yet."), frappe.DoesNotExistError)
+	return {
+		"code": doc.name,
+		"title": version.title,
+		"kind": doc.doc_kind,
+		"version": version.version,
+		"effective_date": version.effective_date,
+		"expiry_date": doc.expiry_date,
+		"summary": version.summary,
+		"html": wiki.render_markdown(version.body or "", doc.space or ""),
+		"attachment": version.attachment,
+		"under_revision": doc.status == "Revision",
+		"require_acknowledgment": bool(doc.require_acknowledgment),
+		"acknowledged": governance.has_acknowledged(frappe.session.user, doc.name, version.version),
+	}
+
+
+@frappe.whitelist(methods=["POST"])
+def acknowledge(code: str) -> dict:
+	from vintraxo_tcd.core import governance
+
+	doc = _governance_for_user(code)
+	ack = governance.acknowledge(doc.name, frappe.session.user)
+	return {"version": ack.version, "acknowledged_on": ack.acknowledged_on}
+
+
+@frappe.whitelist()
+def my_policies() -> dict:
+	from vintraxo_tcd.core import governance
+
+	docs = governance.documents_for(frappe.session.user)
+	return {
+		"documents": [
+			{
+				"code": d.name,
+				"title": d.title,
+				"kind": d.doc_kind,
+				"version": d.version,
+				"acknowledged": d.acknowledged,
+				"require_acknowledgment": bool(d.require_acknowledgment),
+			}
+			for d in docs
+		]
+	}
+
+
+@frappe.whitelist(methods=["POST"])
+def set_governance_status(code: str, status: str) -> dict:
+	"""Lifecycle transition. The named approver may activate without write permission on the DocType;
+	every other transition needs write permission. Transition rules live in core.governance.validate."""
+	doc = frappe.get_doc("TCD Governance Document", code)
+	user = frappe.session.user
+	is_approver_activation = status == "Active" and doc.status == "Approval" and doc.approver == user
+	if not is_approver_activation:
+		doc.check_permission("write")
+	doc.status = status
+	doc.save(ignore_permissions=is_approver_activation)
+	return {"name": doc.name, "status": doc.status, "version": doc.version}

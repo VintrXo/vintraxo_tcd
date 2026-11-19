@@ -211,6 +211,24 @@ Draft -> In Review -> Approved -> Published -> Archived
 - Gap report: for a profile (and optionally a user), each requirement vs the user's level, plus courses that award
   the missing skill at the required level or higher.
 
+## Phase 6: governance
+| DocType | Key fields |
+|---|---|
+| TCD Governance Document | title, doc_kind (Document / Policy / SOP), code (unique), space, status (Draft / Review / Approval / Active / Revision / Archived), version, document_owner, approver, effective_date, expiry_date, review_cycle_months, next_review_date, summary, body (Markdown), attachment, require_acknowledgment, audience_roles (TCD Governance Role), audience_departments (TCD Governance Department, Data), links (TCD Governance Link: target_type Content / Course, content, course) |
+| TCD Governance Version | governance_document, version, title, summary, body, attachment, effective_date, approved_by, approved_on (immutable snapshot) |
+| TCD Acknowledgment | governance_document, version, user, acknowledged_on, statement (immutable audit log) |
+
+### Rules
+- Transitions: Draft → Review (owner/author) → Approval (reviewer) → Active (approver or admin; snapshot, version + 1,
+  effective_date defaults to today, next_review_date = effective + review cycle) → Revision (editing; readers keep
+  the last Active snapshot) → Review …; Active/Revision → Archived. Review/Approval can go back to Draft.
+- Readers (learners) always see the latest snapshot, never the draft being revised.
+- Audience: users holding any audience role; when departments are set and ERPNext's Employee exists, the user's
+  Employee.department must match. Without ERPNext, departments are ignored (stored as text, ADR-0015).
+- Acknowledgment: one per user per version; a new version needs a new acknowledgment.
+- Scheduler (daily): Active documents past expiry move to Revision; documents whose review is due within 7 days get
+  an open ToDo for the document owner (once per review date).
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

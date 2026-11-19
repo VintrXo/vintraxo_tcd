@@ -28,6 +28,7 @@
 | permissions.py | Space/visibility access (has_permission + permission_query_conditions) |
 | progress.py | Lesson/tutorial progress and roll-up |
 | quiz.py | Quiz validation, attempts (start/resume/deadline), learner payload, grading, manual review |
+| governance.py | Policies/SOPs/documents: lifecycle, snapshots, audience, acknowledgments, daily expiry + review reminders |
 | credentials.py | Skills (award/keep highest), certificates (issue, expire, renew, revoke, verify), competency gaps |
 | assessment.py | Question items (inline + bank), papers, payloads without answers, grading per type, rubric points |
 | portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
@@ -67,6 +68,9 @@
 | get_templates(content_type?) / get_template(name) | GET | Content templates for authors |
 | start_quiz(name) | POST | Open/resume a timed or randomized attempt |
 | get_review_items(name) / review_quiz_submission(name, reviews) | GET / POST | Manual grading with rubrics |
+| get_policy(code) / my_policies() | GET | Approved version for readers (audience-filtered) |
+| acknowledge(code) | POST | Append-only acknowledgment of the current version |
+| set_governance_status(code, status) | POST | Lifecycle transition (approver may activate without write permission) |
 | my_credentials() | GET | The learner's certificates and skills |
 | renew_certificate(name) / revoke_certificate(name, reason) | POST | Instructor renews; admin revokes |
 | verify_certificate(code) | GET (guest) | Public minimal certificate facts |
@@ -77,6 +81,8 @@
 |---|---|---|
 | `/learn` | `www/learn/index` | Spaces, "continue learning", search (`?q=`) |
 | `/learn/<space>` | `www/learn/space` | Content grouped by category; tutorials first |
+| `/learn/policies[?kind=]` | `www/learn/policies` | Policies, SOPs and documents addressed to the user |
+| `/learn/policies/<code>` | `www/learn/policy` | Approved version, related learning, acknowledgment |
 | `/verify/<code>` | `www/verify` | Public certificate verification (no login) |
 | `/learn/my` | `www/learn/my` | My Learning: enrollments, due/overdue, assignments |
 | `/learn/instructor` | `www/learn/instructor` | Instructor dashboard: courses, approvals, grading queue |

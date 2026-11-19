@@ -73,6 +73,13 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - TCD User Skill and TCD Certificate: the owner (user), instructors of the course/path that produced them, admins.
 - `/verify/<code>`: public, read-only, minimal fields; unknown codes return 404.
 
+## Phase 6: governance
+- TCD Governance Document: staff only in Desk (Author create/edit, Reviewer review, admins all). Learners read the
+  Active snapshot through `/learn/policies` and the API, filtered by audience.
+- Transitions: Review → Approval needs TCD Content Reviewer (or admin); Approval → Active needs the named approver
+  or an admin.
+- TCD Acknowledgment: created only through `api.acknowledge`; the user reads own rows; admins and reviewers read all.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

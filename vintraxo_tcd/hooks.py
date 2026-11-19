@@ -283,6 +283,7 @@ permission_query_conditions = {
 	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_query",
 	"TCD User Skill": "vintraxo_tcd.core.permissions.user_skill_query",
 	"TCD Certificate": "vintraxo_tcd.core.permissions.certificate_query",
+	"TCD Acknowledgment": "vintraxo_tcd.core.permissions.acknowledgment_query",
 }
 
 has_permission = {
@@ -304,10 +305,13 @@ has_permission = {
 	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_has_permission",
 	"TCD User Skill": "vintraxo_tcd.core.permissions.user_skill_has_permission",
 	"TCD Certificate": "vintraxo_tcd.core.permissions.certificate_has_permission",
+	"TCD Acknowledgment": "vintraxo_tcd.core.permissions.acknowledgment_has_permission",
 }
 
 website_route_rules = [
 	{"from_route": "/learn/my", "to_route": "learn/my"},
+	{"from_route": "/learn/policies", "to_route": "learn/policies"},
+	{"from_route": "/learn/policies/<code>", "to_route": "learn/policy"},
 	{"from_route": "/verify/<code>", "to_route": "verify"},
 	{"from_route": "/learn/instructor", "to_route": "learn/instructor"},
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
@@ -333,5 +337,8 @@ add_to_apps_screen = [
 app_include_js = ["/assets/vintraxo_tcd/js/tcd_desk.js"]
 
 scheduler_events = {
-	"daily": ["vintraxo_tcd.core.credentials.expire_certificates"],
+	"daily": [
+		"vintraxo_tcd.core.credentials.expire_certificates",
+		"vintraxo_tcd.core.governance.daily",
+	],
 }

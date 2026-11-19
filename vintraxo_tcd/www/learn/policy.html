@@ -1,0 +1,43 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+{% set p = policy %}
+<article class="tcd-page tcd-policy" dir="rtl" lang="ar">
+	<header class="tcd-hero">
+		<span class="tcd-badge">{{ _(p.kind, context="TCD") }}</span>
+		<span class="tcd-badge" dir="ltr">{{ p.code|e }} · v{{ p.version }}</span>
+		<h1>{{ p.title|e }}</h1>
+		{% if p.summary %}<p class="tcd-summary">{{ p.summary|e }}</p>{% endif %}
+		<p class="tcd-muted">{{ _("Effective from {0}").format(frappe.format_date(p.effective_date)) }}{% if p.expiry_date %} · {{ _("Valid until") }} {{ frappe.format_date(p.expiry_date) }}{% endif %}</p>
+		{% if p.under_revision %}<div class="tcd-callout tcd-callout-info">{{ _("A new version is being prepared. This is the version in force.") }}</div>{% endif %}
+	</header>
+	<div class="tcd-markdown">{{ p.html }}</div>
+	{% if p.attachment %}<p><a class="tcd-file" href="{{ p.attachment|e }}" download rel="noopener">📄 {{ _("Original file") }}</a></p>{% endif %}
+
+	{% if linked %}
+	<section class="tcd-section">
+		<h2>{{ _("Related learning") }}</h2>
+		<ul class="tcd-cards">
+			{% for r in linked %}<li class="tcd-card"><a href="{{ r.url|e }}"><span class="tcd-badge">{{ _(r.kind, context="TCD") }}</span><strong>{{ r.title|e }}</strong></a></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if p.require_acknowledgment %}
+	<section class="tcd-section tcd-ack" data-code="{{ p.code|e }}">
+		{% if p.acknowledged %}
+		<div class="tcd-callout tcd-callout-tip">{{ _("You acknowledged version {0}.").format(p.version) }}</div>
+		{% else %}
+		<label class="tcd-ack-check"><input type="checkbox"> {{ _("I have read and understood this document and agree to follow it.") }}</label>
+		<button type="button" class="btn btn-primary tcd-ack-btn" disabled>{{ _("Acknowledge") }}</button>
+		<p class="tcd-message" role="status" hidden></p>
+		{% endif %}
+	</section>
+	{% endif %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</article>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}

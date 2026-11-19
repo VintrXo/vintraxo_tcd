@@ -21,6 +21,7 @@
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف,TCD Quiz
+A new version is being prepared. This is the version in force.,يجري إعداد نسخة جديدة. هذه هي النسخة السارية.
 A page cannot be its own parent.,لا يمكن أن تكون الصفحة أبًا لنفسها.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 About,حول
@@ -31,7 +32,16 @@ Accepted Answers,الإجابات المقبولة,TCD Question
 Access,الوصول
 Access and Instructors,الوصول والمدرّبون,TCD Course
 Access and Instructors,الوصول والمدرّبون,TCD Learning Path
+Acknowledge,إقرار
+Acknowledged,تم الإقرار
+Acknowledged On,تاريخ الإقرار
+Acknowledged On,تاريخ الإقرار,TCD Acknowledgment
+Acknowledgment Status,حالة الإقرارات
+Acknowledgment required,الإقرار مطلوب
+Acknowledgments,الإقرارات
+Activate,تفعيل
 Active,سارية,TCD Certificate
+Active,سارية,TCD Governance Document
 Active,مفعّل,TCD Assignment
 Active,مفعّل,TCD Batch
 Active,مفعّل,TCD Quiz
@@ -40,6 +50,8 @@ Active,نشط
 Active,نشط,TCD
 Active,نشط,TCD Enrollment
 Active,نشط,TCD Student Group
+Active Version,النسخة السارية,TCD Governance Document
+Active documents cannot be edited. Start a revision first.,لا يمكن تعديل المستند الساري. ابدأ مراجعة أولًا.
 Add at least one question.,أضف سؤالًا واحدًا على الأقل.
 Add at least one required course before publishing.,أضف دورة إلزامية واحدة على الأقل قبل النشر.
 Add at least one required item before publishing.,أضف عنصرًا إلزاميًا واحدًا على الأقل قبل النشر.
@@ -49,6 +61,7 @@ Add at least two pairs.,أضف زوجين على الأقل.
 Add block:,إضافة كتلة:
 Add one accepted answer line per blank.,أضف سطر إجابة مقبولة لكل فراغ.
 "Add the expected output, or tick Requires Manual Review.",أضف المخرجات المتوقعة، أو فعّل «يتطلب مراجعة يدوية».
+All,الكل
 All Items,جميع الأصناف
 All Items,كل العناصر,TCD
 All Items,كل العناصر,TCD Course
@@ -74,6 +87,7 @@ Answers must be option numbers.,يجب أن تكون الإجابات أرقام
 Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
 Apply,تطبيق
 Apply Template,تطبيق قالب
+Approval,الاعتماد,TCD Governance Document
 Approve,اعتماد
 Approve Completion,اعتماد الإكمال
 Approved,معتمد
@@ -81,16 +95,19 @@ Approved,معتمد,TCD
 Approved,معتمد,TCD Content
 Approved By,اعتمده
 Approved By,اعتمده,TCD Enrollment
+Approved Document Versions,نسخ المستندات المعتمدة
 Approved On,تاريخ الاعتماد
 Approved On,تاريخ الاعتماد,TCD Enrollment
 Approved Version,النسخة المعتمدة
 Approved Versions,النسخ المعتمدة
+Approver,المعتمِد,TCD Governance Document
 Archive,أرشفة
 Archived,أرشفة
 Archived,مؤرشف,TCD
 Archived,مؤرشف,TCD Content
 Archived,مؤرشف,TCD Course
 Archived,مؤرشف,TCD Learning Path
+Archived,مؤرشفة,TCD Governance Document
 Article,مقال
 Article,مقال,TCD
 Article,مقال,TCD Content
@@ -108,6 +125,11 @@ Attachment,مرفق
 Attempt,المحاولة
 Attempts,المحاولات
 Attempts left: {0},المحاولات المتبقية: {0}
+Audience,الجمهور المستهدف
+Audience Departments,الأقسام المستهدفة,TCD Governance Document
+Audience Roles,الأدوار المستهدفة,TCD Governance Document
+Audience and Acknowledgment,الجمهور والإقرار,TCD Governance Document
+Audit records cannot be deleted.,لا يمكن حذف سجلات التدقيق.
 Average Score,متوسط الدرجة
 Average of the best quiz scores across the items,متوسط أفضل درجات الاختبارات في العناصر
 Awarded On,تاريخ المنح,TCD User Skill
@@ -138,6 +160,8 @@ Blocks must be a JSON list.,يجب أن تكون الكتل قائمة JSON.
 Blocks must be valid JSON.,يجب أن تكون الكتل بصيغة JSON صحيحة.
 Body,الجسم
 Body,المحتوى,TCD Content
+Body (Markdown),النص (ماركداون),TCD Governance Document
+Body (Markdown),النص (ماركداون),TCD Governance Version
 Browse spaces,تصفّح المساحات
 Callout,تنبيه
 Callout,تنبيه,TCD Block
@@ -146,6 +170,7 @@ Cannot delete a category that has sub-categories.,لا يمكن حذف تصني�
 Cannot delete a course that has enrollments. Archive it instead.,لا يمكن حذف دورة بها تسجيلات. أرشفها بدلًا من ذلك.
 Cannot delete a learning path that has enrollments. Archive it instead.,لا يمكن حذف مسار تعلّم به تسجيلات. أرشفه بدلًا من ذلك.
 Cannot delete a space that still has content. Archive or move the content first.,لا يمكن حذف مساحة ما زال بها محتوى. أرشِف المحتوى أو انقله أولًا.
+Cannot move a document from {0} to {1}.,لا يمكن نقل المستند من {0} إلى {1}.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
 Caption,التعليق
 Caption,التعليق,TCD Block
@@ -201,6 +226,7 @@ Completion,الإكمال,TCD Learning Path
 Completion Rate,نسبة الإكمال
 Completion Rule,قاعدة الإكمال
 Completion rule,قاعدة الإكمال
+Compliance,نسبة الالتزام
 Content,المحتوى,TCD Content Version
 Content,المحتوى,TCD Learning Item
 Content,المحتوى,TCD Progress
@@ -248,26 +274,39 @@ Current Approved Version,النسخة المعتمدة الحالية
 Current Level,المستوى الحالي
 Current file,الملف الحالي
 Current version,النسخة الحالية
+Dates,التواريخ,TCD Governance Document
 Deadline,الموعد النهائي,TCD Quiz Submission
 Default Content Language,لغة المحتوى الافتراضية
 Default Visibility,الظهور الافتراضي
 Defaults to TCD Settings > Default Visibility,القيمة الافتراضية من إعدادات التعلّم > الظهور الافتراضي
 Delete,حذف
 Delete this block?,حذف هذه الكتلة؟
+Department,القسم,TCD Governance Department
+Department name as in ERPNext; ignored when ERPNext is not installed,اسم القسم كما في ERPNext؛ يُتجاهل إذا لم يكن ERPNext مثبتًا,TCD Governance Department
+Department {0} does not exist.,القسم {0} غير موجود.
 Description,الوصف,TCD Batch
 Description,الوصف,TCD Block
 Description,الوصف,TCD Category
 Description,الوصف,TCD Space
 Description,الوصف,TCD Student Group
 Description,وصف
+Document,المستند,TCD Acknowledgment
+Document,المستند,TCD Governance Version
+Document,مستند,TCD
 Document,مستند,TCD Content
 Document,مستند,TCD Content Template
+Document,مستند,TCD Governance Document
+Document,وثيقة
+Document Owner,مالك المستند,TCD Governance Document
+Document not found.,المستند غير موجود.
+Documents to acknowledge,مستندات تنتظر إقرارك
 Done in {0} ms,انتهى في {0} مللي ثانية
 Download PDF,تحميل PDF
 Draft,مسودة
 Draft,مسودة,TCD
 Draft,مسودة,TCD Content
 Draft,مسودة,TCD Course
+Draft,مسودة,TCD Governance Document
 Draft,مسودة,TCD Learning Path
 Due,الموعد النهائي
 Due Date,الموعد النهائي,TCD
@@ -276,6 +315,9 @@ Due Date,الموعد النهائي,TCD Enrollment
 Due Date,بسبب تاريخ
 Duplicate,مكررة
 Each role can be listed only once.,لا يمكن تكرار الدور.
+Effective Date,تاريخ السريان,TCD Governance Document
+Effective Date,تاريخ السريان,TCD Governance Version
+Effective from {0},ساري من {0}
 Enable Learner Portal,تفعيل بوابة المتعلمين
 Enable Playgrounds,تفعيل محرر الأكواد
 End Date,تاريخ الانتهاء,TCD Batch
@@ -301,7 +343,10 @@ Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
 Expired,منتهية,TCD
 Expired,منتهية,TCD Certificate
+Expired on its expiry date; moved to Revision.,انتهت صلاحيته؛ نُقل إلى المراجعة.
 Expires On,تنتهي في,TCD Certificate
+Expiry Date,تاريخ الانتهاء,TCD Governance Document
+Expiry date must be after the effective date.,يجب أن يكون تاريخ الانتهاء بعد تاريخ السريان.
 Explanation,الشرح
 External,رابط خارجي,TCD Content
 External,رابط خارجي,TCD Content Template
@@ -335,6 +380,7 @@ Fully Competent,مكتمل الكفاءة
 Gap,الفجوة
 General,عام
 Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
+Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
 Graded,مُصحَّح,TCD
@@ -353,6 +399,7 @@ Helpful,مفيدة,TCD Content Feedback
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
 How Many,العدد,TCD Quiz Bank Item
+I have read and understood this document and agree to follow it.,قرأت هذا المستند وفهمته وأوافق على الالتزام به.
 Image,صورة
 Image,صورة,TCD Block
 Image URL,رابط الصورة
@@ -392,6 +439,8 @@ Items,العناصر
 Items,العناصر,TCD Chapter
 Items (one per line),العناصر (عنصر في كل سطر)
 Items (one per line),العناصر (عنصر في كل سطر),TCD Block
+Kind,النوع
+Kind,النوع,TCD Governance Document
 Language,اللغة
 Language,اللغة,TCD Block
 Language,اللغة,TCD Content
@@ -428,6 +477,7 @@ Level,المستوى
 Level,المستوى,TCD Block
 Level {0} of 5,المستوى {0} من 5
 Link URL (https),رابط (https),TCD Block
+Linked Tutorials and Courses,مسارات ودورات مرتبطة,TCD Governance Document
 Linked from,مرتبطة من
 List,قائمة
 List,قائمة,TCD Block
@@ -477,8 +527,10 @@ My courses,دوراتي
 My skills,مهاراتي
 Name,اسم
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
+New documents start as Draft.,المستندات الجديدة تبدأ كمسودة.
 Next,التالي
 Next,التالي,TCD Content Relation
+Next Review Date,موعد المراجعة القادم,TCD Governance Document
 No,لا
 No answer,لا توجد إجابة
 No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
@@ -487,11 +539,13 @@ No blocks yet. Add one below.,لا توجد كتل بعد. أضف واحدة ب�
 No certificate matches this code.,لا توجد شهادة بهذا الرمز.
 No content here yet.,لا يوجد محتوى هنا بعد.
 No differences.,لا توجد فروق.
+No documents are addressed to you.,لا توجد مستندات موجهة إليك.
 No ratings yet,لا توجد تقييمات بعد
 No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
 Not Started,لم تبدأ
 Not Started,لم يبدأ,TCD
 Not Submitted,لم يُسلَّم,TCD
+Not acknowledged,لم يُقر
 Not passed yet,لم تنجح بعد
 Not permitted,غير مسموح به
 Nothing found. Try a shorter word.,لا توجد نتائج. جرّب كلمة أقصر.
@@ -509,6 +563,8 @@ Only Gaps,الفجوات فقط
 Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
 Only a reviewer can publish content.,المراجع فقط يمكنه نشر المحتوى.
 Only a reviewer can publish.,المراجع فقط يمكنه النشر.
+Only a reviewer can send a document for approval.,المراجع فقط يمكنه إرسال المستند للاعتماد.
+Only active documents can be acknowledged.,يمكن الإقرار بالمستندات السارية فقط.
 Only active or expired certificates can be renewed.,يمكن تجديد الشهادات السارية أو المنتهية فقط.
 Only an administrator can revoke certificates.,المسؤول فقط يمكنه إلغاء الشهادات.
 Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
@@ -518,7 +574,9 @@ Only an instructor of this course can grade.,مدرّب هذه الدورة فق
 Only an instructor of this course can renew the certificate.,مدرّب هذه الدورة فقط يمكنه تجديد الشهادة.
 Only an instructor of this course or a reviewer can grade.,مدرّب هذه الدورة أو المراجع فقط يمكنه التصحيح.
 Only enrollments pending approval can be approved.,يمكن اعتماد التسجيلات التي في انتظار الاعتماد فقط.
+Only not acknowledged,غير المُقرّين فقط
 Only submissions waiting for review can be reviewed.,يمكن مراجعة المحاولات التي تنتظر المراجعة فقط.
+Only the approver or an administrator can activate the document.,المعتمِد أو المسؤول فقط يمكنه تفعيل المستند.
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
 Open,مفتوح,TCD
 Open,مفتوح,TCD Course
@@ -532,6 +590,9 @@ Optional context shown above the question,سياق اختياري يظهر أع�
 Options,الخيارات,TCD Quiz Question
 Options,خيارات
 Ordering,ترتيب,TCD Question
+Original File,الملف الأصلي,TCD Governance Document
+Original File,الملف الأصلي,TCD Governance Version
+Original file,الملف الأصلي
 Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
 Output matches the expected result.,المخرجات مطابقة للنتيجة المتوقعة.
 Overdue,تأخير
@@ -584,6 +645,10 @@ Points,النقاط
 Points (0-{0}),النقاط (0-{0})
 Points must be between 0 and {0}.,النقاط يجب أن تكون بين 0 و{0}.
 Points must be greater than zero.,النقاط يجب أن تكون أكبر من صفر.
+Policies and Procedures,السياسات والإجراءات
+Policies and procedures,السياسات والإجراءات
+Policy,سياسة,TCD
+Policy,سياسة,TCD Governance Document
 Popular in your spaces,شائع في مساحاتك
 Prerequisite,متطلب سابق
 Prerequisite Courses,الدورات المطلوبة مسبقًا,TCD Course
@@ -646,6 +711,9 @@ Reference,مرجع,TCD Content
 Referenced by,مُشار إليه في
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
+Related Learning,التعلّم المرتبط,TCD Governance Document
+Related learning,تعلّم مرتبط
+Related policies and procedures,سياسات وإجراءات مرتبطة
 Related reading,قراءات ذات صلة
 Relation Type,نوع العلاقة
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
@@ -655,6 +723,7 @@ Renewed,مُجدَّدة,TCD Certificate
 Renewed By,جُدّدت بالشهادة,TCD Certificate
 Replace the current content with this version and move it to Draft?,استبدال المحتوى الحالي بهذه النسخة وإعادته إلى مسودة؟
 Reports,تقارير
+Require Acknowledgment,يتطلب إقرارًا,TCD Governance Document
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
 Required Level,المستوى المطلوب
 Required Level,المستوى المطلوب,TCD Competency Requirement
@@ -680,9 +749,14 @@ Return,مرتجع
 Return for changes,إرجاع للتعديل
 Returned,أُعيد للتعديل,TCD
 Returned,أُعيد للتعديل,TCD Assignment Submission
+Review,المراجعة,TCD Governance Document
 Review,المراجعة,TCD Quiz Submission
 Review & Publishing,المراجعة والنشر
 Review Answers,مراجعة الإجابات
+Review Cycle (months),دورة المراجعة (بالأشهر),TCD Governance Document
+Review cycle cannot be negative.,لا يمكن أن تكون دورة المراجعة سالبة.
+Review due on {0}: {1},موعد المراجعة {0}: {1}
+Revision,قيد التعديل,TCD Governance Document
 Revocation,الإلغاء,TCD Certificate
 Revoke,سحب
 Revoked,ملغاة,TCD
@@ -692,6 +766,8 @@ Role,الدور,TCD Space Role
 Role,صلاحية
 Row {0}: choose a content item.,السطر {0}: اختر عنصر محتوى.
 Row {0}: choose a course.,السطر {0}: اختر دورة.
+Row {0}: choose the content.,السطر {0}: اختر المحتوى.
+Row {0}: choose the course.,السطر {0}: اختر الدورة.
 Row {0}: lesson {1} is listed twice.,السطر {0}: الدرس {1} مكرر.
 Row {0}: lesson {1} must be in the same space.,السطر {0}: الدرس {1} يجب أن يكون في نفس المساحة.
 "Row {0}: {1} cannot be a course item (use a lesson, article or reference).",السطر {0}: لا يمكن أن يكون {1} عنصرًا في دورة (استخدم درسًا أو مقالًا أو مرجعًا).
@@ -706,6 +782,8 @@ Run,تشغيل
 Run your code before submitting; the output is checked.,شغّل الكود قبل الإرسال؛ يتم فحص المخرجات.
 Running...,جارٍ التشغيل...
 "Runs before the learner's query (create tables, insert rows)",يُنفَّذ قبل استعلام المتعلم (إنشاء الجداول وإدخال الصفوف),TCD Question
+SOP,إجراء تشغيلي,TCD
+SOP,إجراء تشغيلي,TCD Governance Document
 SQL,SQL,TCD Question
 SQL.js Base URL,رابط SQL.js الأساسي
 Same block format as TCD Content,نفس صيغة كتل المحتوى التعليمي,TCD Content Template
@@ -725,12 +803,16 @@ Search Text,نص البحث
 Search lessons and articles,ابحث في الدروس والمقالات
 See Also,انظر أيضًا
 Select a competency profile.,اختر ملف كفاءات.
+Select a document.,اختر مستندًا.
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
 Send,إرسال
+Send for Approval,إرسال للاعتماد
+Send for Review,إرسال للمراجعة
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
 Short Answer,إجابة قصيرة,TCD Question
+"Short reference, e.g. POL-HR-001",مرجع قصير، مثل POL-HR-001,TCD Governance Document
 "Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
 Show Answers After Submit,إظهار الإجابات بعد التسليم
 Shown after submission when enabled on the quiz,يظهر بعد التسليم إذا كان مفعّلًا في الاختبار
@@ -776,11 +858,13 @@ Space ID,معرّف المساحة
 "Space ID must be 2-80 characters: lowercase letters, digits, - or _.",معرّف المساحة من 2 إلى 80 حرفًا: حروف إنجليزية صغيرة وأرقام و- أو _.
 Spaces,المساحات
 Start Date,تاريخ البدء,TCD Batch
+Start Revision,بدء مراجعة
 Start the quiz,ابدأ الاختبار
 Start the quiz first.,ابدأ الاختبار أولًا.
 Started On,تاريخ البدء
 Starter Code,الكود المبدئي
 Starter Code,الكود المبدئي,TCD Block
+Statement,نص الإقرار,TCD Acknowledgment
 Status,الحالة
 Status,الحالة,TCD Content
 Status,الحالة,TCD Course
@@ -809,6 +893,8 @@ Summary,الملخص,TCD Content Version
 Summary,الملخص,TCD Course
 Summary,الملخص,TCD Learning Path
 Summary,ملخص
+TCD Acknowledgment,إقرار
+TCD Acknowledgment Status,حالة الإقرارات
 TCD Assignment,تكليف
 TCD Assignment Submission,تسليم تكليف
 TCD Batch,دفعة
@@ -829,6 +915,11 @@ TCD Course Feedback,تقييم دورة
 TCD Course Instructor,مدرّب الدورة
 TCD Course Prerequisite,متطلب دورة
 TCD Enrollment,تسجيل
+TCD Governance Department,قسم مستهدف
+TCD Governance Document,سياسة / إجراء
+TCD Governance Link,رابط تعلّم
+TCD Governance Role,دور مستهدف
+TCD Governance Version,نسخة مستند معتمدة
 TCD Instructor Dashboard,لوحة المدرّب
 TCD Learner Progress,تقدّم المتعلمين
 TCD Learning Item,عنصر تعلّم
@@ -852,6 +943,7 @@ TCD Student Group Member,عضو مجموعة
 TCD Tutorial Lesson,درس المسار
 TCD User Skill,مهارة متعلم
 Target Type,نوع الهدف,TCD Content Relation
+Target Type,نوع الهدف,TCD Governance Link
 Tell the learner what to change before returning the submission.,اكتب للمتعلم ما يجب تعديله قبل إرجاع التسليم.
 Template,قالب
 Template Name,اسم القالب,TCD Content Template
@@ -874,10 +966,14 @@ The template blocks replace the current blocks.,كتل القالب ستحل م�
 This assignment is not active.,هذا التكليف غير مفعّل.
 This certificate is not valid,هذه الشهادة غير صالحة
 This content is {0}. Move it back to Draft to edit.,حالة هذا المحتوى {0}. أعده إلى مسودة لتعديله.
+This document does not need an acknowledgment.,هذا المستند لا يحتاج إقرارًا.
+This document has no approved version yet.,لا توجد نسخة معتمدة لهذا المستند بعد.
+This document is not addressed to you.,هذا المستند غير موجه إليك.
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
 This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
 This quiz is not active.,هذا الاختبار غير مفعّل.
+This record is written automatically and cannot be changed.,يُكتب هذا السجل تلقائيًا ولا يمكن تعديله.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 This submission is already graded.,تم تصحيح هذا التسليم بالفعل.
 Time Limit (minutes),الوقت المحدد (دقائق),TCD Quiz
@@ -960,6 +1056,7 @@ Withdrawn,منسحب,TCD Enrollment
 Write your answer.,اكتب إجابتك.
 Wrong,خطأ
 Yes,نعم
+You acknowledged version {0}.,أقررت بالنسخة {0}.
 You already gave feedback on this page.,قيّمت هذه الصفحة بالفعل.
 You already rated this course.,قيّمت هذه الدورة بالفعل.
 You are not an instructor of any course yet.,لست مدرّبًا لأي دورة بعد.

@@ -329,6 +329,50 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "shield-check",
+   "indent": 1,
+   "keep_closed": 0,
+   "label": "Governance",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Policies and Procedures",
+   "link_to": "TCD Governance Document",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Approved Document Versions",
+   "link_to": "TCD Governance Version",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Acknowledgments",
+   "link_to": "TCD Acknowledgment",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "icon": "chart-column",
    "indent": 1,
    "keep_closed": 0,
@@ -382,6 +426,17 @@
    "type": "Link"
   },
   {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Acknowledgment Status",
+   "link_to": "TCD Acknowledgment Status",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
    "child": 0,
    "collapsible": 1,
    "icon": "settings",
@@ -404,7 +459,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 21:00:00.000000",
+ "modified": "2026-11-19 23:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

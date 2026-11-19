@@ -506,3 +506,18 @@ def certificate_query(user=None, doctype=None):
 def certificate_has_permission(doc, ptype=None, user=None, debug=False):
 	user = user or frappe.session.user
 	return doc.user == user or is_instructor_of(user, doc.course, doc.learning_path)
+
+
+# ---------------------------------------------------------------- Phase 6: governance
+
+
+def acknowledgment_query(user=None, doctype=None):
+	user = user or frappe.session.user
+	if is_admin(user) or "TCD Content Reviewer" in frappe.get_roles(user):
+		return ""
+	return f"`tabTCD Acknowledgment`.user = {frappe.db.escape(user)}"
+
+
+def acknowledgment_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	return doc.user == user or is_admin(user) or "TCD Content Reviewer" in frappe.get_roles(user)

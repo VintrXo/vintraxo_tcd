@@ -1,0 +1,138 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 23:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "governance_document",
+  "version",
+  "title",
+  "effective_date",
+  "column_break_1",
+  "approved_by",
+  "approved_on",
+  "snapshot_section",
+  "summary",
+  "body",
+  "attachment"
+ ],
+ "fields": [
+  {
+   "fieldname": "governance_document",
+   "fieldtype": "Link",
+   "options": "TCD Governance Document",
+   "label": "Document",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Version",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "read_only": 1
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "Effective Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Approved By",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "approved_on",
+   "fieldtype": "Datetime",
+   "label": "Approved On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "snapshot_section",
+   "fieldtype": "Section Break",
+   "label": "Snapshot"
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Long Text",
+   "label": "Body (Markdown)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Original File",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 23:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Governance Version",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "format:{governance_document}-v{version}",
+ "naming_rule": "Expression",
+ "in_create": 1,
+ "title_field": "title"
+}

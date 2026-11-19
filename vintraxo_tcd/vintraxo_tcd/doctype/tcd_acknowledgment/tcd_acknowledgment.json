@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 23:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "governance_document",
+  "version",
+  "user",
+  "column_break_1",
+  "acknowledged_on",
+  "statement"
+ ],
+ "fields": [
+  {
+   "fieldname": "governance_document",
+   "fieldtype": "Link",
+   "options": "TCD Governance Document",
+   "label": "Document",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Version",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "User",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "acknowledged_on",
+   "fieldtype": "Datetime",
+   "label": "Acknowledged On",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "statement",
+   "fieldtype": "Small Text",
+   "label": "Statement",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 23:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Acknowledgment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Learner",
+   "read": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "read": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "in_create": 1
+}

@@ -131,6 +131,7 @@ def create_demo():
 	_demo_relations(l1, l2, l3)
 	_demo_wiki(l1)
 	_demo_assessment()
+	_demo_governance(l1)
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -369,3 +370,41 @@ def _demo_assessment():
 			"bank_items": [{"question": n} for n in names],
 		}
 	).insert(ignore_permissions=True)
+
+
+def _demo_governance(intro):
+	"""Phase 6 demo: an active policy that learners must acknowledge, linked to a lesson."""
+	if frappe.db.exists("TCD Governance Document", "POL-DEMO-001"):
+		return
+	doc = frappe.get_doc(
+		{
+			"doctype": "TCD Governance Document",
+			"title": "سياسة الاستخدام الآمن لبيئات التدريب",
+			"doc_kind": "Policy",
+			"code": "POL-DEMO-001",
+			"space": SPACE,
+			"document_owner": "Administrator",
+			"approver": "Administrator",
+			"summary": "قواعد قصيرة لاستخدام محررات الأكواد والبيانات أثناء التدريب.",
+			"body": "\n".join(
+				[
+					"## الهدف",
+					"",
+					"حماية بيانات الشركة أثناء التدريب.",
+					"",
+					"## القواعد",
+					"",
+					"1. لا تضع بيانات عملاء حقيقية في محررات الأكواد.",
+					"2. لا تشارك كلمات المرور في الإجابات أو التعليقات.",
+					"3. أبلغ المدرّب عن أي محتوى غير مناسب.",
+				]
+			),
+			"review_cycle_months": 12,
+			"audience_roles": [{"role": "TCD Learner"}],
+			"links": [{"target_type": "Content", "content": intro.name}],
+		}
+	).insert(ignore_permissions=True)
+	for status in ("Review", "Approval", "Active"):
+		doc.reload()
+		doc.status = status
+		doc.save(ignore_permissions=True)

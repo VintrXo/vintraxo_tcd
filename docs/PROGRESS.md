@@ -34,7 +34,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 2 — Unified experience | c74a3b4 | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
 | Phase 3 — Wiki completion | bbbbb24 | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
 | Phase 4 — Assessment engine | 808a9a8 | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
-| Phase 5 — Skills and certificates | this commit | 106 | Skills, competency gap, certificates with PDF, public verification, expiry/renewal |
+| Phase 5 — Skills and certificates | fb009c3 | 106 | Skills, competency gap, certificates with PDF, public verification, expiry/renewal |
+| Phase 6 — Governance | this commit | 112 | Policies/SOPs/documents, versions, acknowledgments, reminders, compliance report |
 
 ## Phase 1 — LMS core: status
 
@@ -104,6 +105,20 @@ Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialo
 | Verification code + public page | Done (`/verify/<code>`, 16-char random code, minimal facts) |
 | Expiry / renewal | Done (daily scheduler expiry; instructor renewal issues a new certificate, old one Renewed; admin revoke) |
 | Issued automatically on completion | Done (course and path, also after manual approval) |
+
+## Phase 6 — Governance: status
+
+| Requirement | State |
+|---|---|
+| Document / Policy / SOP with lifecycle, effective and expiry dates | Done (one DocType with a kind, ADR-0015) |
+| Scheduled review reminders | Done (daily: ToDo for the owner 7 days before review; expiry moves to Revision) |
+| Mandatory acknowledgment with audit log (who / when / version) | Done (append-only TCD Acknowledgment, new version = new acknowledgment) |
+| Non-acknowledged report | Done (TCD Acknowledgment Status) |
+| Links SOP ↔ tutorial/course | Done (both directions in the portal) |
+| Department-based access (guarded) | Done (uses ERPNext Employee.department when installed; ignored otherwise) |
+
+Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old dates, so the daily jobs would have
+expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
 
 ## Pending
 

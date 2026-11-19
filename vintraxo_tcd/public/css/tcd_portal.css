@@ -174,3 +174,10 @@
 .tcd-level i.on { background: var(--tcd-accent); }
 .tcd-verify-list { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.5rem; margin-block: 1rem; }
 .tcd-verify-list dt { color: var(--tcd-muted); font-weight: normal; }
+
+/* governance (Phase 6) */
+.tcd-chip-on { border-color: var(--tcd-accent); color: var(--tcd-accent); }
+.tcd-chips a.tcd-chip { text-decoration: none; }
+.tcd-ack { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--tcd-border); border-radius: 10px; }
+.tcd-ack-check { display: flex; gap: 0.5rem; align-items: flex-start; font-weight: normal; }
+.tcd-ack-check input { appearance: auto; -webkit-appearance: checkbox; inline-size: 1.1rem; block-size: 1.1rem; margin-block-start: 0.3rem; flex: none; }

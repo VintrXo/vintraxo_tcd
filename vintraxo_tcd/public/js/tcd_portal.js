@@ -173,6 +173,24 @@
 		});
 	}
 
+	function initAcknowledge() {
+		const section = document.querySelector(".tcd-ack[data-code]");
+		const btn = section && section.querySelector(".tcd-ack-btn");
+		if (!btn) return;
+		const box = section.querySelector("input[type=checkbox]");
+		box.addEventListener("change", () => (btn.disabled = !box.checked));
+		btn.addEventListener("click", async () => {
+			btn.disabled = true;
+			try {
+				await call("acknowledge", { code: section.dataset.code }, true);
+				window.location.reload();
+			} catch (err) {
+				showIn(section, err.message, true);
+				btn.disabled = false;
+			}
+		});
+	}
+
 	function initApprove() {
 		document.querySelectorAll(".tcd-approve[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -194,6 +212,7 @@
 		initAssignment(t0);
 		initRating(t0);
 		initHelpful(t0);
+		initAcknowledge();
 		initApprove();
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;

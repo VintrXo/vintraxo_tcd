@@ -130,7 +130,8 @@ def expire_certificates():
 	"""Daily scheduler job."""
 	for name in frappe.get_all(
 		"TCD Certificate",
-		filters={"status": "Active", "expires_on": ("<", nowdate())},
+		# "is set" matters: Frappe compares NULL dates as a very old date
+		filters=[["status", "=", "Active"], ["expires_on", "is", "set"], ["expires_on", "<", nowdate()]],
 		pluck="name",
 	):
 		frappe.db.set_value("TCD Certificate", name, "status", "Expired", update_modified=False)

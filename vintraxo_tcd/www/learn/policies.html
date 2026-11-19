@@ -1,0 +1,35 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page" dir="rtl">
+	<header class="tcd-hero">
+		<h1>{{ _("Policies and procedures") }}</h1>
+		<nav class="tcd-chips" aria-label="{{ _('Kind') }}">
+			<a class="tcd-chip{{ ' tcd-chip-on' if not kind else '' }}" href="/learn/policies">{{ _("All") }}</a>
+			{% for k in ("Policy", "SOP", "Document") %}
+			<a class="tcd-chip{{ ' tcd-chip-on' if kind == k else '' }}" href="/learn/policies?kind={{ k }}">{{ _(k, context="TCD") }}</a>
+			{% endfor %}
+		</nav>
+	</header>
+	{% if documents %}
+	<ul class="tcd-cards">
+		{% for d in documents %}
+		<li class="tcd-card">
+			<a href="/learn/policies/{{ d.name|urlencode }}">
+				<span class="tcd-badge">{{ _(d.doc_kind, context="TCD") }} · v{{ d.version }}</span>
+				<strong>{{ d.title|e }}</strong>
+				{% if d.summary %}<span class="tcd-muted">{{ d.summary|e }}</span>{% endif %}
+				{% if d.require_acknowledgment %}
+				<span class="tcd-status tcd-status-{{ 'completed' if d.acknowledged else 'pending-approval' }}">{{ _("Acknowledged") if d.acknowledged else _("Acknowledgment required") }}</span>
+				{% endif %}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p class="tcd-muted">{{ _("No documents are addressed to you.") }}</p>
+	{% endif %}
+</div>
+{% endblock %}

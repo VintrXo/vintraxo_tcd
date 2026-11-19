@@ -1,0 +1,258 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 23:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "doc_kind",
+  "code",
+  "space",
+  "column_break_1",
+  "status",
+  "version",
+  "document_owner",
+  "approver",
+  "dates_section",
+  "effective_date",
+  "expiry_date",
+  "column_break_2",
+  "review_cycle_months",
+  "next_review_date",
+  "body_section",
+  "summary",
+  "body",
+  "attachment",
+  "audience_section",
+  "require_acknowledgment",
+  "audience_roles",
+  "column_break_3",
+  "audience_departments",
+  "links_section",
+  "links"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "doc_kind",
+   "fieldtype": "Select",
+   "options": "Policy\nSOP\nDocument",
+   "label": "Kind",
+   "default": "Policy",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "label": "Code",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "description": "Short reference, e.g. POL-HR-001"
+  },
+  {
+   "fieldname": "space",
+   "fieldtype": "Link",
+   "options": "TCD Space",
+   "label": "Space",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "options": "Draft\nReview\nApproval\nActive\nRevision\nArchived",
+   "label": "Status",
+   "default": "Draft",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Active Version",
+   "read_only": 1,
+   "default": "0",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "document_owner",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Document Owner",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Approver"
+  },
+  {
+   "fieldname": "dates_section",
+   "fieldtype": "Section Break",
+   "label": "Dates"
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "Effective Date"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "review_cycle_months",
+   "fieldtype": "Int",
+   "label": "Review Cycle (months)",
+   "default": "12"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "body_section",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary"
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Long Text",
+   "label": "Body (Markdown)"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Original File"
+  },
+  {
+   "fieldname": "audience_section",
+   "fieldtype": "Section Break",
+   "label": "Audience and Acknowledgment"
+  },
+  {
+   "fieldname": "require_acknowledgment",
+   "fieldtype": "Check",
+   "label": "Require Acknowledgment",
+   "default": "1"
+  },
+  {
+   "fieldname": "audience_roles",
+   "fieldtype": "Table",
+   "options": "TCD Governance Role",
+   "label": "Audience Roles"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "audience_departments",
+   "fieldtype": "Table",
+   "options": "TCD Governance Department",
+   "label": "Audience Departments"
+  },
+  {
+   "fieldname": "links_section",
+   "fieldtype": "Section Break",
+   "label": "Related Learning"
+  },
+  {
+   "fieldname": "links",
+   "fieldtype": "Table",
+   "options": "TCD Governance Link",
+   "label": "Linked Tutorials and Courses"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 23:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Governance Document",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "field:code",
+ "naming_rule": "By fieldname",
+ "title_field": "title",
+ "show_title_field_in_link": 1,
+ "search_fields": "title,doc_kind,status",
+ "track_changes": 1
+}

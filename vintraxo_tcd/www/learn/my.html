@@ -35,6 +35,17 @@
 		{% endif %}
 	</section>
 
+	{% if data.pending_policies %}
+	<section class="tcd-section">
+		<h2>{{ _("Documents to acknowledge") }}</h2>
+		<ul class="tcd-lessons">
+			{% for d in data.pending_policies %}
+			<li class="tcd-lesson"><a href="/learn/policies/{{ d.name|urlencode }}">{{ d.title|e }}</a> <span class="tcd-badge">{{ _(d.doc_kind, context="TCD") }} · v{{ d.version }}</span></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.certificates %}
 	<section class="tcd-section">
 		<h2>{{ _("My certificates") }}</h2>

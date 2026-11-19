@@ -131,9 +131,15 @@ class TestPhase5Credentials(IntegrationTestCase):
 		self.assertEqual(getdate(cert.expires_on), getdate(frappe.utils.add_months(nowdate(), 12)))
 
 		frappe.set_user("Administrator")
+		forever = credentials.issue_certificate(
+			self.learner, "Course", self.course("No expiry", [self.l2], certificate_validity_months=0).name
+		)
+		self.assertIsNone(forever.expires_on)
 		frappe.db.set_value("TCD Certificate", cert.name, "expires_on", add_days(nowdate(), -1))
 		credentials.expire_certificates()
 		self.assertEqual(frappe.db.get_value("TCD Certificate", cert.name, "status"), "Expired")
+		# regression: certificates without an expiry date never expire
+		self.assertEqual(frappe.db.get_value("TCD Certificate", forever.name, "status"), "Active")
 
 		frappe.set_user(self.learner)
 		with self.assertRaises(frappe.PermissionError):

@@ -5,7 +5,7 @@ from urllib.parse import quote
 import frappe
 from frappe import _
 
-from vintraxo_tcd.core import progress
+from vintraxo_tcd.core import governance, progress
 from vintraxo_tcd.core.search import search
 
 CONTENT_LIST_FIELDS = ["name", "title", "slug", "summary", "content_type", "language", "category", "modified"]
@@ -290,6 +290,7 @@ def content_context(
 		"unmet_prerequisites": unmet,
 		"related": related,
 		"backlinks": wiki.backlinks(doc.name),
+		"policies": governance.related_for_content(doc.name, user),
 		"children": [
 			c
 			for c in frappe.get_list(
@@ -433,6 +434,7 @@ def course_context(space_name: str, slug: str) -> dict:
 		"prerequisites": prereqs,
 		"unmet_prerequisites": [p["title"] for p in prereqs if not p["satisfied"]],
 		"referenced_by": connect.related_for_course(course.name),
+		"policies": governance.related_for_course(course.name, user),
 		"certificate": frappe.db.get_value(
 			"TCD Certificate",
 			{"user": user, "course": course.name, "status": ("in", ["Active", "Expired"])},

@@ -1,0 +1,31 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 23:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "department"
+ ],
+ "fields": [
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department",
+   "reqd": 1,
+   "in_list_view": 1,
+   "description": "Department name as in ERPNext; ignored when ERPNext is not installed"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 23:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Governance Department",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}
