@@ -17,13 +17,19 @@ Training, Content and Documentation in one Frappe app, Arabic-first (RTL), mobil
   training compliance report.
 - **AI (optional, off by default):** knowledge assistant with cited sources, smart search, summaries, quiz
   questions and lesson drafts that need human review; budget, limits, privacy controls and usage log.
-- **Playgrounds:** Python, SQL, JavaScript and HTML run in the learner's browser.
+- **Playgrounds:** Python, SQL, JavaScript and HTML run in the learner's browser; with the optional isolated code
+  runner (Judge0) also Java, C++, C, Go, C# and Bash, and code questions graded on the server.
+- **Sessions:** classroom / online sessions per course or batch, attendance, calendar, minimum attendance rule.
+- **People:** manager dashboard (`/learn/team`), lesson discussions, content review cycles, self-withdraw.
+- **HRMS:** completed courses recorded as Training Event / Training Result (when HRMS is installed).
+- **Portability:** export a space to a file and import it on another site.
 
 ## Quality
-- 146 automated tests (permissions, XSS, data isolation, guest surface, translations, every feature).
+- 173 automated tests (permissions, XSS, data isolation, guest surface, translations, every feature); CI on every push.
 - Full Arabic coverage enforced by tests.
 
 ## Known limits
-- Server-side code execution (Phase 10) needs an approved isolation design and a separate VM; not included.
+- The code runner host (Judge0 on an isolated VM) is not part of the app; it is set up with the production server.
 - The AI provider and the ERPNext/HRMS path were tested with mocks only on the development site.
-- Restore and clean-site installation were not run on the development bench (single-site rule); see `DEPLOYMENT.md`.
+- CI on GitHub installs the app on a clean site and runs all tests on every push (see the Actions tab); a manual
+  restore test is still to be done.
