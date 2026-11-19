@@ -191,6 +191,9 @@ def get_course(name: str) -> dict:
 		"space": course.space,
 		"summary": course.summary,
 		"cover_image": course.get("cover_image"),
+		"paid": bool(course.get("paid")),
+		"price": course.get("price"),
+		"currency": course.get("currency"),
 		"intro": _intro(course.get("intro_video")),
 		"completion_rule": course.completion_rule,
 		"minimum_score": course.minimum_score,
@@ -233,6 +236,9 @@ def get_learning_path(name: str) -> dict:
 		"space": path.space,
 		"summary": path.summary,
 		"cover_image": path.get("cover_image"),
+		"paid": bool(path.get("paid")),
+		"price": path.get("price"),
+		"currency": path.get("currency"),
 		"intro": _intro(path.get("intro_video")),
 		"completion_rule": path.completion_rule,
 		"self_enrollment": bool(path.self_enrollment),
@@ -249,6 +255,8 @@ def enroll(enrollment_for: str, name: str) -> dict:
 		frappe.throw(frappe._("Invalid enrollment type."))
 	doctype = courses.OFFERINGS[enrollment_for][0]
 	doc = _readable(doctype, name)
+	if doc.get("paid"):
+		frappe.throw(frappe._("This is a paid course. Use Buy."), frappe.PermissionError)
 	if not doc.self_enrollment:
 		frappe.throw(
 			frappe._("Self enrollment is not allowed here. Ask your instructor."), frappe.PermissionError
@@ -954,3 +962,25 @@ def report_quiz_violation(name: str, kind: str) -> dict:
 	from vintraxo_tcd.core import quiz as svc_quiz_mod
 
 	return svc_quiz_mod.report_violation(_quiz_for_user(name), frappe.session.user, kind)
+
+
+# ---------------------------------------------------------------- payments (Phase 16)
+
+
+@frappe.whitelist()
+def price_quote(enrollment_for: str, name: str, coupon: str | None = None) -> dict:
+	from vintraxo_tcd.core import courses as _c
+	from vintraxo_tcd.core import payments
+
+	_readable(_c.OFFERINGS[enrollment_for][0], name)
+	return payments.quote(enrollment_for, name, coupon)
+
+
+@frappe.whitelist(methods=["POST"])
+def checkout(
+	enrollment_for: str, name: str, coupon: str | None = None, redirect_to: str | None = None
+) -> dict:
+	from vintraxo_tcd.core import payments
+
+	safe = redirect_to if (redirect_to or "").startswith("/learn") else "/learn/my"
+	return payments.checkout(enrollment_for, name, frappe.session.user, coupon, safe)

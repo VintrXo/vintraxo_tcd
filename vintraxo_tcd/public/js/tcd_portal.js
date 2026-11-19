@@ -295,6 +295,34 @@
 		});
 	}
 
+	function initBuy() {
+		document.querySelectorAll(".tcd-buy[data-name]").forEach((box) => {
+			const btn = box.querySelector(".tcd-buy-btn");
+			btn.addEventListener("click", async () => {
+				const message = box.closest("section")?.querySelector(".tcd-message");
+				btn.disabled = true;
+				try {
+					const r = await call(
+						"checkout",
+						{ enrollment_for: box.dataset.for, name: box.dataset.name, coupon: box.querySelector(".tcd-coupon").value || null, redirect_to: window.location.pathname },
+						true
+					);
+					const url = r && r.url ? String(r.url) : "";
+					// only our pages or an https gateway page
+					if (/^\/(?!\/)/.test(url) || /^https:\/\//.test(url)) window.location.assign(url);
+					else window.location.reload();
+				} catch (e) {
+					if (message) {
+						message.textContent = e.message;
+						message.hidden = false;
+						message.classList.add("tcd-error");
+					}
+					btn.disabled = false;
+				}
+			});
+		});
+	}
+
 	function initWithdraw() {
 		document.querySelectorAll(".tcd-withdraw[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -502,6 +530,7 @@
 	function init() {
 		initEnroll();
 		initWithdraw();
+		initBuy();
 		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);

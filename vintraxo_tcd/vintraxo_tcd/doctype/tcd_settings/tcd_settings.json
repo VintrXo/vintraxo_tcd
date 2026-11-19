@@ -42,7 +42,9 @@
   "zoom_client_id",
   "zoom_client_secret",
   "column_break_meetings",
-  "google_calendar"
+  "google_calendar",
+  "payments_section",
+  "payment_gateway"
  ],
  "fields": [
   {
@@ -289,12 +291,23 @@
    "options": "Google Calendar",
    "depends_on": "eval:doc.meeting_provider=='Google Meet'",
    "description": "A calendar connected in Frappe's Google Calendar integration; events get a Meet link"
+  },
+  {
+   "fieldname": "payments_section",
+   "fieldtype": "Section Break",
+   "label": "Payments"
+  },
+  {
+   "fieldname": "payment_gateway",
+   "fieldtype": "Data",
+   "label": "Payment Gateway",
+   "description": "Name of a Payment Gateway from the Frappe Payments app (e.g. Razorpay, Stripe, PayPal). Needs the Payments app."
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 15:30:00.000000",
+ "modified": "2026-11-20 16:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

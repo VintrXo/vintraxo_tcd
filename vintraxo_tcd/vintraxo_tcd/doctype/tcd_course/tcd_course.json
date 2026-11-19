@@ -31,7 +31,10 @@
   "about_section",
   "summary",
   "cover_image",
-  "intro_video"
+  "intro_video",
+  "paid",
+  "price",
+  "currency"
  ],
  "fields": [
   {
@@ -213,10 +216,32 @@
    "fieldtype": "Data",
    "label": "Intro Video",
    "description": "YouTube, Vimeo or an uploaded mp4/webm link"
+  },
+  {
+   "fieldname": "paid",
+   "fieldtype": "Check",
+   "label": "Paid",
+   "description": "Learners buy it online instead of enrolling for free"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price",
+   "options": "currency",
+   "depends_on": "paid",
+   "mandatory_depends_on": "paid"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "depends_on": "paid",
+   "mandatory_depends_on": "paid"
   }
  ],
  "links": [],
- "modified": "2026-11-20 15:00:00.000000",
+ "modified": "2026-11-20 16:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",
