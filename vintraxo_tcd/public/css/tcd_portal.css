@@ -146,3 +146,18 @@
 .tcd-helpful-form { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; max-inline-size: 640px; }
 .tcd-helpful-form textarea { flex-basis: 100%; }
 .tcd-helpful-form .tcd-chip input { appearance: auto; -webkit-appearance: radio; inline-size: 1rem; block-size: 1rem; margin: 0; }
+
+/* assessments (Phase 4) */
+.tcd-timer { position: sticky; inset-block-start: 0.5rem; z-index: 2; inline-size: fit-content; margin-inline-start: auto; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--tcd-bg-soft); font-variant-numeric: tabular-nums; }
+.tcd-scenario { padding: 0.5rem 0.75rem; margin-block-end: 0.5rem; border-inline-start: 3px solid var(--tcd-accent); background: var(--tcd-bg-soft); white-space: pre-line; }
+.tcd-blank { max-inline-size: 320px; margin-block: 0.25rem; }
+.tcd-match { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-block: 0.25rem; font-weight: normal; }
+.tcd-match span { min-inline-size: 8rem; }
+.tcd-order { padding-inline-start: 0; list-style: none; counter-reset: tcd-order; }
+.tcd-order li::before { counter-increment: tcd-order; content: counter(tcd-order) "."; min-inline-size: 1.5rem; color: var(--tcd-muted); }
+.tcd-order li { display: flex; gap: 0.4rem; align-items: center; padding-block: 0.2rem; }
+.tcd-order li span { flex: 1; }
+.tcd-code-answer { min-block-size: 8rem; }
+.tcd-code-output { margin-block: 0.4rem; padding: 0.5rem 0.75rem; border-radius: 6px; background: #0f172a; color: #e2e8f0; white-space: pre-wrap; direction: ltr; text-align: left; }
+.tcd-pending { border-color: var(--tcd-warn); }
+.tcd-rubric { margin-block: 0.25rem 0; }

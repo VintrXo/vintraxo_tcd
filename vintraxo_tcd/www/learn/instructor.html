@@ -64,6 +64,17 @@
 		{% else %}<p class="tcd-muted">{{ _("Nothing to grade.") }}</p>{% endif %}
 		<p class="tcd-message" role="status" hidden></p>
 	</section>
+
+	<section class="tcd-section">
+		<h2>{{ _("Quiz answers to review") }}</h2>
+		{% if data.quiz_reviews %}
+		<ul class="tcd-lessons">
+			{% for q in data.quiz_reviews %}
+			<li class="tcd-lesson"><a href="/app/tcd-quiz-submission/{{ q.name|urlencode }}"><span dir="ltr">{{ q.user|e }}</span></a></li>
+			{% endfor %}
+		</ul>
+		{% else %}<p class="tcd-muted">{{ _("Nothing to review.") }}</p>{% endif %}
+	</section>
 	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 </div>
 {% endblock %}

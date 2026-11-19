@@ -162,6 +162,33 @@ Draft -> In Review -> Approved -> Published -> Archived
   review applies again). Needs write permission.
 - Archived content is hidden from learners (only Published is visible to them); staff see an archive banner.
 
+## Phase 4: assessment engine
+| DocType / field | Key fields |
+|---|---|
+| TCD Question Category | category_name, parent_category, description |
+| TCD Question (bank) | question, scenario, question_type, category, points, options, correct_answers, accepted_answers, pairs, code_language, starter_code, setup_code, expected_output, manual_review, allowed_extensions, rubric (TCD Rubric Criterion), explanation |
+| TCD Rubric Criterion (child) | criterion, max_points |
+| TCD Quiz: new fields | time_limit_minutes, shuffle_options, bank_items (TCD Quiz Bank Item: question or category + pick_count) |
+| TCD Quiz Submission: new fields | status (In Progress / Pending Review / Graded), started_on, submitted_on, deadline, paper, review, graded_by, graded_on |
+
+### Question types and grading
+| Type | Learner answers | Grading |
+|---|---|---|
+| Single / Multiple Choice, True False | option numbers (original numbering, display may be shuffled) | exact match |
+| Fill Blank | one text per blank; `accepted_answers` = one line per blank, alternatives separated by `|` | per blank, Arabic-normalized |
+| Matching | right item for each left item; `pairs` = lines `left => right` | per pair |
+| Ordering | items in order; `options` = correct order | per position |
+| Short Answer | text; `accepted_answers` = accepted lines | auto when accepted answers exist, else manual |
+| Essay, File | text / uploaded file | manual (rubric) |
+| Code (python/javascript), SQL | code + output produced by the in-browser runtime | output compared with `expected_output`; manual when `manual_review` (ADR-0013) |
+| Scenario | any type with a `scenario` text shown above the question | as its type |
+
+- An attempt starts with `api.start_quiz`: the paper (question keys, random picks, option order) and the deadline are
+  fixed then. Submitting after deadline + 60 s grace is refused and the attempt is closed with what was saved.
+- Points are weights; percentage = score / max_score. Attempts with manual items stay **Pending Review** until an
+  instructor of a course containing the quiz's content (or an admin/reviewer) reviews them; then pass/fail and
+  lesson completion are applied.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

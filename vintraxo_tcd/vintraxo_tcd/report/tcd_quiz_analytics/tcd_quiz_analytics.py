@@ -7,8 +7,6 @@ import frappe
 from frappe import _
 from frappe.utils import flt
 
-from vintraxo_tcd.core.quiz import correct_of, options_of
-
 
 def execute(filters=None):
 	filters = frappe._dict(filters or {})
@@ -39,13 +37,13 @@ def columns():
 
 
 def get_submissions(filters):
-	conditions = {"quiz": filters.quiz}
+	conditions = {"quiz": filters.quiz, "status": ("!=", "In Progress")}
 	if filters.from_date and filters.to_date:
 		conditions["creation"] = ("between", [filters.from_date, filters.to_date])
 	return frappe.get_list(
 		"TCD Quiz Submission",
 		filters=conditions,
-		fields=["user", "attempt", "percentage", "passed", "answers", "results"],
+		fields=["user", "attempt", "percentage", "passed", "answers", "results", "paper", "status"],
 		limit_page_length=50000,
 	)
 
@@ -57,34 +55,54 @@ def _load(value) -> dict:
 		return {}
 
 
+def _as_list(value):
+	if value is None or value == "":
+		return []
+	return value if isinstance(value, list) else [value]
+
+
 def question_rows(quiz, submissions):
-	rows = []
+	from vintraxo_tcd.core import assessment
+
+	keys, items = [], {}
 	for q in quiz.questions:
-		options = options_of(q)
-		key = correct_of(q)
+		keys.append(q.name)
+		items[q.name] = assessment.item_from_inline(q)
+	for sub in submissions:
+		for ref in _load(sub.get("paper")) or []:
+			if ref["key"] not in items:
+				item = assessment.load_item(ref["key"], ref["source"], quiz)
+				if item:
+					keys.append(ref["key"])
+					items[ref["key"]] = item
+	rows = []
+	for idx, key in enumerate(keys, start=1):
+		item = items[key]
+		choice = item["type"] in assessment.CHOICE
+		options = assessment.options_of(item) if choice else []
 		answered = correct = 0
 		wrong = Counter()
 		for sub in submissions:
-			chosen = _load(sub.answers).get(q.name)
-			if not chosen:
+			given = _load(sub.answers)
+			if key not in given or given[key] in (None, "", [], {}):
 				continue
-			answered += 1
 			graded = _load(sub.results)
-			# results stored at grading time; fall back to the current key for older rows
-			ok = graded[q.name] if q.name in graded else set(chosen) == key
-			if ok:
+			if key not in graded:
+				continue  # pending manual review
+			answered += 1
+			if graded[key]:
 				correct += 1
-			else:
-				wrong[tuple(sorted(chosen))] += 1
+			elif choice:
+				wrong[tuple(sorted(int(v) for v in _as_list(given[key]) if str(v).isdigit()))] += 1
 		common = ""
 		if wrong:
-			choice = wrong.most_common(1)[0][0]
-			common = ", ".join(options[i - 1] for i in choice if 0 < i <= len(options))
+			choice_key = wrong.most_common(1)[0][0]
+			common = ", ".join(options[i - 1] for i in choice_key if 0 < i <= len(options))
 		rows.append(
 			{
-				"idx": q.idx,
-				"question": q.question,
-				"question_type": _(q.question_type),
+				"idx": idx,
+				"question": item["question"],
+				"question_type": _(item["type"]),
 				"answered": answered,
 				"correct": correct,
 				"correct_rate": flt(correct * 100 / answered, 1) if answered else None,

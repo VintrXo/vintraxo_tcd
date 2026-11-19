@@ -452,3 +452,66 @@ def get_template(name: str) -> dict:
 	doc = frappe.get_doc("TCD Content Template", name)
 	doc.check_permission("read")
 	return {"blocks": doc.blocks, "content_type": doc.content_type, "lesson_type": doc.lesson_type}
+
+
+# ---------------------------------------------------------------- Phase 4: assessments
+
+
+@frappe.whitelist(methods=["POST"])
+def start_quiz(name: str) -> dict:
+	"""Open (or resume) a timed / randomized attempt and return its questions."""
+	quiz = _quiz_for_user(name)
+	svc_quiz.start(quiz, frappe.session.user)
+	return svc_quiz.learner_payload(quiz, frappe.session.user)
+
+
+def _can_review(sub) -> bool:
+	from vintraxo_tcd.core.permissions import is_admin
+
+	user = frappe.session.user
+	if is_admin(user) or "TCD Content Reviewer" in frappe.get_roles(user):
+		return True
+	return any(is_instructor_of(user, course) for course in courses.courses_with_content(sub.content))
+
+
+@frappe.whitelist(methods=["POST"])
+def review_quiz_submission(name: str, reviews) -> dict:
+	"""Manual grading: reviews = {question_id: {"points": n} | {"rubric": {criterion: n}}, "feedback": "..."}"""
+	sub = frappe.get_doc("TCD Quiz Submission", name)
+	if not frappe.has_permission("TCD Quiz Submission", "read", sub) or not _can_review(sub):
+		frappe.throw(
+			frappe._("Only an instructor of this course or a reviewer can grade."), frappe.PermissionError
+		)
+	return svc_quiz.review(sub, reviews, frappe.session.user)
+
+
+@frappe.whitelist()
+def get_review_items(name: str) -> list:
+	"""Pending manual items of a submission with the learner's answers and the rubric."""
+	sub = frappe.get_doc("TCD Quiz Submission", name)
+	if not frappe.has_permission("TCD Quiz Submission", "read", sub) or not _can_review(sub):
+		frappe.throw(frappe._("Not permitted"), frappe.PermissionError)
+	import json as _json
+
+	from vintraxo_tcd.core import assessment
+
+	quiz = frappe.get_doc("TCD Quiz", sub.quiz)
+	answers = _json.loads(sub.answers or "{}")
+	out = []
+	for ref in _json.loads(sub.paper or "[]"):
+		item = assessment.load_item(ref["key"], ref["source"], quiz)
+		if item and assessment.is_manual(item):
+			r = assessment.grade_item(item, answers.get(item["key"]))
+			out.append(
+				{
+					"id": item["key"],
+					"type": item["type"],
+					"question": item["question"],
+					"points": item["points"],
+					"rubric": item["rubric"],
+					"answer": answers.get(item["key"]),
+					"auto_hint": r.get("auto_hint"),
+					"expected_output": item.get("expected_output"),
+				}
+			)
+	return out

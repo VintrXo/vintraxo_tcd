@@ -1,0 +1,239 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "question",
+  "question_type",
+  "category",
+  "column_break_1",
+  "points",
+  "manual_review",
+  "scenario",
+  "answers_section",
+  "options",
+  "correct_answers",
+  "accepted_answers",
+  "pairs",
+  "code_language",
+  "starter_code",
+  "setup_code",
+  "expected_output",
+  "allowed_extensions",
+  "rubric_section",
+  "rubric",
+  "explanation_section",
+  "explanation"
+ ],
+ "fields": [
+  {
+   "fieldname": "question",
+   "fieldtype": "Text",
+   "label": "Question",
+   "reqd": 1
+  },
+  {
+   "fieldname": "question_type",
+   "fieldtype": "Select",
+   "label": "Question Type",
+   "options": "Single Choice\nMultiple Choice\nTrue False\nFill Blank\nMatching\nOrdering\nShort Answer\nEssay\nCode\nSQL\nFile",
+   "default": "Single Choice",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "options": "TCD Question Category",
+   "label": "Category",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "points",
+   "fieldtype": "Float",
+   "label": "Points",
+   "default": "1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "manual_review",
+   "fieldtype": "Check",
+   "label": "Requires Manual Review",
+   "depends_on": "eval:['Code','SQL','Short Answer'].includes(doc.question_type)",
+   "description": "Code/SQL output comes from the learner's browser and can be forged; tick this for high-stakes questions"
+  },
+  {
+   "fieldname": "scenario",
+   "fieldtype": "Text",
+   "label": "Scenario",
+   "description": "Optional context shown above the question"
+  },
+  {
+   "fieldname": "answers_section",
+   "fieldtype": "Section Break",
+   "label": "Answers"
+  },
+  {
+   "fieldname": "options",
+   "fieldtype": "Small Text",
+   "label": "Options",
+   "depends_on": "eval:['Single Choice','Multiple Choice','Ordering'].includes(doc.question_type)",
+   "description": "One per line. For Ordering: the correct order"
+  },
+  {
+   "fieldname": "correct_answers",
+   "fieldtype": "Data",
+   "label": "Correct Answers",
+   "depends_on": "eval:['Single Choice','Multiple Choice','True False'].includes(doc.question_type)",
+   "description": "Option numbers starting at 1, comma separated (e.g. 2 or 1,3). True False: 1 = True, 2 = False"
+  },
+  {
+   "fieldname": "accepted_answers",
+   "fieldtype": "Small Text",
+   "label": "Accepted Answers",
+   "depends_on": "eval:['Fill Blank','Short Answer'].includes(doc.question_type)",
+   "description": "Fill Blank: one line per blank, alternatives separated by |. Short Answer: one accepted answer per line"
+  },
+  {
+   "fieldname": "pairs",
+   "fieldtype": "Small Text",
+   "label": "Pairs",
+   "depends_on": "eval:['Matching'].includes(doc.question_type)",
+   "description": "One pair per line: left => right"
+  },
+  {
+   "fieldname": "code_language",
+   "fieldtype": "Select",
+   "label": "Code Language",
+   "options": "\npython\njavascript",
+   "depends_on": "eval:['Code'].includes(doc.question_type)"
+  },
+  {
+   "fieldname": "starter_code",
+   "fieldtype": "Long Text",
+   "label": "Starter Code",
+   "depends_on": "eval:['Code','SQL'].includes(doc.question_type)"
+  },
+  {
+   "fieldname": "setup_code",
+   "fieldtype": "Long Text",
+   "label": "Setup SQL",
+   "depends_on": "eval:['SQL'].includes(doc.question_type)",
+   "description": "Runs before the learner's query (create tables, insert rows)"
+  },
+  {
+   "fieldname": "expected_output",
+   "fieldtype": "Long Text",
+   "label": "Expected Output",
+   "depends_on": "eval:['Code','SQL'].includes(doc.question_type)",
+   "description": "Code: exact printed output. SQL: header line then one line per row, values separated by |"
+  },
+  {
+   "fieldname": "allowed_extensions",
+   "fieldtype": "Data",
+   "label": "Allowed File Extensions",
+   "depends_on": "eval:['File'].includes(doc.question_type)"
+  },
+  {
+   "fieldname": "rubric_section",
+   "fieldtype": "Section Break",
+   "label": "Rubric",
+   "depends_on": "eval:['Essay','File','Short Answer','Code','SQL'].includes(doc.question_type)"
+  },
+  {
+   "fieldname": "rubric",
+   "fieldtype": "Table",
+   "options": "TCD Rubric Criterion",
+   "label": "Rubric"
+  },
+  {
+   "fieldname": "explanation_section",
+   "fieldtype": "Section Break",
+   "label": "Explanation"
+  },
+  {
+   "fieldname": "explanation",
+   "fieldtype": "Small Text",
+   "label": "Explanation",
+   "description": "Shown after submission when enabled on the quiz"
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Question",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Author",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Content Reviewer",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "report": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "title_field": "question",
+ "search_fields": "question,category",
+ "track_changes": 1
+}

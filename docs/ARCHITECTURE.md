@@ -27,7 +27,8 @@
 | content.py | Block schema, slugs, search_text, tutorial lessons, review workflow, version snapshots |
 | permissions.py | Space/visibility access (has_permission + permission_query_conditions) |
 | progress.py | Lesson/tutorial progress and roll-up |
-| quiz.py | Quiz validation, learner payload (no answers), grading |
+| quiz.py | Quiz validation, attempts (start/resume/deadline), learner payload, grading, manual review |
+| assessment.py | Question items (inline + bank), papers, payloads without answers, grading per type, rubric points |
 | portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
 | courses.py | Course/path structure rules, completion rules, roll-up, enrollment, sequence gating |
 | assignments.py | Assignment validation, submission, grading, completion |
@@ -63,6 +64,8 @@
 | restore_version(name) | POST | Copy a version into the content and move it to Draft |
 | content_feedback(name, helpful, comment?) | POST | "Was this page helpful?" |
 | get_templates(content_type?) / get_template(name) | GET | Content templates for authors |
+| start_quiz(name) | POST | Open/resume a timed or randomized attempt |
+| get_review_items(name) / review_quiz_submission(name, reviews) | GET / POST | Manual grading with rubrics |
 | my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
 
 ## Learner portal (P3)
@@ -95,6 +98,8 @@ page (site origin)
 - `html` blocks render as a preview in a sandboxed iframe (`allow-scripts` only).
 - Runtimes load from `TCD Settings > Pyodide Base URL / SQL.js Base URL` (pinned CDN versions by default; set a `/assets/...`
   path to self-host for offline sites). Output is capped at 100k characters; SQL tables at 500 rows.
+- `window.TCDPlayground.run(language, code, {setup})` runs code headless in the same sandbox (used by code/SQL quiz
+  questions; output is sent to the server for comparison, see ADR-0013).
 - Verified in headless Chromium: JS/Python infinite loops are killed, `fetch` to the site from the sandbox is blocked
   (origin `null`), HTML preview cannot touch the parent page.
 

@@ -383,6 +383,56 @@
 		}
 	}
 
+	/**
+	 * Headless run in the same sandbox (used by code/SQL quiz questions).
+	 * Resolves with { stdout, stderr, tables, error, timedOut } and never touches the page origin.
+	 */
+	function runHeadless(language, code, options = {}) {
+		const cfg = config();
+		const source = workerSource(language, cfg);
+		if (!source) return Promise.resolve({ error: language + ": unsupported" });
+		const timeout = options.timeout || cfg.timeout_seconds || 5;
+		const job = { source: source, code: (options.setup ? options.setup + "\n" : "") + code, timeout: timeout };
+		return new Promise((resolve) => {
+			const out = { stdout: "", stderr: "", tables: [], error: null, timedOut: false };
+			const frame = el("iframe", { sandbox: "allow-scripts", hidden: "", "aria-hidden": "true", tabindex: "-1" });
+			let hard;
+			const done = () => {
+				clearTimeout(hard);
+				window.removeEventListener("message", onMessage);
+				frame.remove();
+				resolve(out);
+			};
+			const onMessage = (e) => {
+				if (e.source !== frame.contentWindow) return;
+				const d = e.data || {};
+				if (d.type === "runner-ready") frame.contentWindow.postMessage(job, "*");
+				else if (d.type === "stdout") out.stdout += String(d.text || "");
+				else if (d.type === "stderr") out.stderr += String(d.text || "");
+				else if (d.type === "table") out.tables.push({ columns: d.columns || [], values: d.values || [] });
+				else if (d.type === "error") (out.error = String(d.text || "")), done();
+				else if (d.type === "timeout") (out.timedOut = true), done();
+				else if (d.type === "done") done();
+			};
+			window.addEventListener("message", onMessage);
+			frame.srcdoc = RUNNER_HTML;
+			document.body.append(frame);
+			hard = setTimeout(() => ((out.timedOut = true), done()), (timeout + LOAD_GRACE_SECONDS) * 1000);
+		});
+	}
+
+	/** Canonical text output used for grading: stdout, or SQL tables as "col|col" + one line per row. */
+	function canonicalOutput(language, result) {
+		if (language === "sql") {
+			return result.tables
+				.map((t) => [t.columns.join("|"), ...t.values.map((r) => r.map((v) => (v === null ? "NULL" : String(v))).join("|"))].join("\n"))
+				.join("\n");
+		}
+		return result.stdout;
+	}
+
+	window.TCDPlayground = { run: runHeadless, canonicalOutput: canonicalOutput };
+
 	function init() {
 		const cfg = config();
 		if (!cfg.enabled) return;

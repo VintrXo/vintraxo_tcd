@@ -345,6 +345,17 @@ def js_labels() -> dict:
 		"saved": _("Saved."),
 		"choose_rating": _("Choose a rating."),
 		"thanks": _("Thank you for your feedback."),
+		"pending_review": _("Some answers are waiting for review by your instructor."),
+		"waiting_review": _("Waiting for review"),
+		"time_limit": _("Time limit: {0} minutes"),
+		"time_left": _("Time left: {0}"),
+		"time_over": _("Time is over"),
+		"start_quiz": _("Start the quiz"),
+		"blank_n": _("Blank {0}"),
+		"move_up": _("Move up"),
+		"move_down": _("Move down"),
+		"code_note": _("Run your code before submitting; the output is checked."),
+		"manual_note": _("An instructor reviews this answer."),
 	}
 
 

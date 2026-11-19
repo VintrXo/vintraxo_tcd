@@ -13,9 +13,13 @@
   "required_to_complete",
   "shuffle_questions",
   "show_answers_after_submit",
+  "shuffle_options",
+  "time_limit_minutes",
   "is_active",
   "questions_section",
-  "questions"
+  "questions",
+  "bank_section",
+  "bank_items"
  ],
  "fields": [
   {
@@ -80,6 +84,17 @@
    "default": "1"
   },
   {
+   "fieldname": "shuffle_options",
+   "fieldtype": "Check",
+   "label": "Shuffle Options"
+  },
+  {
+   "fieldname": "time_limit_minutes",
+   "fieldtype": "Int",
+   "label": "Time Limit (minutes)",
+   "description": "0 = no limit"
+  },
+  {
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Active",
@@ -95,12 +110,23 @@
    "fieldname": "questions",
    "fieldtype": "Table",
    "options": "TCD Quiz Question",
-   "label": "Questions",
-   "reqd": 1
+   "label": "Inline Questions"
+  },
+  {
+   "fieldname": "bank_section",
+   "fieldtype": "Section Break",
+   "label": "From the Question Bank"
+  },
+  {
+   "fieldname": "bank_items",
+   "fieldtype": "Table",
+   "options": "TCD Quiz Bank Item",
+   "label": "Bank Questions",
+   "description": "A fixed question, or a number of random questions from a category"
   }
  ],
  "links": [],
- "modified": "2026-11-18 22:00:00.000000",
+ "modified": "2026-11-19 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Quiz",

@@ -199,6 +199,28 @@
    "collapsible": 1,
    "indent": 0,
    "keep_closed": 0,
+   "label": "Question Bank",
+   "link_to": "TCD Question",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Question Categories",
+   "link_to": "TCD Question Category",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
    "label": "Quiz Attempts",
    "link_to": "TCD Quiz Submission",
    "link_type": "DocType",
@@ -316,7 +338,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 15:30:00.000000",
+ "modified": "2026-11-19 18:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

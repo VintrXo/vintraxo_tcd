@@ -130,6 +130,7 @@ def create_demo():
 	_demo_lms(l3)
 	_demo_relations(l1, l2, l3)
 	_demo_wiki(l1)
+	_demo_assessment()
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -295,3 +296,76 @@ def _demo_wiki(intro):
 				),
 			}
 		).insert(ignore_permissions=True)
+
+
+def _demo_assessment():
+	"""Phase 4 demo: a lesson whose quiz mixes bank question types (incl. browser-checked code)."""
+	if not frappe.db.exists("TCD Question Category", "أساسيات بايثون"):
+		frappe.get_doc({"doctype": "TCD Question Category", "category_name": "أساسيات بايثون"}).insert(
+			ignore_permissions=True
+		)
+	lesson = _content(
+		"تقييم شامل",
+		"Lesson",
+		[{"type": "paragraph", "text": "اختبار يجمع أنواع أسئلة مختلفة، منها أسئلة كود تُشغَّل في متصفحك."}],
+		lesson_type="Quiz",
+	)
+	if frappe.db.exists("TCD Quiz", {"content": lesson.name}):
+		return
+	specs = [
+		{
+			"question_type": "Fill Blank",
+			"question": "لغة بايثون أنشأها ___",
+			"accepted_answers": "Guido|Guido van Rossum|جيدو",
+		},
+		{
+			"question_type": "Matching",
+			"question": "وصّل كل نوع بوصفه",
+			"pairs": "\n".join(["int => عدد صحيح", "str => نص", "bool => قيمة منطقية"]),
+		},
+		{
+			"question_type": "Ordering",
+			"question": "رتّب خطوات تشغيل البرنامج",
+			"options": "\n".join(["اكتب الكود", "احفظ الملف", "شغّل البرنامج"]),
+		},
+		{
+			"question_type": "Code",
+			"question": "اطبع ناتج 6 * 7",
+			"code_language": "python",
+			"starter_code": "print()",
+			"expected_output": "42",
+			"points": 2,
+		},
+		{
+			"question_type": "SQL",
+			"question": "اعرض أسماء الطلاب الحاصلين على أكثر من 80",
+			"setup_code": "create table students(name text, grade int); insert into students values ('سارة', 90), ('عمر', 75);",
+			"starter_code": "select name from students where grade > 80;",
+			"expected_output": "\n".join(["name", "سارة"]),
+			"points": 2,
+		},
+		{
+			"question_type": "Essay",
+			"question": "اشرح بكلماتك الفرق بين المتغير والثابت.",
+			"rubric": [{"criterion": "الدقة", "max_points": 2}, {"criterion": "الوضوح", "max_points": 1}],
+			"points": 3,
+		},
+	]
+	names = []
+	for spec in specs:
+		names.append(
+			frappe.get_doc({"doctype": "TCD Question", "category": "أساسيات بايثون", **spec})
+			.insert(ignore_permissions=True)
+			.name
+		)
+	frappe.get_doc(
+		{
+			"doctype": "TCD Quiz",
+			"title": "التقييم الشامل",
+			"content": lesson.name,
+			"pass_percentage": 60,
+			"time_limit_minutes": 15,
+			"shuffle_options": 1,
+			"bank_items": [{"question": n} for n in names],
+		}
+	).insert(ignore_permissions=True)

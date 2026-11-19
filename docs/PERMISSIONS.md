@@ -62,6 +62,12 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - Search results, "used in" lists, related items and recommendations are built from permission-filtered queries
   (`get_list` / `has_permission`), never from `ignore_permissions` lists shown to the user.
 
+## Phase 4: assessments
+- TCD Question and TCD Question Category: staff only (Author, Reviewer, Instructor, Admin). Learners never read the
+  bank; they receive question payloads without answers from `api.get_quiz` / `api.start_quiz`.
+- Manual review (`api.review_quiz_submission`): admins, TCD Content Reviewer, or instructors of a course that contains
+  the quiz's content.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

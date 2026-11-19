@@ -252,9 +252,9 @@
 			this.onPassed = onPassed;
 		}
 
-		async load() {
+		async load(start) {
 			try {
-				this.quiz = await call("get_quiz", { name: this.name });
+				this.quiz = await call(start ? "start_quiz" : "get_quiz", { name: this.name }, !!start);
 				this.render();
 			} catch (e) {
 				this.body.replaceChildren(el("p", { class: "tcd-error" }, e.message));
@@ -269,48 +269,166 @@
 
 		render() {
 			const q = this.quiz;
+			const t = this.t;
+			clearInterval(this.timer);
+			const wrap = el("div");
+			if (q.passed) wrap.append(el("p", { class: "tcd-status tcd-status-completed" }, t.passed || "Passed"));
+			if (q.pending_review) wrap.append(el("p", { class: "tcd-callout tcd-callout-info" }, t.pending_review));
+			if (q.requires_start) {
+				const info = el("p", { class: "tcd-muted" });
+				info.textContent = [q.time_limit_minutes ? format(t.time_limit, q.time_limit_minutes) : "", this.attemptsText()]
+					.filter(Boolean)
+					.join(" · ");
+				const btn = el("button", { type: "button", class: "btn btn-primary" }, t.start_quiz || "Start");
+				btn.disabled = q.attempts_left === 0;
+				btn.addEventListener("click", () => this.load(true));
+				wrap.append(info, btn);
+				this.body.replaceChildren(wrap);
+				return;
+			}
 			const form = el("form", { class: "tcd-quiz-form", novalidate: "" });
-			q.questions.forEach((question, i) => {
-				const fs = el("fieldset", { class: "tcd-question", "data-id": question.id });
-				fs.append(el("legend", {}, i + 1 + ". " + question.question));
-				const multiple = question.type === "Multiple Choice";
-				question.options.forEach((opt, j) => {
-					const label = el("label", { class: "tcd-option" });
-					const input = el("input", {
-						type: multiple ? "checkbox" : "radio",
-						name: "q-" + question.id,
-						value: String(j + 1),
-					});
-					label.append(input, el("span", {}, opt));
-					fs.append(label);
-				});
-				form.append(fs);
-			});
-
+			if (q.attempt && q.attempt.seconds_left !== null && q.attempt.seconds_left !== undefined) {
+				const clock = el("p", { class: "tcd-timer", role: "timer", "aria-live": "off" });
+				form.append(clock);
+				let left = q.attempt.seconds_left;
+				const tick = () => {
+					clock.textContent = format(t.time_left, Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0"));
+					if (left <= 0) {
+						clearInterval(this.timer);
+						form.requestSubmit();
+					}
+					left -= 1;
+				};
+				tick();
+				this.timer = setInterval(tick, 1000);
+			}
+			q.questions.forEach((question, i) => form.append(this.renderQuestion(question, i)));
 			const footer = el("div", { class: "tcd-quiz-footer" });
-			const submit = el("button", { type: "submit", class: "btn btn-primary" }, this.t.submit || "Submit");
-			const info = el("span", { class: "tcd-muted" }, this.attemptsText());
-			if (q.attempts_left === 0) submit.disabled = true;
-			footer.append(submit, info);
+			const submit = el("button", { type: "submit", class: "btn btn-primary" }, t.submit || "Submit");
+			if (q.attempts_left === 0 && !q.attempt) submit.disabled = true;
+			footer.append(submit, el("span", { class: "tcd-muted" }, this.attemptsText()));
 			form.append(footer);
-
-			if (q.passed) form.prepend(el("p", { class: "tcd-status tcd-status-completed" }, this.t.passed || "Passed"));
-
 			form.addEventListener("submit", (e) => {
 				e.preventDefault();
 				this.submit(form, submit);
 			});
-			this.body.replaceChildren(form);
+			wrap.append(form);
+			this.body.replaceChildren(wrap);
+		}
+
+		renderQuestion(question, i) {
+			const t = this.t;
+			const fs = el("fieldset", { class: "tcd-question", "data-id": question.id, "data-type": question.type });
+			fs.append(el("legend", {}, i + 1 + ". " + question.question));
+			if (question.scenario) fs.prepend(el("div", { class: "tcd-scenario" }, question.scenario));
+			const name = "q-" + question.id;
+			const type = question.type;
+			if (["Single Choice", "Multiple Choice", "True False"].includes(type)) {
+				question.options.forEach((opt) => {
+					const label = el("label", { class: "tcd-option" });
+					const input = el("input", { type: type === "Multiple Choice" ? "checkbox" : "radio", name, value: String(opt.value) });
+					label.append(input, el("span", {}, opt.label));
+					fs.append(label);
+				});
+			} else if (type === "Fill Blank") {
+				for (let b = 0; b < question.blanks; b++) {
+					fs.append(el("input", { type: "text", class: "form-control tcd-blank", dir: "auto", "aria-label": format(t.blank_n, b + 1) }));
+				}
+			} else if (type === "Matching") {
+				question.lefts.forEach((left, li) => {
+					const row = el("label", { class: "tcd-match" });
+					const select = el("select", { class: "form-control tcd-select", "data-left": String(li) });
+					select.append(el("option", { value: "" }, "—"));
+					question.rights.forEach((r) => select.append(el("option", { value: r }, r)));
+					row.append(el("span", {}, left), select);
+					fs.append(row);
+				});
+			} else if (type === "Ordering") {
+				const list = el("ol", { class: "tcd-order" });
+				question.items.forEach((it) => {
+					const li = el("li", { "data-value": String(it.value) });
+					const up = el("button", { type: "button", class: "btn btn-xs btn-default", "aria-label": t.move_up || "Up" }, "↑");
+					const down = el("button", { type: "button", class: "btn btn-xs btn-default", "aria-label": t.move_down || "Down" }, "↓");
+					up.addEventListener("click", () => li.previousElementSibling && list.insertBefore(li, li.previousElementSibling));
+					down.addEventListener("click", () => li.nextElementSibling && list.insertBefore(li.nextElementSibling, li));
+					li.append(el("span", {}, it.label), up, down);
+					list.append(li);
+				});
+				fs.append(list);
+			} else if (type === "Short Answer") {
+				fs.append(el("input", { type: "text", class: "form-control tcd-text-answer", dir: "auto" }));
+			} else if (type === "Essay") {
+				fs.append(el("textarea", { class: "form-control tcd-text-answer", rows: "6", dir: "auto" }));
+			} else if (type === "File") {
+				const accept = (question.allowed_extensions || "").split(",").filter(Boolean).map((x) => "." + x.trim()).join(",");
+				fs.append(el("input", accept ? { type: "file", class: "tcd-file-answer", accept } : { type: "file", class: "tcd-file-answer" }));
+			} else if (type === "Code" || type === "SQL") {
+				const editor = el("textarea", { class: "tcd-editor tcd-code-answer", dir: "ltr", spellcheck: "false", rows: "8" });
+				editor.value = question.starter_code || "";
+				const run = el("button", { type: "button", class: "btn btn-xs btn-default" }, t.run || "Run");
+				const output = el("pre", { class: "tcd-code-output", dir: "ltr", hidden: "" });
+				run.addEventListener("click", () => this.runCode(fs, question));
+				fs.append(editor, run, output, el("p", { class: "tcd-muted tcd-small" }, t.code_note));
+			}
+			if (question.manual) fs.append(el("p", { class: "tcd-muted tcd-small" }, t.manual_note));
+			if (question.rubric && question.rubric.length) {
+				const r = el("ul", { class: "tcd-rubric tcd-muted tcd-small" });
+				question.rubric.forEach((c) => r.append(el("li", {}, c.criterion + " (" + c.max_points + ")")));
+				fs.append(r);
+			}
+			return fs;
+		}
+
+		async runCode(fs, question) {
+			const output = fs.querySelector(".tcd-code-output");
+			if (!window.TCDPlayground) return null;
+			output.hidden = false;
+			output.textContent = this.t.running || "Running...";
+			const res = await window.TCDPlayground.run(question.language, fs.querySelector(".tcd-code-answer").value, {
+				setup: question.setup_code,
+			});
+			const text = res.error || (res.timedOut ? this.t.stopped : window.TCDPlayground.canonicalOutput(question.language, res));
+			output.textContent = text || this.t.no_output || "";
+			fs.dataset.output = res.error || res.timedOut ? "" : window.TCDPlayground.canonicalOutput(question.language, res);
+			fs.dataset.code = fs.querySelector(".tcd-code-answer").value;
+			return fs.dataset.output;
+		}
+
+		async collect(form) {
+			const answers = {};
+			for (const fs of form.querySelectorAll("fieldset[data-id]")) {
+				const id = fs.dataset.id;
+				const type = fs.dataset.type;
+				if (["Single Choice", "Multiple Choice", "True False"].includes(type)) {
+					answers[id] = Array.from(fs.querySelectorAll("input:checked")).map((i) => Number(i.value));
+				} else if (type === "Fill Blank") {
+					answers[id] = Array.from(fs.querySelectorAll(".tcd-blank")).map((i) => i.value);
+				} else if (type === "Matching") {
+					answers[id] = {};
+					fs.querySelectorAll("select[data-left]").forEach((s) => (answers[id][s.dataset.left] = s.value));
+				} else if (type === "Ordering") {
+					answers[id] = Array.from(fs.querySelectorAll(".tcd-order li")).map((li) => Number(li.dataset.value));
+				} else if (type === "Short Answer" || type === "Essay") {
+					answers[id] = fs.querySelector(".tcd-text-answer").value;
+				} else if (type === "File") {
+					const input = fs.querySelector(".tcd-file-answer");
+					answers[id] = input.files.length ? await uploadPrivate(input.files[0]) : "";
+				} else if (type === "Code" || type === "SQL") {
+					const question = this.quiz.questions.find((x) => x.id === id);
+					const code = fs.querySelector(".tcd-code-answer").value;
+					if (fs.dataset.code !== code) await this.runCode(fs, question);
+					answers[id] = { code, output: fs.dataset.output || "" };
+				}
+			}
+			return answers;
 		}
 
 		async submit(form, button) {
-			const answers = {};
-			form.querySelectorAll("fieldset[data-id]").forEach((fs) => {
-				answers[fs.dataset.id] = Array.from(fs.querySelectorAll("input:checked")).map((i) => Number(i.value));
-			});
 			button.disabled = true;
 			try {
+				const answers = await this.collect(form);
 				const res = await call("submit_quiz", { name: this.name, answers: answers }, true);
+				clearInterval(this.timer);
 				this.showResult(form, res);
 				if (res.passed) this.onPassed();
 			} catch (e) {
@@ -321,31 +439,33 @@
 
 		showResult(form, res) {
 			const t = this.t;
-			form.querySelectorAll("input").forEach((i) => (i.disabled = true));
-			form.querySelector(".tcd-quiz-footer").remove();
+			form.querySelectorAll("input, select, textarea, button").forEach((i) => (i.disabled = true));
+			form.querySelector(".tcd-quiz-footer")?.remove();
+			form.querySelector(".tcd-timer")?.remove();
 			const byId = Object.fromEntries(res.results.map((r) => [r.id, r]));
-
 			form.querySelectorAll("fieldset[data-id]").forEach((fs) => {
 				const r = byId[fs.dataset.id];
 				if (!r) return;
+				if (r.pending) {
+					fs.classList.add("tcd-pending");
+					fs.append(el("div", { class: "tcd-feedback" }, t.waiting_review));
+					return;
+				}
 				fs.classList.add(r.is_correct ? "tcd-correct" : "tcd-wrong");
 				const note = el("div", { class: "tcd-feedback" }, r.is_correct ? t.correct : t.wrong);
 				if (!r.is_correct && r.correct) {
-					const options = Array.from(fs.querySelectorAll(".tcd-option span")).map((s) => s.textContent);
-					note.textContent += " - " + t.correct_answer + ": " + r.correct.map((n) => options[n - 1]).join(", ");
+					const labels = {};
+					fs.querySelectorAll(".tcd-option").forEach((o) => (labels[o.querySelector("input").value] = o.querySelector("span").textContent));
+					note.textContent += " - " + t.correct_answer + ": " + r.correct.map((n) => labels[String(n)]).join(", ");
 				}
 				fs.append(note);
+				if (r.feedback) fs.append(el("p", { class: "tcd-muted" }, r.feedback));
 				if (r.explanation) fs.append(el("p", { class: "tcd-muted" }, r.explanation));
 			});
-
 			const summary = el("div", { class: "tcd-quiz-result " + (res.passed ? "tcd-pass" : "tcd-fail") });
-			summary.append(
-				el("strong", {}, res.passed ? t.passed : t.failed),
-				el("span", {}, " " + format(t.score, res.score, res.max_score, res.percentage))
-			);
-			this.quiz.attempts_used += 1;
-			if (this.quiz.attempts_left !== null && this.quiz.attempts_left !== undefined) this.quiz.attempts_left -= 1;
-			if (!res.passed && this.quiz.attempts_left !== 0) {
+			const head = res.timed_out ? t.time_over : res.pending_review ? t.pending_review : res.passed ? t.passed : t.failed;
+			summary.append(el("strong", {}, head), el("span", {}, " " + format(t.score, res.score, res.max_score, res.percentage)));
+			if (!res.passed && !res.pending_review) {
 				const again = el("button", { type: "button", class: "btn btn-default btn-sm" }, t.try_again);
 				again.addEventListener("click", () => this.load());
 				summary.append(" ", again);

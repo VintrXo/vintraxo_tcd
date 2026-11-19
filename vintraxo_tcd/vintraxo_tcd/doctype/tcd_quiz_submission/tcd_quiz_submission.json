@@ -9,13 +9,22 @@
   "user",
   "attempt",
   "column_break_1",
+  "status",
+  "started_on",
+  "submitted_on",
+  "deadline",
   "score",
   "max_score",
   "percentage",
   "passed",
   "answers_section",
   "answers",
-  "results"
+  "results",
+  "review_section",
+  "paper",
+  "review",
+  "graded_by",
+  "graded_on"
  ],
  "fields": [
   {
@@ -55,6 +64,34 @@
   {
    "fieldname": "column_break_1",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "In Progress\nPending Review\nGraded",
+   "default": "Graded",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "started_on",
+   "fieldtype": "Datetime",
+   "label": "Started On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "submitted_on",
+   "fieldtype": "Datetime",
+   "label": "Submitted On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "deadline",
+   "fieldtype": "Datetime",
+   "label": "Deadline",
+   "read_only": 1
   },
   {
    "fieldname": "score",
@@ -100,10 +137,40 @@
    "label": "Per-question Results",
    "read_only": 1,
    "description": "Correctness of each question at grading time"
+  },
+  {
+   "fieldname": "review_section",
+   "fieldtype": "Section Break",
+   "label": "Review"
+  },
+  {
+   "fieldname": "paper",
+   "fieldtype": "JSON",
+   "label": "Paper",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review",
+   "fieldtype": "JSON",
+   "label": "Manual Review",
+   "read_only": 1
+  },
+  {
+   "fieldname": "graded_by",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Graded By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "graded_on",
+   "fieldtype": "Datetime",
+   "label": "Graded On",
+   "read_only": 1
   }
  ],
  "links": [],
- "modified": "2026-11-19 00:00:00.000000",
+ "modified": "2026-11-19 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Quiz Submission",

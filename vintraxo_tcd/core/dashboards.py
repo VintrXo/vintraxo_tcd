@@ -177,7 +177,18 @@ def instructor_dashboard(user: str) -> dict:
 		limit_page_length=50,
 		ignore_permissions=True,
 	)
+	contents = set()
+	for name in names:
+		contents |= {i["content"] for i in course_svc.course_items(name)}
+	quiz_reviews = frappe.get_all(
+		"TCD Quiz Submission",
+		filters={"content": ("in", list(contents) or [""]), "status": "Pending Review"},
+		fields=["name", "user", "quiz", "submitted_on"],
+		order_by="submitted_on asc",
+		limit_page_length=50,
+		ignore_permissions=True,
+	)
 	titles = {r["course"]: r["title"] for r in rows}
 	for row in pending + to_grade:
 		row.course_title = titles.get(row.course)
-	return {"courses": rows, "pending_approvals": pending, "to_grade": to_grade}
+	return {"courses": rows, "pending_approvals": pending, "to_grade": to_grade, "quiz_reviews": quiz_reviews}

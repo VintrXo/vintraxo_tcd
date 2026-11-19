@@ -29,7 +29,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 1 (partial, previous plan) | 648097e | 65 | Course, Chapter, Learning Path, Learning Item, Enrollment, Student Group, 4 completion rules, roll-up, course/path portal pages |
 | Phase 1 — LMS core | 46af804 | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
 | Phase 2 — Unified experience | c74a3b4 | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
-| Phase 3 — Wiki completion | this commit | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
+| Phase 3 — Wiki completion | bbbbb24 | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
+| Phase 4 — Assessment engine | this commit | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
 
 ## Phase 1 — LMS core: status
 
@@ -73,6 +74,21 @@ Not verified: actual YouTube/Vimeo playback (headless Chromium shows the embed w
 | Feedback / ratings | Done: "Was this page helpful?" (TCD Content Feedback) |
 | Archiving | Existing status; archive banner for staff; hidden from learners |
 | Approval workflow | Existing controller workflow kept (ADR-0012) |
+
+## Phase 4 — Assessment engine: status
+
+| Requirement | State |
+|---|---|
+| Question bank + categories | Done (TCD Question, TCD Question Category) |
+| Types: single/multiple, true/false, fill blank, matching, ordering, short answer, essay, code, SQL, file, scenario | Done (scenario = context text on any type) |
+| Randomization | Done: shuffle questions and options, random picks per category, fixed paper per attempt |
+| Weighted scoring, time limit, attempt limit, passing score | Done (time limit enforced on the server with 60 s grace) |
+| Manual grading with rubrics, results + feedback | Done (Pending Review, rubric dialog in Desk, per-question feedback) |
+| Assessment analytics | Done (report handles bank questions; pending items excluded) |
+| Code/SQL never executed on the server | Done: browser runtime; integrity limitation documented (ADR-0013) |
+
+Verified in Chromium: a mixed quiz (fill blank, matching, ordering, Python, SQL, essay) taken end to end; Python ran in
+Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialog opened.
 
 ## Pending
 
