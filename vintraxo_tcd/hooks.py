@@ -281,6 +281,8 @@ permission_query_conditions = {
 	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.submission_scope_query",
 	"TCD Course Feedback": "vintraxo_tcd.core.permissions.feedback_query",
 	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_query",
+	"TCD User Skill": "vintraxo_tcd.core.permissions.user_skill_query",
+	"TCD Certificate": "vintraxo_tcd.core.permissions.certificate_query",
 }
 
 has_permission = {
@@ -300,10 +302,13 @@ has_permission = {
 	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
 	"TCD Course Feedback": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
 	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_has_permission",
+	"TCD User Skill": "vintraxo_tcd.core.permissions.user_skill_has_permission",
+	"TCD Certificate": "vintraxo_tcd.core.permissions.certificate_has_permission",
 }
 
 website_route_rules = [
 	{"from_route": "/learn/my", "to_route": "learn/my"},
+	{"from_route": "/verify/<code>", "to_route": "verify"},
 	{"from_route": "/learn/instructor", "to_route": "learn/instructor"},
 	{"from_route": "/learn/<space>", "to_route": "learn/space"},
 	{"from_route": "/learn/<space>/course/<slug>", "to_route": "learn/course"},
@@ -326,3 +331,7 @@ add_to_apps_screen = [
 ]
 
 app_include_js = ["/assets/vintraxo_tcd/js/tcd_desk.js"]
+
+scheduler_events = {
+	"daily": ["vintraxo_tcd.core.credentials.expire_certificates"],
+}

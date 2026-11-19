@@ -1,0 +1,168 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 20:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "full_name",
+  "certificate_for",
+  "course",
+  "learning_path",
+  "title",
+  "column_break_1",
+  "status",
+  "issued_on",
+  "expires_on",
+  "verification_code",
+  "revoked_section",
+  "revoked_reason",
+  "renewed_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Learner",
+   "reqd": 1,
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "certificate_for",
+   "fieldtype": "Select",
+   "options": "Course\nLearning Path",
+   "label": "Certificate For",
+   "read_only": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "options": "TCD Course",
+   "label": "Course",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "learning_path",
+   "fieldtype": "Link",
+   "options": "TCD Learning Path",
+   "label": "Learning Path",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "options": "Active\nExpired\nRevoked\nRenewed",
+   "label": "Status",
+   "default": "Active",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "issued_on",
+   "fieldtype": "Date",
+   "label": "Issued On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "expires_on",
+   "fieldtype": "Date",
+   "label": "Expires On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "verification_code",
+   "fieldtype": "Data",
+   "label": "Verification Code",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "revoked_section",
+   "fieldtype": "Section Break",
+   "label": "Revocation",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "revoked_reason",
+   "fieldtype": "Small Text",
+   "label": "Revoked Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "renewed_by",
+   "fieldtype": "Link",
+   "options": "TCD Certificate",
+   "label": "Renewed By",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 20:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Certificate",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1,
+   "delete": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "report": 1,
+   "print": 1,
+   "export": 1,
+   "delete": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Learner",
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "CERT-.YYYY.-.#####",
+ "naming_rule": "Expression (old style)",
+ "in_create": 1,
+ "title_field": "title",
+ "track_changes": 1,
+ "default_print_format": "TCD Certificate"
+}

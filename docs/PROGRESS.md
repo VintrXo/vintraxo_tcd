@@ -11,6 +11,9 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
   were never configured through the wizard. Revert by setting the flag back to 0.
 - `erpnext.localhost` also has the app installed (before the "tcd.localhost only" rule) at an older migration; it is
   no longer updated.
+- PDF: `tcd.localhost` is not resolvable by the system resolver, so `wkhtmltopdf` fails for every document on this
+  site (also core ones). The certificate print format uses Frappe's Chrome PDF generator (A4 landscape via
+  `page-width`/`page-height` in `.print-format`). Fix for wkhtmltopdf: add `127.0.0.1 tcd.localhost` to `/etc/hosts`.
 - Arabic `.po` files of Frappe/ERPNext are not compiled on this bench (`bench compile-po-to-mo` is not run by decision),
   so the app ships its own `translations/ar.csv` (see ADR-0004).
 - Browser checks: Administrator password on tcd.localhost was set by the owner's instruction (2026-11-19); Desk and
@@ -30,7 +33,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 1 — LMS core | 46af804 | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
 | Phase 2 — Unified experience | c74a3b4 | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
 | Phase 3 — Wiki completion | bbbbb24 | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
-| Phase 4 — Assessment engine | this commit | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
+| Phase 4 — Assessment engine | 808a9a8 | 97 | Question bank, 11 question types, papers, time limits, manual review with rubrics |
+| Phase 5 — Skills and certificates | this commit | 106 | Skills, competency gap, certificates with PDF, public verification, expiry/renewal |
 
 ## Phase 1 — LMS core: status
 
@@ -89,6 +93,17 @@ Not verified: actual YouTube/Vimeo playback (headless Chromium shows the embed w
 
 Verified in Chromium: a mixed quiz (fill blank, matching, ordering, Python, SQL, essay) taken end to end; Python ran in
 Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialog opened.
+
+## Phase 5 — Skills and certificates: status
+
+| Requirement | State |
+|---|---|
+| Skills library, user skills | Done (levels 1–5, highest kept, manual awards by admins) |
+| Competency matrix + gap report | Done (profiles per Role, TCD Competency Gap report with suggested courses) |
+| Certificate PDF print format | Done (Arabic, RTL, A4 landscape, embedded logo; verified by rendering the PDF) |
+| Verification code + public page | Done (`/verify/<code>`, 16-char random code, minimal facts) |
+| Expiry / renewal | Done (daily scheduler expiry; instructor renewal issues a new certificate, old one Renewed; admin revoke) |
+| Issued automatically on completion | Done (course and path, also after manual approval) |
 
 ## Pending
 

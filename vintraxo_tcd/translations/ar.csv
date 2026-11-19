@@ -1,6 +1,23 @@
 (no output),(لا توجد مخرجات)
+0 = never expires,0 = لا تنتهي,TCD Course
+0 = never expires,0 = لا تنتهي,TCD Learning Path
 0 = no limit,0 = بلا حد,TCD Quiz
 0 = unlimited,0 = بلا حد
+1,1 - مبتدئ,TCD Competency Requirement
+1,1 - مبتدئ,TCD Skill Award
+1,1 - مبتدئ,TCD User Skill
+2,2 - أساسي,TCD Competency Requirement
+2,2 - أساسي,TCD Skill Award
+2,2 - أساسي,TCD User Skill
+3,3 - متوسط,TCD Competency Requirement
+3,3 - متوسط,TCD Skill Award
+3,3 - متوسط,TCD User Skill
+4,4 - متقدم,TCD Competency Requirement
+4,4 - متقدم,TCD Skill Award
+4,4 - متقدم,TCD User Skill
+5,5 - خبير,TCD Competency Requirement
+5,5 - خبير,TCD Skill Award
+5,5 - خبير,TCD User Skill
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف,TCD Quiz
@@ -14,6 +31,7 @@ Accepted Answers,الإجابات المقبولة,TCD Question
 Access,الوصول
 Access and Instructors,الوصول والمدرّبون,TCD Course
 Access and Instructors,الوصول والمدرّبون,TCD Learning Path
+Active,سارية,TCD Certificate
 Active,مفعّل,TCD Assignment
 Active,مفعّل,TCD Batch
 Active,مفعّل,TCD Quiz
@@ -92,6 +110,7 @@ Attempts,المحاولات
 Attempts left: {0},المحاولات المتبقية: {0}
 Average Score,متوسط الدرجة
 Average of the best quiz scores across the items,متوسط أفضل درجات الاختبارات في العناصر
+Awarded On,تاريخ المنح,TCD User Skill
 Back to Draft,إرجاع لمسودة
 Back to Learning,العودة إلى التعلّم
 Bank Questions,أسئلة البنك,TCD Quiz
@@ -137,6 +156,14 @@ Category,فئة
 Category Name,اسم التصنيف
 Category Name,اسم التصنيف,TCD Category
 Category must belong to the same space.,يجب أن يكون التصنيف في نفس المساحة.
+Certificate For,الشهادة عن,TCD Certificate
+Certificate Validity (months),صلاحية الشهادة (بالأشهر),TCD Course
+Certificate Validity (months),صلاحية الشهادة (بالأشهر),TCD Learning Path
+Certificate not found.,الشهادة غير موجودة.
+Certificate verification,التحقق من الشهادة
+Certificates,الشهادات
+Certificates are issued automatically on completion.,تُصدر الشهادات تلقائيًا عند الإكمال.
+Certificates cannot be reassigned.,لا يمكن نقل الشهادة لشخص آخر.
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
 Choose the code language.,اختر لغة الكود.
@@ -154,6 +181,9 @@ Comment,التعليق,TCD Content Feedback
 Comment,التعليق,TCD Course Feedback
 Comment (optional),تعليق (اختياري)
 Compare with Current,مقارنة بالنسخة الحالية
+Competency Gap,فجوة الكفاءات
+Competency Profile,ملف الكفاءات
+Competency Profiles,ملفات الكفاءات
 Complete the prerequisites first: {0},أكمل المتطلبات السابقة أولًا: {0}
 Complete these courses first: {0},أكمل هذه الدورات أولًا: {0}
 Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
@@ -207,6 +237,7 @@ Course,دورة,TCD Enrollment
 Course,دورة,TCD Learning Item
 Course (learning paths),دورة (لمسارات التعلّم)
 Course Feedback,تقييمات الدورات
+Course and path skills are awarded automatically on completion.,تُمنح مهارات الدورات والمسارات تلقائيًا عند الإكمال.
 Course feedback is given from the course page.,يُضاف تقييم الدورة من صفحة الدورة.
 Course whose instructors grade the submissions,الدورة التي يصحّح مدرّبوها التسليمات,TCD Assignment
 Courses,الدورات
@@ -214,6 +245,7 @@ Courses and learning paths,الدورات ومسارات التعلّم
 Criterion,المعيار,TCD Rubric Criterion
 Current,تيار
 Current Approved Version,النسخة المعتمدة الحالية
+Current Level,المستوى الحالي
 Current file,الملف الحالي
 Current version,النسخة الحالية
 Deadline,الموعد النهائي,TCD Quiz Submission
@@ -231,6 +263,7 @@ Description,وصف
 Document,مستند,TCD Content
 Document,مستند,TCD Content Template
 Done in {0} ms,انتهى في {0} مللي ثانية
+Download PDF,تحميل PDF
 Draft,مسودة
 Draft,مسودة,TCD
 Draft,مسودة,TCD Content
@@ -266,6 +299,9 @@ Exactly one correct answer is allowed.,يُسمح بإجابة صحيحة واح
 Expected Output,المخرجات المتوقعة,TCD Question
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
+Expired,منتهية,TCD
+Expired,منتهية,TCD Certificate
+Expires On,تنتهي في,TCD Certificate
 Explanation,الشرح
 External,رابط خارجي,TCD Content
 External,رابط خارجي,TCD Content Template
@@ -295,7 +331,10 @@ From the Question Bank,من بنك الأسئلة,TCD Quiz
 Full Name,الاسم الكامل
 Full Name,الاسم الكامل,TCD Enrollment
 Full Name,الاسم الكامل,TCD Student Group Member
+Fully Competent,مكتمل الكفاءة
+Gap,الفجوة
 General,عام
+Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
 Graded,مُصحَّح,TCD
@@ -311,6 +350,7 @@ Group Name,اسم المجموعة,TCD Student Group
 Heading,الترويسة
 Heading,عنوان,TCD Block
 Helpful,مفيدة,TCD Content Feedback
+Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
 How Many,العدد,TCD Quiz Bank Item
 Image,صورة
@@ -342,6 +382,11 @@ Internal,داخلي,TCD Space
 Internal Links,الروابط الداخلية,TCD Content
 Invalid enrollment type.,نوع تسجيل غير صالح.
 Invalid grading action.,إجراء تصحيح غير صالح.
+Issue Certificate on Completion,إصدار شهادة عند الإكمال,TCD Course
+Issue Certificate on Completion,إصدار شهادة عند الإكمال,TCD Learning Path
+Issue a new certificate with a new expiry date?,إصدار شهادة جديدة بتاريخ صلاحية جديد؟
+Issued On,تاريخ الإصدار
+Issued On,تاريخ الإصدار,TCD Certificate
 Item Title,عنوان العنصر
 Items,العناصر
 Items,العناصر,TCD Chapter
@@ -381,6 +426,7 @@ Lesson navigation,التنقل بين الدروس
 Lessons,الدروس
 Level,المستوى
 Level,المستوى,TCD Block
+Level {0} of 5,المستوى {0} من 5
 Link URL (https),رابط (https),TCD Block
 Linked from,مرتبطة من
 List,قائمة
@@ -391,6 +437,7 @@ Location,الموقع
 Location,الموقع,TCD Content
 Locked,مغلق
 Locked,مقفل,TCD
+Manual,يدوي,TCD User Skill
 Manual Approval,اعتماد يدوي
 Manual Approval,اعتماد يدوي,TCD
 Manual Approval,اعتماد يدوي,TCD Course
@@ -425,7 +472,9 @@ Move the learning path back to Draft to change its courses.,أعد مسار ال
 Move up,تحريك لأعلى
 Multiple Choice,اختيار متعدد
 My Learning,تعلّمي
+My certificates,شهاداتي
 My courses,دوراتي
+My skills,مهاراتي
 Name,اسم
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 Next,التالي
@@ -435,6 +484,7 @@ No answer,لا توجد إجابة
 No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
 No attempts left.,لا توجد محاولات متبقية.
 No blocks yet. Add one below.,لا توجد كتل بعد. أضف واحدة بالأسفل.
+No certificate matches this code.,لا توجد شهادة بهذا الرمز.
 No content here yet.,لا يوجد محتوى هنا بعد.
 No differences.,لا توجد فروق.
 No ratings yet,لا توجد تقييمات بعد
@@ -454,20 +504,25 @@ One host per line. Supported providers: YouTube and Vimeo. Uploaded mp4/webm fil
 One option per line (not used for True False),خيار في كل سطر (لا يُستخدم مع صح/خطأ)
 One pair per line: left => right,زوج في كل سطر: يسار => يمين,TCD Question
 One per line. For Ordering: the correct order,واحد في كل سطر. للترتيب: الترتيب الصحيح,TCD Question
+Only Gaps,الفجوات فقط
 "Only YouTube, Vimeo or uploaded videos are supported.",المدعوم فقط فيديوهات YouTube وVimeo أو الفيديوهات المرفوعة.
 Only a reviewer can approve content.,المراجع فقط يمكنه اعتماد المحتوى.
 Only a reviewer can publish content.,المراجع فقط يمكنه نشر المحتوى.
 Only a reviewer can publish.,المراجع فقط يمكنه النشر.
+Only active or expired certificates can be renewed.,يمكن تجديد الشهادات السارية أو المنتهية فقط.
+Only an administrator can revoke certificates.,المسؤول فقط يمكنه إلغاء الشهادات.
 Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
 Only an instructor of this course can approve completion.,مدرّب هذه الدورة فقط يمكنه اعتماد الإكمال.
 Only an instructor of this course can enroll a batch.,مدرّب هذه الدورة فقط يمكنه تسجيل دفعة.
 Only an instructor of this course can grade.,مدرّب هذه الدورة فقط يمكنه التصحيح.
+Only an instructor of this course can renew the certificate.,مدرّب هذه الدورة فقط يمكنه تجديد الشهادة.
 Only an instructor of this course or a reviewer can grade.,مدرّب هذه الدورة أو المراجع فقط يمكنه التصحيح.
 Only enrollments pending approval can be approved.,يمكن اعتماد التسجيلات التي في انتظار الاعتماد فقط.
 Only submissions waiting for review can be reviewed.,يمكن مراجعة المحاولات التي تنتظر المراجعة فقط.
 Only users with one of these roles can open a Restricted space or Restricted content in it,فقط المستخدمون الذين لديهم أحد هذه الأدوار يمكنهم فتح المساحة المقيّدة أو المحتوى المقيّد فيها
 Open,مفتوح,TCD
 Open,مفتوح,TCD Course
+Open Gaps,فجوات مفتوحة
 Open file,فتح الملف
 Open the full report,افتح التقرير الكامل
 "Option numbers starting at 1, comma separated (e.g. 2 or 1,3). True False: 1 = True, 2 = False","أرقام الخيارات بدءًا من 1 مفصولة بفاصلة (مثل 2 أو 1,3). صح/خطأ: 1 = صح، 2 = خطأ"
@@ -536,6 +591,7 @@ Prerequisite Courses,الدورات المطلوبة مسبقًا,TCD Course
 Prerequisites,المتطلبات السابقة
 Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
+Profile Name,اسم الملف,TCD Competency Profile
 Progress,التقدّم,TCD
 Progress,التقدّم,TCD Enrollment
 Progress,تقدم
@@ -581,6 +637,7 @@ Rating,تقييم
 Rating (1-5),التقييم (1-5),TCD Course Feedback
 Rating must be between 1 and 5.,التقييم يجب أن يكون بين 1 و5.
 Ratings,التقييمات
+Reason,سبب
 Recently completed,أُنجز مؤخرًا
 Recommended for you,مقترح لك
 Reference,مرجع
@@ -592,14 +649,21 @@ Related,ذو صلة,TCD Content Relation
 Related reading,قراءات ذات صلة
 Relation Type,نوع العلاقة
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
+Renew,تجديد
+Renewed,مُجدَّدة,TCD
+Renewed,مُجدَّدة,TCD Certificate
+Renewed By,جُدّدت بالشهادة,TCD Certificate
 Replace the current content with this version and move it to Draft?,استبدال المحتوى الحالي بهذه النسخة وإعادته إلى مسودة؟
 Reports,تقارير
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
+Required Level,المستوى المطلوب
+Required Level,المستوى المطلوب,TCD Competency Requirement
 Required Sequence,تسلسل إلزامي
 Required Sequence,تسلسل إلزامي,TCD
 Required Sequence,تسلسل إلزامي,TCD Course
 Required Sequence,تسلسل إلزامي,TCD Learning Path
 Required to Complete Content,مطلوب لإكمال المحتوى
+Requirements,المتطلبات,TCD Competency Profile
 Requires Manual Review,يتطلب مراجعة يدوية,TCD Question
 Reset,إعادة تعيين
 Restore as Draft,استعادة كمسودة
@@ -619,6 +683,11 @@ Returned,أُعيد للتعديل,TCD Assignment Submission
 Review,المراجعة,TCD Quiz Submission
 Review & Publishing,المراجعة والنشر
 Review Answers,مراجعة الإجابات
+Revocation,الإلغاء,TCD Certificate
+Revoke,سحب
+Revoked,ملغاة,TCD
+Revoked,ملغاة,TCD Certificate
+Revoked Reason,سبب الإلغاء,TCD Certificate
 Role,الدور,TCD Space Role
 Role,صلاحية
 Row {0}: choose a content item.,السطر {0}: اختر عنصر محتوى.
@@ -655,6 +724,7 @@ Search,البحث
 Search Text,نص البحث
 Search lessons and articles,ابحث في الدروس والمقالات
 See Also,انظر أيضًا
+Select a competency profile.,اختر ملف كفاءات.
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
 Send,إرسال
@@ -667,6 +737,18 @@ Shown after submission when enabled on the quiz,يظهر بعد التسليم �
 Shuffle Options,خلط الخيارات,TCD Quiz
 Shuffle Questions,خلط الأسئلة
 Single Choice,اختيار واحد
+Skill,المهارة
+Skill,المهارة,TCD Competency Requirement
+Skill,المهارة,TCD Skill Award
+Skill,المهارة,TCD User Skill
+Skill Group,مجموعة المهارة,TCD Skill
+Skill Name,اسم المهارة,TCD Skill
+Skills,المهارات
+Skills Awarded,المهارات الممنوحة,TCD Course
+Skills Awarded,المهارات الممنوحة,TCD Learning Path
+Skills and Certificate,المهارات والشهادة,TCD Course
+Skills and Certificate,المهارات والشهادة,TCD Learning Path
+Skills and Certificates,المهارات والشهادات
 Skipped: {0},تم التخطي: {0}
 Slug,المعرف اللطيف
 Slug,المعرّف في الرابط,TCD Content
@@ -679,6 +761,8 @@ Sort Order,الترتيب,TCD Category
 Sort Order,الترتيب,TCD Chapter
 Sort Order,الترتيب,TCD Content Relation
 Sort Order,ترتيب الفرز
+Source,المصدر,TCD User Skill
+Source Name,اسم المصدر,TCD User Skill
 Space,المساحة
 Space,المساحة,TCD Category
 Space,المساحة,TCD Chapter
@@ -719,6 +803,7 @@ Submitted,مُسلَّم,TCD
 Submitted,مُسلَّم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Quiz Submission
+Suggested Courses,دورات مقترحة
 Summary,الملخص,TCD Content
 Summary,الملخص,TCD Content Version
 Summary,الملخص,TCD Course
@@ -729,7 +814,11 @@ TCD Assignment Submission,تسليم تكليف
 TCD Batch,دفعة
 TCD Batch Member,عضو دفعة
 TCD Category,تصنيف محتوى
+TCD Certificate,شهادة
 TCD Chapter,فصل
+TCD Competency Gap,فجوة الكفاءات
+TCD Competency Profile,ملف كفاءات
+TCD Competency Requirement,متطلب كفاءة
 TCD Content,محتوى تعليمي
 TCD Content Feedback,تقييم صفحة
 TCD Content Relation,علاقة محتوى
@@ -754,11 +843,14 @@ TCD Quiz Question,سؤال اختبار
 TCD Quiz Submission,محاولة اختبار
 TCD Rubric Criterion,معيار تقييم
 TCD Settings,إعدادات التعلّم
+TCD Skill,مهارة
+TCD Skill Award,مهارة ممنوحة
 TCD Space,مساحة تعليمية
 TCD Space Role,دور المساحة
 TCD Student Group,مجموعة متعلمين
 TCD Student Group Member,عضو مجموعة
 TCD Tutorial Lesson,درس المسار
+TCD User Skill,مهارة متعلم
 Target Type,نوع الهدف,TCD Content Relation
 Tell the learner what to change before returning the submission.,اكتب للمتعلم ما يجب تعديله قبل إرجاع التسليم.
 Template,قالب
@@ -780,6 +872,7 @@ The reverse {0} relation already exists.,العلاقة العكسية {0} مو�
 The template blocks replace the current blocks.,كتل القالب ستحل محل الكتل الحالية.
 "This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
 This assignment is not active.,هذا التكليف غير مفعّل.
+This certificate is not valid,هذه الشهادة غير صالحة
 This content is {0}. Move it back to Draft to edit.,حالة هذا المحتوى {0}. أعده إلى مسودة لتعديله.
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
@@ -833,8 +926,17 @@ User,المستخدم
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
+User Skills,مهارات المتعلمين
+Users,المستخدمين
+Users with this role are checked against the profile,يُقارن أصحاب هذا الدور بهذا الملف,TCD Competency Profile
+Valid certificate,شهادة صالحة
+Valid until,صالحة حتى
 Variant,النوع,TCD Block
 Variant,مختلف
+Verification Code,رمز التحقق,TCD Certificate
+Verification Page,صفحة التحقق
+Verification link,رابط التحقق
+Verified By,تحقّق منه,TCD User Skill
 Version,الإصدار
 Version,النسخة,TCD Content Version
 Video,فيديو
@@ -864,11 +966,13 @@ You are not an instructor of any course yet.,لست مدرّبًا لأي دور
 You are not enrolled in any course yet.,لم تسجّل في أي دورة بعد.
 You can only enroll in published courses and learning paths.,يمكن التسجيل فقط في الدورات ومسارات التعلّم المنشورة.
 You can only submit files you uploaded.,يمكنك تسليم الملفات التي رفعتها أنت فقط.
+You earned a certificate for this course.,حصلت على شهادة لهذه الدورة.
 Your answer,إجابتك
 javascript,جافاسكربت,TCD Question
 python,بايثون,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
+{0} already has this skill; edit the existing record.,لدى {0} هذه المهارة بالفعل؛ عدّل السجل الموجود.
 {0} cannot access this course or learning path.,لا يستطيع {0} الوصول إلى هذه الدورة أو مسار التعلّم.
 {0} content cannot be edited. Move it back to Draft first.,لا يمكن تعديل محتوى حالته {0}. أعده إلى مسودة أولًا.
 {0} is a reserved name. Choose another Space ID.,{0} اسم محجوز. اختر معرّف مساحة آخر.

@@ -35,6 +35,38 @@
 		{% endif %}
 	</section>
 
+	{% if data.certificates %}
+	<section class="tcd-section">
+		<h2>{{ _("My certificates") }}</h2>
+		<ul class="tcd-cards">
+			{% for c in data.certificates %}
+			<li class="tcd-card tcd-cert-card">
+				<div>
+					<span class="tcd-status tcd-status-{{ c.status|lower }}">{{ _(c.status, context="TCD") }}</span>
+					<strong>{{ c.title|e }}</strong>
+					<span class="tcd-muted tcd-small" dir="ltr">{{ c.name|e }} · {{ frappe.format_date(c.issued_on) }}{% if c.expires_on %} → {{ frappe.format_date(c.expires_on) }}{% endif %}</span>
+					<span class="tcd-cert-actions">
+						<a class="btn btn-default btn-xs" href="{{ c.pdf_url|e }}">{{ _("Download PDF") }}</a>
+						<a class="btn btn-default btn-xs" href="{{ c.verify_url|e }}" target="_blank" rel="noopener">{{ _("Verification link") }}</a>
+					</span>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+	{% if data.skills %}
+	<section class="tcd-section">
+		<h2>{{ _("My skills") }}</h2>
+		<ul class="tcd-skills">
+			{% for sk in data.skills %}
+			<li><strong>{{ sk.skill|e }}</strong> <span class="tcd-level" aria-label="{{ _('Level {0} of 5').format(sk.level) }}">{% for n in range(1, 6) %}<i class="{{ 'on' if n <= sk.level|int else '' }}"></i>{% endfor %}</span></li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% if data.recommendations %}
 	<section class="tcd-section">
 		<h2>{{ _("Recommended for you") }}</h2>

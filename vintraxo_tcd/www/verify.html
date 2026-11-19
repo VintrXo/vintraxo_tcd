@@ -1,0 +1,24 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css">{% endblock %}
+
+{% block page_content %}
+<div class="tcd-page tcd-verify" dir="rtl" lang="ar">
+	<header class="tcd-hero"><h1>{{ _("Certificate verification") }}</h1></header>
+	{% if found %}
+	{% set ok = cert.status == "Active" %}
+	<div class="tcd-callout tcd-callout-{{ 'tip' if ok else 'danger' }}">
+		<strong>{{ _("Valid certificate") if ok else _("This certificate is not valid") }}</strong>
+		<span class="tcd-status">{{ _(cert.status, context="TCD") }}</span>
+	</div>
+	<dl class="tcd-verify-list">
+		<dt>{{ _("Holder") }}</dt><dd>{{ cert.full_name|e }}</dd>
+		<dt>{{ _("Learning Path") if cert.certificate_for == "Learning Path" else _("Course", context="TCD") }}</dt><dd>{{ cert.title|e }}</dd>
+		<dt>{{ _("Issued On") }}</dt><dd dir="ltr">{{ frappe.format_date(cert.issued_on) }}</dd>
+		<dt>{{ _("Valid until") }}</dt><dd dir="ltr">{{ frappe.format_date(cert.expires_on) if cert.expires_on else "—" }}</dd>
+	</dl>
+	{% else %}
+	<div class="tcd-callout tcd-callout-danger">{{ _("No certificate matches this code.") }}</div>
+	{% endif %}
+</div>
+{% endblock %}

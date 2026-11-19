@@ -68,6 +68,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - Manual review (`api.review_quiz_submission`): admins, TCD Content Reviewer, or instructors of a course that contains
   the quiz's content.
 
+## Phase 5: skills and certificates
+- TCD Skill: everyone with a TCD role reads; admins and authors manage. Competency profiles: admins manage, staff read.
+- TCD User Skill and TCD Certificate: the owner (user), instructors of the course/path that produced them, admins.
+- `/verify/<code>`: public, read-only, minimal fields; unknown codes return 404.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

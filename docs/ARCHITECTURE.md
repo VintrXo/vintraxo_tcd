@@ -28,6 +28,7 @@
 | permissions.py | Space/visibility access (has_permission + permission_query_conditions) |
 | progress.py | Lesson/tutorial progress and roll-up |
 | quiz.py | Quiz validation, attempts (start/resume/deadline), learner payload, grading, manual review |
+| credentials.py | Skills (award/keep highest), certificates (issue, expire, renew, revoke, verify), competency gaps |
 | assessment.py | Question items (inline + bank), papers, payloads without answers, grading per type, rubric points |
 | portal.py | Context for /learn pages (login/portal guards, listings, lesson, course, path pages) |
 | courses.py | Course/path structure rules, completion rules, roll-up, enrollment, sequence gating |
@@ -66,6 +67,9 @@
 | get_templates(content_type?) / get_template(name) | GET | Content templates for authors |
 | start_quiz(name) | POST | Open/resume a timed or randomized attempt |
 | get_review_items(name) / review_quiz_submission(name, reviews) | GET / POST | Manual grading with rubrics |
+| my_credentials() | GET | The learner's certificates and skills |
+| renew_certificate(name) / revoke_certificate(name, reason) | POST | Instructor renews; admin revokes |
+| verify_certificate(code) | GET (guest) | Public minimal certificate facts |
 | my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
 
 ## Learner portal (P3)
@@ -73,6 +77,7 @@
 |---|---|---|
 | `/learn` | `www/learn/index` | Spaces, "continue learning", search (`?q=`) |
 | `/learn/<space>` | `www/learn/space` | Content grouped by category; tutorials first |
+| `/verify/<code>` | `www/verify` | Public certificate verification (no login) |
 | `/learn/my` | `www/learn/my` | My Learning: enrollments, due/overdue, assignments |
 | `/learn/instructor` | `www/learn/instructor` | Instructor dashboard: courses, approvals, grading queue |
 | `/learn/<space>/course/<slug>` | `www/learn/course` | Outline, progress, enroll button, locked items |

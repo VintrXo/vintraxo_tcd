@@ -99,7 +99,29 @@ def my_learning(user: str) -> dict:
 		item = connect._item("TCD Content", row.content, completed_on=row.completed_on)
 		if item:
 			recent.append(item)
+	from urllib.parse import quote
+
+	certificates = frappe.get_list(
+		"TCD Certificate",
+		filters={"user": user},
+		fields=["name", "title", "status", "issued_on", "expires_on", "verification_code"],
+		order_by="issued_on desc",
+	)
+	for c in certificates:
+		c.pdf_url = (
+			"/api/method/frappe.utils.print_format.download_pdf?doctype=TCD%20Certificate"
+			f"&name={quote(c.name)}&format=TCD%20Certificate"
+		)
+		c.verify_url = f"/verify/{quote(c.verification_code)}"
+	skills = frappe.get_list(
+		"TCD User Skill",
+		filters={"user": user},
+		fields=["skill", "level", "source_type"],
+		order_by="skill asc",
+	)
 	return {
+		"certificates": certificates,
+		"skills": skills,
 		"recommendations": connect.recommendations(user),
 		"tutorials": tutorials,
 		"recent": recent,

@@ -450,3 +450,59 @@ def content_feedback_has_permission(doc, ptype=None, user=None, debug=False):
 	if is_admin(user) or doc.user == user:
 		return True
 	return is_staff(user) and _content_doc_ok(doc.content, user)
+
+
+# ---------------------------------------------------------------- Phase 5: skills and certificates
+
+
+def _learners_of_instructor(user: str) -> str | None:
+	courses = instructed(user, "TCD Course")
+	paths = instructed(user, "TCD Learning Path")
+	parts = []
+	if courses:
+		parts.append(_in("e.course", courses))
+	if paths:
+		parts.append(_in("e.learning_path", paths))
+	if not parts:
+		return None
+	return f"select e.user from `tabTCD Enrollment` e where {' or '.join(parts)}"
+
+
+def user_skill_query(user=None, doctype=None):
+	user = user or frappe.session.user
+	if is_admin(user):
+		return ""
+	table = "`tabTCD User Skill`"
+	own = f"{table}.user = {frappe.db.escape(user)}"
+	learners = _learners_of_instructor(user)
+	return f"({own} or {table}.user in ({learners}))" if learners else own
+
+
+def user_skill_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	if is_admin(user) or doc.user == user:
+		return True
+	learners = _learners_of_instructor(user)
+	return bool(learners) and bool(
+		frappe.db.sql(f"select 1 from ({learners}) t where t.user = %s limit 1", doc.user)
+	)
+
+
+def certificate_query(user=None, doctype=None):
+	user = user or frappe.session.user
+	if is_admin(user):
+		return ""
+	table = "`tabTCD Certificate`"
+	parts = [f"{table}.user = {frappe.db.escape(user)}"]
+	courses = instructed(user, "TCD Course")
+	paths = instructed(user, "TCD Learning Path")
+	if courses:
+		parts.append(_in(f"{table}.course", courses))
+	if paths:
+		parts.append(_in(f"{table}.learning_path", paths))
+	return "(" + " or ".join(parts) + ")"
+
+
+def certificate_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	return doc.user == user or is_instructor_of(user, doc.course, doc.learning_path)

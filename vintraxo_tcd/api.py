@@ -515,3 +515,63 @@ def get_review_items(name: str) -> list:
 				}
 			)
 	return out
+
+
+# ---------------------------------------------------------------- Phase 5: skills and certificates
+
+
+@frappe.whitelist()
+def my_credentials() -> dict:
+	user = frappe.session.user
+	certs = frappe.get_list(
+		"TCD Certificate",
+		filters={"user": user},
+		fields=["name", "title", "status", "issued_on", "expires_on", "verification_code"],
+		order_by="issued_on desc",
+	)
+	skills = frappe.get_list(
+		"TCD User Skill",
+		filters={"user": user},
+		fields=["skill", "level", "source_type", "source_name"],
+		order_by="skill asc",
+	)
+	return {"certificates": certs, "skills": skills}
+
+
+def _can_manage_certificate(cert) -> bool:
+	return is_instructor_of(frappe.session.user, cert.course, cert.learning_path)
+
+
+@frappe.whitelist(methods=["POST"])
+def renew_certificate(name: str) -> dict:
+	from vintraxo_tcd.core import credentials
+
+	cert = frappe.get_doc("TCD Certificate", name)
+	if not frappe.has_permission("TCD Certificate", "read", cert) or not _can_manage_certificate(cert):
+		frappe.throw(
+			frappe._("Only an instructor of this course can renew the certificate."), frappe.PermissionError
+		)
+	new = credentials.renew_certificate(cert.name)
+	return {"name": new.name, "expires_on": new.expires_on}
+
+
+@frappe.whitelist(methods=["POST"])
+def revoke_certificate(name: str, reason: str) -> dict:
+	from vintraxo_tcd.core import credentials
+	from vintraxo_tcd.core.permissions import is_admin
+
+	if not is_admin(frappe.session.user):
+		frappe.throw(frappe._("Only an administrator can revoke certificates."), frappe.PermissionError)
+	credentials.revoke_certificate(name, reason)
+	return {"name": name, "status": "Revoked"}
+
+
+@frappe.whitelist(allow_guest=True)
+def verify_certificate(code: str) -> dict:
+	"""Public: minimal certificate facts for a verification code."""
+	from vintraxo_tcd.core import credentials
+
+	row = credentials.verify(code)
+	if not row:
+		frappe.throw(frappe._("Certificate not found."), frappe.DoesNotExistError)
+	return {k: row[k] for k in ("full_name", "title", "certificate_for", "issued_on", "expires_on", "status")}

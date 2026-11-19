@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "creation": "2026-11-19 20:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "skill",
+  "level",
+  "column_break_1",
+  "source_type",
+  "source_name",
+  "awarded_on",
+  "verified_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "User",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "skill",
+   "fieldtype": "Link",
+   "options": "TCD Skill",
+   "label": "Skill",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "options": "1\n2\n3\n4\n5",
+   "label": "Level",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source_type",
+   "fieldtype": "Select",
+   "options": "Course\nLearning Path\nManual",
+   "label": "Source",
+   "default": "Manual",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "source_name",
+   "fieldtype": "Data",
+   "label": "Source Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "awarded_on",
+   "fieldtype": "Datetime",
+   "label": "Awarded On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "verified_by",
+   "fieldtype": "Link",
+   "options": "User",
+   "label": "Verified By",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-19 20:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD User Skill",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1,
+   "print": 1
+  },
+  {
+   "role": "TCD Learner",
+   "read": 1,
+   "print": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "track_changes": 1
+}

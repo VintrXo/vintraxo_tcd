@@ -298,6 +298,10 @@ def _apply(enrollment, state: dict):
 	elif enrollment.status == "Pending Approval":
 		values["status"] = "Active"
 	enrollment.db_set(values)
+	if values.get("status") == "Completed":
+		from vintraxo_tcd.core import credentials
+
+		credentials.on_completed(enrollment)
 
 
 def refresh_course(user: str, course: str):
@@ -425,6 +429,9 @@ def approve(enrollment_name: str):
 		}
 	)
 	doc.save(ignore_permissions=True)
+	from vintraxo_tcd.core import credentials
+
+	credentials.on_completed(doc)
 	if doc.course:
 		for path in paths_with_course(doc.course):
 			refresh_path(doc.user, path)

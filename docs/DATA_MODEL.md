@@ -189,6 +189,28 @@ Draft -> In Review -> Approved -> Published -> Archived
   instructor of a course containing the quiz's content (or an admin/reviewer) reviews them; then pass/fail and
   lesson completion are applied.
 
+## Phase 5: skills and certificates
+| DocType / field | Key fields |
+|---|---|
+| TCD Skill | skill_name, skill_group, description |
+| TCD Skill Award (child of TCD Course / TCD Learning Path) | skill, level (1-5) |
+| TCD User Skill | user, skill, level, source_type (Course / Learning Path / Manual), source_name, awarded_on, verified_by |
+| TCD Competency Profile | profile_name, role (Link Role, optional), description, requirements (TCD Competency Requirement: skill, required_level) |
+| TCD Course / TCD Learning Path: certificate fields | issue_certificate, certificate_validity_months (0 = no expiry) |
+| TCD Certificate | naming CERT-.YYYY.-.#####; user, full_name, certificate_for (Course / Learning Path), course, learning_path, title, issued_on, expires_on, status (Active / Expired / Revoked / Renewed), verification_code, revoked_reason, renewed_by |
+
+### Rules
+- Levels: 1 Beginner, 2 Basic, 3 Intermediate, 4 Advanced, 5 Expert. A user skill keeps the highest level earned;
+  every award is idempotent per (user, skill).
+- On enrollment completion (course or path): award its skills, then issue a certificate when `issue_certificate`
+  is set and the user has no Active certificate for it.
+- Expiry: a daily scheduler job marks certificates past `expires_on` as Expired. Renewal: an instructor/admin starts
+  a renewal (enrollment back to Active, progress kept for history); completing again issues a new certificate and
+  marks the old one Renewed.
+- Verification: `/verify/<code>` (public, no login) shows holder name, title, dates and status only.
+- Gap report: for a profile (and optionally a user), each requirement vs the user's level, plus courses that award
+  the missing skill at the required level or higher.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

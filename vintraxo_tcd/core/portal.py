@@ -433,6 +433,12 @@ def course_context(space_name: str, slug: str) -> dict:
 		"prerequisites": prereqs,
 		"unmet_prerequisites": [p["title"] for p in prereqs if not p["satisfied"]],
 		"referenced_by": connect.related_for_course(course.name),
+		"certificate": frappe.db.get_value(
+			"TCD Certificate",
+			{"user": user, "course": course.name, "status": ("in", ["Active", "Expired"])},
+			["name", "verification_code", "status"],
+			as_dict=True,
+		),
 		"js_labels": js_labels(),
 	}
 

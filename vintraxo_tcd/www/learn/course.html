@@ -22,6 +22,11 @@
 			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ data.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ data.percent|int }}%"></span></span>
 			<span class="tcd-muted">{{ data.percent|int }}%{% if data.score is not none %} · {{ _("Score") }} {{ data.score|int }}%{% endif %}</span>
 		</div>
+		{% if certificate %}
+		<p class="tcd-callout tcd-callout-tip">{{ _("You earned a certificate for this course.") }}
+			<a href="/api/method/frappe.utils.print_format.download_pdf?doctype=TCD%20Certificate&name={{ certificate.name|urlencode }}&format=TCD%20Certificate">{{ _("Download PDF") }}</a> ·
+			<a href="/verify/{{ certificate.verification_code|urlencode }}" target="_blank" rel="noopener">{{ _("Verification link") }}</a></p>
+		{% endif %}
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
 		{% elif unmet_prerequisites %}
 		<p class="tcd-callout tcd-callout-warning">{{ _("Complete these courses first: {0}").format(unmet_prerequisites|join(", ")|e) }}</p>
