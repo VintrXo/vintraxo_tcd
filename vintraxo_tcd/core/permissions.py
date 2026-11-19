@@ -432,3 +432,21 @@ def feedback_query(user=None, doctype=None):
 def own_or_course_instructor_has_permission(doc, ptype=None, user=None, debug=False):
 	user = user or frappe.session.user
 	return doc.user == user or is_instructor_of(user, doc.course)
+
+
+def content_feedback_query(user=None, doctype=None):
+	user = user or frappe.session.user
+	if is_admin(user):
+		return ""
+	table = "`tabTCD Content Feedback`"
+	own = f"{table}.user = {frappe.db.escape(user)}"
+	if not is_staff(user):
+		return own
+	return f"({own} or {_via_content(f'{table}.content', user)})"
+
+
+def content_feedback_has_permission(doc, ptype=None, user=None, debug=False):
+	user = user or frappe.session.user
+	if is_admin(user) or doc.user == user:
+		return True
+	return is_staff(user) and _content_doc_ok(doc.content, user)

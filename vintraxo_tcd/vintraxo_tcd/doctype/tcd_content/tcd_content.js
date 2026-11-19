@@ -4,6 +4,7 @@
 const TCD_BLOCK_TYPES = {
 	heading: { label: __("Heading", null, "TCD Block"), fields: [["text", "data", __("Text", null, "TCD Block")], ["level", "select", __("Level", null, "TCD Block"), ["1", "2", "3", "4"]]] },
 	paragraph: { label: __("Paragraph", null, "TCD Block"), fields: [["text", "text", __("Text", null, "TCD Block")]] },
+	markdown: { label: __("Markdown", null, "TCD Block"), fields: [["text", "text", __("Markdown (links: [[page-slug]])", null, "TCD Block")]] },
 	code: { label: __("Code", null, "TCD Block"), fields: [["language", "data", __("Language", null, "TCD Block"), null, "ltr"], ["code", "code", __("Code", null, "TCD Block")]] },
 	callout: {
 		label: __("Callout", null, "TCD Block"),
@@ -53,6 +54,7 @@ const TCD_BLOCK_TYPES = {
 const TCD_REQUIRED = {
 	heading: "text",
 	paragraph: "text",
+	markdown: "text",
 	code: "code",
 	callout: "text",
 	list: "items",
@@ -306,6 +308,9 @@ frappe.ui.form.on("TCD Content", {
 });
 
 function tcd_add_workflow_buttons(frm) {
+	if (frm.doc.status === "Draft" && (frm.is_new() || frm.perm?.[0]?.write)) {
+		frm.add_custom_button(__("Apply Template"), () => tcd_apply_template(frm));
+	}
 	if (frm.is_new()) return;
 	const onload = frm.doc.__onload || {};
 	const reviewer = !!onload.is_reviewer;
@@ -357,4 +362,28 @@ function tcd_add_workflow_buttons(frm) {
 	if (frm.doc.current_version) {
 		frm.add_custom_button(__("Approved Version"), () => frappe.set_route("Form", "TCD Content Version", frm.doc.current_version));
 	}
+}
+
+function tcd_apply_template(frm) {
+	const d = new frappe.ui.Dialog({
+		title: __("Apply Template"),
+		fields: [
+			{ fieldname: "template", fieldtype: "Link", options: "TCD Content Template", label: __("Template"), reqd: 1 },
+			{ fieldname: "note", fieldtype: "HTML", options: `<p class="text-muted small">${frappe.utils.escape_html(__("The template blocks replace the current blocks."))}</p>` },
+		],
+		primary_action_label: __("Apply"),
+		primary_action({ template }) {
+			frappe.call({ method: "vintraxo_tcd.api.get_template", args: { name: template } }).then((r) => {
+				const t = r.message || {};
+				frm.set_value("content_type", t.content_type);
+				if (t.lesson_type) frm.set_value("lesson_type", t.lesson_type);
+				frm.set_value("blocks", t.blocks || "[]").then(() => {
+					frm.__tcd_editor?.load();
+					frm.__tcd_editor?.render();
+				});
+				d.hide();
+			});
+		},
+	});
+	d.show();
 }

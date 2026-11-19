@@ -31,6 +31,7 @@ BLOCK_SCHEMA = {
 		"embed_url": (str, False),
 	},
 	"link": {"url": (str, True), "title": (str, True), "description": (str, False)},
+	"markdown": {"text": (str, True)},
 	"file": {"url": (str, True), "title": (str, True)},
 }
 
@@ -45,6 +46,7 @@ SEARCHABLE = {
 	"playground": ("code",),
 	"video": ("title", "caption"),
 	"link": ("title", "description"),
+	"markdown": ("text",),
 	"file": ("title",),
 }
 

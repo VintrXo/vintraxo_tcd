@@ -1,17 +1,20 @@
-{#- Renders TCD Content blocks. Every value is escaped: www templates are not autoescaped. -#}
+{#- Renders TCD Content blocks. Every value is escaped: www templates are not autoescaped.
+    `b.html` is produced only by core.wiki (escaped text + our own links, or sanitized Markdown). -#}
 {% macro render_blocks(blocks, playground) %}
 {% for b in blocks %}
 	{% if b.type == "heading" %}
 		{% set level = (b.level or 2) + 1 %}
 		<h{{ level }} class="tcd-heading">{{ b.text|e }}</h{{ level }}>
 	{% elif b.type == "paragraph" %}
-		<p class="tcd-paragraph">{{ b.text|e }}</p>
+		<p class="tcd-paragraph">{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</p>
+	{% elif b.type == "markdown" %}
+		<div class="tcd-markdown">{{ b.html or "" }}</div>
 	{% elif b.type == "code" %}
 		<pre class="tcd-code" dir="ltr"><code{% if b.language %} class="language-{{ b.language|e }}"{% endif %}>{{ b.code|e }}</code></pre>
 	{% elif b.type == "callout" %}
 		<aside class="tcd-callout tcd-callout-{{ (b.variant or 'info')|e }}">
 			{% if b.title %}<strong class="tcd-callout-title">{{ b.title|e }}</strong>{% endif %}
-			<div>{{ b.text|e }}</div>
+			<div>{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</div>
 		</aside>
 	{% elif b.type == "list" %}
 		{% set tag = "ol" if b.ordered else "ul" %}

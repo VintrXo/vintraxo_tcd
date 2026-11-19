@@ -3,7 +3,7 @@
 import frappe
 
 from vintraxo_tcd.core import assignments as svc_assignments
-from vintraxo_tcd.core import connect, courses, progress
+from vintraxo_tcd.core import connect, courses, progress, wiki
 from vintraxo_tcd.core import content as svc_content
 from vintraxo_tcd.core import dashboards as svc_dashboards
 from vintraxo_tcd.core import quiz as svc_quiz
@@ -408,3 +408,47 @@ def get_related(name: str) -> dict:
 @frappe.whitelist()
 def get_recommendations(limit: int = 6) -> list:
 	return connect.recommendations(frappe.session.user, int(limit or 6))
+
+
+# ---------------------------------------------------------------- Phase 3: wiki
+
+
+@frappe.whitelist()
+def compare_versions(old: str, new: str) -> dict:
+	"""Diff two versions, or a version and the current content (pass the content name)."""
+	for name in (old, new):
+		target = frappe.db.get_value("TCD Content Version", name, "content") or name
+		_readable_content(target)
+	if not frappe.has_permission("TCD Content Version", "read"):
+		frappe.throw(frappe._("Not permitted"), frappe.PermissionError)
+	return wiki.compare(old, new)
+
+
+@frappe.whitelist(methods=["POST"])
+def restore_version(name: str) -> dict:
+	version = frappe.get_doc("TCD Content Version", name)
+	version.check_permission("read")
+	doc = wiki.restore(version.name)
+	return {"name": doc.name, "status": doc.status}
+
+
+@frappe.whitelist(methods=["POST"])
+def content_feedback(name: str, helpful: int, comment: str | None = None) -> dict:
+	doc = _readable_content(name)
+	wiki.give_feedback(doc.name, frappe.session.user, bool(int(helpful)), comment)
+	return wiki.feedback_stats(doc.name)
+
+
+@frappe.whitelist()
+def get_templates(content_type: str | None = None) -> list:
+	filters = {"content_type": content_type} if content_type else {}
+	return frappe.get_list(
+		"TCD Content Template", filters=filters, fields=["name", "content_type", "lesson_type", "description"]
+	)
+
+
+@frappe.whitelist()
+def get_template(name: str) -> dict:
+	doc = frappe.get_doc("TCD Content Template", name)
+	doc.check_permission("read")
+	return {"blocks": doc.blocks, "content_type": doc.content_type, "lesson_type": doc.lesson_type}

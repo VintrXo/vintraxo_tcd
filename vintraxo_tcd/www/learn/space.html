@@ -14,12 +14,27 @@
 </li>
 {% endmacro %}
 
+{% macro tree(nodes) %}
+<ul class="tcd-tree">
+	{% for n in nodes %}
+	<li><a href="{{ n.url|e }}">{{ n.title|e }}</a>{% if n.children %}{{ tree(n.children) }}{% endif %}</li>
+	{% endfor %}
+</ul>
+{% endmacro %}
+
 {% block page_content %}
 <div class="tcd-page">
 	<header class="tcd-hero">
 		<h1>{{ space.title|e }}</h1>
 		{% if space.description %}<p class="tcd-muted">{{ space.description|e }}</p>{% endif %}
 	</header>
+
+	{% if page_tree %}
+	<details class="tcd-section tcd-page-tree" open>
+		<summary><h2>{{ _("Page tree") }}</h2></summary>
+		{{ tree(page_tree) }}
+	</details>
+	{% endif %}
 
 	{% if offerings %}
 	<section class="tcd-section">

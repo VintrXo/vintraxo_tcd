@@ -7,7 +7,9 @@
 <article class="tcd-page tcd-content" dir="{{ dir }}" lang="{{ doc.language|e }}"
 	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
 
-	{% if is_staff_preview %}
+	{% if doc.status == "Archived" %}
+	<div class="tcd-callout tcd-callout-danger">{{ _("This page is archived and kept for reference only.") }}</div>
+	{% elif is_staff_preview %}
 	<div class="tcd-callout tcd-callout-warning">{{ _("Preview: this content is {0} and not visible to learners.").format(_(doc.status, context="TCD")) }}</div>
 	{% endif %}
 
@@ -16,6 +18,7 @@
 		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress, context="TCD") }}</span>
 		<h1>{{ doc.title|e }}</h1>
 		{% if doc.summary %}<p class="tcd-summary">{{ doc.summary|e }}</p>{% endif %}
+		{% if tags %}<p class="tcd-tags">{% for t in tags %}<a class="tcd-chip" href="/learn?tag={{ t|urlencode }}">#{{ t|e }}</a>{% endfor %}</p>{% endif %}
 	</header>
 
 	{% if lesson.tutorial %}
@@ -98,6 +101,15 @@
 	</section>
 	{% endif %}
 
+	{% if children %}
+	<section class="tcd-section">
+		<h2>{{ _("Pages in this section") }}</h2>
+		<ul class="tcd-lessons">
+			{% for c in children %}<li class="tcd-lesson"><a href="/learn/{{ space.name|urlencode }}/{{ c.slug|urlencode }}">{{ c.title|e }}</a></li>{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	{% set rel = related %}
 	{% if rel.prerequisites or rel.next or rel.related or rel.referenced_by or rel.used_in %}
 	<aside class="tcd-section tcd-related" aria-label="{{ _('Related') }}">
@@ -123,6 +135,26 @@
 		{% endif %}
 		{% endfor %}
 	</aside>
+	{% endif %}
+
+	{% if backlinks %}
+	<section class="tcd-section">
+		<h2>{{ _("Linked from") }}</h2>
+		<ul class="tcd-lessons">{% for b in backlinks %}<li class="tcd-lesson"><a href="{{ b.url|e }}">{{ b.title|e }}</a></li>{% endfor %}</ul>
+	</section>
+	{% endif %}
+
+	{% if doc.content_type in ("Article", "Reference") %}
+	<section class="tcd-section tcd-helpful" data-content="{{ doc.name|e }}">
+		<p><strong>{{ _("Was this page helpful?") }}</strong>
+			{% if feedback.total %}<span class="tcd-muted tcd-small">({{ _("{0} of {1} found it helpful").format(feedback.helpful, feedback.total) }})</span>{% endif %}</p>
+		<form class="tcd-helpful-form" novalidate>
+			<label class="tcd-chip"><input type="radio" name="helpful" value="1" {% if my_feedback and my_feedback.helpful %}checked{% endif %}> {{ _("Yes") }}</label>
+			<label class="tcd-chip"><input type="radio" name="helpful" value="0" {% if my_feedback and not my_feedback.helpful %}checked{% endif %}> {{ _("No") }}</label>
+			<textarea class="form-control" name="comment" rows="2" dir="auto" placeholder="{{ _('Comment (optional)') }}">{{ (my_feedback.comment or "")|e if my_feedback else "" }}</textarea>
+			<button type="submit" class="btn btn-default btn-sm">{{ _("Send") }}</button>
+		</form>
+	</section>
 	{% endif %}
 
 	<footer class="tcd-footer">

@@ -25,7 +25,7 @@
 
 	{% if results is not none %}
 	<section class="tcd-section">
-		<h2>{{ _("Results for {0}").format(query|e) }}</h2>
+		<h2>{% if tag %}{{ _("Pages tagged {0}").format(("#" ~ tag)|e) }}{% else %}{{ _("Results for {0}").format(query|e) }}{% endif %}</h2>
 		{% if results %}
 		<ul class="tcd-cards">
 			{% for r in results %}

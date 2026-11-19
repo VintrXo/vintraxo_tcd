@@ -13,6 +13,6 @@ def get_context(context):
 	request = getattr(frappe.local, "request", None)
 	picked = request.args.getlist("t") if request else []
 	types = ",".join(picked) or form.get("types")
-	context.update(portal.home_context(form.get("q"), types, form.get("space")))
+	context.update(portal.home_context(form.get("q"), types, form.get("space"), form.get("tag")))
 	context.title = _("Learning")
 	context.show_sidebar = False

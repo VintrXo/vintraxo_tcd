@@ -28,7 +28,8 @@ Status of [PLAN.md](PLAN.md). Updated at the end of every phase. Test counts are
 | Phase 0 — cleanup | e553fd6 + this commit | 52 | Arabic names without TCD, short labels, translated badge, translation coverage test, VISION/PROGRESS/ADR docs |
 | Phase 1 (partial, previous plan) | 648097e | 65 | Course, Chapter, Learning Path, Learning Item, Enrollment, Student Group, 4 completion rules, roll-up, course/path portal pages |
 | Phase 1 — LMS core | 46af804 | 75 | Batch, instructors, enrolled-only access, lesson types + media blocks, assignments with grading, course rating, My Learning + instructor dashboards |
-| Phase 2 — Unified experience | this commit | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
+| Phase 2 — Unified experience | c74a3b4 | 83 | Cross-pillar relations, prerequisites, course navigation, unified search, recommendations, MVP test script |
+| Phase 3 — Wiki completion | this commit | 91 | Page tree, tags, templates, Markdown, [[links]] + backlinks, version compare/restore, page feedback, archive banner |
 
 ## Phase 1 — LMS core: status
 
@@ -57,7 +58,21 @@ Not verified: actual YouTube/Vimeo playback (headless Chromium shows the embed w
 | Prerequisites enforcement | Done: content (completion) and course (self-enrollment); staff warned, not blocked |
 | Simple recommendations | Done: continue / follow-up / popular |
 
-**MVP GATE:** test script in [MVP_TEST_SCRIPT.md](MVP_TEST_SCRIPT.md). Phase 3 starts after the owner's feedback.
+**MVP GATE:** test script in [MVP_TEST_SCRIPT.md](MVP_TEST_SCRIPT.md). **Postponed by the owner on 2026-11-19**: continue with Phases 3–9 and 11, run the user test afterwards. Phase 10 still needs explicit approval of an isolation design.
+
+## Phase 3 — Wiki: audit result
+
+| Requirement | State |
+|---|---|
+| Page tree / sidebar | Done: `parent_content`, tree on the space page, ancestor breadcrumbs, child pages |
+| Tags | Done: Frappe native tags, chips on pages, `/learn?tag=` |
+| Article templates | Done: TCD Content Template + "Apply Template" in the editor |
+| Markdown | Done: `markdown` block, sanitized server-side |
+| Revision comparison / restore | Done: compare any two versions or version vs current; restore as Draft |
+| Internal links / related articles | Done: `[[slug]]`, "Linked from" backlinks; related via Phase 2 relations |
+| Feedback / ratings | Done: "Was this page helpful?" (TCD Content Feedback) |
+| Archiving | Existing status; archive banner for staff; hidden from learners |
+| Approval workflow | Existing controller workflow kept (ADR-0012) |
 
 ## Pending
 

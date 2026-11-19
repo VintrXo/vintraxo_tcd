@@ -152,6 +152,27 @@
 		});
 	}
 
+	function initHelpful(t) {
+		const section = document.querySelector(".tcd-helpful[data-content]");
+		const form = section && section.querySelector(".tcd-helpful-form");
+		if (!form) return;
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const checked = form.querySelector("input[name=helpful]:checked");
+			if (!checked) return showIn(section, t.choose_rating || "Choose an answer.", true);
+			try {
+				await call(
+					"content_feedback",
+					{ name: section.dataset.content, helpful: Number(checked.value), comment: form.querySelector("textarea").value },
+					true
+				);
+				showIn(section, t.thanks || "Thank you.");
+			} catch (err) {
+				showIn(section, err.message, true);
+			}
+		});
+	}
+
 	function initApprove() {
 		document.querySelectorAll(".tcd-approve[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -172,6 +193,7 @@
 		const t0 = labels();
 		initAssignment(t0);
 		initRating(t0);
+		initHelpful(t0);
 		initApprove();
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;

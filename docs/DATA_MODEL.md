@@ -141,6 +141,27 @@ Draft -> In Review -> Approved -> Published -> Archived
 - Recommendations (simple, explainable): next unlocked item of active enrollments, Next/Related targets of completed
   content, popular self-enrollable courses in the learner's spaces.
 
+## Phase 3: wiki completion
+| DocType / field | Key fields |
+|---|---|
+| TCD Content: `parent_content` | page tree inside a space (articles/references/lessons), no cycles |
+| TCD Content: `internal_links` | derived JSON list of content names linked with `[[...]]` (backlinks) |
+| New block `markdown` | text (Markdown, rendered server-side and sanitized) |
+| TCD Content Template | template_name, content_type, lesson_type, description, blocks |
+| TCD Content Feedback | content, user, helpful, comment (one per user and content) |
+| Tags | Frappe's native tags (`Tag Link`) on TCD Content; shown and filterable in the portal |
+
+### Rules
+- Internal links: `[[slug]]` (same space), `[[space/slug]]`, optional label `[[slug|label]]`, inside paragraph,
+  callout and markdown text. Rendered as links only when the target exists and is readable; otherwise the label
+  is shown as plain text.
+- Markdown is converted with `frappe.utils.md_to_html` and then `sanitize_html(always_sanitize=True)` with
+  link/meta/style/iframe/form tags disallowed.
+- Compare: any two versions (or a version and the current draft), block by block, as a unified text diff.
+- Restore: copies a version's title, summary, blocks and lessons into the content and moves it to Draft (normal
+  review applies again). Needs write permission.
+- Archived content is hidden from learners (only Published is visible to them); staff see an archive banner.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

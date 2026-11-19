@@ -85,6 +85,28 @@
    "type": "Link"
   },
   {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Templates",
+   "link_to": "TCD Content Template",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Page Feedback",
+   "link_to": "TCD Content Feedback",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
    "child": 0,
    "collapsible": 1,
    "icon": "graduation-cap",
@@ -294,7 +316,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-11-19 11:00:00.000000",
+ "modified": "2026-11-19 15:30:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "VX",

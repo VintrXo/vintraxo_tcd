@@ -33,6 +33,7 @@
 | assignments.py | Assignment validation, submission, grading, completion |
 | media.py | Video/link/file blocks, video host allowlist, upload validation |
 | dashboards.py | My Learning and instructor dashboard data |
+| wiki.py | Internal links, Markdown (sanitized), page tree, backlinks, version compare/restore, page feedback, tags, templates |
 | connect.py | Cross-pillar relations, prerequisites, used-in, course navigation, unified search, recommendations |
 
 ## Public API (`vintraxo_tcd.api.*`)
@@ -58,6 +59,10 @@
 | search_all(query, types?, space?, limit?) | GET | Unified search over content, courses and paths |
 | get_related(name) | GET | Prerequisites (with state), next, related, referenced by, part of |
 | get_recommendations(limit?) | GET | Continue / follow-up / popular suggestions |
+| compare_versions(old, new) | GET | Diff of two versions or a version and the current content |
+| restore_version(name) | POST | Copy a version into the content and move it to Draft |
+| content_feedback(name, helpful, comment?) | POST | "Was this page helpful?" |
+| get_templates(content_type?) / get_template(name) | GET | Content templates for authors |
 | my_learning() / instructor_dashboard() | GET | Dashboard data (also used by /learn/my, /learn/instructor and the TCD Instructor Dashboard report) |
 
 ## Learner portal (P3)

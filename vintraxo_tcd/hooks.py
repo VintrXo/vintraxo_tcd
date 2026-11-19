@@ -280,6 +280,7 @@ permission_query_conditions = {
 	"TCD Assignment": "vintraxo_tcd.core.permissions.assignment_query",
 	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.submission_scope_query",
 	"TCD Course Feedback": "vintraxo_tcd.core.permissions.feedback_query",
+	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_query",
 }
 
 has_permission = {
@@ -298,6 +299,7 @@ has_permission = {
 	"TCD Assignment": "vintraxo_tcd.core.permissions.assignment_has_permission",
 	"TCD Assignment Submission": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
 	"TCD Course Feedback": "vintraxo_tcd.core.permissions.own_or_course_instructor_has_permission",
+	"TCD Content Feedback": "vintraxo_tcd.core.permissions.content_feedback_has_permission",
 }
 
 website_route_rules = [

@@ -2,6 +2,7 @@
 0 = unlimited,0 = بلا حد
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
+A page cannot be its own parent.,لا يمكن أن تكون الصفحة أبًا لنفسها.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 About,حول
 About,نبذة,TCD
@@ -42,6 +43,8 @@ Answers,الإجابات
 Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
 Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
 Answers must be valid JSON.,يجب أن تكون الإجابات بصيغة JSON صحيحة.
+Apply,تطبيق
+Apply Template,تطبيق قالب
 Approve,اعتماد
 Approve Completion,اعتماد الإكمال
 Approved,معتمد
@@ -66,6 +69,7 @@ Ask your instructor to enroll you.,اطلب من المدرّب تسجيلك.
 Assessment,التقييم
 Assignment,تكليف,TCD Assignment Submission
 Assignment,تكليف,TCD Content
+Assignment,تكليف,TCD Content Template
 Assignments,التكليفات,TCD
 Assignments,تعيينات
 Attach a file.,أرفق ملفًا.
@@ -127,8 +131,10 @@ Code,كود,TCD Block
 Code editor,محرر الأكواد
 "Comma separated, used by file blocks and submissions",مفصولة بفواصل، تُستخدم لكتل الملفات والتسليمات,TCD Settings
 Comma separated; empty uses TCD Settings,مفصولة بفواصل؛ إذا تُركت فارغة تُستخدم إعدادات التعلّم,TCD Assignment
+Comment,التعليق,TCD Content Feedback
 Comment,التعليق,TCD Course Feedback
 Comment (optional),تعليق (اختياري)
+Compare with Current,مقارنة بالنسخة الحالية
 Complete the prerequisites first: {0},أكمل المتطلبات السابقة أولًا: {0}
 Complete these courses first: {0},أكمل هذه الدورات أولًا: {0}
 Complete these items first: {0},أكمل هذه العناصر أولًا: {0}
@@ -185,8 +191,10 @@ Course feedback is given from the course page.,يُضاف تقييم الدور�
 Course whose instructors grade the submissions,الدورة التي يصحّح مدرّبوها التسليمات,TCD Assignment
 Courses,الدورات
 Courses and learning paths,الدورات ومسارات التعلّم
+Current,تيار
 Current Approved Version,النسخة المعتمدة الحالية
 Current file,الملف الحالي
+Current version,النسخة الحالية
 Default Content Language,لغة المحتوى الافتراضية
 Default Visibility,الظهور الافتراضي
 Defaults to TCD Settings > Default Visibility,القيمة الافتراضية من إعدادات التعلّم > الظهور الافتراضي
@@ -199,6 +207,7 @@ Description,الوصف,TCD Space
 Description,الوصف,TCD Student Group
 Description,وصف
 Document,مستند,TCD Content
+Document,مستند,TCD Content Template
 Done in {0} ms,انتهى في {0} مللي ثانية
 Draft,مسودة
 Draft,مسودة,TCD
@@ -234,6 +243,7 @@ Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
 Explanation,الشرح
 External,رابط خارجي,TCD Content
+External,رابط خارجي,TCD Content Template
 External Link,رابط خارجي,TCD Block
 External links must start with https://,يجب أن تبدأ الروابط الخارجية بـ https://
 False,خطأ
@@ -268,6 +278,7 @@ Group Name,اسم المجموعة
 Group Name,اسم المجموعة,TCD Student Group
 Heading,الترويسة
 Heading,عنوان,TCD Block
+Helpful,مفيدة,TCD Content Feedback
 Home,الصفحة الرئيسية
 Image,صورة
 Image,صورة,TCD Block
@@ -286,12 +297,14 @@ Instructors,المدرّبون,TCD Learning Path
 "Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح,TCD Course
 "Instructors see enrollments, submissions and feedback of this course and can approve and grade",يرى المدرّبون تسجيلات هذه الدورة وتسليماتها وتقييماتها، ويمكنهم الاعتماد والتصحيح,TCD Learning Path
 Interactive Tutorial,شرح تفاعلي,TCD Content
+Interactive Tutorial,شرح تفاعلي,TCD Content Template
 Internal,داخلي
 Internal,داخلي,TCD Content
 Internal,داخلي,TCD Course
 Internal,داخلي,TCD Learning Path
 Internal,داخلي,TCD Settings
 Internal,داخلي,TCD Space
+Internal Links,الروابط الداخلية,TCD Content
 Invalid enrollment type.,نوع تسجيل غير صالح.
 Invalid grading action.,إجراء تصحيح غير صالح.
 Item Title,عنوان العنصر
@@ -327,12 +340,14 @@ Lesson,درس,TCD
 Lesson,درس,TCD Content
 Lesson,درس,TCD Tutorial Lesson
 Lesson Type,نوع الدرس,TCD Content
+Lesson Type,نوع الدرس,TCD Content Template
 Lesson navigation,التنقل بين الدروس
 "Lesson, Article or Reference (chapters)",درس أو مقال أو مرجع (للفصول)
 Lessons,الدروس
 Level,المستوى
 Level,المستوى,TCD Block
 Link URL (https),رابط (https),TCD Block
+Linked from,مرتبطة من
 List,قائمة
 List,قائمة,TCD Block
 "List of blocks: heading, paragraph, code, callout, list, image, playground",قائمة كتل: عنوان، فقرة، كود، تنبيه، قائمة، صورة، محرر أكواد
@@ -346,6 +361,8 @@ Manual Approval,اعتماد يدوي,TCD
 Manual Approval,اعتماد يدوي,TCD Course
 Manual Approval,اعتماد يدوي,TCD Learning Path
 Mark as complete,تحديد كمكتمل
+Markdown,ماركداون,TCD Block
+Markdown (links: [[page-slug]]),ماركداون (الروابط: [[معرّف-الصفحة]]),TCD Block
 Max Attempts,الحد الأقصى للمحاولات
 Max Score,أقصى درجة
 Max Score,الدرجة العظمى,TCD Assignment
@@ -374,10 +391,12 @@ Name,اسم
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 Next,التالي
 Next,التالي,TCD Content Relation
+No,لا
 No attempts left for this quiz.,لا توجد محاولات متبقية لهذا الاختبار.
 No attempts left.,لا توجد محاولات متبقية.
 No blocks yet. Add one below.,لا توجد كتل بعد. أضف واحدة بالأسفل.
 No content here yet.,لا يوجد محتوى هنا بعد.
+No differences.,لا توجد فروق.
 No ratings yet,لا توجد تقييمات بعد
 No spaces are available to you yet.,لا توجد مساحات متاحة لك بعد.
 Not Started,لم تبدأ
@@ -414,12 +433,20 @@ Output differs from the expected result.,المخرجات مختلفة عن ال
 Output matches the expected result.,المخرجات مطابقة للنتيجة المتوقعة.
 Overdue,تأخير
 Overdue,متأخر عن الموعد,TCD
+Page Feedback,تقييمات الصفحات
+Page feedback is given from the page.,يُضاف تقييم الصفحة من الصفحة نفسها.
 Page not found,الصفحة غير موجودة
+Page tree,شجرة الصفحات
+Pages in this section,صفحات هذا القسم
+Pages tagged {0},الصفحات الموسومة بـ {0}
 Paragraph,فقرة
 Paragraph,فقرة,TCD Block
 Parent Category,التصنيف الأب
 Parent Category must belong to the same space.,يجب أن يكون التصنيف الأب في نفس المساحة.
 Parent Category would create a loop.,التصنيف الأب سيُنشئ حلقة دائرية.
+Parent Page,الصفحة الأب,TCD Content
+Parent Page must be in the same space.,يجب أن تكون الصفحة الأب في نفس المساحة.
+Parent Page would create a loop.,الصفحة الأب ستُنشئ حلقة دائرية.
 Part of,جزء من
 Pass Percentage,نسبة النجاح
 Pass Score,درجة النجاح,TCD Assignment
@@ -441,6 +468,7 @@ Percent,النسبة,TCD Progress
 Percent,في المئة
 Percentage,النسبة المئوية
 Percentage,النسبة المئوية,TCD Quiz Submission
+Places this page under another page of the same space (wiki tree),تضع هذه الصفحة تحت صفحة أخرى في نفس المساحة (شجرة الويكي),TCD Content
 Playground,محرر أكواد
 Playground,محرر أكواد,TCD Block
 Playground Timeout (seconds),مهلة محرر الأكواد (ثوانٍ)
@@ -461,6 +489,7 @@ Progress Records,سجلات التقدّم
 Progress for this user and content already exists.,التقدّم لهذا المستخدم وهذا المحتوى موجود بالفعل.
 Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
 Project,مشروع,TCD Content
+Project,مشروع,TCD Content Template
 Public,جمهور
 Public,عام,TCD Content
 Public,عام,TCD Course
@@ -504,6 +533,7 @@ Related,ذو صلة,TCD Content Relation
 Related reading,قراءات ذات صلة
 Relation Type,نوع العلاقة
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
+Replace the current content with this version and move it to Draft?,استبدال المحتوى الحالي بهذه النسخة وإعادته إلى مسودة؟
 Reports,تقارير
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
 Required Sequence,تسلسل إلزامي
@@ -512,6 +542,8 @@ Required Sequence,تسلسل إلزامي,TCD Course
 Required Sequence,تسلسل إلزامي,TCD Learning Path
 Required to Complete Content,مطلوب لإكمال المحتوى
 Reset,إعادة تعيين
+Restore as Draft,استعادة كمسودة
+Restored from version {0},تمت الاستعادة من النسخة {0}
 Restricted,مقيّد
 Restricted,مقيّد,TCD Content
 Restricted,مقيّد,TCD Course
@@ -540,6 +572,7 @@ Row {0}: {1} must be in the same space.,السطر {0}: يجب أن يكون {1}
 Run,تشغيل
 Running...,جارٍ التشغيل...
 SQL.js Base URL,رابط SQL.js الأساسي
+Same block format as TCD Content,نفس صيغة كتل المحتوى التعليمي,TCD Content Template
 Save rating,حفظ التقييم
 Save your changes first.,احفظ تغييراتك أولًا.
 Saved.,تم الحفظ.
@@ -555,6 +588,7 @@ Search lessons and articles,ابحث في الدروس والمقالات
 See Also,انظر أيضًا
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
+Send,إرسال
 Settings,إعدادات
 "Short, URL-safe identifier, e.g. python-basics",معرّف قصير يصلح للروابط، مثل python-basics
 Show Answers After Submit,إظهار الإجابات بعد التسليم
@@ -621,7 +655,9 @@ TCD Batch Member,عضو دفعة
 TCD Category,تصنيف محتوى
 TCD Chapter,فصل
 TCD Content,محتوى تعليمي
+TCD Content Feedback,تقييم صفحة
 TCD Content Relation,علاقة محتوى
+TCD Content Template,قالب محتوى
 TCD Content Version,نسخة محتوى معتمدة
 TCD Course,دورة
 TCD Course Feedback,تقييم دورة
@@ -645,21 +681,27 @@ TCD Student Group Member,عضو مجموعة
 TCD Tutorial Lesson,درس المسار
 Target Type,نوع الهدف,TCD Content Relation
 Tell the learner what to change before returning the submission.,اكتب للمتعلم ما يجب تعديله قبل إرجاع التسليم.
+Template,قالب
+Template Name,اسم القالب,TCD Content Template
+Templates,القوالب
 Text,النص,TCD Block
 Text,نص
 Text,نص,TCD
 Text and File,نص وملف,TCD
 Text and File,نص وملف,TCD Assignment
+Thank you for your feedback.,شكرًا على ملاحظتك.
 The answer is too long.,الإجابة طويلة جدًا.
 The lesson is not part of the selected course.,الدرس ليس ضمن الدورة المختارة.
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The lesson this assignment belongs to,الدرس الذي يتبعه هذا التكليف,TCD Assignment
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
+The template blocks replace the current blocks.,كتل القالب ستحل محل الكتل الحالية.
 "This Restricted space has no allowed roles, so only administrators can open it.",هذه المساحة المقيّدة بلا أدوار مسموحة، لذا يفتحها المسؤولون فقط.
 This assignment is not active.,هذا التكليف غير مفعّل.
 This content is {0}. Move it back to Draft to edit.,حالة هذا المحتوى {0}. أعده إلى مسودة لتعديله.
 This item is locked by the course order. Complete these items first: {0},هذا العنصر مقفل حسب ترتيب الدورة. أكمل هذه العناصر أولًا: {0}
 This page does not exist or you do not have access to it.,هذه الصفحة غير موجودة أو ليس لديك صلاحية الوصول إليها.
+This page is archived and kept for reference only.,هذه الصفحة مؤرشفة ومحفوظة للرجوع إليها فقط.
 This quiz is not active.,هذا الاختبار غير مفعّل.
 This relation already exists.,هذه العلاقة موجودة بالفعل.
 This submission is already graded.,تم تصحيح هذا التسليم بالفعل.
@@ -686,6 +728,7 @@ Tutorial,مسار تعليمي
 Tutorial,مسار تعليمي,TCD
 Tutorial,مسار تعليمي,TCD Content
 Tutorials,المسارات التعليمية
+"Tutorials are organized by their lessons, not by parent pages.",المسارات التعليمية تُنظَّم بدروسها وليس بالصفحات الأب.
 Tutorials complete automatically when their lessons are completed.,تكتمل المسارات تلقائيًا عند إكمال دروسها.
 Type,النوع
 Type,النوع,TCD Quiz Question
@@ -720,11 +763,14 @@ Visibility,الظهور,TCD Course
 Visibility,الظهور,TCD Learning Path
 Visibility,الظهور,TCD Space
 Waiting for approval,بانتظار الاعتماد
+Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
 Withdrawn,منسحب
 Withdrawn,منسحب,TCD
 Withdrawn,منسحب,TCD Enrollment
 Write your answer.,اكتب إجابتك.
 Wrong,خطأ
+Yes,نعم
+You already gave feedback on this page.,قيّمت هذه الصفحة بالفعل.
 You already rated this course.,قيّمت هذه الدورة بالفعل.
 You are not an instructor of any course yet.,لست مدرّبًا لأي دورة بعد.
 You are not enrolled in any course yet.,لم تسجّل في أي دورة بعد.
@@ -738,6 +784,7 @@ ratings,تقييمات,TCD
 {0} is a reserved name. Choose another Space ID.,{0} اسم محجوز. اختر معرّف مساحة آخر.
 {0} is already enrolled.,{0} مسجّل بالفعل.
 {0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.
+{0} of {1} found it helpful,وجدها {0} من {1} مفيدة
 {0} of {1} lessons completed,أُكمل {0} من {1} دروس
 {} Pending,{} بانتظار الاعتماد
 {} Published,{} منشور

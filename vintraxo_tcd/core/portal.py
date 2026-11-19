@@ -83,7 +83,9 @@ def portal_page(build):
 # ---------------------------------------------------------------- pages
 
 
-def home_context(query: str | None = None, types: str | None = None, space: str | None = None) -> dict:
+def home_context(
+	query: str | None = None, types: str | None = None, space: str | None = None, tag: str | None = None
+) -> dict:
 	user = frappe.session.user
 	spaces = frappe.get_list(
 		"TCD Space",
@@ -114,6 +116,13 @@ def home_context(query: str | None = None, types: str | None = None, space: str 
 	ctx["selected_space"] = space if space in {s.name for s in spaces} else ""
 	if query:
 		ctx["results"] = search_all(query, selected or None, ctx["selected_space"] or None, limit=50)
+	if tag:
+		from vintraxo_tcd.core import wiki
+		from vintraxo_tcd.core.connect import _item
+
+		ctx["tag"] = tag
+		ctx["results"] = [i for i in (_item("TCD Content", n) for n in wiki.contents_with_tag(tag)) if i]
+		ctx["query"] = ctx["query"] or ""
 	return ctx
 
 
@@ -198,8 +207,11 @@ def space_context(space_name: str) -> dict:
 			r.enrollment = mine.get(r.name)
 			offerings.append(r)
 
+	from vintraxo_tcd.core import wiki
+
 	return {
 		"space": space,
+		"page_tree": wiki.page_tree(space.name),
 		"offerings": offerings,
 		"groups": sorted(groups.values(), key=lambda g: (g["sort"], g["title"])),
 		"title": space.title,
@@ -217,10 +229,17 @@ def content_context(
 	doc = get_content_by_slug(space.name, slug)
 	lesson = api.get_lesson(doc.name, tutorial=tutorial)
 	user = frappe.session.user
+	from vintraxo_tcd.core import wiki
+
+	lesson["blocks"] = wiki.prepare_blocks(lesson["blocks"], space.name)
 	parents = [
 		{"route": "/learn", "title": _("Learning")},
 		{"route": content_url(space.name, ""), "title": space.title},
 	]
+	if not tutorial and not course:
+		parents += [
+			{"route": content_url(a.space, a.slug), "title": a.title} for a in wiki.ancestors(doc.name)
+		]
 
 	nav = {}
 	if tutorial and ("prev" in lesson or "next" in lesson):
@@ -270,6 +289,21 @@ def content_context(
 		"sequence_blockers": blockers,
 		"unmet_prerequisites": unmet,
 		"related": related,
+		"backlinks": wiki.backlinks(doc.name),
+		"children": [
+			c
+			for c in frappe.get_list(
+				"TCD Content",
+				filters={"parent_content": doc.name},
+				fields=["name", "title", "slug", "content_type"],
+				order_by="title asc",
+			)
+		],
+		"tags": wiki.tags_of(doc.name),
+		"feedback": wiki.feedback_stats(doc.name),
+		"my_feedback": frappe.db.get_value(
+			"TCD Content Feedback", {"content": doc.name, "user": user}, ["helpful", "comment"], as_dict=True
+		),
 		"is_staff_preview": doc.status != "Published",
 		"user": user,
 		"js_labels": js_labels(),
@@ -310,6 +344,7 @@ def js_labels() -> dict:
 		"uploading": _("Uploading..."),
 		"saved": _("Saved."),
 		"choose_rating": _("Choose a rating."),
+		"thanks": _("Thank you for your feedback."),
 	}
 
 

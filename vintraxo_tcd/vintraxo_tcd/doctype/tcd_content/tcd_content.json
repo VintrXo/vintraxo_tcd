@@ -16,12 +16,14 @@
   "space",
   "column_break_2",
   "category",
+  "parent_content",
   "body_section",
   "summary",
   "blocks_editor",
   "blocks_json_section",
   "blocks",
   "search_text",
+  "internal_links",
   "lessons_section",
   "lessons",
   "review_section",
@@ -117,6 +119,13 @@
    "in_standard_filter": 1
   },
   {
+   "fieldname": "parent_content",
+   "fieldtype": "Link",
+   "options": "TCD Content",
+   "label": "Parent Page",
+   "description": "Places this page under another page of the same space (wiki tree)"
+  },
+  {
    "fieldname": "body_section",
    "fieldtype": "Section Break",
    "label": "Body"
@@ -147,6 +156,14 @@
    "fieldname": "search_text",
    "fieldtype": "Long Text",
    "label": "Search Text",
+   "read_only": 1,
+   "hidden": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "internal_links",
+   "fieldtype": "Small Text",
+   "label": "Internal Links",
    "read_only": 1,
    "hidden": 1,
    "no_copy": 1
@@ -205,7 +222,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-19 09:00:00.000000",
+ "modified": "2026-11-19 15:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

@@ -1,9 +1,12 @@
+import json
+
 import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 
 from vintraxo_tcd.core import content as svc
+from vintraxo_tcd.core import wiki
 
 
 class TCDContent(Document):
@@ -16,6 +19,10 @@ class TCDContent(Document):
 
 		blocks = svc.validate_blocks(svc.parse_blocks(self.blocks))
 		self.blocks = svc.dump_blocks(blocks)
+		wiki.validate_parent(self)
+		self.internal_links = (
+			json.dumps(wiki.extract_links(blocks, self.space, self.name)) if blocks else None
+		)
 		self.search_text = svc.build_search_text(self.title, self.summary, blocks)
 		svc.ensure_unique_slug(self)
 

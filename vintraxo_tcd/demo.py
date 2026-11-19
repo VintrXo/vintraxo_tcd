@@ -129,6 +129,7 @@ def create_demo():
 	_demo_course(l1, l2, l3)
 	_demo_lms(l3)
 	_demo_relations(l1, l2, l3)
+	_demo_wiki(l1)
 	frappe.db.commit()
 	return f"/learn/{SPACE}"
 
@@ -243,3 +244,40 @@ def _demo_relations(l1, l2, l3):
 		}
 		if not frappe.db.exists("TCD Content Relation", filters):
 			frappe.get_doc({"doctype": "TCD Content Relation", **filters}).insert(ignore_permissions=True)
+
+
+def _demo_wiki(intro):
+	"""Phase 3 demo: a small page tree with Markdown, internal links, a tag and a template."""
+	from frappe.desk.doctype.tag.tag import add_tag
+
+	guide = _content(
+		"دليل بيئة العمل",
+		"Article",
+		[{"type": "markdown", "text": "## ابدأ من هنا\n\nهذا الدليل يشرح **تجهيز بيئة بايثون**.\n\n- راجع [[إعداد-المحرر]]\n- ثم اقرأ الدرس [[" + intro.slug + "|مقدمة في بايثون]]"}],
+		summary="صفحة ويكي رئيسية فيها صفحات فرعية.",
+	)
+	_content(
+		"إعداد المحرر",
+		"Article",
+		[{"type": "paragraph", "text": "ثبّت المحرر ثم ارجع إلى [[دليل-بيئه-العمل|الدليل]]."}],
+		parent_content=guide.name,
+	)
+	add_tag("بداية", "TCD Content", guide.name)
+	if not frappe.db.exists("TCD Content Template", "دليل خطوات"):
+		frappe.get_doc(
+			{
+				"doctype": "TCD Content Template",
+				"template_name": "دليل خطوات",
+				"content_type": "Article",
+				"description": "قالب لصفحة تشرح خطوات عملية.",
+				"blocks": json.dumps(
+					[
+						{"type": "heading", "text": "الهدف", "level": 2},
+						{"type": "paragraph", "text": "اكتب الهدف هنا."},
+						{"type": "heading", "text": "الخطوات", "level": 2},
+						{"type": "list", "items": ["الخطوة الأولى", "الخطوة الثانية"], "ordered": True},
+					],
+					ensure_ascii=False,
+				),
+			}
+		).insert(ignore_permissions=True)

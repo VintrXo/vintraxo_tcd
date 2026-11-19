@@ -130,3 +130,19 @@
 .tcd-related h2 { font-size: 1.1rem; }
 .sr-only { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .tcd-chip input { appearance: auto; -webkit-appearance: checkbox; inline-size: 1rem; block-size: 1rem; margin: 0; flex: none; padding: 0; border: 0; }
+
+/* wiki (Phase 3) */
+.tcd-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tcd-tags .tcd-chip { text-decoration: none; }
+.tcd-tree { list-style: none; padding-inline-start: 1rem; margin: 0; }
+.tcd-tree li { padding-block: 0.15rem; }
+.tcd-tree > li::before { content: "▸ "; color: var(--tcd-muted); }
+.tcd-page-tree summary { cursor: pointer; list-style: none; }
+.tcd-page-tree summary h2 { display: inline; }
+.tcd-markdown { line-height: 1.8; }
+.tcd-markdown pre, .tcd-markdown code { direction: ltr; unicode-bidi: isolate; }
+.tcd-markdown img { max-inline-size: 100%; }
+.tcd-wikilink { text-decoration: underline dotted; }
+.tcd-helpful-form { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; max-inline-size: 640px; }
+.tcd-helpful-form textarea { flex-basis: 100%; }
+.tcd-helpful-form .tcd-chip input { appearance: auto; -webkit-appearance: radio; inline-size: 1rem; block-size: 1rem; margin: 0; }
