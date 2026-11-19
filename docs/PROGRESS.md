@@ -178,4 +178,7 @@ MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
 
 ## Blocked / needs decision
 
-- None.
+- Phase 10 (server-side code runner): waiting for the owner's approval of `docs/PHASE10_ISOLATION_DESIGN.md`
+  (approve or skip; Judge0 on an isolated VM vs own runner; a separate VM; first languages). Nothing is built.
+  Finding while writing it: code questions are graded on the output the browser reports, so a learner can fake it;
+  only a server runner (or manual review) fixes that.
