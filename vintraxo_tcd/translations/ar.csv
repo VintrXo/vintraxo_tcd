@@ -33,6 +33,7 @@ A calendar connected in Frappe's Google Calendar integration; events get a Meet 
 A cancelled session has no attendance.,الجلسة الملغاة ليس لها حضور.
 A category named {0} already exists here.,يوجد تصنيف باسم {0} هنا بالفعل.
 A course cannot be its own prerequisite.,لا يمكن أن تكون الدورة متطلبًا لنفسها.
+A fine-grained token with Contents read/write on this repository only,مفتاح Fine-grained بصلاحية قراءة وكتابة Contents على هذا المستودع فقط,TCD Space
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف,TCD Quiz
 A new version is being prepared. This is the version in force.,يجري إعداد نسخة جديدة. هذه هي النسخة السارية.
@@ -69,6 +70,7 @@ Accepted,مقبول
 Accepted,مقبول,TCD Change Request
 Accepted Answers,الإجابات المقبولة,TCD Question
 Access,الوصول
+Access Token,مفتاح الوصول,TCD Space
 Access and Instructors,الوصول والمدرّبون,TCD Course
 Access and Instructors,الوصول والمدرّبون,TCD Learning Path
 Acknowledge,إقرار
@@ -248,6 +250,7 @@ Body,الجسم
 Body,المحتوى,TCD Content
 Body (Markdown),النص (ماركداون),TCD Governance Document
 Body (Markdown),النص (ماركداون),TCD Governance Version
+Branch,الفرع,TCD Space
 Browse spaces,تصفّح المساحات
 Buy,الشراء
 Buy,شراء,TCD
@@ -295,6 +298,7 @@ Certificates are issued automatically on completion.,تُصدر الشهادات
 Certificates cannot be reassigned.,لا يمكن نقل الشهادة لشخص آخر.
 Certificates expiring,شهادات قاربت على الانتهاء
 Certificates expiring in 30 days,شهادات تنتهي خلال 30 يومًا
+Changed in GitHub,تم تعديله في GitHub
 Chapters,الفصول
 Choose a rating.,اختر تقييمًا.
 Choose the Google Calendar in Learning Settings.,اختر تقويم Google في إعدادات التعلّم.
@@ -609,6 +613,7 @@ Filter,الفلتر,TCD Rule HR Filter
 Finished,انتهى,TCD Code Run
 Finished,تم الانتهاء من
 Flagged,مُعلَّم,TCD Quiz Submission
+Folder,المجلد,TCD Space
 Folder that contains pyodide.js (self-host for offline sites). Must end with /,المجلد الذي يحتوي pyodide.js (استضفه محليًا للمواقع غير المتصلة). يجب أن ينتهي بـ /
 Folder that contains sql-wasm.js and sql-wasm.wasm. Must end with /,المجلد الذي يحتوي sql-wasm.js وsql-wasm.wasm. يجب أن ينتهي بـ /
 Follows what you completed,يكمّل ما أنهيته
@@ -633,6 +638,9 @@ General,عام
 General,عام,TCD AI Settings
 Generate,إنشاء
 Generate quiz questions,إنشاء أسئلة اختبار
+GitHub Sync,المزامنة مع GitHub,TCD Space
+GitHub refused the update of {0} ({1}).,رفض GitHub تحديث {0} ({1}).
+GitHub returned an error ({0}).,أعاد GitHub خطأ ({0}).
 Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
 Give the lesson a title.,اكتب عنوانًا للدرس.
 Given to the program as standard input,تُعطى للبرنامج كمدخلات قياسية,TCD Question Test Case
@@ -758,8 +766,10 @@ Languages the runner may execute. Check the ids with Test Runner.,اللغات �
 Languages the runner may execute. Check the ids with Test Runner.,اللغات المسموح للمشغّل بتشغيلها. تحقّق من الأرقام بزر «اختبار المشغّل».,TCD Settings
 Last Applied On,آخر تطبيق,TCD Training Rule
 Last Error,آخر خطأ,TCD Integration Event
+Last Result,آخر نتيجة,TCD Space
 Last Reviewed On,آخر مراجعة
 Last Reviewed On,آخر مراجعة,TCD Content
+Last Sync,آخر مزامنة,TCD Space
 Last Viewed On,آخر مشاهدة
 Last activity,آخر نشاط
 Last reviewed on {0}.,آخر مراجعة في {0}.
@@ -982,6 +992,7 @@ Only a reviewer can send a document for approval.,المراجع فقط يمكن
 Only active documents can be acknowledged.,يمكن الإقرار بالمستندات السارية فقط.
 Only active or expired certificates can be renewed.,يمكن تجديد الشهادات السارية أو المنتهية فقط.
 Only administrators can export or import spaces.,المسؤولون فقط يمكنهم تصدير المساحات أو استيرادها.
+Only administrators can sync with GitHub.,المسؤولون فقط يمكنهم المزامنة مع GitHub.
 Only administrators can upload SCORM packages.,المسؤولون فقط يمكنهم رفع حزم SCORM.
 Only an administrator can revoke certificates.,المسؤول فقط يمكنه إلغاء الشهادات.
 Only an instructor can approve completion.,المدرّب فقط يمكنه اعتماد الإكمال.
@@ -1165,7 +1176,9 @@ Published,نشرت
 Published Content,المحتوى المنشور
 Published On,تاريخ النشر
 Published pages,الصفحات المنشورة
+Pull from GitHub,سحب من GitHub
 Purpose,الغرض,TCD Code Run
+Push to GitHub,رفع إلى GitHub
 Pyodide Base URL,رابط Pyodide الأساسي
 Question,السؤال
 Question,السؤال,TCD Discussion Post
@@ -1243,6 +1256,7 @@ Renewed By,جُدّدت بالشهادة,TCD Certificate
 Replace the current content with this version and move it to Draft?,استبدال المحتوى الحالي بهذه النسخة وإعادته إلى مسودة؟
 Reply,رد
 Reports,تقارير
+Repository,المستودع,TCD Space
 Require Acknowledgment,يتطلب إقرارًا,TCD Governance Document
 Require Approval Before Publish,اشتراط الاعتماد قبل النشر
 Required Level,المستوى المطلوب
@@ -1383,6 +1397,7 @@ Sessions,الجلسات
 Sessions held,الجلسات المنعقدة
 Set the API key in AI Settings.,أدخل مفتاح API في إعدادات الذكاء الاصطناعي.
 Set the model.,حدد النموذج.
+Set the repository (owner/name) and the access token on the space first.,حدد المستودع (owner/name) ومفتاح الوصول في المساحة أولًا.
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
 Share of the page's videos the learner must watch before marking it complete; 0 means no rule,نسبة ما يجب أن يشاهده المتعلم من فيديوهات الصفحة قبل إكمالها؛ 0 يعني بلا شرط,TCD Content
@@ -1647,6 +1662,7 @@ The file is larger than 20 MB.,الملف أكبر من 20 ميجابايت.
 The file is not a VintraXo TCD space export.,الملف ليس ملف تصدير مساحة من منصة التعلّم VX.
 The file is not a valid export (JSON).,الملف ليس تصديرًا صالحًا (JSON).
 The file was made by a newer version of the app. Update the app first.,الملف صُنع بإصدار أحدث من التطبيق. حدّث التطبيق أولًا.
+The folder cannot contain '..'.,المجلد لا يمكن أن يحتوي على '..'.
 The language id on your runner (Judge0: GET /languages),رقم اللغة على المشغّل لديك (Judge0: GET /languages),TCD Runner Language
 The lesson is not part of the selected course.,الدرس ليس ضمن الدورة المختارة.
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
@@ -1867,6 +1883,7 @@ Zoom is not configured in Learning Settings.,Zoom غير مُعدّ في إعد�
 callout,تنبيه,TCD Block
 code,كود,TCD Block
 course,الدورة
+created,تم إنشاؤه
 heading,عنوان,TCD Block
 high,مرتفع
 high,مرتفع,TCD AI Settings
@@ -1879,13 +1896,17 @@ low,منخفض,TCD AI Settings
 markdown,ماركداون,TCD Block
 medium,متوسط
 medium,متوسط,TCD AI Settings
+"owner/name, e.g. VintrXo/handbook",owner/name، مثال: VintrXo/handbook,TCD Space
 paragraph,فقرة,TCD Block
 python,بايثون
 python,بايثون,TCD Question
 python and javascript also run in the browser; the others need the code runner,python و javascript تعمل في المتصفح أيضًا؛ باقي اللغات تحتاج مشغّل الأكواد,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
+suggested,مقترح للمراجعة
 "to take quizzes, track your progress and ask questions.",لتحل الاختبارات وتتابع تقدّمك وتسأل.
+unchanged,بدون تغيير
+written,تمت كتابته
 {0} already has this badge.,{0} لديه هذه الشارة بالفعل.
 {0} already has this skill; edit the existing record.,لدى {0} هذه المهارة بالفعل؛ عدّل السجل الموجود.
 {0} cannot access this course or learning path.,لا يستطيع {0} الوصول إلى هذه الدورة أو مسار التعلّم.

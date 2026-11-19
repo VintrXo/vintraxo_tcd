@@ -12,7 +12,15 @@
   "description_section",
   "description",
   "access_section",
-  "allowed_roles"
+  "allowed_roles",
+  "github_section",
+  "github_repo",
+  "github_branch",
+  "github_path",
+  "column_break_github",
+  "github_token",
+  "github_last_sync",
+  "github_last_result"
  ],
  "fields": [
   {
@@ -74,10 +82,56 @@
    "options": "TCD Space Role",
    "label": "Allowed Roles",
    "description": "Only users with one of these roles can open a Restricted space or Restricted content in it"
+  },
+  {
+   "fieldname": "github_section",
+   "fieldtype": "Section Break",
+   "label": "GitHub Sync",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "github_repo",
+   "fieldtype": "Data",
+   "label": "Repository",
+   "description": "owner/name, e.g. VintrXo/handbook"
+  },
+  {
+   "fieldname": "github_branch",
+   "fieldtype": "Data",
+   "label": "Branch",
+   "default": "main"
+  },
+  {
+   "fieldname": "github_path",
+   "fieldtype": "Data",
+   "label": "Folder",
+   "default": "docs"
+  },
+  {
+   "fieldname": "column_break_github",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "github_token",
+   "fieldtype": "Password",
+   "label": "Access Token",
+   "description": "A fine-grained token with Contents read/write on this repository only"
+  },
+  {
+   "fieldname": "github_last_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Sync",
+   "read_only": 1
+  },
+  {
+   "fieldname": "github_last_result",
+   "fieldtype": "Small Text",
+   "label": "Last Result",
+   "read_only": 1
   }
  ],
  "links": [],
- "modified": "2026-11-20 15:00:00.000000",
+ "modified": "2026-11-20 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Space",

@@ -1009,3 +1009,20 @@ def scorm_commit(content: str, data) -> dict:
 	from vintraxo_tcd.core import scorm
 
 	return scorm.commit(frappe.session.user, content, data)
+
+
+# ---------------------------------------------------------------- GitHub sync (Phase 16)
+
+
+@frappe.whitelist(methods=["POST"])
+def github_push(space: str) -> dict:
+	from vintraxo_tcd.core import github_sync
+
+	return github_sync.push(space)
+
+
+@frappe.whitelist(methods=["POST"])
+def github_pull(space: str) -> dict:
+	from vintraxo_tcd.core import github_sync
+
+	return github_sync.pull(space)
