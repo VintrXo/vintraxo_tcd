@@ -125,3 +125,12 @@ class TestPhase11Hardening(TCDTestCase):
 		self.assertFalse(frappe.has_permission("TCD Certificate", "read", cert))
 		for dt in ("TCD Connector", "TCD Integration Event", "TCD AI Usage Log", "TCD AI Settings"):
 			self.assertFalse(frappe.has_permission(dt, "read"), dt)
+
+	# ------------------------------------------------------------ staff without the learner role
+
+	def test_staff_roles_can_open_portal_pages(self):
+		page = lesson(self.space, "Staff page")
+		for user in (self.author, self.reviewer):
+			for path in ("/learn", "/learn/my", f"/learn/{self.space}", f"/learn/{self.space}/{page.slug}"):
+				status, _, _ = render(path, user)
+				self.assertEqual(status, 200, f"{user} {path}")

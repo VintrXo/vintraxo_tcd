@@ -199,7 +199,12 @@ class TestPhase7Notifications(TCDTestCase):
 		api.acknowledge(doc.name)
 		frappe.set_user("Administrator")
 		comp = next(r for r in analytics.compliance_rows() if r["document"] == doc.name)
-		self.assertEqual((comp["audience"], comp["acknowledged"], comp["compliance"]), (1, 1, 100))
+		from vintraxo_tcd.core import governance
+
+		audience = len(governance.audience_users(frappe.get_doc("TCD Governance Document", doc.name)))
+		self.assertGreaterEqual(audience, 1)  # the site may hold other instructors
+		self.assertEqual((comp["audience"], comp["acknowledged"]), (audience, 1))
+		self.assertEqual(comp["compliance"], round(100 / audience, 1))
 		self.assertEqual(analytics.compliance_card()["fieldtype"], "Percent")
 		frappe.set_user(self.learner)
 		with self.assertRaises(frappe.PermissionError):

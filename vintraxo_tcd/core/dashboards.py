@@ -5,7 +5,7 @@ from frappe.utils import flt, getdate, nowdate
 
 from vintraxo_tcd.core import courses as course_svc
 from vintraxo_tcd.core import training
-from vintraxo_tcd.core.permissions import instructed, is_admin
+from vintraxo_tcd.core.permissions import instructed, is_admin, readable_list
 
 
 def _offering_link(doctype: str, name: str) -> dict | None:
@@ -21,7 +21,7 @@ def _offering_link(doctype: str, name: str) -> dict | None:
 def my_learning(user: str) -> dict:
 	today = getdate(nowdate())
 	enrollments = []
-	for e in frappe.get_list(
+	for e in readable_list(
 		"TCD Enrollment",
 		filters={"user": user, "status": ("!=", "Withdrawn")},
 		fields=[
@@ -53,7 +53,7 @@ def my_learning(user: str) -> dict:
 		contents |= {i["content"] for i in course_svc.course_items(c)}
 	submissions = {
 		s.assignment: s
-		for s in frappe.get_list(
+		for s in readable_list(
 			"TCD Assignment Submission",
 			filters={"user": user},
 			fields=["assignment", "status", "score", "passed", "feedback"],
@@ -63,7 +63,7 @@ def my_learning(user: str) -> dict:
 	assignments = []
 	if contents or submissions:
 		filters = {"is_active": 1}
-		rows = frappe.get_list(
+		rows = readable_list(
 			"TCD Assignment",
 			filters=filters,
 			or_filters={"content": ("in", list(contents) or [""]), "name": ("in", list(submissions) or [""])},
@@ -79,7 +79,7 @@ def my_learning(user: str) -> dict:
 			a.overdue = bool(not sub and a.due_date and getdate(a.due_date) < today)
 			assignments.append(a)
 
-	quizzes = frappe.get_list(
+	quizzes = readable_list(
 		"TCD Quiz Submission",
 		filters={"user": user},
 		fields=["quiz", "percentage", "passed", "creation"],
@@ -89,7 +89,7 @@ def my_learning(user: str) -> dict:
 	from vintraxo_tcd.core import connect
 
 	tutorials = []
-	for row in frappe.get_list(
+	for row in readable_list(
 		"TCD Progress",
 		filters={"user": user, "content_type": "Tutorial"},
 		fields=["content", "status", "percent"],
@@ -100,7 +100,7 @@ def my_learning(user: str) -> dict:
 		if item:
 			tutorials.append(item)
 	recent = []
-	for row in frappe.get_list(
+	for row in readable_list(
 		"TCD Progress",
 		filters={"user": user, "status": "Completed", "content_type": ("!=", "Tutorial")},
 		fields=["content", "completed_on"],
@@ -112,7 +112,7 @@ def my_learning(user: str) -> dict:
 			recent.append(item)
 	from urllib.parse import quote
 
-	certificates = frappe.get_list(
+	certificates = readable_list(
 		"TCD Certificate",
 		filters={"user": user},
 		fields=["name", "title", "status", "issued_on", "expires_on", "verification_code"],
@@ -124,7 +124,7 @@ def my_learning(user: str) -> dict:
 			f"&name={quote(c.name)}&format=TCD%20Certificate"
 		)
 		c.verify_url = f"/verify/{quote(c.verification_code)}"
-	skills = frappe.get_list(
+	skills = readable_list(
 		"TCD User Skill",
 		filters={"user": user},
 		fields=["skill", "level", "source_type"],

@@ -6,6 +6,7 @@ import frappe
 from frappe import _
 
 from vintraxo_tcd.core import governance, progress
+from vintraxo_tcd.core.permissions import readable_list
 from vintraxo_tcd.core.search import search
 
 CONTENT_LIST_FIELDS = ["name", "title", "slug", "summary", "content_type", "language", "category", "modified"]
@@ -99,7 +100,7 @@ def home_context(
 	ctx["ai_enabled"] = ai.can_use(user)
 	ctx["labels_json"] = json_for_script(js_labels())
 
-	in_progress = frappe.get_list(
+	in_progress = readable_list(
 		"TCD Progress",
 		filters={"user": user, "status": "In Progress"},
 		fields=["content", "percent", "last_viewed_on"],
@@ -382,7 +383,7 @@ def json_for_script(data) -> str:
 
 
 def my_enrollments(user: str) -> list:
-	rows = frappe.get_list(
+	rows = readable_list(
 		"TCD Enrollment",
 		filters={"user": user, "status": ("!=", "Withdrawn")},
 		fields=["name", "enrollment_for", "course", "learning_path", "status", "percent", "due_date"],

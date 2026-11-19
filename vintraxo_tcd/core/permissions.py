@@ -521,3 +521,11 @@ def acknowledgment_query(user=None, doctype=None):
 def acknowledgment_has_permission(doc, ptype=None, user=None, debug=False):
 	user = user or frappe.session.user
 	return doc.user == user or is_admin(user) or "TCD Content Reviewer" in frappe.get_roles(user)
+
+
+def readable_list(doctype: str, **kwargs) -> list:
+	"""`frappe.get_list` for a page section: a role with no read permission on `doctype` (e.g. an author
+	opening the portal) gets an empty section instead of a failing page. Still only restricts."""
+	if not frappe.has_permission(doctype, "read"):
+		return []
+	return frappe.get_list(doctype, **kwargs)

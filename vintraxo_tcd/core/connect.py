@@ -5,7 +5,7 @@ import frappe
 from frappe import _
 
 from vintraxo_tcd.core import courses as course_svc
-from vintraxo_tcd.core.permissions import is_staff
+from vintraxo_tcd.core.permissions import is_staff, readable_list
 from vintraxo_tcd.core.search import _like, _score, normalize_text, snippet, tokenize
 
 TARGET_FIELD = {"Content": "to_content", "Course": "to_course", "Learning Path": "to_learning_path"}
@@ -335,7 +335,7 @@ def recommendations(user: str, limit: int = 6) -> list[dict]:
 			out.append({**item, "reason": reason})
 
 	# 1. next unlocked item of active course enrollments
-	for e in frappe.get_list(
+	for e in readable_list(
 		"TCD Enrollment", filters={"user": user, "status": "Active", "course": ("is", "set")}, pluck="course"
 	):
 		state = course_svc.course_status(user, e)
@@ -345,7 +345,7 @@ def recommendations(user: str, limit: int = 6) -> list[dict]:
 				break
 
 	# 2. Next / Related targets of completed content
-	done = frappe.get_list(
+	done = readable_list(
 		"TCD Progress",
 		filters={"user": user, "status": "Completed"},
 		pluck="content",
