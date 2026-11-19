@@ -92,6 +92,14 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   instructors see only enrollments their permission layer allows.
 - Role guides on /learn/my are filtered by `can_access_content` and Published status.
 
+## Phase 9: AI gateway
+- TCD AI Settings and TCD AI Usage Log: System Manager and TCD Administrator only (the API key is a Password field).
+- Assistant and smart search: users with an allowed role (default: any TCD role); Guests never.
+- Retrieval runs as the asking user (`get_list`) plus a per-page read check before any page is sent to a provider.
+- Summaries: only pages the user may read (and that the privacy settings allow).
+- Quiz questions: need create permission on TCD Question; saved as "Needs Review", unusable in quizzes until reviewed.
+- Lesson drafts: need create permission on TCD Content and read on the space; inserted with normal permissions.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

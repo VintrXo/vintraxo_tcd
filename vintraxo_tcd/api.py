@@ -687,3 +687,50 @@ def apply_training_rule(name: str) -> int:
 	from vintraxo_tcd.core import training
 
 	return training.apply_rule(name)
+
+
+# ---------------------------------------------------------------- AI gateway (Phase 9)
+
+
+@frappe.whitelist()
+def ai_status() -> dict:
+	from vintraxo_tcd.core import ai
+
+	return {"enabled": ai.can_use(frappe.session.user)}
+
+
+@frappe.whitelist(methods=["POST"])
+def ai_search(query: str, space: str | None = None) -> dict:
+	from vintraxo_tcd.core import ai
+
+	return ai.semantic_search(query, frappe.session.user, space)
+
+
+@frappe.whitelist(methods=["POST"])
+def ai_ask(question: str, space: str | None = None) -> dict:
+	from vintraxo_tcd.core import ai
+
+	return ai.ask(question, frappe.session.user, space)
+
+
+@frappe.whitelist(methods=["POST"])
+def ai_summarize(content: str) -> dict:
+	from vintraxo_tcd.core import ai
+
+	return ai.summarize(content, frappe.session.user)
+
+
+@frappe.whitelist(methods=["POST"])
+def ai_generate_questions(content: str, count: int = 5) -> list:
+	from vintraxo_tcd.core import ai
+
+	return ai.generate_questions(content, frappe.session.user, int(count))
+
+
+@frappe.whitelist(methods=["POST"])
+def ai_draft_lesson(space: str, title: str, instructions: str = "", sources=None) -> str:
+	from vintraxo_tcd.core import ai
+
+	if isinstance(sources, str):
+		sources = frappe.parse_json(sources)
+	return ai.draft_lesson(space, title, instructions, frappe.session.user, sources or [])

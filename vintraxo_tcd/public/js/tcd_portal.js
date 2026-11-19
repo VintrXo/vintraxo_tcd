@@ -206,6 +206,61 @@
 		});
 	}
 
+	function initAssistant(t) {
+		const form = document.querySelector(".tcd-assistant-form");
+		if (!form) return;
+		const out = document.querySelector(".tcd-assistant-output");
+		let mode = "ask";
+		form.querySelectorAll("button[data-mode]").forEach((b) => b.addEventListener("click", () => (mode = b.dataset.mode)));
+		const safeUrl = (u) => (typeof u === "string" && u.startsWith("/") && !u.startsWith("//") ? u : "#");
+		const sourceList = (sources) => {
+			const ol = el("ol", { class: "tcd-assistant-sources" });
+			sources.forEach((s, i) => {
+				const li = el("li", { id: "tcd-src-" + (i + 1) });
+				li.appendChild(el("a", { href: safeUrl(s.url) }, s.title));
+				ol.appendChild(li);
+			});
+			return ol;
+		};
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const question = form.question.value.trim();
+			if (!question) return;
+			const buttons = form.querySelectorAll("button");
+			buttons.forEach((b) => (b.disabled = true));
+			out.replaceChildren(el("p", { class: "tcd-muted" }, t.thinking));
+			try {
+				if (mode === "search") {
+					const r = await call("ai_search", { query: question }, true);
+					out.replaceChildren();
+					if (r.keywords && r.keywords.length) out.appendChild(el("p", { class: "tcd-muted tcd-small" }, format(t.related_terms, r.keywords.join("، "))));
+					if (!r.results.length) out.appendChild(el("p", { class: "tcd-muted" }, t.no_results));
+					else out.appendChild(sourceList(r.results));
+				} else {
+					const r = await call("ai_ask", { question }, true);
+					const answer = el("div", { class: "tcd-assistant-answer" });
+					r.answer.forEach((seg) => {
+						answer.appendChild(document.createTextNode(seg.text));
+						(seg.sources || []).forEach((n) => {
+							const sup = el("sup");
+							sup.appendChild(el("a", { href: "#tcd-src-" + (n + 1) }, "[" + (n + 1) + "]"));
+							answer.appendChild(sup);
+						});
+					});
+					out.replaceChildren(answer);
+					if (r.sources.length) {
+						out.appendChild(el("h3", {}, t.sources));
+						out.appendChild(sourceList(r.sources));
+					}
+				}
+			} catch (err) {
+				out.replaceChildren(el("p", { class: "tcd-error" }, err.message));
+			} finally {
+				buttons.forEach((b) => (b.disabled = false));
+			}
+		});
+	}
+
 	function init() {
 		initEnroll();
 		const t0 = labels();
@@ -214,6 +269,7 @@
 		initHelpful(t0);
 		initAcknowledge();
 		initApprove();
+		initAssistant(t0);
 		const page = document.querySelector(".tcd-content[data-content]");
 		if (!page) return;
 		const t = labels();

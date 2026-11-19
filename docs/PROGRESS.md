@@ -121,6 +121,7 @@ Pyodide and SQL in sql.js inside the sandbox, essay went to review, rubric dialo
 Bug found and fixed in this phase: Frappe's `<` filter treats NULL dates as old dates, so the daily jobs would have
 expired every policy and certificate without an expiry date. Both jobs now filter with `is set`; regression tests added.
 | Phase 8 — Integrations | 483639f | 129 | Connector registry, signed webhooks with outbox/retry/rate limit, training rules (auto/mandatory enrollment by role and HR), role guides, training compliance |
+| Phase 9 — AI gateway | this commit | 140 | Provider-agnostic gateway (Anthropic built in), limits/budget/usage log/privacy, permission-filtered retrieval, cited assistant, smart search, summaries, reviewed question and lesson drafts |
 
 ## Phase 7 — Notifications and analytics: status
 
@@ -132,6 +133,18 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 
 Found while testing: standard notifications with a `.md` template failed silently (Frappe converts Markdown to HTML
 before rendering Jinja). Templates are HTML now.
+
+## Phase 9 — AI gateway: status
+
+| Requirement | State |
+|---|---|
+| Provider-agnostic: provider, model, token and cost limits, usage logging, privacy controls | Done (TCD AI Settings, `tcd_ai_providers` hook, TCD AI Usage Log, ADR-0018) |
+| Permission-filtered retrieval before the model call | Done (get_list as the user + per-page gate; tested with restricted space, draft, Restricted exclusion) |
+| Answers cite their sources | Done (document citations → [n] links on /learn) |
+| Semantic search | Done as query expansion over the permission-filtered index; vector embeddings not done (no embedding provider chosen) |
+| Knowledge assistant, summarization, quiz generator, lesson drafts | Done (portal box; Desk buttons on TCD Content and its list) |
+| AI output saved as Draft, human review | Done (lessons Draft + ai_generated; questions Needs Review blocked from quizzes) |
+| Live provider check | Not done: no API key on tcd.localhost; adapter tested with the SDK mocked. AI is off by default |
 
 ## Phase 8 — Integrations: status
 

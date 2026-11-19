@@ -94,6 +94,10 @@ def home_context(
 		order_by="title asc",
 	)
 	ctx = {"spaces": spaces, "query": query or "", "results": None}
+	from vintraxo_tcd.core import ai
+
+	ctx["ai_enabled"] = ai.can_use(user)
+	ctx["labels_json"] = json_for_script(js_labels())
 
 	in_progress = frappe.get_list(
 		"TCD Progress",
@@ -357,6 +361,10 @@ def js_labels() -> dict:
 		"move_down": _("Move down"),
 		"code_note": _("Run your code before submitting; the output is checked."),
 		"manual_note": _("An instructor reviews this answer."),
+		"thinking": _("Looking in the pages you can access..."),
+		"sources": _("Sources"),
+		"no_results": _("Nothing found. Try a shorter word."),
+		"related_terms": _("Also searched for: {0}"),
 	}
 
 

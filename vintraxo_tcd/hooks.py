@@ -353,3 +353,9 @@ doc_events = {
 	"User": {"on_update": "vintraxo_tcd.core.training.on_user_update"},
 	"Employee": {"on_update": "vintraxo_tcd.core.training.on_employee_update"},
 }
+
+doctype_js = {"TCD Content": "public/js/tcd_ai_desk.js"}
+doctype_list_js = {"TCD Content": "public/js/tcd_ai_list.js"}
+
+# Extra AI providers: {"Name": "dotted.path.ProviderClass"} (see core/ai.py AnthropicProvider)
+tcd_ai_providers = {}

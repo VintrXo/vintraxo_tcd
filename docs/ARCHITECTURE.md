@@ -42,6 +42,7 @@
 | connect.py | Cross-pillar relations, prerequisites, used-in, course navigation, unified search, recommendations |
 
 | integrations.py | Connector validation (SSRF guard), event emit to the outbox, signed delivery, retry/backoff, rate limit, cron queue, purge |
+| ai.py | AI gateway: providers, access/limits/budget, redaction, usage log, permission-filtered retrieval, assistant with citations, smart search, summary, question and lesson drafts |
 | training.py | HR link (guarded Employee lookup), training rules (match, enroll, mandatory, due), role guides, training compliance |
 
 ## Public API (`vintraxo_tcd.api.*`)
@@ -83,6 +84,11 @@
 | test_connector | POST | Send a signed ping to a connector (connector write permission) |
 | retry_integration_event | POST | Re-queue a failed/queued event (connector write permission) |
 | apply_training_rule | POST | Apply a training rule now, returns users enrolled (rule write permission) |
+| ai_status | GET | Whether the current user may use AI |
+| ai_search / ai_ask | POST | Smart search (query expansion) / knowledge assistant with cited sources |
+| ai_summarize | POST | Summary of a readable page |
+| ai_generate_questions | POST | Single-choice questions saved as Needs Review (TCD Question create) |
+| ai_draft_lesson | POST | Lesson saved as Draft with ai_generated (TCD Content create) |
 
 ## Learner portal (P3)
 | Route | Page | Content |

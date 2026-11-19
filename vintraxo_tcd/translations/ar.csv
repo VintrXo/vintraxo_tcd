@@ -3,6 +3,7 @@
 0 = never expires,0 = لا تنتهي,TCD Learning Path
 0 = no limit,0 = بلا حد,TCD Quiz
 0 = unlimited,0 = بلا حد
+0 means no limit,0 يعني بلا حد,TCD AI Settings
 0 means no limit,0 يعني بلا حد,TCD Connector
 1,1 - مبتدئ,TCD Competency Requirement
 1,1 - مبتدئ,TCD Skill Award
@@ -24,9 +25,23 @@ A course cannot be its own prerequisite.,لا يمكن أن تكون الدور�
 "A fixed question, or a number of random questions from a category",سؤال محدد، أو عدد من الأسئلة العشوائية من تصنيف,TCD Quiz
 A new version is being prepared. This is the version in force.,يجري إعداد نسخة جديدة. هذه هي النسخة السارية.
 A page cannot be its own parent.,لا يمكن أن تكون الصفحة أبًا لنفسها.
+A provider registered by an app (hook tcd_ai_providers). Built in: Anthropic,مزوّد يسجّله تطبيق (الخطاف tcd_ai_providers). المدمج: Anthropic,TCD AI Settings
 A role is listed twice.,تم إدراج دور مرتين.
 A submission for this assignment already exists.,يوجد تسليم لهذا التكليف بالفعل.
 A tutorial or process guide recommended to matching users,شرح أو دليل إجراءات يُقترح على المستخدمين المطابقين,TCD Training Rule
+AI,الذكاء الاصطناعي
+AI Draft,مسودة ذكاء اصطناعي,TCD Content
+AI Review,مراجعة الذكاء الاصطناعي,TCD Question
+AI Settings,إعدادات الذكاء الاصطناعي
+AI Source,مصدر الذكاء الاصطناعي,TCD Question
+AI Usage,استخدام الذكاء الاصطناعي
+AI draft: check the facts before sending it for review.,مسودة من الذكاء الاصطناعي: راجع المعلومات قبل إرسالها للمراجعة.
+AI features are turned off.,ميزات الذكاء الاصطناعي متوقفة.
+AI lesson draft,مسودة درس بالذكاء الاصطناعي
+AI questions cannot be used in a quiz until a person marks them Reviewed,لا يمكن استخدام أسئلة الذكاء الاصطناعي في اختبار حتى يعتمدها شخص كـ «تمت المراجعة»,TCD Question
+AI stops for the rest of the month once spent; 0 means no limit,يتوقف الذكاء الاصطناعي بقية الشهر عند استنفادها؛ 0 يعني بلا حد,TCD AI Settings
+AI summary,ملخص بالذكاء الاصطناعي
+API Key,مفتاح API,TCD AI Settings
 About,حول
 About,نبذة,TCD
 About,نبذة,TCD Course
@@ -80,14 +95,17 @@ Allowed File Extensions,امتدادات الملفات المسموحة,TCD Ass
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Question
 Allowed File Extensions,امتدادات الملفات المسموحة,TCD Settings
 Allowed Roles,الأدوار المسموح بها
+Allowed Roles,الأدوار المسموح لها,TCD AI Settings
 Allowed Roles,الأدوار المسموحة,TCD Space
 Allowed Video Hosts,مواقع الفيديو المسموحة,TCD Settings
+Also searched for: {0},تم البحث أيضًا عن: {0}
 Alt Text,النص البديل
 Alt Text,النص البديل,TCD Block
 An instructor reviews this answer.,يراجع المدرّب هذه الإجابة.
 Answer,الإجابة,TCD Assignment Submission
 Answered,أجابوا
 Answers,الإجابات
+Answers are written by AI from pages you can access. Check the sources before you act on them.,الإجابات يكتبها الذكاء الاصطناعي من الصفحات المتاحة لك. راجع المصادر قبل العمل بها.
 Answers must be an object of question id -> answer.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> الإجابة.
 Answers must be an object of question id -> option numbers.,يجب أن تكون الإجابات كائنًا: معرّف السؤال -> أرقام الخيارات.
 Answers must be option numbers.,يجب أن تكون الإجابات أرقام خيارات.
@@ -119,6 +137,10 @@ Archived,مؤرشفة,TCD Governance Document
 Article,مقال
 Article,مقال,TCD
 Article,مقال,TCD Content
+Ask,اسأل,TCD
+Ask,سؤال
+"Ask about a procedure, a tool or a lesson",اسأل عن إجراء أو أداة أو درس
+Ask the knowledge assistant,اسأل مساعد المعرفة
 Ask your instructor to enroll you.,اطلب من المدرّب تسجيلك.
 Assessment,التقييم
 Assignment,تكليف,TCD Assignment Submission
@@ -126,6 +148,7 @@ Assignment,تكليف,TCD Content
 Assignment,تكليف,TCD Content Template
 Assignments,التكليفات,TCD
 Assignments,تعيينات
+Assistant,المساعد,TCD AI Usage Log
 Attach a file.,أرفق ملفًا.
 Attachment,المرفق,TCD
 Attachment,المرفق,TCD Assignment Submission
@@ -149,6 +172,7 @@ Back to Learning,العودة إلى التعلّم
 Bank Questions,أسئلة البنك,TCD Quiz
 Bank row {0}: category {1} has only {2} questions.,سطر البنك {0}: التصنيف {1} فيه {2} أسئلة فقط.
 Bank row {0}: choose a question or a category (not both).,سطر البنك {0}: اختر سؤالًا أو تصنيفًا (وليس الاثنين).
+Bank row {0}: the AI question must be reviewed before it is used in a quiz.,صف البنك {0}: يجب مراجعة سؤال الذكاء الاصطناعي قبل استخدامه في اختبار.
 Batch,دفعة
 Batch,دفعة,TCD Enrollment
 Batch Name,اسم الدفعة,TCD Batch
@@ -183,6 +207,7 @@ Cannot delete a learning path that has enrollments. Archive it instead.,لا ي�
 Cannot delete a space that still has content. Archive or move the content first.,لا يمكن حذف مساحة ما زال بها محتوى. أرشِف المحتوى أو انقله أولًا.
 Cannot move a document from {0} to {1}.,لا يمكن نقل المستند من {0} إلى {1}.
 Cannot move content from {0} to {1}.,لا يمكن نقل المحتوى من {0} إلى {1}.
+Cannot reach the AI provider.,تعذّر الوصول إلى مزوّد الذكاء الاصطناعي.
 Cannot resolve the endpoint host {0}.,تعذّر الوصول إلى عنوان الخادم {0}.
 Caption,التعليق
 Caption,التعليق,TCD Block
@@ -276,6 +301,7 @@ Correct Answers,الإجابات الصحيحة
 Correct answer,الإجابة الصحيحة
 Correct answers must be between 1 and {0}.,الإجابات الصحيحة يجب أن تكون بين 1 و{0}.
 Correctness of each question at grading time,صحة كل سؤال وقت التصحيح
+Cost (USD),التكلفة (دولار),TCD AI Usage Log
 Could not read the Vimeo video id.,تعذّر قراءة معرّف فيديو Vimeo.
 Could not read the YouTube video id.,تعذّر قراءة معرّف فيديو YouTube.
 Course,الدورة,TCD Assignment
@@ -301,6 +327,7 @@ Current Approved Version,النسخة المعتمدة الحالية
 Current Level,المستوى الحالي
 Current file,الملف الحالي
 Current version,النسخة الحالية
+Daily Requests per User,الطلبات اليومية لكل مستخدم,TCD AI Settings
 Dates,التواريخ,TCD Governance Document
 Deadline,الموعد النهائي,TCD Quiz Submission
 Default Content Language,لغة المحتوى الافتراضية
@@ -322,6 +349,7 @@ Description,الوصف,TCD Student Group
 Description,وصف
 Designation,المسمى الوظيفي
 Designation,المسمى الوظيفي,TCD Rule HR Filter
+Details,التفاصيل,TCD AI Usage Log
 Document,المستند,TCD Acknowledgment
 Document,المستند,TCD Governance Version
 Document,مستند,TCD
@@ -354,7 +382,9 @@ Each role can be listed only once.,لا يمكن تكرار الدور.
 Effective Date,تاريخ السريان,TCD Governance Document
 Effective Date,تاريخ السريان,TCD Governance Version
 Effective from {0},ساري من {0}
+Effort,مستوى الجهد,TCD AI Settings
 Employee,الموظف
+Enable AI,تفعيل الذكاء الاصطناعي,TCD AI Settings
 Enable Learner Portal,تفعيل بوابة المتعلمين
 Enable Playgrounds,تفعيل محرر الأكواد
 Enabled,مفعّل,TCD Connector
@@ -380,12 +410,14 @@ Enrollment For,التسجيل في
 Enrollments,التسجيلات
 Enrollments complete automatically or through approval.,تكتمل التسجيلات تلقائيًا أو عبر الاعتماد.
 Error,خطأ
+Error,خطأ,TCD AI Usage Log
 Essay,مقالي,TCD Question
 Event,الحدث,TCD Connector Event
 Event,الحدث,TCD Integration Event
 Event {0} is listed twice.,تم إدراج الحدث {0} مرتين.
 Events,الأحداث,TCD Connector
 Exactly one correct answer is allowed.,يُسمح بإجابة صحيحة واحدة فقط.
+Expand Search Queries,توسيع عبارات البحث,TCD AI Settings
 Expected Output,المخرجات المتوقعة,TCD Question
 Expected Output (optional),المخرجات المتوقعة (اختياري)
 Expected Output (optional),المخرجات المتوقعة (اختياري),TCD Block
@@ -402,6 +434,7 @@ External Link,رابط خارجي,TCD Block
 External links must start with https://,يجب أن تبدأ الروابط الخارجية بـ https://
 Failed,فشل,TCD Integration Event
 False,خطأ
+Feature,الميزة,TCD AI Usage Log
 Feedback,الملاحظات,TCD
 Feedback,الملاحظات,TCD Assignment Submission
 Feedback,ملاحظات
@@ -429,7 +462,11 @@ Full Name,الاسم الكامل,TCD Student Group Member
 Fully Competent,مكتمل الكفاءة
 Gap,الفجوة
 General,عام
+General,عام,TCD AI Settings
+Generate,إنشاء
+Generate quiz questions,إنشاء أسئلة اختبار
 Give a reason for revoking the certificate.,اذكر سبب إلغاء الشهادة.
+Give the lesson a title.,اكتب عنوانًا للدرس.
 Governance,الحوكمة
 Grade,تصحيح
 Grade,تصحيح,TCD Assignment Submission
@@ -453,6 +490,7 @@ Helpful %,نسبة الإفادة
 Holder,صاحب الشهادة
 Home,الصفحة الرئيسية
 How Many,العدد,TCD Quiz Bank Item
+I could not find pages you can access that answer this question.,لم أجد صفحات متاحة لك تجيب عن هذا السؤال.
 I have read and understood this document and agree to follow it.,قرأت هذا المستند وفهمته وأوافق على الالتزام به.
 Image,صورة
 Image,صورة,TCD Block
@@ -466,6 +504,8 @@ In Review,قيد المراجعة
 In Review,قيد المراجعة,TCD
 In Review,قيد المراجعة,TCD Content
 Inline Questions,أسئلة مباشرة,TCD Quiz
+Input Price per Million Tokens (USD),سعر المدخلات لكل مليون رمز (دولار),TCD AI Settings
+Input Tokens,رموز المدخلات,TCD AI Usage Log
 Instructions,التعليمات,TCD Assignment
 Instructor Dashboard,لوحة المدرّب
 Instructors,المدرّبون,TCD Course
@@ -497,6 +537,7 @@ Items (one per line),العناصر (عنصر في كل سطر)
 Items (one per line),العناصر (عنصر في كل سطر),TCD Block
 JSON,JSON,TCD Connector
 JSON sends the full event; Slack sends a short text message to an incoming webhook,JSON يرسل الحدث كاملًا؛ سلاك يرسل رسالة نصية قصيرة إلى Incoming Webhook,TCD Connector
+Keep Prompt Text in the Usage Log,حفظ نص الطلب في سجل الاستخدام,TCD AI Settings
 Kind,النوع
 Kind,النوع,TCD Governance Document
 Knowledge Usage,استخدام المعرفة
@@ -530,6 +571,7 @@ Lesson,درس
 Lesson,درس,TCD
 Lesson,درس,TCD Content
 Lesson,درس,TCD Tutorial Lesson
+Lesson Draft,مسودة درس,TCD AI Usage Log
 Lesson Type,نوع الدرس,TCD Content
 Lesson Type,نوع الدرس,TCD Content Template
 Lesson navigation,التنقل بين الدروس
@@ -538,6 +580,7 @@ Lessons,الدروس
 Level,المستوى
 Level,المستوى,TCD Block
 Level {0} of 5,المستوى {0} من 5
+Limits and Cost,الحدود والتكلفة,TCD AI Settings
 Link URL (https),رابط (https),TCD Block
 Linked From,مرتبطة من
 Linked Tutorials and Courses,مسارات ودورات مرتبطة,TCD Governance Document
@@ -550,6 +593,7 @@ Location,الموقع
 Location,الموقع,TCD Content
 Locked,مغلق
 Locked,مقفل,TCD
+Looking in the pages you can access...,جارٍ البحث في الصفحات المتاحة لك...
 Mandatory,إلزامي
 Mandatory,إلزامي,TCD Enrollment
 Mandatory,إلزامي,TCD Training Rule
@@ -566,6 +610,7 @@ Matching,توصيل,TCD Question
 Matching pairs must look like: left => right,أزواج التوصيل يجب أن تكون بالشكل: يسار => يمين
 Max Attempts,أقصى عدد للمحاولات,TCD Connector
 Max Attempts,الحد الأقصى للمحاولات
+Max Output Tokens,أقصى عدد رموز للإجابة,TCD AI Settings
 Max Points,أقصى نقاط,TCD Rubric Criterion
 Max Score,أقصى درجة
 Max Score,الدرجة العظمى,TCD Assignment
@@ -582,6 +627,9 @@ Minimum Score,الحد الأدنى للدرجة,TCD Course
 Minimum Score,الحد الأدنى للدرجة,TCD Learning Path
 Minimum score must be between 1 and 100.,الحد الأدنى للدرجة يجب أن يكون بين 1 و100.
 Missing prerequisites: {0},متطلبات سابقة ناقصة: {0}
+Model,النموذج,TCD AI Settings
+Model,النموذج,TCD AI Usage Log
+Monthly Budget (USD),الميزانية الشهرية (دولار),TCD AI Settings
 Most Common Wrong Answer,أكثر إجابة خاطئة
 Move down,تحريك لأسفل
 Move the course back to Draft to change its chapters.,أعد الدورة إلى مسودة لتعديل فصولها.
@@ -595,6 +643,8 @@ My skills,مهاراتي
 Name,اسم
 Name as in ERPNext/HRMS,الاسم كما هو في ERPNext/HRMS,TCD Rule HR Filter
 Needs ERPNext/HRMS: the user must be linked to an active Employee. Rows of the same filter match any value; different filters must all match.,تحتاج ERPNext/HRMS: يجب ربط المستخدم بموظف نشط. صفوف نفس الفلتر تطابق أي قيمة منها؛ والفلاتر المختلفة يجب أن تتطابق كلها.,TCD Training Rule
+Needs Review,يحتاج مراجعة,TCD Question
+Never Send Restricted Content,لا ترسل المحتوى المقيّد أبدًا,TCD AI Settings
 Never read,لم تُقرأ قط
 New content must start as Draft or In Review.,يجب أن يبدأ المحتوى الجديد كمسودة أو قيد المراجعة.
 New documents start as Draft.,المستندات الجديدة تبدأ كمسودة.
@@ -625,8 +675,10 @@ Nothing to grade.,لا يوجد ما يُصحَّح.
 Nothing to review.,لا يوجد ما يُراجَع.
 Nothing waiting.,لا يوجد ما ينتظر.
 Notifications,الإشعارات
+Number of questions,عدد الأسئلة
 Numbered,مرقّمة
 Numbered,مرقّمة,TCD Block
+"Off: only counts, cost and sources are kept",عند الإيقاف: تُحفظ الأعداد والتكلفة والمصادر فقط,TCD AI Settings
 One host per line. Supported providers: YouTube and Vimeo. Uploaded mp4/webm files are always allowed,موقع في كل سطر. المواقع المدعومة: YouTube وVimeo. ملفات mp4/webm المرفوعة مسموحة دائمًا,TCD Settings
 One option per line (not used for True False),خيار في كل سطر (لا يُستخدم مع صح/خطأ)
 One pair per line: left => right,زوج في كل سطر: يسار => يمين,TCD Question
@@ -666,6 +718,8 @@ Ordering,ترتيب,TCD Question
 Original File,الملف الأصلي,TCD Governance Document
 Original File,الملف الأصلي,TCD Governance Version
 Original file,الملف الأصلي
+Output Price per Million Tokens (USD),سعر المخرجات لكل مليون رمز (دولار),TCD AI Settings
+Output Tokens,رموز المخرجات,TCD AI Usage Log
 Output differs from the expected result.,المخرجات مختلفة عن النتيجة المتوقعة.
 Output matches the expected result.,المخرجات مطابقة للنتيجة المتوقعة.
 Overdue,تأخير
@@ -737,6 +791,8 @@ Prerequisite Courses,الدورات المطلوبة مسبقًا,TCD Course
 Prerequisites,المتطلبات السابقة
 Preview,معاينة
 Preview: this content is {0} and not visible to learners.,معاينة: هذا المحتوى حالته {0} وغير ظاهر للمتعلمين.
+Prices and budget cannot be negative.,لا يمكن أن تكون الأسعار أو الميزانية سالبة.
+Privacy,الخصوصية,TCD AI Settings
 Profile Name,اسم الملف,TCD Competency Profile
 Progress,التقدّم,TCD
 Progress,التقدّم,TCD Enrollment
@@ -746,6 +802,9 @@ Progress for this user and content already exists.,التقدّم لهذا ال�
 Progress is recorded automatically.,يُسجَّل التقدّم تلقائيًا.
 Project,مشروع,TCD Content
 Project,مشروع,TCD Content Template
+Prompt,نص الطلب,TCD AI Usage Log
+Provider,المزوّد,TCD AI Settings
+Provider,المزوّد,TCD AI Usage Log
 Public,جمهور
 Public,عام,TCD Content
 Public,عام,TCD Course
@@ -775,6 +834,7 @@ Queued,في الانتظار,TCD Integration Event
 Quiz,الاختبار
 Quiz Analytics,تحليلات الاختبارات
 Quiz Attempts,محاولات الاختبارات
+Quiz Questions,أسئلة اختبار,TCD AI Usage Log
 Quiz answers to review,إجابات اختبارات بانتظار المراجعة
 Quiz answers to review: {0} ({1}),إجابات اختبار للمراجعة: {0} ({1})
 Quiz submissions are created by submitting the quiz and cannot be changed.,تُنشأ محاولات الاختبار عند تسليمه ولا يمكن تعديلها.
@@ -795,9 +855,12 @@ Recommended for you,مقترح لك
 Reference,مرجع
 Reference,مرجع,TCD
 Reference,مرجع,TCD Content
+Reference Name,اسم المرجع,TCD AI Usage Log
 Reference Name,اسم المرجع,TCD Integration Event
+Reference Type,نوع المرجع,TCD AI Usage Log
 Reference Type,نوع المرجع,TCD Integration Event
 Referenced by,مُشار إليه في
+Refused,مرفوض,TCD AI Usage Log
 Related,ذات صلة
 Related,ذو صلة,TCD Content Relation
 Related Learning,التعلّم المرتبط,TCD Governance Document
@@ -805,6 +868,7 @@ Related learning,تعلّم مرتبط
 Related policies and procedures,سياسات وإجراءات مرتبطة
 Related reading,قراءات ذات صلة
 Relation Type,نوع العلاقة
+Remove E-mails and Phone Numbers,إزالة البريد الإلكتروني وأرقام الهواتف,TCD AI Settings
 Remove this course from its learning paths first.,احذف هذه الدورة من مسارات التعلّم أولًا.
 Renew,تجديد
 Renewed,مُجدَّدة,TCD
@@ -847,6 +911,7 @@ Review Answers,مراجعة الإجابات
 Review Cycle (months),دورة المراجعة (بالأشهر),TCD Governance Document
 Review cycle cannot be negative.,لا يمكن أن تكون دورة المراجعة سالبة.
 Review due on {0}: {1},موعد المراجعة {0}: {1}
+Reviewed,تمت المراجعة,TCD Question
 Revision,قيد التعديل,TCD Governance Document
 Revocation,الإلغاء,TCD Certificate
 Revoke,سحب
@@ -900,12 +965,16 @@ Select a competency profile.,اختر ملف كفاءات.
 Select a document.,اختر مستندًا.
 Select a quiz.,اختر اختبارًا.
 Self enrollment is not allowed here. Ask your instructor.,التسجيل الذاتي غير مسموح هنا. اطلب من المدرّب.
+Semantic Search,البحث الذكي,TCD AI Usage Log
+Semantic search: the model adds synonyms and related terms (only the query is sent),البحث الذكي: يضيف النموذج مرادفات وكلمات قريبة (تُرسل عبارة البحث فقط),TCD AI Settings
 Send,إرسال
 Send Test,إرسال تجربة
 Send for Approval,إرسال للاعتماد
 Send for Review,إرسال للمراجعة
 Sent,تم الإرسال,TCD Integration Event
 Sent On,تاريخ الإرسال,TCD Integration Event
+Set the API key in AI Settings.,أدخل مفتاح API في إعدادات الذكاء الاصطناعي.
+Set the model.,حدد النموذج.
 Settings,إعدادات
 Setup SQL,SQL التهيئة,TCD Question
 Short Answer,إجابة قصيرة,TCD Question
@@ -937,6 +1006,7 @@ Slug,المعرّف في الرابط,TCD Content
 Slug,المعرّف في الرابط,TCD Course
 Slug,المعرّف في الرابط,TCD Learning Path
 Slug {0} is already used in this space.,المعرّف {0} مستخدم بالفعل في هذه المساحة.
+Smart search,بحث ذكي
 Snapshot,اللقطة
 Some answers are waiting for review by your instructor.,بعض الإجابات بانتظار مراجعة المدرّب.
 Sort Order,الترتيب,TCD Category
@@ -945,6 +1015,8 @@ Sort Order,الترتيب,TCD Content Relation
 Sort Order,ترتيب الفرز
 Source,المصدر,TCD User Skill
 Source Name,اسم المصدر,TCD User Skill
+Sources,المصادر
+Sources,المصادر,TCD AI Usage Log
 Space,المساحة
 Space,المساحة,TCD Category
 Space,المساحة,TCD Chapter
@@ -966,6 +1038,7 @@ Starter Code,الكود المبدئي
 Starter Code,الكود المبدئي,TCD Block
 Statement,نص الإقرار,TCD Acknowledgment
 Status,الحالة
+Status,الحالة,TCD AI Usage Log
 Status,الحالة,TCD Content
 Status,الحالة,TCD Course
 Status,الحالة,TCD Enrollment
@@ -990,12 +1063,18 @@ Submitted,مُسلَّم,TCD
 Submitted,مُسلَّم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Assignment Submission
 Submitted On,تاريخ التسليم,TCD Quiz Submission
+Success,نجاح,TCD AI Usage Log
 Suggested Courses,دورات مقترحة
+Summarize,تلخيص
+Summarize this page.,لخّص هذه الصفحة.
+Summary,الملخص,TCD AI Usage Log
 Summary,الملخص,TCD Content
 Summary,الملخص,TCD Content Version
 Summary,الملخص,TCD Course
 Summary,الملخص,TCD Learning Path
 Summary,ملخص
+TCD AI Settings,إعدادات الذكاء الاصطناعي
+TCD AI Usage Log,سجل استخدام الذكاء الاصطناعي
 TCD Acknowledgment,إقرار
 TCD Acknowledgment Status,حالة الإقرارات
 TCD Assignment,تكليف
@@ -1070,6 +1149,12 @@ Text,نص,TCD
 Text and File,نص وملف,TCD
 Text and File,نص وملف,TCD Assignment
 Thank you for your feedback.,شكرًا على ملاحظتك.
+The AI answer could not be read. Try again.,تعذّرت قراءة إجابة الذكاء الاصطناعي. حاول مرة أخرى.
+The AI declined this request.,رفض الذكاء الاصطناعي هذا الطلب.
+The AI provider is busy. Try again in a minute.,مزوّد الذكاء الاصطناعي مشغول. حاول بعد دقيقة.
+The AI provider rejected the API key.,رفض مزوّد الذكاء الاصطناعي مفتاح API.
+The AI provider returned an error ({0}).,أعاد مزوّد الذكاء الاصطناعي خطأ ({0}).
+The AI returned an empty lesson. Try again with more detail.,أعاد الذكاء الاصطناعي درسًا فارغًا. حاول مرة أخرى بتفاصيل أكثر.
 The answer is too long.,الإجابة طويلة جدًا.
 The answers are too long.,الإجابات طويلة جدًا.
 The endpoint must be an http(s) URL.,يجب أن يكون العنوان رابط http(s).
@@ -1077,6 +1162,7 @@ The endpoint resolves to a private or local address. Allow the private network t
 The lesson is not part of the selected course.,الدرس ليس ضمن الدورة المختارة.
 The lesson or tutorial this quiz belongs to,الدرس أو المسار الذي يتبعه هذا الاختبار
 The lesson this assignment belongs to,الدرس الذي يتبعه هذا التكليف,TCD Assignment
+The monthly AI budget is used up.,انتهت ميزانية الذكاء الاصطناعي لهذا الشهر.
 The question has {0} blanks but {1} answer lines.,في السؤال {0} فراغات لكن عدد أسطر الإجابات {1}.
 The reverse {0} relation already exists.,العلاقة العكسية {0} موجودة بالفعل.
 The template blocks replace the current blocks.,كتل القالب ستحل محل الكتل الحالية.
@@ -1134,6 +1220,7 @@ Tutorials complete automatically when their lessons are completed.,تكتمل ا
 Type,النوع
 Type,النوع,TCD Quiz Question
 Unique within the space. Generated from the title when empty,فريد داخل المساحة. يُولَّد من العنوان إذا تُرك فارغًا
+Unknown AI provider {0}.,مزوّد الذكاء الاصطناعي {0} غير معروف.
 Unknown block type. Edit it in the JSON section.,نوع كتلة غير معروف. عدّلها في قسم JSON.
 Up next,التالي
 Upload,تحميل
@@ -1145,6 +1232,7 @@ Uploading...,جارٍ الرفع...
 Use a public uploaded file (/files/...).,استخدم ملفًا مرفوعًا عامًا (/files/...).
 Use the submit and grade actions to change submissions.,استخدم إجراءات التسليم والتصحيح لتعديل التسليمات.
 User,المستخدم
+User,المستخدم,TCD AI Usage Log
 User,المستخدم,TCD Progress
 User,المستخدم,TCD Quiz Submission
 User,المستخدم,TCD Student Group Member
@@ -1178,22 +1266,37 @@ Visibility,الظهور,TCD Space
 Waiting for approval,بانتظار الاعتماد
 Waiting for review,بانتظار المراجعة
 Was this page helpful?,هل كانت هذه الصفحة مفيدة؟
+What should the lesson cover?,ماذا يجب أن يغطي الدرس؟
+Who may use the assistant and search. Empty means every user with a learning role.,من يمكنه استخدام المساعد والبحث. تركها فارغة يعني كل من لديه دور تعليمي.,TCD AI Settings
 Withdrawn,منسحب
 Withdrawn,منسحب,TCD
 Withdrawn,منسحب,TCD Enrollment
+Write a question.,اكتب سؤالًا.
+Write draft,اكتب المسودة
 Write your answer.,اكتب إجابتك.
+Writing the draft...,جارٍ كتابة المسودة...
+Written by AI. Check it against the page.,مكتوب بالذكاء الاصطناعي. راجعه مقابل الصفحة.
+Written by AI; check the facts before sending it for review,مكتوب بالذكاء الاصطناعي؛ راجع المعلومات قبل إرسالها للمراجعة,TCD Content
 Wrong,خطأ
 Yes,نعم
 You acknowledged version {0}.,أقررت بالنسخة {0}.
 You already gave feedback on this page.,قيّمت هذه الصفحة بالفعل.
 You already rated this course.,قيّمت هذه الدورة بالفعل.
+You are not allowed to use the AI features.,غير مسموح لك باستخدام ميزات الذكاء الاصطناعي.
 You are not an instructor of any course yet.,لست مدرّبًا لأي دورة بعد.
 You are not enrolled in any course yet.,لم تسجّل في أي دورة بعد.
 You can only enroll in published courses and learning paths.,يمكن التسجيل فقط في الدورات ومسارات التعلّم المنشورة.
 You can only submit files you uploaded.,يمكنك تسليم الملفات التي رفعتها أنت فقط.
+You cannot use this page with AI.,لا يمكنك استخدام هذه الصفحة مع الذكاء الاصطناعي.
+You cannot write in this space.,لا يمكنك الكتابة في هذه المساحة.
 You earned a certificate for this course.,حصلت على شهادة لهذه الدورة.
+You reached today's limit of AI requests.,وصلت إلى حد طلبات الذكاء الاصطناعي لليوم.
 Your answer,إجابتك
+Your question,سؤالك
+high,مرتفع,TCD AI Settings
 javascript,جافاسكربت,TCD Question
+low,منخفض,TCD AI Settings
+medium,متوسط,TCD AI Settings
 python,بايثون,TCD Question
 ratings,التقييمات
 ratings,تقييمات,TCD
@@ -1205,6 +1308,7 @@ ratings,تقييمات,TCD
 {0} must start with https:// or /.,{0} يجب أن يبدأ بـ https:// أو /.
 {0} of {1} found it helpful,وجدها {0} من {1} مفيدة
 {0} of {1} lessons completed,أُكمل {0} من {1} دروس
+{0} questions saved for review,تم حفظ {0} سؤال للمراجعة
 {0} users enrolled,تم تسجيل {0} مستخدم
 {0}: points must be between 0 and {1}.,{0}: النقاط يجب أن تكون بين 0 و{1}.
 {} Pending,{} بانتظار الاعتماد

@@ -259,6 +259,14 @@ TCD Knowledge Usage (per page: unique readers, completions, helpful %, backlinks
 TCD Enrollment gains `mandatory` and `training_rule` (read-only, set by rules).
 Employee ↔ learner: ERPNext `Employee.user_id` (read only, guarded by `training.hr_available()`).
 
+## Phase 9: AI gateway
+| DocType | Purpose | Key fields |
+|---|---|---|
+| TCD AI Settings (single) | Provider and limits | enabled, provider, model, api_key (Password), effort, max_output_tokens, expand_queries, input/output price per million tokens, monthly_budget, daily_requests_per_user, exclude_restricted, redact_personal_data, log_prompts, allowed_roles (TCD Rule Role) |
+| TCD AI Usage Log | One row per model call (read-only) | user, feature, status (Success/Refused/Error), provider, model, input/output tokens, cost, sources (JSON), reference_doctype/name, prompt (only if enabled), error |
+
+TCD Content gains `ai_generated`; TCD Question gains `ai_status` (Needs Review / Reviewed) and `ai_source`.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

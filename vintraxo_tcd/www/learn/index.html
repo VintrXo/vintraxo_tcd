@@ -45,6 +45,22 @@
 	</section>
 	{% endif %}
 
+	{% if ai_enabled %}
+	<section class="tcd-section tcd-assistant">
+		<h2>{{ _("Ask the knowledge assistant") }}</h2>
+		<form class="tcd-assistant-form">
+			<textarea name="question" rows="2" maxlength="1000" required class="form-control"
+				aria-label="{{ _('Your question') }}" placeholder="{{ _('Ask about a procedure, a tool or a lesson') }}"></textarea>
+			<p class="tcd-assistant-actions">
+				<button type="submit" class="btn btn-primary btn-sm" data-mode="ask">{{ _("Ask", context="TCD") }}</button>
+				<button type="submit" class="btn btn-default btn-sm" data-mode="search">{{ _("Smart search") }}</button>
+			</p>
+		</form>
+		<p class="tcd-muted tcd-small">{{ _("Answers are written by AI from pages you can access. Check the sources before you act on them.") }}</p>
+		<div class="tcd-assistant-output" aria-live="polite"></div>
+	</section>
+	{% endif %}
+
 	<p class="tcd-quicklinks"><a class="btn btn-default btn-sm" href="/learn/my">{{ _("My Learning") }}</a>
 		<a class="btn btn-default btn-sm" href="/learn/policies">{{ _("Policies and procedures") }}</a>
 		{% if is_instructor %}<a class="btn btn-default btn-sm" href="/learn/instructor">{{ _("Instructor Dashboard") }}</a>{% endif %}</p>
@@ -105,4 +121,7 @@
 		{% endif %}
 	</section>
 </div>
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 {% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js"></script>{% endblock %}

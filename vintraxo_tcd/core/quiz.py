@@ -52,9 +52,17 @@ def validate_quiz(doc):
 	for row in doc.get("bank_items") or []:
 		if bool(row.question) == bool(row.category):
 			frappe.throw(_("Bank row {0}: choose a question or a category (not both).").format(row.idx))
+		if row.question and frappe.db.get_value("TCD Question", row.question, "ai_status") == "Needs Review":
+			frappe.throw(
+				_("Bank row {0}: the AI question must be reviewed before it is used in a quiz.").format(
+					row.idx
+				)
+			)
 		if row.category:
 			row.pick_count = max(int(row.pick_count or 1), 1)
-			available = frappe.db.count("TCD Question", {"category": row.category})
+			available = frappe.db.count(
+				"TCD Question", {"category": row.category, "ai_status": ("!=", "Needs Review")}
+			)
 			if available < row.pick_count:
 				frappe.throw(
 					_("Bank row {0}: category {1} has only {2} questions.").format(

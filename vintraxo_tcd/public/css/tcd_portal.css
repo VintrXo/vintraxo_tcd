@@ -185,3 +185,10 @@
 /* notifications (Phase 7) */
 .tcd-notifications .tcd-unread { font-weight: 600; }
 .tcd-notifications .tcd-unread::before { content: "● "; color: var(--tcd-accent); }
+
+/* knowledge assistant (Phase 9) */
+.tcd-assistant-form textarea { inline-size: 100%; resize: vertical; }
+.tcd-assistant-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-block: 0.5rem; }
+.tcd-assistant-answer { white-space: pre-wrap; line-height: 1.8; padding: 0.75rem 1rem; border-radius: 8px; background: var(--tcd-bg-soft); }
+.tcd-assistant-answer sup a { text-decoration: none; margin-inline-start: 2px; }
+.tcd-assistant-sources { padding-inline-start: 1.5rem; }

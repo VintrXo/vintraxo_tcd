@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 03:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "general_section",
+  "enabled",
+  "provider",
+  "model",
+  "api_key",
+  "column_break_1",
+  "effort",
+  "max_output_tokens",
+  "expand_queries",
+  "limits_section",
+  "input_price_per_mtok",
+  "output_price_per_mtok",
+  "column_break_2",
+  "monthly_budget",
+  "daily_requests_per_user",
+  "privacy_section",
+  "exclude_restricted",
+  "redact_personal_data",
+  "column_break_3",
+  "log_prompts",
+  "allowed_roles"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable AI"
+  },
+  {
+   "fieldname": "provider",
+   "fieldtype": "Data",
+   "label": "Provider",
+   "default": "Anthropic",
+   "description": "A provider registered by an app (hook tcd_ai_providers). Built in: Anthropic"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "default": "claude-opus-5-5"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Password",
+   "label": "API Key"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effort",
+   "fieldtype": "Select",
+   "label": "Effort",
+   "options": "low\nmedium\nhigh",
+   "default": "medium"
+  },
+  {
+   "fieldname": "max_output_tokens",
+   "fieldtype": "Int",
+   "label": "Max Output Tokens",
+   "default": "4000",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "expand_queries",
+   "fieldtype": "Check",
+   "label": "Expand Search Queries",
+   "default": "1",
+   "description": "Semantic search: the model adds synonyms and related terms (only the query is sent)"
+  },
+  {
+   "fieldname": "limits_section",
+   "fieldtype": "Section Break",
+   "label": "Limits and Cost"
+  },
+  {
+   "fieldname": "input_price_per_mtok",
+   "fieldtype": "Float",
+   "label": "Input Price per Million Tokens (USD)",
+   "default": "4"
+  },
+  {
+   "fieldname": "output_price_per_mtok",
+   "fieldtype": "Float",
+   "label": "Output Price per Million Tokens (USD)",
+   "default": "20"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monthly_budget",
+   "fieldtype": "Float",
+   "label": "Monthly Budget (USD)",
+   "default": "50",
+   "description": "AI stops for the rest of the month once spent; 0 means no limit"
+  },
+  {
+   "fieldname": "daily_requests_per_user",
+   "fieldtype": "Int",
+   "label": "Daily Requests per User",
+   "default": "50",
+   "non_negative": 1,
+   "description": "0 means no limit"
+  },
+  {
+   "fieldname": "privacy_section",
+   "fieldtype": "Section Break",
+   "label": "Privacy"
+  },
+  {
+   "fieldname": "exclude_restricted",
+   "fieldtype": "Check",
+   "label": "Never Send Restricted Content",
+   "default": "1"
+  },
+  {
+   "fieldname": "redact_personal_data",
+   "fieldtype": "Check",
+   "label": "Remove E-mails and Phone Numbers",
+   "default": "1"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "log_prompts",
+   "fieldtype": "Check",
+   "label": "Keep Prompt Text in the Usage Log",
+   "description": "Off: only counts, cost and sources are kept"
+  },
+  {
+   "fieldname": "allowed_roles",
+   "fieldtype": "Table",
+   "label": "Allowed Roles",
+   "options": "TCD Rule Role",
+   "description": "Who may use the assistant and search. Empty means every user with a learning role."
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 03:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD AI Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "create": 1,
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "create": 1,
+   "read": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "issingle": 1,
+ "track_changes": 1
+}

@@ -171,7 +171,10 @@ def build_paper(quiz) -> list[dict]:
 		pool = [
 			q
 			for q in frappe.get_all(
-				"TCD Question", filters={"category": row.category}, pluck="name", ignore_permissions=True
+				"TCD Question",
+				filters={"category": row.category, "ai_status": ("!=", "Needs Review")},
+				pluck="name",
+				ignore_permissions=True,
 			)
 			if q not in seen
 		]
