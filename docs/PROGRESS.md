@@ -141,8 +141,10 @@ before rendering Jinja). Templates are HTML now.
   TCD tables and no Notification Logs. Backups: `sites/tcd.localhost/private/backups/`.
 - Fix: `tests/base.py` (`TCDTestCase`) makes `frappe.db.commit` a no-op while a TCD test class runs; every test class
   uses it. Verified: a full run (118 tests) left all record counts unchanged.
-- Pending owner decision: remove the committed test leftovers (space `ph7-space`, `tcd-*@test.local` users, orphan
-  child rows) and rebuild the demo, or restore the 08:30 backup.
+- Resolution (owner approved option 1): removed only the committed test leftovers (space `ph7-space` and its course,
+  content and enrollment, 4 `tcd-*@test.local` users, 9 orphan child rows / relations, 8 notification error logs) and
+  rebuilt the demo with `demo.create_demo`. Notification Logs from before the incident are not recoverable (the 08:30
+  backup had none).
 
 ## Pending
 
@@ -150,4 +152,4 @@ MVP test with 5 users (owner), then Phases 3–11 (see PLAN.md).
 
 ## Blocked / needs decision
 
-- Data cleanup after the 2026-11-19 incident (see above).
+- None.
