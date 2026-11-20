@@ -1,3 +1,19 @@
+# 0.4.0
+- **Odoo 18 documentation in Arabic and English** (`odoo-ar`, `odoo-en`): 848 pages each with 3 192 images, Odoo's
+  page tree and menu, a link to the same page in the other language, and a source / licence line on every page
+  (CC BY-SA 4.0, © Odoo S.A.). Tools: `deploy/odoo_docs/`.
+- **48 Odoo courses per language**, one per app (Accounting 91 lessons, Inventory 85, Sales 44, Point of Sale 42 …),
+  chapters in Odoo's order, self-enrollment and progress tracking.
+- **Markdown in paragraphs and callouts** (bold, italic, code, links, lists) is shown formatted, as the editors'
+  preview already showed it; plain text is unchanged. Pages follow their own language direction (an English page is
+  left-to-right on an Arabic site). Callouts lost their extra blank lines.
+- **Moving spaces between servers:** the space menu now survives the import, and `export_spaces` / `import_spaces`
+  carry the images and files the pages use.
+- **Code runner install:** `deploy/judge0/install_judge0.sh` (Judge0 1.13.1 on its own server, token, no network,
+  firewall, HTTPS); it stops early on kernels without the cgroup v1 memory controller.
+- Fix: the enrollment notification's subject shows the course title instead of its id.
+- 253 automated tests.
+
 # 0.3.2
 - **Install on the existing production server** without touching its site: `deploy/install_on_existing.sh <site>
   [keys.json] [spaces-dir]` (backup, get-app or pull, Python packages, install-app or migrate, build, keys, content,

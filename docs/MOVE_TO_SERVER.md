@@ -12,6 +12,8 @@
 القرار في `docs/adr/0035-install-on-existing-server.md`.
 
 **1. على الجهاز الداخلي: صدّر المحتوى**
+
+> الحزمة جاهزة بالفعل في `~/tcd-spaces` على الجهاز الداخلي (103 ميجا: 4 مساحات، منها وثائق أودو عربي وإنجليزي، و97 دورة، و3,192 صورة). الدورات والفصول والقوائم والصور بتتنقل جوه الحزمة، فمش محتاج تشغّل `courses.py` على السيرفر. لو غيّرت محتوى بعد كده، اعمل التصدير تاني بالأمر اللي تحت.
 ```bash
 cd ~/frappe-bench
 bench --site erpnext.localhost execute vintraxo_tcd.core.move.export_spaces --kwargs "{'out_dir': '/home/<user>/tcd-spaces'}"
