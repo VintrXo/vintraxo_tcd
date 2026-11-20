@@ -1,0 +1,38 @@
+{
+  "key": "marketing-retention-lab",
+  "spaces": {
+    "ar": {
+      "name": "marketing-retention-lab-ar",
+      "title": "معمل الاحتفاظ بالمتعلّمين",
+      "description": "شخّص انخفاض العودة للدورة، وجرّب قرارين في محاكاة."
+    },
+    "en": {
+      "name": "marketing-retention-lab-en",
+      "title": "Learner retention lab",
+      "description": "Diagnose a fall in course return and test two simulated decisions."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "معمل الاحتفاظ بالمتعلّمين",
+      "summary": "قارن تكلفة المتابعة والعودة خلال سبعة أيام."
+    },
+    "en": {
+      "title": "Learner retention lab",
+      "summary": "Compare follow-up costs and seven-day return."
+    }
+  },
+  "setups": {
+    "decision-lab": "@../marketing-decision-lab/simulator.html"
+  },
+  "chapters": [
+    {
+      "ar": "العودة وتقرير القرار",
+      "en": "Return and decision memo",
+      "lessons": [
+        "marketing-retention-lab-case",
+        "marketing-retention-lab-memo"
+      ]
+    }
+  ]
+}

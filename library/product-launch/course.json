@@ -1,0 +1,45 @@
+{
+  "key": "product-launch",
+  "spaces": {
+    "ar": {
+      "name": "product-launch-ar",
+      "title": "التسويق للمنتج وخطة الإطلاق",
+      "description": "صمّم عرضًا، واختبر التسعير، وخطّط لإطلاق تجريبي واتخاذ قرار بعده."
+    },
+    "en": {
+      "name": "product-launch-en",
+      "title": "Product marketing and launch planning",
+      "description": "Design an offer, test pricing assumptions, and plan a pilot with a decision afterward."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "التسويق للمنتج وخطة الإطلاق",
+      "summary": "صمّم عرضًا، واختبر التسعير، وخطّط لإطلاق تجريبي واتخاذ قرار بعده."
+    },
+    "en": {
+      "title": "Product marketing and launch planning",
+      "summary": "Design an offer, test pricing assumptions, and plan a pilot with a decision afterward."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "العرض والتسعير",
+      "en": "Offer and pricing",
+      "lessons": [
+        "product-launch-offer",
+        "product-launch-pricing"
+      ]
+    },
+    {
+      "ar": "الإطلاق والمراجعة",
+      "en": "Launch and review",
+      "lessons": [
+        "product-launch-pilot",
+        "product-launch-review",
+        "product-launch-project",
+        "product-launch-sources"
+      ]
+    }
+  ]
+}

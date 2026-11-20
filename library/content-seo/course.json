@@ -1,0 +1,45 @@
+{
+  "key": "content-seo",
+  "spaces": {
+    "ar": {
+      "name": "content-seo-ar",
+      "title": "التسويق بالمحتوى والبحث",
+      "description": "من نية البحث إلى خطة محتوى وصفحة تسجيل وقياس بسيط."
+    },
+    "en": {
+      "name": "content-seo-en",
+      "title": "Content marketing and search",
+      "description": "From search intent to a content plan, landing page, and measurement."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "التسويق بالمحتوى والبحث",
+      "summary": "من نية البحث إلى خطة محتوى وصفحة تسجيل وقياس بسيط."
+    },
+    "en": {
+      "title": "Content marketing and search",
+      "summary": "From search intent to a content plan, landing page, and measurement."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الجمهور والمحتوى",
+      "en": "Audience and content",
+      "lessons": [
+        "content-seo-intent",
+        "content-seo-plan"
+      ]
+    },
+    {
+      "ar": "الصفحة والقياس",
+      "en": "The page and measurement",
+      "lessons": [
+        "content-seo-landing",
+        "content-seo-metrics",
+        "content-seo-project",
+        "content-seo-sources"
+      ]
+    }
+  ]
+}

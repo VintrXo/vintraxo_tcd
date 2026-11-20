@@ -1,0 +1,45 @@
+{
+  "key": "paid-campaigns",
+  "spaces": {
+    "ar": {
+      "name": "paid-campaigns-ar",
+      "title": "الإعلانات وقياس الأداء",
+      "description": "أهداف الحملات، والميزانية، والتحويلات، وتجربة إعلانية ببيانات تدريبية."
+    },
+    "en": {
+      "name": "paid-campaigns-en",
+      "title": "Advertising and performance measurement",
+      "description": "Campaign objectives, budgets, conversions, and an ad experiment using synthetic data."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الإعلانات وقياس الأداء",
+      "summary": "أهداف الحملات، والميزانية، والتحويلات، وتجربة إعلانية ببيانات تدريبية."
+    },
+    "en": {
+      "title": "Advertising and performance measurement",
+      "summary": "Campaign objectives, budgets, conversions, and an ad experiment using synthetic data."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "تصميم الحملة",
+      "en": "Campaign design",
+      "lessons": [
+        "paid-campaigns-objective",
+        "paid-campaigns-budget"
+      ]
+    },
+    {
+      "ar": "القياس واتخاذ القرار",
+      "en": "Measurement and decisions",
+      "lessons": [
+        "paid-campaigns-metrics",
+        "paid-campaigns-attribution",
+        "paid-campaigns-project",
+        "paid-campaigns-sources"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "key": "marketing-foundations",
+  "spaces": {
+    "ar": {
+      "name": "marketing-foundations-ar",
+      "title": "أساسيات التسويق",
+      "description": "من اختيار الجمهور وعرض القيمة إلى إطلاق حملة صغيرة وقياسها."
+    },
+    "en": {
+      "name": "marketing-foundations-en",
+      "title": "Marketing foundations",
+      "description": "From audience choice and value proposition to planning and measuring a launch."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "أساسيات التسويق",
+      "summary": "من اختيار الجمهور وعرض القيمة إلى إطلاق حملة صغيرة وقياسها."
+    },
+    "en": {
+      "title": "Marketing foundations",
+      "summary": "From audience choice and value proposition to planning and measuring a launch."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الجمهور وعرض القيمة",
+      "en": "Audience and value proposition",
+      "lessons": [
+        "marketing-foundations-value",
+        "marketing-foundations-segment",
+        "marketing-foundations-positioning"
+      ]
+    },
+    {
+      "ar": "الحملة والقياس",
+      "en": "Campaign and measurement",
+      "lessons": [
+        "marketing-foundations-mix",
+        "marketing-foundations-measurement",
+        "marketing-foundations-project",
+        "marketing-foundations-sources"
+      ]
+    }
+  ]
+}

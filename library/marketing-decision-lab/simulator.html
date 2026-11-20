@@ -1,0 +1,280 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { color-scheme: light; font: 16px/1.6 system-ui, sans-serif; color: #162724; background: #f2f6f4; }
+  * { box-sizing: border-box; }
+  main { max-width: 52rem; margin: auto; padding: clamp(.75rem, 3vw, 1.5rem); }
+  h2 { font-size: 1.35rem; margin: 0 0 .6rem; }
+  h3 { font-size: 1.05rem; margin: 1.15rem 0 .35rem; }
+  p, ul { margin: .45rem 0 .85rem; }
+  ul { padding-inline-start: 1.25rem; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 28rem; background: white; }
+  caption { text-align: start; font-weight: 650; margin-block-end: .4rem; }
+  th, td { padding: .5rem .65rem; border-bottom: 1px solid #dbe6e1; text-align: start; }
+  thead { background: #dfece7; }
+  bdi { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  form, #decision-panel { margin-top: 1rem; padding: .9rem; background: white; border: 1px solid #dbe6e1; border-radius: .6rem; }
+  fieldset { border: 0; padding: 0; margin: 0 0 .8rem; min-width: 0; }
+  legend, label { font-weight: 650; }
+  .option { display: block; font-weight: 400; padding: .35rem 0; }
+  button, textarea { font: inherit; }
+  button { background: #125747; color: white; border: 1px solid #125747; border-radius: .4rem; padding: .35rem .75rem; cursor: pointer; }
+  button.secondary { background: white; color: #125747; }
+  button + button { margin-inline-start: .45rem; }
+  textarea { display: block; width: 100%; margin: .4rem 0; padding: .5rem; border: 1px solid #80968d; border-radius: .35rem; }
+  :focus-visible { outline: 3px solid #a64d10; outline-offset: 3px; }
+  #feedback { min-height: 1.6em; }
+  [hidden] { display: none !important; }
+</style>
+<main>
+  <h2 id="title"></h2>
+  <p id="context"></p>
+  <h3 id="evidence-title"></h3>
+  <ul id="evidence"></ul>
+  <div class="table-wrap" tabindex="0">
+    <table>
+      <caption id="table-title"></caption>
+      <thead><tr id="columns"></tr></thead>
+      <tbody id="results"></tbody>
+    </table>
+  </div>
+  <p id="goals"></p>
+  <form id="experiment">
+    <fieldset id="choices"><legend id="round"></legend></fieldset>
+    <label id="hypothesis-label" for="hypothesis"></label>
+    <textarea id="hypothesis" rows="2" required></textarea>
+    <button id="run" type="submit"></button>
+  </form>
+  <p id="feedback" role="status" tabindex="-1"></p>
+  <section id="decision-panel" hidden>
+    <h3 id="memo-title"></h3>
+    <p id="memo-help"></p>
+    <label id="memo-label" for="memo"></label>
+    <textarea id="memo" rows="11"></textarea>
+    <button id="reset" class="secondary" type="button"></button>
+  </section>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ar = document.documentElement.lang === "ar";
+    const text = (arabic, english) => ar ? arabic : english;
+    const retention = document.documentElement.dataset.scenario === "retention";
+    const get = id => document.getElementById(id);
+    document.documentElement.dir = ar ? "rtl" : "ltr";
+    document.title = retention ? text("معمل الاحتفاظ بالمتعلّمين", "Learner retention lab")
+      : text("معمل قرارات التسويق", "Marketing decision lab");
+    const set = (id, value) => { get(id).textContent = value; };
+    set("title", document.title);
+    set("context", retention ? text(
+      "ناس أكتر بدأت أول درس، لكن عدد اللي رجعوا يكملوا خلال أسبوع قل. اختبر تغييرًا واحدًا في كل جولة.",
+      "More learners started lesson one, but fewer returned to continue within seven days. Test one change per round."
+    ) : text(
+      "التسجيلات زادت، لكن عدد اللي بدأوا أول درس خلال أسبوع قل. اختبر قرارًا واحدًا في كل جولة.",
+      "Signups rose, but fewer learners started lesson one within seven days. Test one decision per round."
+    ));
+    set("evidence-title", text("الأدلة المتاحة", "Available evidence"));
+    const clues = retention ? [
+      text("أول درس ينتهي بمثال، لكن الخطوة التالية مش ظاهرة عند نهاية الصفحة.", "Lesson one ends with an example, but the next step is hard to find."),
+      text("بعض المتعلّمين طلبوا رابطًا يرجّعهم لنفس النقطة بعد الشغل.", "Some learners asked for a link back to their place after work."),
+      text("تقرير النشرة العامة يسجّل فتح الرسائل، من غير ما يوضح مين رجع للدورة.", "The general newsletter records opens without showing who returned to the course.")
+    ] : [
+      text("الإعلان الحالي يعد بتجربة Python في المتصفح.", "The current ad promises a Python example in the browser."),
+      text("رسالة الترحيب تفتح فهرس المكتبة، والمثال موجود جوّه أول درس.", "The welcome email opens the library index; the example is inside lesson one."),
+      text("بعض الزوار سجلوا بعد قراءة إعلان عام، من غير ما يعرفوا إن التدريب عن التقارير.", "Some visitors signed up after seeing a broad ad, without realizing the training uses reporting examples.")
+    ];
+    for (const clue of clues) {
+      const item = document.createElement("li");
+      item.textContent = clue;
+      get("evidence").append(item);
+    }
+    set("table-title", text("نتائج الحملة الافتراضية", "Simulated campaign results"));
+    const metricLabels = retention ? [
+      text("بدأوا أول درس", "Lesson-one starters"), text("رجعوا يكملوا", "Returning learners"),
+      text("معدل العودة", "Return rate"), text("التكلفة لكل بداية", "Cost per starter")
+    ] : [
+      text("التسجيلات", "Signups"), text("بدأوا الدرس", "Lesson starts"),
+      text("معدل البداية", "Start rate"), text("تكلفة التسجيل", "Cost per signup")
+    ];
+    for (const heading of [text("الفترة", "Period"), ...metricLabels, text("الإنفاق", "Spend")]) {
+      const cell = document.createElement("th");
+      cell.scope = "col";
+      cell.textContent = heading;
+      get("columns").append(cell);
+    }
+    set("goals", retention ? text(
+      "الأهداف لكل جولة: ١٢ عائدًا على الأقل، ٦٠٪ عودة، وتكلفة لا تتجاوز ٣ وحدات لكل بداية.",
+      "Round targets: at least 12 returning learners, a 60% return rate, and at most 3 cost units per starter."
+    ) : text("الأهداف لكل جولة: ٢٠ تسجيلًا على الأقل، ٦٠٪ بداية، وتكلفة لا تزيد على ٤ وحدات.",
+      "Round targets: at least 20 signups, a 60% start rate, and no more than 4 units per signup."));
+    set("hypothesis-label", text("اكتب فرضيتك: أي دليل يدعم قرارك وأي رقم تتوقع يتغيّر؟",
+      "Your hypothesis: what evidence supports the choice and which metric should change?"));
+    set("run", text("اعرض نتيجة الجولة", "Show round results"));
+    set("memo-title", text("تقرير القرار", "Decision memo"));
+    set("memo-help", text("كمّل المسودة بالنتيجة وسبب القرار والاختبار التالي، وانسخها قبل إعادة تشغيل المعمل.",
+      "Add your results, rationale, and next test. Copy the memo before restarting the lab."));
+    set("memo-label", text("مسودة التقرير", "Memo draft"));
+    set("reset", text("ابدأ من الأول", "Start over"));
+
+    // Fixed scenario deltas make the consequences reproducible and easy to compare.
+    const actions = retention ? [
+      {
+        label: text("اعرض التمرين التالي في نهاية أول درس", "Show the next exercise at the end of lesson one"),
+        delta: { participants: 0, outcomes: 4, spend: 6 },
+        feedback: text("وضوح الخطوة التالية زوّد العودة في النموذج بتكلفة تجهيز محدودة.",
+          "A clearer next step increased returns in the model with a small setup cost.")
+      },
+      {
+        label: text("ذكّر اللي بدأ وما رجعش برابط مباشر بعد يومين", "After two days, remind inactive starters with a direct link"),
+        delta: { participants: 0, outcomes: 5, spend: 12 },
+        feedback: text("التذكير الموجّه رفع العودة والتكلفة معًا في النموذج.",
+          "The targeted reminder increased both returns and cost in the model.")
+      },
+      {
+        label: text("ابعت نشرة عامة لكل المجموعة المشتركة", "Send a general newsletter to the subscribed cohort"),
+        delta: { participants: 0, outcomes: 2, spend: 40 },
+        feedback: text("النشرة جابت عودة محدودة مقابل إنفاق أكبر في النموذج.",
+          "The newsletter produced a small return increase at a higher cost in the model.")
+      }
+    ] : [
+      {
+        label: text("ضع رابط أول مثال مباشرة في رسالة الترحيب", "Link directly to the first example in the welcome email"),
+        delta: { participants: 0, outcomes: 6, spend: 0 },
+        feedback: text("الوصول للمثال بقى أسهل؛ التسجيل والإنفاق ثابتان في النموذج.",
+          "The example is easier to reach; signups and spend stay fixed in the model.")
+      },
+      {
+        label: text("خلّي الإعلان يذكر مهمة التقرير والجمهور المقصود", "Name the reporting task and intended audience in the ad"),
+        delta: { participants: -4, outcomes: 3, spend: 0 },
+        feedback: text("الرسالة الأضيق تجيب تسجيلات أقل وأكثر ملاءمة في النموذج، لكن تكلفة التسجيل ترتفع.",
+          "The narrower ad produces fewer, better-matched signups in the model, but cost per signup rises.")
+      },
+      {
+        label: text("وسّع وصول الإعلان الحالي بميزانية أعلى", "Increase spend to expand reach for the current ad"),
+        delta: { participants: 8, outcomes: 2, spend: 24 },
+        feedback: text("زاد عدد التسجيلات، لكن البدايات لم تواكب الزيادة.",
+          "Signup volume increased, but starts did not keep pace.")
+      }
+    ];
+    const earlier = retention ? { participants: 18, outcomes: 11, spend: 36 }
+      : { participants: 18, outcomes: 12, spend: 72 };
+    const baseline = retention ? { participants: 24, outcomes: 8, spend: 48 }
+      : { participants: 26, outcomes: 9, spend: 78 };
+    const history = [];
+    const percent = new Intl.NumberFormat(ar ? "ar" : "en", { style: "percent", maximumFractionDigits: 1 });
+    const money = new Intl.NumberFormat(ar ? "ar" : "en", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const count = new Intl.NumberFormat(ar ? "ar" : "en");
+
+    function hits(metrics) {
+      return Number(retention ? metrics.outcomes >= 12 : metrics.participants >= 20)
+        + Number(metrics.outcomes / metrics.participants >= 0.6)
+        + Number(metrics.spend / metrics.participants <= (retention ? 3 : 4));
+    }
+
+    function summary(metrics) {
+      return [
+        count.format(metrics.participants), count.format(metrics.outcomes),
+        percent.format(metrics.outcomes / metrics.participants), money.format(metrics.spend / metrics.participants)
+      ];
+    }
+
+    function addRow(label, metrics) {
+      const row = document.createElement("tr");
+      const heading = document.createElement("th");
+      heading.scope = "row";
+      heading.textContent = label;
+      row.append(heading);
+      for (const value of [...summary(metrics), money.format(metrics.spend)]) {
+        const cell = document.createElement("td");
+        const isolated = document.createElement("bdi");
+        isolated.textContent = value;
+        cell.append(isolated);
+        row.append(cell);
+      }
+      get("results").append(row);
+    }
+
+    function roundLabel(number) {
+      return text("الجولة ", "Round ") + count.format(number);
+    }
+
+    function prepareChoices() {
+      set("round", roundLabel(history.length + 1));
+      for (const old of get("choices").querySelectorAll(".option")) old.remove();
+      for (const [index, action] of actions.entries()) {
+        if (history.some(round => round.index === index)) continue;
+        const label = document.createElement("label");
+        label.className = "option";
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "change";
+        radio.value = index;
+        radio.required = true;
+        label.append(radio, " " + action.label);
+        get("choices").append(label);
+      }
+    }
+
+    function start() {
+      history.length = 0;
+      get("results").replaceChildren();
+      addRow(text("قبل تغيّر الحملة", "Before the campaign change"), earlier);
+      addRow(text("الوضع الحالي", "Current baseline"), baseline);
+      get("experiment").hidden = false;
+      get("decision-panel").hidden = true;
+      get("hypothesis").value = "";
+      set("feedback", "");
+      prepareChoices();
+    }
+
+    get("experiment").addEventListener("submit", event => {
+      event.preventDefault();
+      const chosen = get("choices").querySelector("input:checked");
+      const hypothesis = get("hypothesis").value.trim();
+      if (!chosen || !hypothesis || history.length >= 2) return;
+      const index = Number(chosen.value);
+      const action = actions[index];
+      const previous = history.at(-1)?.metrics ?? baseline;
+      const metrics = {
+        participants: previous.participants + action.delta.participants,
+        outcomes: previous.outcomes + action.delta.outcomes,
+        spend: previous.spend + action.delta.spend
+      };
+      history.push({ index, hypothesis, metrics });
+      const label = roundLabel(history.length);
+      addRow(label, metrics);
+      const achieved = hits(metrics);
+      set("feedback", text(
+        label + " حققت " + count.format(achieved) + " من ٣ أهداف. " + action.feedback,
+        label + " met " + count.format(achieved) + " of 3 targets. " + action.feedback
+      ));
+      if (history.length < 2) {
+        get("hypothesis").value = "";
+        prepareChoices();
+      } else {
+        get("experiment").hidden = true;
+        get("memo").value = history.map((round, position) => {
+          const values = summary(round.metrics);
+          return [
+            roundLabel(position + 1) + " — " + actions[round.index].label,
+            text("فرضيتي", "My hypothesis") + ": " + round.hypothesis,
+            metricLabels.map((label, index) => label + ": " + values[index]).join(text("، ", ", ")),
+            text("الأهداف المتحققة: ", "Targets met: ") + count.format(hits(round.metrics)) + "/3"
+          ].join("\n");
+        }).join("\n\n") + text(
+          "\n\nقراري والدليل:\n\nاختبار المتابعة وما الذي سيغيّر قراري:\n",
+          "\n\nMy recommendation and evidence:\n\nFollow-up test and what would change my mind:\n"
+        );
+        get("decision-panel").hidden = false;
+      }
+      get("feedback").focus();
+    });
+
+    get("reset").addEventListener("click", () => {
+      start();
+      get("choices").querySelector("input").focus();
+    });
+    start();
+  });
+</script>

@@ -1,0 +1,45 @@
+{
+  "key": "marketing-experiments",
+  "spaces": {
+    "ar": {
+      "name": "marketing-experiments-ar",
+      "title": "تحليل التسويق وتجارب A/B",
+      "description": "رحلة التسجيل وتصميم التجارب وفحص البيانات وتفسير نتائجها."
+    },
+    "en": {
+      "name": "marketing-experiments-en",
+      "title": "Marketing analytics and A/B experiments",
+      "description": "Signup funnels, experiment design, data quality, and interpretation."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "تحليل التسويق وتجارب A/B",
+      "summary": "رحلة التسجيل وتصميم التجارب وفحص البيانات وتفسير نتائجها."
+    },
+    "en": {
+      "title": "Marketing analytics and A/B experiments",
+      "summary": "Signup funnels, experiment design, data quality, and interpretation."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "القياس وتصميم التجربة",
+      "en": "Metrics and experiment design",
+      "lessons": [
+        "marketing-experiments-funnel",
+        "marketing-experiments-design"
+      ]
+    },
+    {
+      "ar": "التحقق والتفسير",
+      "en": "Validation and interpretation",
+      "lessons": [
+        "marketing-experiments-quality",
+        "marketing-experiments-lift",
+        "marketing-experiments-project",
+        "marketing-experiments-sources"
+      ]
+    }
+  ]
+}

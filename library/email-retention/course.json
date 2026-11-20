@@ -1,0 +1,45 @@
+{
+  "key": "email-retention",
+  "spaces": {
+    "ar": {
+      "name": "email-retention-ar",
+      "title": "البريد الإلكتروني والاحتفاظ بالعملاء",
+      "description": "رسائل الترحيب، والمتابعة حسب السلوك، وقياس العودة والإلغاء."
+    },
+    "en": {
+      "name": "email-retention-en",
+      "title": "Email marketing and retention",
+      "description": "Welcome emails, behaviour-based follow-up, and measuring return and unsubscribes."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "البريد الإلكتروني والاحتفاظ بالعملاء",
+      "summary": "رسائل الترحيب، والمتابعة حسب السلوك، وقياس العودة والإلغاء."
+    },
+    "en": {
+      "title": "Email marketing and retention",
+      "summary": "Welcome emails, behaviour-based follow-up, and measuring return and unsubscribes."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الترحيب وتسلسل الرسائل",
+      "en": "Welcome and sequence design",
+      "lessons": [
+        "email-retention-permission",
+        "email-retention-welcome"
+      ]
+    },
+    {
+      "ar": "القياس والاحتفاظ",
+      "en": "Measurement and retention",
+      "lessons": [
+        "email-retention-segments",
+        "email-retention-metrics",
+        "email-retention-project",
+        "email-retention-sources"
+      ]
+    }
+  ]
+}

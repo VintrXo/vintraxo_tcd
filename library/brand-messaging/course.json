@@ -1,0 +1,46 @@
+{
+  "key": "brand-messaging",
+  "spaces": {
+    "ar": {
+      "name": "brand-messaging-ar",
+      "title": "العلامة التجارية والرسائل التسويقية",
+      "description": "وعد العلامة والتموضع وصوتها واتساق الرسالة عبر القنوات."
+    },
+    "en": {
+      "name": "brand-messaging-en",
+      "title": "Brand strategy and marketing messaging",
+      "description": "Brand promise, positioning, voice, and consistent messaging across channels."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "العلامة التجارية والرسائل التسويقية",
+      "summary": "وعد العلامة والتموضع وصوتها واتساق الرسالة عبر القنوات."
+    },
+    "en": {
+      "title": "Brand strategy and marketing messaging",
+      "summary": "Brand promise, positioning, voice, and consistent messaging across channels."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الوعد والتموضع",
+      "en": "Promise and positioning",
+      "lessons": [
+        "brand-messaging-promise",
+        "brand-messaging-positioning",
+        "brand-messaging-proof"
+      ]
+    },
+    {
+      "ar": "الرسائل عبر القنوات",
+      "en": "Messaging across channels",
+      "lessons": [
+        "brand-messaging-voice",
+        "brand-messaging-channels",
+        "brand-messaging-project",
+        "brand-messaging-sources"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "key": "market-research",
+  "spaces": {
+    "ar": {
+      "name": "market-research-ar",
+      "title": "أبحاث السوق وسلوك العملاء",
+      "description": "أسئلة البحث والمقابلات والبدائل وتحليل سلوك العملاء."
+    },
+    "en": {
+      "name": "market-research-en",
+      "title": "Market research and customer behaviour",
+      "description": "Research questions, interviews, customer alternatives, and evidence synthesis."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "أبحاث السوق وسلوك العملاء",
+      "summary": "أسئلة البحث والمقابلات والبدائل وتحليل سلوك العملاء."
+    },
+    "en": {
+      "title": "Market research and customer behaviour",
+      "summary": "Research questions, interviews, customer alternatives, and evidence synthesis."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "تصميم البحث والمقابلات",
+      "en": "Research design and interviews",
+      "lessons": [
+        "market-research-brief",
+        "market-research-sample",
+        "market-research-interviews"
+      ]
+    },
+    {
+      "ar": "البدائل والتحليل والقرار",
+      "en": "Alternatives, evidence, and decisions",
+      "lessons": [
+        "market-research-journey",
+        "market-research-evidence",
+        "market-research-project",
+        "market-research-sources"
+      ]
+    }
+  ]
+}

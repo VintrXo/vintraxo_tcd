@@ -1,0 +1,44 @@
+{
+  "key": "marketing-capstone",
+  "spaces": {
+    "ar": {
+      "name": "marketing-capstone-ar",
+      "title": "المشروع الختامي لمسار التسويق",
+      "description": "خطة إطلاق واحدة تجمع البحث والرسائل والقنوات والقياس، مع قرار مبني على أهداف محددة."
+    },
+    "en": {
+      "name": "marketing-capstone-en",
+      "title": "Marketing capstone",
+      "description": "Bring research, messaging, channels, and measurement into one launch plan and make a decision against explicit targets."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "المشروع الختامي لمسار التسويق",
+      "summary": "خطة إطلاق واحدة تجمع البحث والرسائل والقنوات والقياس، مع قرار مبني على أهداف محددة."
+    },
+    "en": {
+      "title": "Marketing capstone",
+      "summary": "Bring research, messaging, channels, and measurement into one launch plan and make a decision against explicit targets."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الخطة والمواد",
+      "en": "Plan and materials",
+      "lessons": [
+        "marketing-capstone-brief",
+        "marketing-capstone-package"
+      ]
+    },
+    {
+      "ar": "القياس والتسليم",
+      "en": "Scorecard and submission",
+      "lessons": [
+        "marketing-capstone-scorecard",
+        "marketing-capstone-memo",
+        "marketing-capstone-guide"
+      ]
+    }
+  ]
+}

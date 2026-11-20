@@ -1,0 +1,35 @@
+{
+  "key": "marketing-decision-lab",
+  "spaces": {
+    "ar": {
+      "name": "marketing-decision-lab-ar",
+      "title": "معمل قرارات التسويق",
+      "description": "حالة تفاعلية من جولتين لتشخيص أداء حملة دورة Python."
+    },
+    "en": {
+      "name": "marketing-decision-lab-en",
+      "title": "Marketing decision lab",
+      "description": "A two-round simulation for diagnosing a Python course campaign."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "معمل قرارات التسويق",
+      "summary": "قارن الأرقام، اختبر قرارين، واكتب توصية من واقع النتائج."
+    },
+    "en": {
+      "title": "Marketing decision lab",
+      "summary": "Compare metrics, test two decisions, and make a recommendation from the evidence."
+    }
+  },
+  "setups": {
+    "decision-lab": "@simulator.html"
+  },
+  "chapters": [
+    {
+      "ar": "الحملة وتقرير القرار",
+      "en": "The campaign and decision memo",
+      "lessons": ["marketing-decision-lab-campaign", "marketing-decision-lab-memo"]
+    }
+  ]
+}
