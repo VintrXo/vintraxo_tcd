@@ -11,8 +11,24 @@ from vintraxo_tcd.core.search import normalize_text
 
 # ---------------------------------------------------------------- blocks
 
-PLAYGROUND_LANGUAGES = ("python", "sql", "html", "javascript", "java", "cpp", "c", "go", "csharp", "bash")
-# the last six run only when the code runner (Phase 10) is enabled for them
+PLAYGROUND_LANGUAGES = (
+	"python",
+	"sql",
+	"html",
+	"javascript",
+	"java",
+	"cpp",
+	"c",
+	"go",
+	"csharp",
+	"bash",
+	"php",
+	"rust",
+	"kotlin",
+	"typescript",
+	"r",
+)
+# all but the first four run only when the code runner (Phase 10) is enabled for them
 CALLOUT_VARIANTS = ("info", "tip", "warning", "danger")
 
 # type -> {field: (python type, required)}

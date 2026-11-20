@@ -28,6 +28,12 @@ DEFAULT_LANGUAGES = [
 	("go", "Go", 60),
 	("csharp", "C#", 51),
 	("bash", "Bash", 46),
+	# Phase 30 library languages; Kotlin and R ids are from older Judge0 docs: "Test Runner" checks them
+	("php", "PHP", 68),
+	("rust", "Rust", 73),
+	("typescript", "TypeScript", 74),
+	("kotlin", "Kotlin", 78),
+	("r", "R", 80),
 ]
 # Judge0 status ids -> our status
 STATUS = {3: "Finished", 4: "Finished", 5: "Time Limit", 6: "Compilation Error"}

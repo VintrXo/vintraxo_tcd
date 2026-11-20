@@ -1,0 +1,17 @@
+{
+  "key": "java",
+  "spaces": {
+    "ar": {"name": "java-ar", "title": "تعلّم Java", "description": "جافا من الصفر: المتغيرات، الشروط، الحلقات، المصفوفات، الدوال، الأصناف والوراثة، المجموعات والاستثناءات."},
+    "en": {"name": "java-en", "title": "Learn Java", "description": "Java from scratch: variables, conditions, loops, arrays, methods, classes and inheritance, collections and exceptions."}
+  },
+  "course": {
+    "ar": {"title": "دورة Java الكاملة", "summary": "لغة الشركات وتطبيقات أندرويد: من أول برنامج إلى البرمجة الكائنية."},
+    "en": {"title": "Complete Java course", "summary": "The language of enterprise and Android apps: from your first program to object-oriented programming."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["java-intro", "java-variables", "java-operators", "java-strings"]},
+    {"ar": "التحكم", "en": "Control flow", "lessons": ["java-conditions", "java-loops", "java-arrays", "java-methods"]},
+    {"ar": "البرمجة الكائنية", "en": "Object-oriented programming", "lessons": ["java-classes", "java-inheritance", "java-collections"]},
+    {"ar": "متقدم", "en": "Going further", "lessons": ["java-exceptions", "java-project", "java-reference"]}
+  ]
+}

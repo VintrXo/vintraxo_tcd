@@ -557,3 +557,6 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 
 /* Phase 30: code inside Arabic quiz text (e.g. <meta charset="UTF-8">) keeps its own direction */
 .tcd-question legend, .tcd-option span, .tcd-quiz .tcd-muted { unicode-bidi: plaintext; }
+
+/* Phase 30: note under a server-language example while the code runner is off */
+.tcd-runner-off { margin: 0; padding: 0.4rem 0.9rem; unicode-bidi: plaintext; text-align: start; }

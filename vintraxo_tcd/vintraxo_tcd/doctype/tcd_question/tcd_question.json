@@ -132,7 +132,7 @@
    "fieldname": "code_language",
    "fieldtype": "Select",
    "label": "Code Language",
-   "options": "\npython\njavascript\njava\ncpp\nc\ngo\ncsharp\nbash",
+   "options": "\npython\njavascript\njava\ncpp\nc\ngo\ncsharp\nbash\nphp\nrust\nkotlin\ntypescript\nr",
    "depends_on": "eval:['Code'].includes(doc.question_type)",
    "description": "python and javascript also run in the browser; the others need the code runner"
   },
@@ -202,7 +202,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 14:00:00.000000",
+ "modified": "2026-11-21 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Question",
