@@ -1,0 +1,16 @@
+{
+  "key": "cpp",
+  "spaces": {
+    "ar": {"name": "cpp-ar", "title": "تعلّم C++", "description": "سي بلس بلس من الصفر: المتغيرات، الشروط، الحلقات، المتجهات، الدوال، المراجع والمؤشرات، الأصناف والوراثة، ومكتبة STL."},
+    "en": {"name": "cpp-en", "title": "Learn C++", "description": "C++ from scratch: variables, conditions, loops, vectors, functions, references and pointers, classes and inheritance, and the STL."}
+  },
+  "course": {
+    "ar": {"title": "دورة C++ الكاملة", "summary": "لغة الأداء العالي: الألعاب والأنظمة والبرمجة التنافسية."},
+    "en": {"title": "Complete C++ course", "summary": "The high-performance language: games, systems and competitive programming."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["cpp-intro", "cpp-variables", "cpp-strings", "cpp-conditions-loops"]},
+    {"ar": "البيانات والدوال", "en": "Data and functions", "lessons": ["cpp-vectors", "cpp-functions", "cpp-pointers"]},
+    {"ar": "البرمجة الكائنية والمكتبة", "en": "Objects and the library", "lessons": ["cpp-classes", "cpp-inheritance", "cpp-stl", "cpp-project", "cpp-reference"]}
+  ]
+}
