@@ -2195,3 +2195,40 @@ This course opens soon. Ask to be notified.,هذه الدورة تُفتح قر�
 This course is already open.,هذه الدورة مفتوحة بالفعل.
 {0} is open now. You can enroll.,{0} مفتوحة الآن. يمكنك التسجيل.
 Learners ask to be notified from the course page.,المتعلمون يطلبون التنبيه من صفحة الدورة.
+Site,الموقع
+Backups,النسخ الاحتياطي
+E-mail,البريد
+Roles,الأدوار
+Integrations,التكاملات
+"The scheduler is off: reminders, meeting links, review dates and queued integrations will not run.",المهام المجدولة متوقفة: التذكيرات وروابط الاجتماعات ومواعيد المراجعة والتكاملات المؤجلة لن تعمل.
+The scheduler is on.,المهام المجدولة تعمل.
+Site address: {0},عنوان الموقع: {0}
+host_name is not set: links in e-mails and certificates may point to the wrong address.,host_name غير مضبوط: الروابط في الرسائل والشهادات قد تشير لعنوان خاطئ.
+encryption_key is missing: saved passwords and tokens cannot be read.,encryption_key غير موجود: كلمات المرور والمفاتيح المحفوظة لا يمكن قراءتها.
+developer_mode is on. Turn it off on the production server.,وضع المطوّر مفعّل. أوقفه على سيرفر الإنتاج.
+No database backup found on this site.,لا توجد نسخة احتياطية لقاعدة البيانات على هذا الموقع.
+The latest backup is {0} hours old.,آخر نسخة احتياطية عمرها {0} ساعة.
+Outgoing e-mail account: {0},حساب البريد الصادر: {0}
+No outgoing e-mail account: learners get in-app notifications only.,لا يوجد حساب بريد صادر: المتعلمون يصلهم إشعارات داخل النظام فقط.
+Desk → Email Account,الديسك ← حساب البريد
+The learning portal (/learn) is turned off.,بوابة التعلّم (/learn) متوقفة.
+Learning Settings → Enable Portal,إعدادات التعلّم ← تفعيل البوابة
+The learning portal is on.,بوابة التعلّم تعمل.
+Visitors without login can read public pages. Make sure this is intended.,الزوار بدون تسجيل دخول يمكنهم قراءة الصفحات العامة. تأكد أن هذا مقصود.
+SCORM packages are allowed: only upload packages you trust.,حزم SCORM مسموحة: ارفع الحزم الموثوقة فقط.
+Role {0} is missing (run migrate).,الدور {0} غير موجود (شغّل migrate).
+{0} users have learning roles.,{0} مستخدم لديهم أدوار التعلّم.
+The AI assistant is on but has no API key.,المساعد الذكي مفعّل لكن بدون مفتاح API.
+The AI assistant is on.,المساعد الذكي مفعّل.
+The AI assistant is off.,المساعد الذكي متوقف.
+The code runner is on but has no URL.,مشغّل الأكواد مفعّل لكن بدون رابط.
+"The server code runner (Judge0) is off: only browser languages run (Python, SQL, JavaScript, HTML).",مشغّل الأكواد على السيرفر (Judge0) متوقف: تعمل لغات المتصفح فقط (بايثون، SQL، جافاسكربت، HTML).
+Zoom is selected but its credentials are missing.,Zoom مختار لكن بياناته ناقصة.
+{0} paid courses are published but no payment gateway is set.,{0} دورة مدفوعة منشورة لكن لا توجد بوابة دفع.
+{0} needs an evaluation but has no active evaluator.,{0} تتطلب تقييمًا لكن بدون مقيّم نشط.
+"{0} active spaces, {1} published pages.",{0} مساحة نشطة، {1} صفحة منشورة.
+{0} published pages are past their review date.,{0} صفحة منشورة تجاوزت موعد مراجعتها.
+Readiness check,فحص الجاهزية,TCD
+OK,سليم,TCD
+Warning,تنبيه,TCD
+Problem,مشكلة,TCD

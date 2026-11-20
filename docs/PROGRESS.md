@@ -132,7 +132,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 17 — Learner experience (W3Schools gaps) | 037f170 + this commit | 206 | Lesson side menu, top prev/next, syntax highlighting + copy, full-screen try-it, practice exercises, dark mode, reference tables |
 | Phase 18 — Authoring studio (portal) | 1c7a16d | 212 | /learn/studio: pages with the block editor and review buttons, course builder with chapters and items; breadcrumb titles escaped |
 | Phase 19 — Certification evaluations | 014d25c | 219 | Evaluator schedules, slot booking on the course page, results on the instructor page, certificate on pass |
-| Phase 20 — Scheduled release + coming soon | this commit | 223 | Chapters open N days after enrollment or on a date; coming-soon courses with notify-me |
+| Phase 20 — Scheduled release + coming soon | bcf0428 | 223 | Chapters open N days after enrollment or on a date; coming-soon courses with notify-me |
+| Phase 21 — Production readiness | this commit | 226 | Readiness check (Desk + bench execute), move-to-server guide with pinned app commits, audit of apps that cannot be moved yet |
 
 ## Phase 7 — Notifications and analytics: status
 
