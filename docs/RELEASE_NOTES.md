@@ -1,4 +1,22 @@
-# Release notes — VintraXo T-C-D 0.2.0
+# Release notes — VintraXo T-C-D 0.3.0 (production release)
+
+The release that goes to the real server. Upgrade from 0.2.0 with `bench --site <site> migrate` (no manual steps).
+
+## New since 0.2.0
+- **Move kit (`deploy/`):** `export_internal.sh` packs the whole internal server into one private bundle (every app
+  at its exact commit, our own apps as they are on disk, local translation edits as patches, full backup with the
+  encryption key); `install_prereqs.sh` prepares a fresh Ubuntu 24.04; `setup_server.sh` rebuilds the server from the
+  bundle (restore, migrate, production settings, nginx + supervisor, backups, SSL). Guide: `docs/MOVE_TO_SERVER.md`.
+- **One keys file:** `keys.json` (from `deploy/keys.example.json`) fills outgoing mail, AI key, Judge0, Zoom / Google
+  Meet, payment gateway, GitHub sync, other apps' settings, and disables the trial accounts —
+  `bench --site <site> execute vintraxo_tcd.core.server_keys.apply_keys --kwargs "{'path': '...'}"`.
+- **Readiness check** warns while the trial accounts are still enabled.
+
+## Quality
+- 244 automated tests. All Desk settings of the app live in code (roles, workspace, notifications, print format);
+  nothing was customized from the Desk on the internal server.
+
+# 0.2.0
 
 Everything Frappe LMS, Frappe Wiki and W3Schools-style tutorials offer that fits an internal training platform,
 in one app. Upgrade from 0.1.0 with `bench --site <site> migrate` (no manual steps).
