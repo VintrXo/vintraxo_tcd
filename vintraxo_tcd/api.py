@@ -1074,3 +1074,34 @@ def studio_find_pages(query: str = "", space: str | None = None) -> list[dict]:
 	from vintraxo_tcd.core import studio
 
 	return studio.find_pages(query, space)
+
+
+# ---------------------------------------------------------------- certification evaluations (Phase 19)
+
+
+@frappe.whitelist(methods=["POST"])
+def book_evaluation(course: str, evaluator: str, date: str, start_time: str) -> str:
+	from vintraxo_tcd.core import evaluations
+
+	return evaluations.book(frappe.session.user, course, evaluator, date, start_time)
+
+
+@frappe.whitelist(methods=["POST"])
+def cancel_evaluation(name: str) -> dict:
+	from vintraxo_tcd.core import evaluations
+
+	return evaluations.cancel(frappe.session.user, name)
+
+
+@frappe.whitelist(methods=["POST"])
+def record_evaluation(name: str, result: str, score=None, feedback: str = "") -> dict:
+	from vintraxo_tcd.core import evaluations
+
+	return evaluations.record_result(name, frappe.session.user, result, score, feedback)
+
+
+@frappe.whitelist(methods=["POST"])
+def evaluation_meeting(name: str, url: str = "") -> dict:
+	from vintraxo_tcd.core import evaluations
+
+	return evaluations.set_meeting_url(name, frappe.session.user, url)

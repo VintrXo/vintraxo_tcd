@@ -146,6 +146,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   and publish when review is required. Course items must be readable by the author.
 - Portal page and breadcrumb titles are escaped in `portal_page`.
 
+## Phase 19 — evaluations
+- TCD Evaluation: learner reads own (no write); the assigned evaluator reads/writes; admins all. Created only by
+  booking (`validate_evaluation`), result only by the evaluator/admin after the start time.
+- TCD Evaluator: admins edit; instructors read.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

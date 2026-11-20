@@ -416,10 +416,10 @@
 
 		const save = async () => {
 			const payload = { name: doc.name || null };
-			["title", "space", "language", "visibility", "summary", "completion_rule", "minimum_score", "access", "intro_video", "cover_image"].forEach((f) => {
+			["title", "space", "language", "visibility", "summary", "completion_rule", "minimum_score", "access", "intro_video", "cover_image", "evaluation_minutes"].forEach((f) => {
 				if (form.elements[f]) payload[f] = form.elements[f].value;
 			});
-			["self_enrollment", "issue_certificate"].forEach((f) => {
+			["self_enrollment", "issue_certificate", "requires_evaluation"].forEach((f) => {
 				if (form.elements[f]) payload[f] = form.elements[f].checked ? 1 : 0;
 			});
 			if (doc.name && !locked) payload.chapters = chapters.map((c) => ({ name: c.name || null, title: c.title, items: (c.items || []).map((i) => ({ content: i.content, is_optional: i.is_optional ? 1 : 0 })) }));

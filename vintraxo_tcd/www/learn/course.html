@@ -39,6 +39,42 @@
 			<a href="/api/method/frappe.utils.print_format.download_pdf?doctype=TCD%20Certificate&name={{ certificate.name|urlencode }}&format=TCD%20Certificate">{{ _("Download PDF") }}</a> ·
 			<a href="/verify/{{ certificate.verification_code|urlencode }}" target="_blank" rel="noopener">{{ _("Verification link") }}</a></p>
 		{% endif %}
+		{% set ev = evaluation %}
+		{% if ev and ev.completed and not ev.certified %}
+		<div class="tcd-evaluation" data-course="{{ doc.name|e }}">
+			<h3>{{ _("Certification evaluation") }}</h3>
+			{% if ev.scheduled %}
+			{% set s = ev.scheduled %}
+			<p class="tcd-callout tcd-callout-info">{{ _("Your evaluation is on {0} from {1} to {2} with {3}.").format(frappe.format_date(s.date), s.start_time, s.end_time, s.evaluator_name|e) }}
+				{% if s.meeting_url %}<a href="{{ s.meeting_url|e }}" target="_blank" rel="noopener noreferrer">{{ _("Join") }}</a>{% endif %}</p>
+			<button type="button" class="btn btn-default btn-xs tcd-evaluation-cancel" data-name="{{ s.name|e }}">{{ _("Cancel evaluation") }}</button>
+			{% else %}
+			{% if ev.last %}
+			<p class="tcd-callout tcd-callout-warning">{{ _("Last result: {0}").format(_(ev.last.status, context="TCD")) }}{% if ev.last.score is not none %} · <span class="tcd-num">{{ ev.last.score|int }}%</span>{% endif %}{% if ev.last.feedback %}<br>{{ ev.last.feedback|e }}{% endif %}</p>
+			{% endif %}
+			<p class="tcd-muted">{{ _("This course needs an evaluation before the certificate. Choose a time:") }}</p>
+			{% if ev.slots %}
+			{% set dates = ev.slots|map(attribute="date")|unique|list %}
+			<div class="tcd-slots">
+				{% for d in dates %}
+				{% if loop.index == 4 %}<details class="tcd-slot-more"><summary class="tcd-small">{{ _("More times") }}</summary>{% endif %}
+				<div class="tcd-slot-day">
+					<strong class="tcd-small">{{ frappe.format_date(d) }}</strong>
+					<div class="tcd-slot-list">
+						{% for s in ev.slots if s.date == d %}
+						<button type="button" class="btn btn-default btn-xs tcd-slot" data-evaluator="{{ s.evaluator|e }}" data-date="{{ s.date }}" data-start="{{ s.start_time }}" title="{{ s.evaluator_name|e }}"><span class="tcd-num">{{ s.start_time }}</span> · {{ s.evaluator_name|e }}</button>
+						{% endfor %}
+					</div>
+				</div>
+				{% if loop.last and loop.index >= 4 %}</details>{% endif %}
+				{% endfor %}
+			</div>
+			{% else %}
+			<p class="tcd-callout tcd-callout-warning">{{ _("No evaluation times are open in the next two weeks. Contact your instructor.") }}</p>
+			{% endif %}
+			{% endif %}
+		</div>
+		{% endif %}
 		{% if e.status == "Pending Approval" %}<p class="tcd-callout tcd-callout-info">{{ _("All items are done. Waiting for your instructor's approval.") }}</p>{% endif %}
 		{% if e.status in ("Active", "Pending Approval") and not e.mandatory and not is_staff_preview %}
 		<button type="button" class="btn btn-default btn-xs tcd-withdraw" data-for="Course" data-name="{{ doc.name|e }}" data-confirm="{{ _('Leave this {0}? Your progress is kept if you enroll again.').format(_("course"))|e }}">{{ _("Withdraw") }}</button>

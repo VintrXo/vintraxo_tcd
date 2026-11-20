@@ -523,3 +523,15 @@ html[data-tcd-theme="dark"] .web-footer, html[data-tcd-theme="dark"] footer, htm
 .tcd-studio-chapter .tcd-studio-block-head { flex-wrap: nowrap; }
 .tcd-studio-chapter .tcd-studio-chapter-title { flex: 1 1 auto; min-inline-size: 0; }
 .tcd-studio-chapter .tcd-studio-block-head .tcd-studio-tools { flex: none; flex-wrap: nowrap; }
+
+/* certification evaluations (Phase 19) */
+.tcd-evaluation { margin-block: 1rem; padding: 1rem 1.2rem; border: 1px solid #c7d2fe; border-radius: var(--tcd-radius); background: var(--tcd-brand-soft); }
+.tcd-evaluation h3 { margin-block: 0 0.5rem; font-size: 1.05rem; }
+.tcd-slots { display: grid; gap: 0.6rem; }
+.tcd-slot-day { display: grid; gap: 0.3rem; }
+.tcd-slot-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tcd-evaluation-row { display: grid; gap: 0.35rem; }
+.tcd-evaluation-form { display: grid; gap: 0.5rem; max-inline-size: 560px; padding-block: 0.5rem; }
+html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
+.tcd-slot-more { display: grid; gap: 0.6rem; }
+.tcd-slot-more > summary { cursor: pointer; font-weight: 600; }

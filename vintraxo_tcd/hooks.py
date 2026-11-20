@@ -270,6 +270,7 @@ after_install = "vintraxo_tcd.install.after_install"
 
 permission_query_conditions = {
 	"TCD Job Application": "vintraxo_tcd.core.careers.application_query",
+	"TCD Evaluation": "vintraxo_tcd.core.evaluations.evaluation_query",
 	"TCD Session": "vintraxo_tcd.core.sessions.session_query",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_query",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_query",
@@ -294,6 +295,7 @@ permission_query_conditions = {
 
 has_permission = {
 	"TCD Job Application": "vintraxo_tcd.core.careers.application_has_permission",
+	"TCD Evaluation": "vintraxo_tcd.core.evaluations.evaluation_has_permission",
 	"TCD Session": "vintraxo_tcd.core.sessions.session_has_permission",
 	"TCD Space": "vintraxo_tcd.core.permissions.space_has_permission",
 	"TCD Category": "vintraxo_tcd.core.permissions.category_has_permission",

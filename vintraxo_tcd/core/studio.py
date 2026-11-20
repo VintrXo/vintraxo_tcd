@@ -25,6 +25,8 @@ COURSE_FIELDS = (
 	"self_enrollment",
 	"access",
 	"issue_certificate",
+	"requires_evaluation",
+	"evaluation_minutes",
 	"intro_video",
 	"cover_image",
 )

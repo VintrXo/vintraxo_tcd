@@ -445,6 +445,9 @@ def js_labels() -> dict:
 		"true": _("True"),
 		"false": _("False"),
 		"preview": _("Preview"),
+		"booked": _("Booked. The evaluator has been notified."),
+		"confirm_cancel_evaluation": _("Cancel this evaluation?"),
+		"result_saved": _("Result saved."),
 		"copy": _("Copy", context="TCD"),
 		"copied": _("Copied", context="TCD"),
 		"full_screen": _("Full screen", context="TCD"),
@@ -549,6 +552,7 @@ def _offering_by_slug(doctype: str, space: str, slug: str):
 
 def course_context(space_name: str, slug: str) -> dict:
 	from vintraxo_tcd import api
+	from vintraxo_tcd.core import evaluations
 
 	space = get_space(space_name)
 	course = _offering_by_slug("TCD Course", space.name, slug)
@@ -590,6 +594,7 @@ def course_context(space_name: str, slug: str) -> dict:
 			["name", "verification_code", "status"],
 			as_dict=True,
 		),
+		"evaluation": evaluations.state(user, course.name),
 		"js_labels": js_labels(),
 	}
 

@@ -15,6 +15,9 @@ def get_context(context):
 	if not (is_admin(user) or (is_staff(user) and "TCD Instructor" in frappe.get_roles(user))):
 		raise frappe.PageDoesNotExistError
 	context.data = instructor_dashboard(user)
+	from vintraxo_tcd.core import evaluations
+
+	context.evaluations = evaluations.for_evaluator(user)
 	context.title = _("Instructor Dashboard")
 	context.parents = [{"route": "/learn", "title": _("Learning")}]
 	context.labels_json = portal.json_for_script(portal.js_labels())

@@ -76,7 +76,20 @@ def on_completed(enrollment):
 	for row in offering.get("skills") or []:
 		award_skill(enrollment.user, row.skill, int(row.level), kind, target)
 	if offering.get("issue_certificate"):
-		issue_certificate(enrollment.user, kind, target)
+		if kind == "Course" and offering.get("requires_evaluation"):
+			# Phase 19: the certificate waits for a passed evaluation
+			from vintraxo_tcd.core import notify
+
+			notify._send(
+				[enrollment.user],
+				_("You completed {0}. Book your certification evaluation on the course page.").format(
+					offering.title
+				),
+				"TCD Course",
+				target,
+			)
+		else:
+			issue_certificate(enrollment.user, kind, target)
 
 
 # ---------------------------------------------------------------- certificates

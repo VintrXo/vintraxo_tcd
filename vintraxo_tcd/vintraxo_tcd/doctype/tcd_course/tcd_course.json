@@ -28,6 +28,9 @@
   "column_break_skills",
   "issue_certificate",
   "certificate_validity_months",
+  "requires_evaluation",
+  "evaluation_minutes",
+  "evaluators",
   "about_section",
   "summary",
   "cover_image",
@@ -196,6 +199,28 @@
    "description": "0 = never expires"
   },
   {
+   "fieldname": "requires_evaluation",
+   "fieldtype": "Check",
+   "label": "Requires Evaluation",
+   "depends_on": "issue_certificate",
+   "description": "The certificate is issued only after an evaluator passes the learner in a booked session"
+  },
+  {
+   "fieldname": "evaluation_minutes",
+   "fieldtype": "Int",
+   "label": "Evaluation Length (minutes)",
+   "default": "30",
+   "depends_on": "requires_evaluation"
+  },
+  {
+   "fieldname": "evaluators",
+   "fieldtype": "Table",
+   "label": "Evaluators",
+   "options": "TCD Course Evaluator",
+   "depends_on": "requires_evaluation",
+   "description": "Empty: the course instructors who are evaluators"
+  },
+  {
    "fieldname": "about_section",
    "fieldtype": "Section Break",
    "label": "About"
@@ -241,7 +266,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 16:00:00.000000",
+ "modified": "2026-11-20 19:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

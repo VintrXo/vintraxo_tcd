@@ -486,6 +486,73 @@
 		});
 	}
 
+	// certification evaluations (Phase 19): learner books / cancels, evaluator records the result
+	function initEvaluations(t) {
+		document.querySelectorAll(".tcd-evaluation[data-course]").forEach((box) => {
+			const message = box.closest("section")?.querySelector(".tcd-message");
+			const say = (text, isError) => {
+				if (!message) return;
+				message.textContent = text;
+				message.hidden = !text;
+				message.classList.toggle("tcd-error", !!isError);
+			};
+			box.querySelectorAll(".tcd-slot").forEach((btn) =>
+				btn.addEventListener("click", async () => {
+					box.querySelectorAll(".tcd-slot").forEach((b) => (b.disabled = true));
+					try {
+						await call("book_evaluation", { course: box.dataset.course, evaluator: btn.dataset.evaluator, date: btn.dataset.date, start_time: btn.dataset.start }, true);
+						say(t.booked || "Booked.");
+						window.location.reload();
+					} catch (e) {
+						say(e.message, true);
+						box.querySelectorAll(".tcd-slot").forEach((b) => (b.disabled = false));
+					}
+				})
+			);
+			box.querySelector(".tcd-evaluation-cancel")?.addEventListener("click", async (ev) => {
+				const btn = ev.currentTarget;
+				if (!window.confirm(t.confirm_cancel_evaluation || "Cancel?")) return;
+				btn.disabled = true;
+				try {
+					await call("cancel_evaluation", { name: btn.dataset.name }, true);
+					window.location.reload();
+				} catch (e) {
+					say(e.message, true);
+					btn.disabled = false;
+				}
+			});
+		});
+		document.querySelectorAll(".tcd-evaluation-row[data-name]").forEach((row) => {
+			const form = row.querySelector(".tcd-evaluation-form");
+			const status = row.querySelector(".tcd-evaluation-status");
+			const say = (text, isError) => {
+				status.textContent = text;
+				status.hidden = !text;
+				status.classList.toggle("tcd-error", !!isError);
+			};
+			row.querySelector(".tcd-evaluation-link")?.addEventListener("click", async () => {
+				try {
+					await call("evaluation_meeting", { name: row.dataset.name, url: form.meeting_url.value }, true);
+					say(t.saved || "Saved.");
+				} catch (e) {
+					say(e.message, true);
+				}
+			});
+			form.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				const result = form.querySelector("input[name=result]:checked");
+				if (!result) return say(t.choose_rating || "Choose a result.", true);
+				try {
+					await call("record_evaluation", { name: row.dataset.name, result: result.value, score: form.score.value, feedback: form.feedback.value }, true);
+					say(t.result_saved || "Saved.");
+					window.location.reload();
+				} catch (err) {
+					say(err.message, true);
+				}
+			});
+		});
+	}
+
 	// reference tables (Phase 17b): filter rows as the learner types
 	function initReference() {
 		document.querySelectorAll(".tcd-reference").forEach((box) => {
@@ -757,6 +824,7 @@
 		if (document.querySelector(".tcd-page")) initTheme(t0);
 		initExercises(t0);
 		initReference();
+		initEvaluations(t0);
 		initOutline();
 		initProfile(t0);
 		initJobs(t0);

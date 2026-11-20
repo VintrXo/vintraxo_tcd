@@ -9,6 +9,46 @@
 		<p class="tcd-muted"><a href="/app/query-report/TCD Instructor Dashboard">{{ _("Open the full report") }}</a></p>
 	</header>
 
+	{% if evaluations.is_evaluator %}
+	<section class="tcd-section tcd-evaluations">
+		<h2>{{ _("Certification evaluations") }}</h2>
+		{% if evaluations.upcoming %}
+		<ul class="tcd-studio-list">
+			{% for r in evaluations.upcoming %}
+			<li class="tcd-evaluation-row" data-name="{{ r.name|e }}">
+				<div class="tcd-studio-row">
+					<strong>{{ r.full_name|e }}</strong>
+					<span class="tcd-badge">{{ r.course_title|e }}</span>
+					<span class="tcd-muted tcd-small">{{ frappe.format_date(r.date) }} · <span class="tcd-num">{{ r.start_time }}–{{ r.end_time }}</span></span>
+				</div>
+				<details>
+					<summary class="tcd-small">{{ _("Meeting link and result") }}</summary>
+					<form class="tcd-evaluation-form">
+						<label class="tcd-small">{{ _("Meeting link") }} <input name="meeting_url" class="form-control" dir="ltr" value="{{ (r.meeting_url or '')|e }}" placeholder="https://"></label>
+						<p class="tcd-assistant-actions"><button type="button" class="btn btn-default btn-xs tcd-evaluation-link">{{ _("Save link") }}</button></p>
+						{% if r.started %}
+						<fieldset class="tcd-chips">
+							<legend class="tcd-small">{{ _("Result") }}</legend>
+							{% for res in ("Passed", "Failed", "No Show") %}<label class="tcd-chip"><input type="radio" name="result" value="{{ res }}" required> {{ _(res, context="TCD") }}</label>{% endfor %}
+						</fieldset>
+						<label class="tcd-small">{{ _("Score (%)", context="TCD") }} <input name="score" type="number" min="0" max="100" class="form-control"></label>
+						<label class="tcd-small">{{ _("Feedback") }} <textarea name="feedback" class="form-control" rows="2" maxlength="2000"></textarea></label>
+						<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-xs">{{ _("Save result") }}</button></p>
+						{% else %}
+						<p class="tcd-muted tcd-small">{{ _("You can record the result once the evaluation starts.") }}</p>
+						{% endif %}
+						<p class="tcd-muted tcd-small tcd-evaluation-status" role="status" hidden></p>
+					</form>
+				</details>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p class="tcd-muted">{{ _("No evaluations booked.") }}</p>
+		{% endif %}
+	</section>
+	{% endif %}
+
 	<section class="tcd-section">
 		<h2>{{ _("My courses") }}</h2>
 		{% if data.courses %}

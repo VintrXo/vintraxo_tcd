@@ -2018,10 +2018,10 @@ written,تمت كتابته
 {0}: points must be between 0 and {1}.,{0}: النقاط يجب أن تكون بين 0 و{1}.
 {} Pending,{} بانتظار الاعتماد
 {} Published,{} منشور
-"Used to show learners how well they match","تُستخدم لعرض مدى تطابق مهارات المتعلمين",
-"Welcome, {0}","أهلًا، {0}",
-"Courses, lessons and company knowledge in one place.","الدورات والدروس ومعرفة الشركة في مكان واحد.",
-"Quick links","روابط سريعة",
+Used to show learners how well they match,تُستخدم لعرض مدى تطابق مهارات المتعلمين,
+"Welcome, {0}",أهلًا، {0},
+"Courses, lessons and company knowledge in one place.",الدورات والدروس ومعرفة الشركة في مكان واحد.,
+Quick links,روابط سريعة,
 Check,تحقق,TCD
 Previous,السابق,TCD
 Next,التالي,TCD
@@ -2094,3 +2094,83 @@ Self Enrollment,التسجيل الذاتي
 Issue Certificate,إصدار شهادة
 Title,العنوان,TCD
 Save,حفظ,TCD
+TCD Evaluator,المقيّم
+TCD Evaluation,تقييم الشهادة
+TCD Evaluator Slot,موعد المقيّم
+TCD Course Evaluator,مقيّم الدورة
+Evaluators,المقيّمون
+Evaluations,تقييمات الشهادات
+Evaluator,المقيّم
+Weekly Availability,المواعيد الأسبوعية
+Times when learners can book a certification evaluation,الأوقات التي يمكن للمتعلمين حجز تقييم الشهادة فيها
+Unavailable From,غير متاح من
+Unavailable To,غير متاح إلى
+Learner Name,اسم المتعلم
+Meeting Link,رابط الاجتماع
+Scheduled,محجوز,TCD
+Passed,ناجح,TCD
+Failed,لم ينجح,TCD
+No Show,لم يحضر,TCD
+Cancelled,ملغي,TCD
+No Show,لم يحضر
+Requires Evaluation,يتطلب تقييمًا
+Evaluation Length (minutes),مدة التقييم (بالدقائق)
+The certificate is issued only after an evaluator passes the learner in a booked session,لا تصدر الشهادة إلا بعد أن يجتاز المتعلم تقييمًا محجوزًا مع مقيّم
+Empty: the course instructors who are evaluators,فارغ: مدرّبو الدورة المسجلون كمقيّمين
+Certification evaluation,تقييم الشهادة
+Certification evaluations,تقييمات الشهادات
+Your evaluation is on {0} from {1} to {2} with {3}.,تقييمك يوم {0} من {1} إلى {2} مع {3}.
+Cancel evaluation,إلغاء التقييم
+Last result: {0},آخر نتيجة: {0}
+This course needs an evaluation before the certificate. Choose a time:,هذه الدورة تحتاج تقييمًا قبل الشهادة. اختر موعدًا:
+No evaluation times are open in the next two weeks. Contact your instructor.,لا توجد مواعيد تقييم متاحة خلال الأسبوعين القادمين. تواصل مع المدرّب.
+Meeting link and result,رابط الاجتماع والنتيجة
+Meeting link,رابط الاجتماع
+Save link,حفظ الرابط
+Save result,حفظ النتيجة
+You can record the result once the evaluation starts.,يمكنك تسجيل النتيجة بعد بدء التقييم.
+No evaluations booked.,لا توجد تقييمات محجوزة.
+Booked. The evaluator has been notified.,تم الحجز وأُبلغ المقيّم.
+Cancel this evaluation?,إلغاء هذا التقييم؟
+Result saved.,تم حفظ النتيجة.
+You completed {0}. Book your certification evaluation on the course page.,أكملت {0}. احجز تقييم الشهادة من صفحة الدورة.
+You cannot book an evaluation for this course now.,لا يمكنك حجز تقييم لهذه الدورة الآن.
+This time is no longer available. Choose another one.,هذا الموعد لم يعد متاحًا. اختر موعدًا آخر.
+Only a scheduled evaluation can be cancelled.,يمكن إلغاء التقييم المحجوز فقط.
+The evaluation has already started.,التقييم بدأ بالفعل.
+"Choose Passed, Failed or No Show.",اختر ناجح أو لم ينجح أو لم يحضر.
+This evaluation already has a result.,هذا التقييم له نتيجة بالفعل.
+Record the result after the evaluation starts.,سجّل النتيجة بعد بدء التقييم.
+You passed the evaluation for {0}. Your certificate is ready.,اجتزت تقييم {0}. شهادتك جاهزة.
+Your evaluation for {0} was not passed. Read the feedback and book again.,لم تجتز تقييم {0}. اقرأ الملاحظات واحجز مرة أخرى.
+You missed the evaluation for {0}. Book a new time.,فاتك تقييم {0}. احجز موعدًا جديدًا.
+{0} booked a certification evaluation for {1} on {2} at {3},{0} حجز تقييم شهادة لدورة {1} يوم {2} الساعة {3}
+{0} cancelled the evaluation on {1},{0} ألغى التقييم يوم {1}
+Meeting link for your evaluation on {0}: {1},رابط اجتماع تقييمك يوم {0}: {1}
+The meeting link must start with https://,رابط الاجتماع يجب أن يبدأ بـ https://
+Evaluations are booked from the course page.,التقييمات تُحجز من صفحة الدورة.
+Row {0}: the end time must be after the start time.,الصف {0}: وقت النهاية يجب أن يكون بعد وقت البداية.
+Unavailable To must be on or after Unavailable From.,«غير متاح إلى» يجب أن يكون في أو بعد «غير متاح من».
+From,من
+To,إلى
+Day,اليوم
+Schedule,الجدول
+Result,النتيجة
+Score (%),الدرجة (%),TCD
+More times,مواعيد أكثر
+Monday,الإثنين
+Monday,الإثنين,TCD Evaluator Slot
+Tuesday,الثلاثاء
+Tuesday,الثلاثاء,TCD Evaluator Slot
+Wednesday,الأربعاء
+Wednesday,الأربعاء,TCD Evaluator Slot
+Thursday,الخميس
+Thursday,الخميس,TCD Evaluator Slot
+Friday,الجمعة
+Friday,الجمعة,TCD Evaluator Slot
+Saturday,السبت
+Saturday,السبت,TCD Evaluator Slot
+Sunday,الأحد
+Sunday,الأحد,TCD Evaluator Slot
+Date,التاريخ
+Certificate,الشهادة

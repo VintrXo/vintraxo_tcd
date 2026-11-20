@@ -46,6 +46,8 @@
 			</label>
 			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="self_enrollment" {% if d.self_enrollment %}checked{% endif %}> {{ _("Self Enrollment") }}</label>
 			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="issue_certificate" {% if d.issue_certificate %}checked{% endif %}> {{ _("Issue Certificate") }}</label>
+			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="requires_evaluation" {% if d.requires_evaluation %}checked{% endif %}> {{ _("Requires Evaluation") }}</label>
+			<label class="tcd-studio-field">{{ _("Evaluation Length (minutes)") }}<input name="evaluation_minutes" type="number" min="10" max="240" class="form-control" value="{{ d.evaluation_minutes or 30 }}"></label>
 			<label class="tcd-studio-field tcd-studio-wide">{{ _("Summary") }}<textarea name="summary" class="form-control" rows="2" maxlength="500">{{ (d.summary or '')|e }}</textarea></label>
 			<label class="tcd-studio-field">{{ _("Intro video URL") }}<input name="intro_video" class="form-control" dir="ltr" value="{{ (d.intro_video or '')|e }}"></label>
 			<label class="tcd-studio-field">{{ _("Cover image URL") }}<input name="cover_image" class="form-control" dir="ltr" value="{{ (d.cover_image or '')|e }}"></label>

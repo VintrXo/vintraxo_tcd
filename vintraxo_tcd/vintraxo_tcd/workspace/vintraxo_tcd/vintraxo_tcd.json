@@ -645,6 +645,26 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Evaluators",
+   "link_count": 0,
+   "link_to": "TCD Evaluator",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Evaluations",
+   "link_count": 0,
+   "link_to": "TCD Evaluation",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Job Openings",
    "link_count": 0,
    "link_to": "TCD Job Opening",

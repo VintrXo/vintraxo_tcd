@@ -130,7 +130,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 15 — Assessment and badges | 3ad749c | 183 | Negative marking, proctoring with violation log, multi test-case code questions on the runner, badges |
 | Phase 16 — Visitors, meetings, payments, SCORM, GitHub, careers | this commit | 200 | Guest pages (guarded), Zoom / Meet, paid courses + coupons, SCORM, GitHub docs sync, profiles + internal jobs |
 | Phase 17 — Learner experience (W3Schools gaps) | 037f170 + this commit | 206 | Lesson side menu, top prev/next, syntax highlighting + copy, full-screen try-it, practice exercises, dark mode, reference tables |
-| Phase 18 — Authoring studio (portal) | this commit | 212 | /learn/studio: pages with the block editor and review buttons, course builder with chapters and items; breadcrumb titles escaped |
+| Phase 18 — Authoring studio (portal) | 1c7a16d | 212 | /learn/studio: pages with the block editor and review buttons, course builder with chapters and items; breadcrumb titles escaped |
+| Phase 19 — Certification evaluations | this commit | 219 | Evaluator schedules, slot booking on the course page, results on the instructor page, certificate on pass |
 
 ## Phase 7 — Notifications and analytics: status
 

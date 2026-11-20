@@ -330,6 +330,15 @@ No new DocTypes. New content block `exercise` (prompt, code with `___` blanks, a
 alternatives — optional language and hint); validated in `core/content.py` (blank count must equal answer count).
 New content block `reference` (entries "name | description | example", optional title and language; at most 500 entries).
 
+## Phase 19
+| DocType | Purpose |
+|---|---|
+| TCD Evaluator (+ TCD Evaluator Slot) | Evaluator weekly availability and unavailable period |
+| TCD Evaluation | Booked certification evaluation and its result (links the issued certificate) |
+| TCD Course Evaluator | Evaluators of a course (child of TCD Course) |
+
+New TCD Course fields: requires_evaluation, evaluation_minutes, evaluators.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save
