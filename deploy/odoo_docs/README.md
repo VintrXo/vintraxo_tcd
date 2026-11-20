@@ -17,6 +17,12 @@ export ODOO_LOAD="{\"root\": \"$W\", \"spaces\": {\"en\": \"odoo-en\", \"ar\": \
 echo "exec(open('$T/load.py').read(), {'__name__': '__main__'})" | bench --site <site> console
 ```
 
+Then one course per app (chapters = the app's sections, in Odoo's order; self-enrollment, progress tracked):
+
+```bash
+echo "exec(open('$HOME/frappe-bench/apps/vintraxo_tcd/deploy/odoo_docs/courses.py').read(), {'__name__': '__main__'})" | bench --site <site> console
+```
+
 Add `"only": ["applications/sales"]` to `ODOO_LOAD` for a trial with one area. A space that already exists is
 skipped. To another server, move the spaces with `vintraxo_tcd.core.move.export_spaces` / `import_spaces` (the
 images travel with them).

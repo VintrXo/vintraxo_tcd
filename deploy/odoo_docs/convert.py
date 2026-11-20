@@ -337,7 +337,7 @@ class Page:
 			"slug": slug_for(self.page),
 			"parent": parent_of(self.page, self.pages),
 			"title": self.title.replace("\\", "")[:140],
-			"summary": summary[:300],
+			"summary": summary if len(summary) <= 300 else summary[:299].rsplit(" ", 1)[0] + "…",
 			"url": self.url,
 			"blocks": self.blocks,
 		}

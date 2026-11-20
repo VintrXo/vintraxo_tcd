@@ -16,6 +16,9 @@
   files). Odoo's Sphinx build was **not** run: it executes Python from the downloaded repository.
 - Two spaces with the same structure and slugs: `odoo-en` and `odoo-ar`. Each page links to the same page in the
   other language at the top, keeps the Odoo page tree (`parent_content`), and the space menu lists the apps by area.
+- Courses (`deploy/odoo_docs/courses.py`): one per Odoo app with at least 3 pages (48 per language), chapters =
+  the app's sections in Odoo's order (link order on the parent page), flat apps get one "Lessons" chapter; fiscal
+  localizations are reference, not a course. Self-enrollment, completion rule "All Items", no certificate (no assessment).
 - Tools: `deploy/odoo_docs/` (fetch.py, convert.py, load.py). To another server: `export_spaces` / `import_spaces`.
 
 ## Changes in the app found on the way
