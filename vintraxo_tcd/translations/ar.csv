@@ -2248,3 +2248,35 @@ Row {0}: choose the {1}.,الصف {0}: اختر {1}.
 Row {0}: {1} belongs to another space.,الصف {0}: {1} تابع لمساحة أخرى.
 Page,صفحة,TCD
 External Link,رابط خارجي,TCD
+TCD Batch Mentor,مرشد الدفعة
+TCD Batch Timetable Row,موعد في جدول الدفعة
+TCD Batch Feedback,تقييم الدفعة
+Mentor,المرشد
+Mentors,المرشدون
+Mentors follow the progress of the batch members on My Team,المرشدون يتابعون تقدم أعضاء الدفعة من صفحة «فريقي»
+Timetable,الجدول
+Weekly Timetable,الجدول الأسبوعي
+Course of the generated sessions,دورة الجلسات التي تُنشأ
+Use Generate Sessions to create one session per row and week between the start and end dates,استخدم «إنشاء الجلسات» لإنشاء جلسة لكل صف وكل أسبوع بين تاريخي البداية والنهاية
+Empty: the course title,فارغ: عنوان الدورة
+Session Type,نوع الجلسة
+Instructor,المدرّب
+Content,المحتوى,TCD Batch Feedback
+Instructor,المدرّب,TCD Batch Feedback
+Overall,التقييم العام,TCD Batch Feedback
+Overall,التقييم العام
+My batches,دفعاتي
+Rate this batch,قيّم هذه الدفعة
+Batch feedback,تقييم الدفعة
+{0} of {1} members answered.,{0} من {1} أعضاء أجابوا.
+Only members of the batch can rate it.,أعضاء الدفعة فقط يمكنهم تقييمها.
+Choose a rating from 1 to 5 for each question.,اختر تقييمًا من 1 إلى 5 لكل سؤال.
+Batch feedback is sent from My Learning.,تقييم الدفعة يُرسل من «تعلّمي».
+Timetable row {0}: the end time must be after the start time.,صف الجدول {0}: وقت النهاية يجب أن يكون بعد وقت البداية.
+Choose the course of the batch first.,اختر دورة الدفعة أولًا.
+Set the start and end dates of the batch first.,حدد تاريخي بداية ونهاية الدفعة أولًا.
+Add at least one timetable row.,أضف صفًا واحدًا على الأقل في الجدول.
+A timetable can create at most {0} sessions.,الجدول يمكن أن ينشئ {0} جلسة كحد أقصى.
+Generate Sessions,إنشاء الجلسات,TCD
+Create the sessions of the weekly timetable between the start and end dates?,إنشاء جلسات الجدول الأسبوعي بين تاريخي البداية والنهاية؟,TCD
+Sessions created: {0}. Already there: {1}.,الجلسات المنشأة: {0}. الموجودة من قبل: {1}.,TCD

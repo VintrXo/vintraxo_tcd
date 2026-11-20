@@ -6,12 +6,13 @@
 {% set s = data.summary %}
 <div class="tcd-page">
 	<header class="tcd-hero"><h1>{{ _("My Team") }}</h1>
-		{% if data.teams|length > 1 or (data.teams and data.has_direct_reports) %}
+		{% if (data.teams|length) + (data.batches|length) + (1 if data.has_direct_reports else 0) > 1 %}
 		<form method="get" action="/learn/team" class="tcd-search">
 			<select name="team" class="tcd-select" aria-label="{{ _('Team') }}" onchange="this.form.submit()">
 				<option value="">{{ _("Everyone I follow") }}</option>
 				{% if data.has_direct_reports %}<option value="direct" {% if data.team == 'direct' %}selected{% endif %}>{{ _("My direct reports") }}</option>{% endif %}
 				{% for t in data.teams %}<option value="{{ t|e }}" {% if t == data.team %}selected{% endif %}>{{ t|e }}</option>{% endfor %}
+				{% for b in data.batches %}<option value="batch:{{ b|e }}" {% if data.team == 'batch:' ~ b %}selected{% endif %}>{{ _("Batch") }}: {{ b|e }}</option>{% endfor %}
 			</select>
 		</form>
 		{% endif %}
@@ -24,6 +25,22 @@
 		<li class="{{ 'tcd-stat-warn' if s.expiring_certificates else '' }}"><strong>{{ s.expiring_certificates }}</strong><span>{{ _("Certificates expiring in 30 days") }}</span></li>
 		<li class="{{ 'tcd-stat-warn' if s.pending_acknowledgments else '' }}"><strong>{{ s.pending_acknowledgments }}</strong><span>{{ _("Documents not acknowledged") }}</span></li>
 	</ul>
+
+	{% set fb = data.batch_feedback %}
+	{% if fb %}
+	<section class="tcd-section tcd-batch-feedback">
+		<h2>{{ _("Batch feedback") }}</h2>
+		<p class="tcd-muted">{{ _("{0} of {1} members answered.").format(fb.responses, fb.members) }}</p>
+		{% if fb.responses %}
+		<ul class="tcd-stats">
+			<li><strong class="tcd-num">{{ fb.content_rating }} / 5</strong><span>{{ _("Content", context="TCD Batch Feedback") }}</span></li>
+			<li><strong class="tcd-num">{{ fb.instructor_rating }} / 5</strong><span>{{ _("Instructor", context="TCD Batch Feedback") }}</span></li>
+			<li><strong class="tcd-num">{{ fb.overall_rating }} / 5</strong><span>{{ _("Overall", context="TCD Batch Feedback") }}</span></li>
+		</ul>
+		{% if fb.comments %}<ul class="tcd-lessons">{% for c in fb.comments %}<li class="tcd-lesson tcd-post-body">{{ c|e }}</li>{% endfor %}</ul>{% endif %}
+		{% endif %}
+	</section>
+	{% endif %}
 
 	<section class="tcd-section">
 		{% if data.members %}

@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 19:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "batch",
+  "user",
+  "cb1",
+  "content_rating",
+  "instructor_rating",
+  "overall_rating",
+  "sb_c",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch",
+   "fieldtype": "Link",
+   "label": "Batch",
+   "options": "TCD Batch",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "Learner",
+   "options": "User",
+   "reqd": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "content_rating",
+   "fieldtype": "Int",
+   "label": "Content",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "instructor_rating",
+   "fieldtype": "Int",
+   "label": "Instructor",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "overall_rating",
+   "fieldtype": "Int",
+   "label": "Overall",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "sb_c",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 19:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "VintraXo TCD",
+ "name": "TCD Batch Feedback",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Administrator",
+   "read": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1
+  },
+  {
+   "role": "TCD Instructor",
+   "read": 1,
+   "report": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "autoname": "hash",
+ "naming_rule": "Random",
+ "in_create": 1
+}

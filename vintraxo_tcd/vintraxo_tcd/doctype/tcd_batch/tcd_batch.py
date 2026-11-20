@@ -12,3 +12,6 @@ class TCDBatch(Document):
 			if row.user in seen:
 				frappe.throw(_("Row {0}: {1} is listed twice.").format(row.idx, frappe.bold(row.user)))
 			seen.add(row.user)
+		from vintraxo_tcd.core import batches
+
+		batches.validate_batch(self)

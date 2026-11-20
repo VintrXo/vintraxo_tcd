@@ -1124,3 +1124,22 @@ def course_interest(course: str, on: int = 1) -> dict:
 
 	doc = _readable("TCD Course", course)
 	return course_svc.set_interest(frappe.session.user, doc.name, bool(int(on)))
+
+
+# ---------------------------------------------------------------- batches (Phase 23)
+
+
+@frappe.whitelist(methods=["POST"])
+def batch_feedback(batch: str, data) -> dict:
+	from vintraxo_tcd.core import batches
+
+	return batches.save_feedback(
+		frappe.session.user, batch, frappe.parse_json(data) if isinstance(data, str) else data
+	)
+
+
+@frappe.whitelist(methods=["POST"])
+def generate_batch_sessions(batch: str) -> dict:
+	from vintraxo_tcd.core import batches
+
+	return batches.generate_sessions(batch)

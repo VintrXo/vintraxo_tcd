@@ -351,6 +351,15 @@ New fields: TCD Chapter (release_after_days, release_on); TCD Course (coming_soo
 |---|---|
 | TCD Space Nav Item | Rows of the space side menu (child of TCD Space, field `navigation`) |
 
+## Phase 23
+| DocType | Purpose |
+|---|---|
+| TCD Batch Mentor | Mentors of a batch (child) |
+| TCD Batch Timetable Row | Weekly timetable rows of a batch (child) |
+| TCD Batch Feedback | One feedback per member and batch |
+
+New TCD Batch fields: mentors, course, instructor, timetable.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

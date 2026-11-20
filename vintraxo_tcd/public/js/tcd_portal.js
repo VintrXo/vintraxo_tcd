@@ -553,6 +553,35 @@
 		});
 	}
 
+	// batch feedback (Phase 23)
+	function initBatchFeedback(t) {
+		document.querySelectorAll(".tcd-batch[data-batch] .tcd-batch-form").forEach((form) => {
+			const status = form.querySelector(".tcd-batch-status");
+			form.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				const data = { comment: form.comment.value };
+				let missing = false;
+				["content_rating", "instructor_rating", "overall_rating"].forEach((f) => {
+					const v = form.querySelector(`input[name=${f}]:checked`);
+					if (!v) missing = true;
+					else data[f] = v.value;
+				});
+				if (missing) {
+					status.textContent = t.choose_rating || "Choose a rating.";
+					status.hidden = false;
+					return;
+				}
+				try {
+					await call("batch_feedback", { batch: form.closest(".tcd-batch").dataset.batch, data: JSON.stringify(data) }, true);
+					window.location.reload();
+				} catch (err) {
+					status.textContent = err.message;
+					status.hidden = false;
+				}
+			});
+		});
+	}
+
 	// coming soon: notify me (Phase 20)
 	function initInterest() {
 		document.querySelectorAll(".tcd-interest[data-course]").forEach((btn) =>
@@ -846,6 +875,7 @@
 		initReference();
 		initEvaluations(t0);
 		initInterest();
+		initBatchFeedback(t0);
 		initOutline();
 		initProfile(t0);
 		initJobs(t0);

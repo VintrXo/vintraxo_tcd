@@ -31,6 +31,38 @@
 	</section>
 	{% endif %}
 
+	{% if batches %}
+	<section class="tcd-section tcd-my-batches">
+		<h2>{{ _("My batches") }}</h2>
+		<ul class="tcd-studio-list">
+			{% for b in batches %}
+			<li class="tcd-batch" data-batch="{{ b.name|e }}">
+				<div class="tcd-studio-row">
+					<strong>{{ b.group_name|e }}</strong>
+					{% if b.course_title %}<span class="tcd-badge">{{ b.course_title|e }}</span>{% endif %}
+					{% if b.start_date %}<span class="tcd-muted tcd-small">{{ frappe.format_date(b.start_date) }}{% if b.end_date %} – {{ frappe.format_date(b.end_date) }}{% endif %}</span>{% endif %}
+					{% if b.feedback %}<span class="tcd-status tcd-status-completed">{{ _("Thank you for your feedback.") }}</span>{% endif %}
+				</div>
+				<details{% if not b.feedback %} open{% endif %}>
+					<summary class="tcd-small">{{ _("Rate this batch") }}</summary>
+					<form class="tcd-batch-form">
+						{% for f, label in [("content_rating", _("Content", context="TCD Batch Feedback")), ("instructor_rating", _("Instructor", context="TCD Batch Feedback")), ("overall_rating", _("Overall", context="TCD Batch Feedback"))] %}
+						<fieldset class="tcd-stars">
+							<legend>{{ label }}</legend>
+							{% for n in range(1, 6) %}<label><input type="radio" name="{{ f }}" value="{{ n }}" {% if b.feedback and b.feedback[f] == n %}checked{% endif %}> {{ n }} ★</label>{% endfor %}
+						</fieldset>
+						{% endfor %}
+						<textarea class="form-control" name="comment" rows="2" maxlength="2000" dir="auto" placeholder="{{ _('Comment (optional)') }}">{{ ((b.feedback.comment or '') if b.feedback else '')|e }}</textarea>
+						<p class="tcd-assistant-actions"><button type="submit" class="btn btn-primary btn-sm">{{ _("Save rating") }}</button></p>
+						<p class="tcd-muted tcd-small tcd-batch-status" role="status" hidden></p>
+					</form>
+				</details>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
 	<section class="tcd-section">
 		<h2>{{ _("My courses") }}</h2>
 		{% if data.enrollments %}

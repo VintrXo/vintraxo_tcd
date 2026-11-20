@@ -151,6 +151,11 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
   booking (`validate_evaluation`), result only by the evaluator/admin after the start time.
 - TCD Evaluator: admins edit; instructors read.
 
+## Phase 23 — batches
+- Mentors see status of their batch members on My Team (same rules as managers). TCD Batch Feedback: created
+  only by members through the portal; admins read/delete, instructors read.
+- Generate Sessions inserts TCD Session with the caller's permissions.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

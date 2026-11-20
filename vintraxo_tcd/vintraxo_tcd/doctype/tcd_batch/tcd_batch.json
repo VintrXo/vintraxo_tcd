@@ -11,7 +11,13 @@
   "end_date",
   "description",
   "members_section",
-  "members"
+  "members",
+  "mentors_section",
+  "mentors",
+  "timetable_section",
+  "course",
+  "instructor",
+  "timetable"
  ],
  "fields": [
   {
@@ -59,10 +65,48 @@
    "fieldtype": "Table",
    "options": "TCD Batch Member",
    "label": "Members"
+  },
+  {
+   "fieldname": "mentors_section",
+   "fieldtype": "Section Break",
+   "label": "Mentors"
+  },
+  {
+   "fieldname": "mentors",
+   "fieldtype": "Table",
+   "label": "Mentors",
+   "options": "TCD Batch Mentor",
+   "description": "Mentors follow the progress of the batch members on My Team"
+  },
+  {
+   "fieldname": "timetable_section",
+   "fieldtype": "Section Break",
+   "label": "Timetable",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "course",
+   "fieldtype": "Link",
+   "label": "Course",
+   "options": "TCD Course",
+   "description": "Course of the generated sessions"
+  },
+  {
+   "fieldname": "instructor",
+   "fieldtype": "Link",
+   "label": "Instructor",
+   "options": "User"
+  },
+  {
+   "fieldname": "timetable",
+   "fieldtype": "Table",
+   "label": "Weekly Timetable",
+   "options": "TCD Batch Timetable Row",
+   "description": "Use Generate Sessions to create one session per row and week between the start and end dates"
   }
  ],
  "links": [],
- "modified": "2026-11-19 08:00:00.000000",
+ "modified": "2026-11-20 22:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Batch",

@@ -39,7 +39,14 @@ def teams_of(user: str) -> list[str]:
 def members(user: str, team: str | None = None) -> list[str]:
 	"""Users the given manager may follow. `team` narrows to one TCD Team (or "direct" for direct reports)."""
 	allowed_teams = teams_of(user)
-	if team == "direct":
+	if team and team.startswith("batch:"):
+		from vintraxo_tcd.core import batches
+
+		batch = team[6:]
+		if not (is_admin(user) or batch in batches.mentor_batches(user)):
+			raise frappe.PermissionError
+		found = set(batches.batch_members(batch))
+	elif team == "direct":
 		found = direct_reports(user)
 	elif team:
 		if team not in allowed_teams:
@@ -59,6 +66,10 @@ def members(user: str, team: str | None = None) -> list[str]:
 			)
 		)
 		found |= direct_reports(user)
+		from vintraxo_tcd.core import batches
+
+		for b in batches.mentor_batches(user):
+			found |= set(batches.batch_members(b))
 	found.discard(user)
 	return sorted(found)[:MAX_MEMBERS]
 
@@ -66,7 +77,13 @@ def members(user: str, team: str | None = None) -> list[str]:
 def is_manager(user: str) -> bool:
 	if user == "Guest":
 		return False
-	return bool(frappe.db.exists("TCD Team", {"manager": user})) or bool(direct_reports(user))
+	from vintraxo_tcd.core import batches
+
+	return (
+		bool(frappe.db.exists("TCD Team", {"manager": user}))
+		or bool(batches.mentor_batches(user))
+		or bool(direct_reports(user))
+	)
 
 
 def _member_row(user: str, today) -> dict:
@@ -122,8 +139,15 @@ def overview(user: str, team: str | None = None) -> dict:
 	rows = [_member_row(u, today) for u in members(user, team)]
 	mandatory = sum(r["mandatory"] for r in rows)
 	done = sum(r["mandatory_done"] for r in rows)
+	from vintraxo_tcd.core import batches
+
+	batch = team[6:] if team and team.startswith("batch:") else None
 	return {
 		"teams": teams_of(user),
+		"batches": frappe.get_all("TCD Batch", pluck="name", order_by="group_name asc")
+		if is_admin(user)
+		else batches.mentor_batches(user),
+		"batch_feedback": batches.feedback_summary(batch) if batch else None,
 		"has_direct_reports": bool(direct_reports(user)),
 		"team": team,
 		"members": sorted(rows, key=lambda r: (-r["overdue"], r["compliance"], r["full_name"])),
