@@ -1,0 +1,17 @@
+{
+  "key": "react",
+  "spaces": {
+    "ar": {"name": "react-ar", "title": "تعلّم React", "description": "مكتبة واجهات المستخدم الأشهر: المكونات، JSX، الخصائص، الحالة، الأحداث، القوائم، النماذج، والتأثيرات."},
+    "en": {"name": "react-en", "title": "Learn React", "description": "The most popular UI library: components, JSX, props, state, events, lists, forms and effects."}
+  },
+  "course": {
+    "ar": {"title": "دورة React", "summary": "ابنِ واجهات تفاعلية من مكونات صغيرة قابلة لإعادة الاستخدام."},
+    "en": {"title": "React course", "summary": "Build interactive interfaces from small, reusable components."}
+  },
+  "setups": {"react": {"ar": "@setup_ar.html", "en": "@setup.html"}},
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["react-intro", "react-jsx", "react-components"]},
+    {"ar": "البيانات والتفاعل", "en": "Data and interaction", "lessons": ["react-props", "react-state", "react-events", "react-conditional", "react-lists"]},
+    {"ar": "متقدم", "en": "Going further", "lessons": ["react-forms", "react-effects", "react-project", "react-reference"]}
+  ]
+}
