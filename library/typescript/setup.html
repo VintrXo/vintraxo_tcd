@@ -1,0 +1,24 @@
+<script src="https://unpkg.com/typescript@5.7.2/lib/typescript.js"></script>
+<style>body { font-family: system-ui, sans-serif; padding: 12px; } #ts-out { direction: ltr; text-align: left; background: #f6f8fa; padding: 10px; border-radius: 6px; white-space: pre-wrap; font: 14px/1.5 ui-monospace, monospace; } #ts-out .err { color: #b00020; }</style>
+<pre id="ts-out"></pre>
+<script>
+(function () {
+  const out = document.getElementById("ts-out");
+  const show = (cls, args) => {
+    const line = document.createElement("div");
+    if (cls) line.className = cls;
+    line.textContent = args.map(a => typeof a === "string" ? a : a === undefined ? "undefined" : JSON.stringify(a)).join(" ");
+    out.appendChild(line);
+  };
+  console.log = (...a) => show("", a);
+  console.error = (...a) => show("err", a);
+  window.addEventListener("error", e => show("err", [String(e.message)]));
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('script[type="text/typescript"]').forEach(function (s) {
+      const r = ts.transpileModule(s.textContent, { reportDiagnostics: true, compilerOptions: { target: ts.ScriptTarget.ES2020 } });
+      (r.diagnostics || []).forEach(d => show("err", ["Syntax error: " + ts.flattenDiagnosticMessageText(d.messageText, "\n")]));
+      try { (0, eval)(r.outputText); } catch (e) { show("err", [e.name + ": " + e.message]); }
+    });
+  });
+})();
+</script>

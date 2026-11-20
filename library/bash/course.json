@@ -1,0 +1,16 @@
+{
+  "key": "bash",
+  "spaces": {
+    "ar": {"name": "bash-ar", "title": "تعلّم Bash", "description": "سطر أوامر Linux وسكربتات Bash: الملفات والمجلدات، المتغيرات، الأنابيب وإعادة التوجيه، معالجة النصوص، الشروط والحلقات، الدوال والمصفوفات، العمليات والصلاحيات و cron."},
+    "en": {"name": "bash-en", "title": "Learn Bash", "description": "The Linux command line and Bash scripting: files and folders, variables, pipes and redirection, text processing, conditions and loops, functions and arrays, processes, permissions and cron."}
+  },
+  "course": {
+    "ar": {"title": "دورة Bash", "summary": "أتمِت عملك على الخوادم من الطرفية."},
+    "en": {"title": "Bash course", "summary": "Automate your work on servers from the terminal."}
+  },
+  "chapters": [
+    {"ar": "سطر الأوامر", "en": "The command line", "lessons": ["bash-intro", "bash-files", "bash-variables", "bash-pipes", "bash-text"]},
+    {"ar": "السكربتات", "en": "Scripting", "lessons": ["bash-conditions", "bash-loops", "bash-functions", "bash-arrays"]},
+    {"ar": "النظام والمشروع", "en": "System and project", "lessons": ["bash-processes", "bash-project", "bash-reference"]}
+  ]
+}

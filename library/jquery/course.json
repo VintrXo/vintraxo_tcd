@@ -1,0 +1,17 @@
+{
+  "key": "jquery",
+  "spaces": {
+    "ar": {"name": "jquery-ar", "title": "تعلّم jQuery", "description": "مكتبة jQuery من الصفر: المحددات والأحداث، تغيير المحتوى والتنسيق، النماذج، المؤثرات، التنقل في الصفحة، AJAX، ومشروع قائمة مهام."},
+    "en": {"name": "jquery-en", "title": "Learn jQuery", "description": "jQuery from scratch: selectors and events, changing content and styles, forms, effects, traversing, AJAX, and a to-do list project."}
+  },
+  "course": {
+    "ar": {"title": "دورة jQuery", "summary": "اكتب تفاعل الصفحات بكود أقصر، واقرأ كود المواقع الموجودة بثقة."},
+    "en": {"title": "jQuery course", "summary": "Write page interactions in less code, and read existing sites' code with confidence."}
+  },
+  "setups": {"jq": {"ar": "@setup_ar.html", "en": "@setup.html"}},
+  "chapters": [
+    {"ar": "الأساسيات", "en": "Basics", "lessons": ["jq-intro", "jq-selectors", "jq-events", "jq-dom"]},
+    {"ar": "التنسيق والنماذج والمؤثرات", "en": "Styles, forms and effects", "lessons": ["jq-css", "jq-forms", "jq-effects", "jq-traversing"]},
+    {"ar": "الخادم والمشروع", "en": "Server and project", "lessons": ["jq-ajax", "jq-project", "jq-reference"]}
+  ]
+}

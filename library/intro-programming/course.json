@@ -1,0 +1,16 @@
+{
+  "key": "intro-programming",
+  "spaces": {
+    "ar": {"name": "intro-programming-ar", "title": "مقدمة في البرمجة", "description": "ابدأ البرمجة من الصفر: ما هي البرمجة والخوارزميات، المتغيرات والعمليات، القرارات والحلقات، الدوال والقوائم، تصحيح الأخطاء، ومشروع حاسبة درجات، ثم اختيار مسارك التالي."},
+    "en": {"name": "intro-programming-en", "title": "Introduction to programming", "description": "Start programming from zero: what programming and algorithms are, variables and operators, decisions and loops, functions and lists, debugging, a grade calculator project, and choosing your next path."}
+  },
+  "course": {
+    "ar": {"title": "مقدمة في البرمجة", "summary": "الأفكار الأساسية المشتركة بين كل لغات البرمجة، بأمثلة تعمل في المتصفح."},
+    "en": {"title": "Introduction to programming", "summary": "The core ideas shared by every programming language, with examples that run in your browser."}
+  },
+  "chapters": [
+    {"ar": "التفكير البرمجي", "en": "Thinking like a programmer", "lessons": ["prog-what", "prog-algorithms"]},
+    {"ar": "الأساسيات", "en": "The basics", "lessons": ["prog-variables", "prog-operators", "prog-decisions", "prog-loops", "prog-functions", "prog-lists"]},
+    {"ar": "التطبيق", "en": "Putting it to work", "lessons": ["prog-debugging", "prog-project", "prog-next"]}
+  ]
+}

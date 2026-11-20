@@ -1,0 +1,16 @@
+{
+  "key": "kotlin",
+  "spaces": {
+    "ar": {"name": "kotlin-ar", "title": "تعلّم Kotlin", "description": "لغة Kotlin من الصفر: المتغيرات والشروط و when، الحلقات والدوال، الأمان من null، المجموعات، الأصناف والوراثة، الاستثناءات ودوال التوسيع."},
+    "en": {"name": "kotlin-en", "title": "Learn Kotlin", "description": "Kotlin from scratch: variables, conditions and when, loops and functions, null safety, collections, classes and inheritance, exceptions and extension functions."}
+  },
+  "course": {
+    "ar": {"title": "دورة Kotlin", "summary": "لغة Android الحديثة: مختصرة وآمنة وتعمل مع Java."},
+    "en": {"title": "Kotlin course", "summary": "The modern Android language: concise, safe and Java-compatible."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["kotlin-intro", "kotlin-variables", "kotlin-conditions", "kotlin-loops", "kotlin-functions"]},
+    {"ar": "الأمان والبيانات", "en": "Safety and data", "lessons": ["kotlin-null-safety", "kotlin-collections"]},
+    {"ar": "الأصناف والمزيد", "en": "Classes and more", "lessons": ["kotlin-classes", "kotlin-inheritance", "kotlin-errors", "kotlin-extensions", "kotlin-reference"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "key": "r",
+  "spaces": {
+    "ar": {"name": "r-ar", "title": "تعلّم R", "description": "لغة R لتحليل البيانات: المتغيرات والمتجهات، الشروط والدوال، القوائم والعوامل، إطارات البيانات، عائلة apply، النصوص، والإحصاء والمخططات."},
+    "en": {"name": "r-en", "title": "Learn R", "description": "R for data analysis: variables and vectors, conditions and functions, lists and factors, data frames, the apply family, text, and statistics and charts."}
+  },
+  "course": {
+    "ar": {"title": "دورة R", "summary": "لغة الإحصاء وتحليل البيانات."},
+    "en": {"title": "R course", "summary": "The language of statistics and data analysis."}
+  },
+  "chapters": [
+    {"ar": "الأساسيات", "en": "Basics", "lessons": ["r-intro", "r-variables", "r-vectors", "r-conditions", "r-loops-functions"]},
+    {"ar": "البيانات", "en": "Data", "lessons": ["r-lists", "r-dataframes", "r-apply", "r-strings"]},
+    {"ar": "التحليل", "en": "Analysis", "lessons": ["r-stats", "r-reference"]}
+  ]
+}

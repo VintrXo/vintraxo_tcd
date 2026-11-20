@@ -1,0 +1,16 @@
+{
+  "key": "rust",
+  "spaces": {
+    "ar": {"name": "rust-ar", "title": "تعلّم Rust", "description": "لغة Rust من الصفر: المتغيرات والتحكم والدوال، الملكية والاستعارة، الهياكل والتعدادات و match، المجموعات، معالجة الأخطاء والسمات."},
+    "en": {"name": "rust-en", "title": "Learn Rust", "description": "Rust from scratch: variables, control flow and functions; ownership and borrowing; structs, enums and match; collections; error handling and traits."}
+  },
+  "course": {
+    "ar": {"title": "دورة Rust", "summary": "سرعة C مع أمان الذاكرة يضمنه المترجم."},
+    "en": {"title": "Rust course", "summary": "C-level speed with memory safety checked by the compiler."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["rust-intro", "rust-variables", "rust-control", "rust-functions"]},
+    {"ar": "الملكية والأنواع", "en": "Ownership and types", "lessons": ["rust-ownership", "rust-borrowing", "rust-structs", "rust-enums"]},
+    {"ar": "البيانات والأخطاء والسمات", "en": "Data, errors and traits", "lessons": ["rust-collections", "rust-errors", "rust-traits", "rust-reference"]}
+  ]
+}

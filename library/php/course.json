@@ -1,0 +1,16 @@
+{
+  "key": "php",
+  "spaces": {
+    "ar": {"name": "php-ar", "title": "تعلّم PHP", "description": "لغة PHP من الصفر: المتغيرات والشروط والحلقات، المصفوفات والدوال والنصوص، النماذج بأمان، الأصناف والاستثناءات، الملفات و JSON وقواعد البيانات مع PDO."},
+    "en": {"name": "php-en", "title": "Learn PHP", "description": "PHP from scratch: variables, conditions and loops; arrays, functions and strings; safe forms; classes and exceptions; files, JSON and databases with PDO."}
+  },
+  "course": {
+    "ar": {"title": "دورة PHP", "summary": "لغة الخادم التي تشغّل جزءًا كبيرًا من الويب."},
+    "en": {"title": "PHP course", "summary": "The server language behind a large part of the web."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["php-intro", "php-variables", "php-operators", "php-conditions", "php-loops"]},
+    {"ar": "البيانات والدوال", "en": "Data and functions", "lessons": ["php-arrays", "php-functions", "php-strings"]},
+    {"ar": "تطبيقات الويب", "en": "Web applications", "lessons": ["php-forms", "php-oop", "php-errors", "php-files-json", "php-database", "php-reference"]}
+  ]
+}

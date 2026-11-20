@@ -1,0 +1,17 @@
+{
+  "key": "typescript",
+  "spaces": {
+    "ar": {"name": "typescript-ar", "title": "تعلّم TypeScript", "description": "TypeScript من الصفر: الأنواع والدوال، أشكال الكائنات والواجهات، الاتحادات والتضييق، الأصناف، الأنواع العامة والمساعدة، الكود غير المتزامن، وتجهيز مشروع."},
+    "en": {"name": "typescript-en", "title": "Learn TypeScript", "description": "TypeScript from scratch: types and functions, object shapes and interfaces, unions and narrowing, classes, generics and utility types, async code, and project setup."}
+  },
+  "course": {
+    "ar": {"title": "دورة TypeScript", "summary": "JavaScript مع أنواع تكشف الأخطاء قبل التشغيل."},
+    "en": {"title": "TypeScript course", "summary": "JavaScript with types that catch mistakes before the code runs."}
+  },
+  "setups": {"ts": {"ar": "@setup_ar.html", "en": "@setup.html"}},
+  "chapters": [
+    {"ar": "الأساسيات", "en": "Basics", "lessons": ["ts-intro", "ts-types", "ts-functions", "ts-objects"]},
+    {"ar": "أنواع أقوى", "en": "Stronger types", "lessons": ["ts-unions", "ts-classes", "ts-generics", "ts-utility"]},
+    {"ar": "في المشاريع", "en": "In real projects", "lessons": ["ts-async", "ts-setup", "ts-reference"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "key": "json-xml",
+  "spaces": {
+    "ar": {"name": "json-xml-ar", "title": "تعلّم JSON و XML", "description": "صيغتا تبادل البيانات: قواعد JSON والتعامل معه في JavaScript و Python وواجهات API، ثم XML وقراءته وبناؤه، ومساحات الأسماء و XPath، ومشروع تحويل بين الصيغتين."},
+    "en": {"name": "json-xml-en", "title": "Learn JSON and XML", "description": "The two data exchange formats: JSON rules and using JSON in JavaScript, Python and APIs; then XML, reading and building it, namespaces and XPath, and a conversion project."}
+  },
+  "course": {
+    "ar": {"title": "دورة JSON و XML", "summary": "اقرأ واكتب البيانات التي تتبادلها الأنظمة."},
+    "en": {"title": "JSON and XML course", "summary": "Read and write the data that systems exchange."}
+  },
+  "chapters": [
+    {"ar": "JSON", "en": "JSON", "lessons": ["json-intro", "json-syntax", "json-js", "json-python", "json-apis"]},
+    {"ar": "XML", "en": "XML", "lessons": ["xml-intro", "xml-python", "xml-browser", "xml-advanced"]},
+    {"ar": "المقارنة والمرجع", "en": "Comparison and reference", "lessons": ["json-xml-compare", "json-xml-reference"]}
+  ]
+}
