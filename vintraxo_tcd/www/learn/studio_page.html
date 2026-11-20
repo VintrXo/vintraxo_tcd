@@ -1,0 +1,66 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}"><script>try{if(localStorage.getItem("tcd-theme")==="dark")document.documentElement.dataset.tcdTheme="dark"}catch(e){}</script>{% endblock %}
+
+{% block page_content %}
+{% set d = data.doc %}
+{% set locked = data.locked %}
+<div class="tcd-page tcd-studio">
+	<form class="tcd-studio-page-form" data-locked="{{ 1 if locked else 0 }}" novalidate>
+		<header class="tcd-hero">
+			{% if d.status %}<span class="tcd-status tcd-status-{{ d.status|lower|replace(' ', '-') }}">{{ _(d.status, context="TCD") }}</span>{% endif %}
+			<h1>{{ (d.title or _("New page"))|e }}</h1>
+			{% if locked %}<p class="tcd-callout tcd-callout-info">{{ _("This page is {0}. Move it back to Draft to change it; a new version will go through review.").format(_(d.status, context="TCD")) }}</p>{% endif %}
+		</header>
+
+		<div class="tcd-studio-grid">
+			<label class="tcd-studio-field tcd-studio-wide">{{ _("Title", context="TCD") }}<input name="title" class="form-control" maxlength="140" required value="{{ (d.title or '')|e }}" {% if locked %}disabled{% endif %}></label>
+			<label class="tcd-studio-field">{{ _("Space") }}
+				<select name="space" class="form-control" {% if not data.new %}disabled{% endif %}>
+					{% for s in spaces %}<option value="{{ s.name|e }}" {% if s.name == d.space %}selected{% endif %}>{{ s.title|e }}</option>{% endfor %}
+				</select>
+			</label>
+			<label class="tcd-studio-field">{{ _("Content Type") }}
+				<select name="content_type" class="form-control" {% if locked %}disabled{% endif %}>
+					{% for t in ("Lesson", "Article", "Reference") %}<option value="{{ t }}" {% if t == d.content_type %}selected{% endif %}>{{ _(t, context="TCD") }}</option>{% endfor %}
+				</select>
+			</label>
+			<label class="tcd-studio-field">{{ _("Language") }}
+				<select name="language" class="form-control" {% if locked %}disabled{% endif %}>
+					<option value="ar" {% if d.language == "ar" %}selected{% endif %}>العربية</option>
+					<option value="en" {% if d.language == "en" %}selected{% endif %}>English</option>
+				</select>
+			</label>
+			<label class="tcd-studio-field">{{ _("Visibility") }}
+				<select name="visibility" class="form-control" {% if locked %}disabled{% endif %}>
+					<option value="">{{ _("Default") }}</option>
+					{% for v in ("Public", "Internal", "Restricted") %}<option value="{{ v }}" {% if v == d.visibility %}selected{% endif %}>{{ _(v, context="TCD Content") }}</option>{% endfor %}
+				</select>
+			</label>
+			<label class="tcd-studio-field tcd-studio-wide">{{ _("Summary") }}<textarea name="summary" class="form-control" rows="2" maxlength="500" {% if locked %}disabled{% endif %}>{{ (d.summary or '')|e }}</textarea></label>
+		</div>
+
+		<h2>{{ _("Content") }}</h2>
+		<div class="tcd-studio-blocks"></div>
+
+		<div class="tcd-studio-bar">
+			{% if not locked %}<button type="submit" class="btn btn-primary btn-sm">{{ _("Save draft") }}</button>{% endif %}
+			{% if not data.new %}
+			{% if d.slug %}<a class="btn btn-default btn-sm" href="/learn/{{ d.space|urlencode }}/{{ d.slug|urlencode }}" target="_blank" rel="noopener">{{ _("Preview") }}</a>{% endif %}
+			{% if d.status == "Draft" %}<button type="button" class="btn btn-default btn-sm" data-status="In Review">{{ _("Submit for review") }}</button>{% endif %}
+			{% if d.status == "In Review" and is_reviewer %}<button type="button" class="btn btn-default btn-sm" data-status="Approved">{{ _("Approve") }}</button>{% endif %}
+			{% if d.status == "Approved" and is_reviewer %}<button type="button" class="btn btn-default btn-sm" data-status="Published">{{ _("Publish") }}</button>{% endif %}
+			{% if d.status in ("In Review", "Approved", "Published") %}<button type="button" class="btn btn-default btn-sm" data-status="Draft">{{ _("Back to draft") }}</button>{% endif %}
+			{% endif %}
+			<span class="tcd-muted tcd-small tcd-studio-status" role="status" hidden></span>
+		</div>
+	</form>
+	<script type="application/json" id="tcd-studio-doc">{{ doc_json }}</script>
+	<script type="application/json" id="tcd-studio-spec">{{ spec_json }}</script>
+	<script type="application/json" id="tcd-studio-labels">{{ studio_labels_json }}</script>
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_studio.js?v={{ asset_version() }}"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

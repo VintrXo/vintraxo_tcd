@@ -1043,3 +1043,34 @@ def apply_for_job(job: str, cover_note: str = "", resume: str | None = None) -> 
 	from vintraxo_tcd.core import careers
 
 	return careers.apply(job, frappe.session.user, cover_note, resume or None)
+
+
+# ---------------------------------------------------------------- authoring studio (Phase 18)
+
+
+@frappe.whitelist(methods=["POST"])
+def studio_save_page(data) -> dict:
+	from vintraxo_tcd.core import studio
+
+	return studio.save_page(data)
+
+
+@frappe.whitelist(methods=["POST"])
+def studio_save_course(data) -> dict:
+	from vintraxo_tcd.core import studio
+
+	return studio.save_course(data)
+
+
+@frappe.whitelist(methods=["POST"])
+def studio_course_status(name: str, status: str) -> dict:
+	from vintraxo_tcd.core import studio
+
+	return studio.set_course_status(name, status)
+
+
+@frappe.whitelist()
+def studio_find_pages(query: str = "", space: str | None = None) -> list[dict]:
+	from vintraxo_tcd.core import studio
+
+	return studio.find_pages(query, space)

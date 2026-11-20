@@ -1,0 +1,83 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}"><script>try{if(localStorage.getItem("tcd-theme")==="dark")document.documentElement.dataset.tcdTheme="dark"}catch(e){}</script>{% endblock %}
+
+{% macro page_rows(rows) %}
+<ul class="tcd-studio-list">
+	{% for p in rows %}
+	<li>
+		<a class="tcd-studio-row" href="/learn/studio/page?name={{ p.name|urlencode }}">
+			<strong>{{ p.title|e }}</strong>
+			<span class="tcd-badge">{{ _(p.content_type, context="TCD") }}</span>
+			<span class="tcd-status tcd-status-{{ p.status|lower|replace(' ', '-') }}">{{ _(p.status, context="TCD") }}</span>
+			<span class="tcd-muted tcd-small">{{ p.space|e }} · {{ frappe.format_date(p.modified) }}</span>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endmacro %}
+
+{% block page_content %}
+{% set d = data %}
+<div class="tcd-page tcd-studio">
+	<header class="tcd-hero">
+		<h1>{{ _("Studio") }}</h1>
+		<p class="tcd-summary">{{ _("Write pages and build courses here. Every change goes through review before learners see it.") }}</p>
+		<p class="tcd-assistant-actions">
+			{% if d.can_create_content %}<a class="btn btn-primary btn-sm" href="/learn/studio/page">+ {{ _("New page") }}</a>{% endif %}
+			{% if d.can_create_course %}<a class="btn btn-default btn-sm" href="/learn/studio/course">+ {{ _("New course") }}</a>{% endif %}
+		</p>
+	</header>
+
+	<section class="tcd-section">
+		<h2>{{ _("My drafts") }}</h2>
+		{% if d.mine %}{{ page_rows(d.mine) }}{% else %}<p class="tcd-muted">{{ _("No drafts. Start a new page.") }}</p>{% endif %}
+	</section>
+
+	{% if d.in_review %}
+	<section class="tcd-section">
+		<h2>{{ _("Waiting for review") }}</h2>
+		{{ page_rows(d.in_review) }}
+	</section>
+	{% endif %}
+
+	{% if d.approved %}
+	<section class="tcd-section">
+		<h2>{{ _("Approved, ready to publish") }}</h2>
+		{{ page_rows(d.approved) }}
+	</section>
+	{% endif %}
+
+	{% if d.drafts %}
+	<section class="tcd-section">
+		<h2>{{ _("Other drafts") }}</h2>
+		{{ page_rows(d.drafts) }}
+	</section>
+	{% endif %}
+
+	<section class="tcd-section">
+		<h2>{{ _("Courses") }}</h2>
+		{% if d.courses %}
+		<ul class="tcd-studio-list">
+			{% for c in d.courses %}
+			<li><a class="tcd-studio-row" href="/learn/studio/course?name={{ c.name|urlencode }}">
+				<strong>{{ c.title|e }}</strong>
+				<span class="tcd-status tcd-status-{{ c.status|lower }}">{{ _(c.status, context="TCD") }}</span>
+				<span class="tcd-muted tcd-small">{{ c.space|e }} · {{ frappe.format_date(c.modified) }}</span>
+			</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}<p class="tcd-muted">{{ _("No courses yet.") }}</p>{% endif %}
+	</section>
+
+	{% if d.published %}
+	<section class="tcd-section">
+		<h2>{{ _("Recently published") }}</h2>
+		{{ page_rows(d.published) }}
+	</section>
+	{% endif %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

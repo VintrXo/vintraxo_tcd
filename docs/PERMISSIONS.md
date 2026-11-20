@@ -140,6 +140,12 @@ Progress and Quiz Submission: users see their own rows; staff also see rows for 
 - TCD Learner Profile: owner edits through the portal; others see it only when shared. TCD Job Application: admins
   and the job's hiring manager (`application_has_permission` / `application_query`).
 
+## Phase 18 — studio
+- `/learn/studio*`: only users with create/write on TCD Content or write on TCD Course; others get 404.
+- Saves use the normal DocType permissions and validations (no `ignore_permissions`); reviewers alone approve
+  and publish when review is required. Course items must be readable by the author.
+- Portal page and breadcrumb titles are escaped in `portal_page`.
+
 ## Reports (P4)
 TCD Learner Progress and TCD Quiz Analytics: System Manager, TCD Administrator, TCD Instructor, TCD Content Reviewer.
 Rows come from `get_list`, so the space/visibility layers apply; Quiz Analytics also checks read access on the quiz.

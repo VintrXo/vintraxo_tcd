@@ -2052,3 +2052,45 @@ Block {0}: every reference entry must be text.,الكتلة {0}: كل عنصر �
 Block {0}: add at least one reference entry.,الكتلة {0}: أضف عنصرًا واحدًا على الأقل في المرجع.
 Block {0}: a reference can have at most {1} entries.,الكتلة {0}: المرجع يمكن أن يحتوي على {1} عنصر كحد أقصى.
 Block {0}: every reference entry needs a name before the first |.,الكتلة {0}: كل عنصر في المرجع يحتاج اسمًا قبل أول |.
+Studio,الاستوديو
+New page,صفحة جديدة
+New course,دورة جديدة
+Write pages and build courses here. Every change goes through review before learners see it.,اكتب الصفحات وابنِ الدورات من هنا. كل تغيير يمر بالمراجعة قبل أن يراه المتعلمون.
+My drafts,مسوداتي
+No drafts. Start a new page.,لا توجد مسودات. ابدأ صفحة جديدة.
+"Approved, ready to publish",معتمدة وجاهزة للنشر
+Other drafts,مسودات أخرى
+No courses yet.,لا توجد دورات بعد.
+Recently published,نُشرت مؤخرًا
+This page is {0}. Move it back to Draft to change it; a new version will go through review.,هذه الصفحة {0}. أرجعها إلى مسودة لتعديلها؛ النسخة الجديدة ستمر بالمراجعة.
+Save draft,حفظ المسودة
+Submit for review,إرسال للمراجعة
+Back to draft,إرجاع إلى مسودة
+Default,الافتراضي
+The course is {0}: its chapters are locked. Move it back to Draft to change them.,الدورة {0}: فصولها مقفلة. أرجعها إلى مسودة لتعديلها.
+Intro video URL,رابط الفيديو التعريفي
+Cover image URL,رابط صورة الغلاف
+"Save the course first, then add chapters and pages.",احفظ الدورة أولًا، ثم أضف الفصول والصفحات.
+Add block,أضف كتلة
+Remove,حذف
+Saving...,جارٍ الحفظ...
+You have unsaved changes.,لديك تغييرات غير محفوظة.
+No blocks yet. Add the first one below.,لا توجد كتل بعد. أضف أول كتلة بالأسفل.
+Add chapter,إضافة فصل
+Chapter title,عنوان الفصل
+Add a page,إضافة صفحة
+Search pages by title,ابحث عن صفحة بالعنوان
+Remove this item?,حذف هذا العنصر؟
+Status changed to {0}.,تغيّرت الحالة إلى {0}.
+"The studio is for content authors, reviewers and administrators.",الاستوديو لمؤلفي المحتوى والمراجعين والمسؤولين.
+Choose a space for the page.,اختر مساحة للصفحة.
+Choose a space for the course.,اختر مساحة للدورة.
+A course can have at most {0} chapters.,الدورة يمكن أن تحتوي على {0} فصل كحد أقصى.
+A course can have at most {0} items.,الدورة يمكن أن تحتوي على {0} عنصر كحد أقصى.
+Every chapter needs a title.,كل فصل يحتاج عنوانًا.
+A course item points to a page that does not exist.,أحد عناصر الدورة يشير إلى صفحة غير موجودة.
+Unknown status.,حالة غير معروفة.
+Self Enrollment,التسجيل الذاتي
+Issue Certificate,إصدار شهادة
+Title,العنوان,TCD
+Save,حفظ,TCD

@@ -78,6 +78,7 @@ def portal_page(build):
 	def get_context(context):
 		try:
 			build(context)
+			_escape_breadcrumbs(context)
 		except frappe.PageDoesNotExistError:
 			context.http_status_code = 404
 			context.title = _("Page not found")
@@ -85,6 +86,18 @@ def portal_page(build):
 			context.show_sidebar = False
 
 	return get_context
+
+
+def _escape_breadcrumbs(context):
+	"""Frappe's breadcrumb template prints the page and parent titles without escaping, and titles come
+	from content (Frappe keeps harmless tags such as <b> in Data fields). Escape them once here."""
+	from frappe.utils import escape_html
+
+	if context.get("title"):
+		context.title = escape_html(str(context.title))
+	for parent in context.get("parents") or []:
+		if parent.get("title"):
+			parent["title"] = escape_html(str(parent["title"]))
 
 
 # ---------------------------------------------------------------- pages
