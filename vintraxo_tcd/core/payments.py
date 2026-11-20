@@ -73,14 +73,39 @@ def coupon_discount(
 	return c.name, round(min(off, price), 2)
 
 
-def quote(enrollment_for: str, name: str, coupon: str | None = None) -> dict:
+def learner_country(user: str | None) -> str | None:
+	if not user or user == "Guest":
+		return None
+	return frappe.db.get_value("TCD Learner Profile", user, "country")
+
+
+def price_for(doctype: str, name: str, user: str | None = None) -> dict:
+	"""The price a learner pays: the row for the country in their profile, else the default price."""
+	o = frappe.db.get_value(doctype, name, ["paid", "price", "currency"], as_dict=True)
+	out = {"price": flt(o.price) if o.paid else 0.0, "currency": o.currency, "country": None}
+	country = learner_country(user)
+	if o.paid and country:
+		row = frappe.db.get_value(
+			"TCD Country Price",
+			{"parent": name, "parenttype": doctype, "country": country},
+			["price", "currency"],
+			as_dict=True,
+		)
+		if row:
+			out = {"price": flt(row.price), "currency": row.currency, "country": country}
+	return out
+
+
+def quote(enrollment_for: str, name: str, coupon: str | None = None, user: str | None = None) -> dict:
 	doctype = OFFERING[enrollment_for][0]
-	o = frappe.db.get_value(doctype, name, ["title", "paid", "price", "currency"], as_dict=True)
-	price = flt(o.price) if o.paid else 0.0
+	o = frappe.db.get_value(doctype, name, ["title", "paid"], as_dict=True)
+	p = price_for(doctype, name, user or frappe.session.user)
+	price = p["price"] if o.paid else 0.0
 	coupon_name, discount = coupon_discount(coupon, enrollment_for, name, price) if price else (None, 0.0)
 	return {
 		"title": o.title,
-		"currency": o.currency,
+		"currency": p["currency"],
+		"country": p["country"],
 		"price": price,
 		"discount": discount,
 		"total": round(price - discount, 2),
@@ -119,7 +144,7 @@ def checkout(
 		unmet = connect.unmet_course_prerequisites(user, name)
 		if unmet:
 			frappe.throw(_("Complete these courses first: {0}").format(", ".join(unmet)))
-	q = quote(enrollment_for, name, coupon)
+	q = quote(enrollment_for, name, coupon, user)
 	gateway = frappe.db.get_single_value("TCD Settings", "payment_gateway")
 	if q["total"] > 0 and not (payments_available() and gateway):
 		frappe.throw(_("Online payment is not set up yet. Ask your administrator."))
@@ -187,3 +212,13 @@ def on_payment_authorized(doc, status: str):
 	elif status in ("Failed", "Cancelled"):
 		if doc.status == "Pending":
 			doc.db_set("status", "Failed")
+
+
+def validate_country_prices(doc):
+	seen = set()
+	for row in doc.get("country_prices") or []:
+		if row.country in seen:
+			frappe.throw(_("Row {0}: {1} is listed twice.").format(row.idx, frappe.bold(row.country)))
+		seen.add(row.country)
+		if flt(row.price) < 0:
+			frappe.throw(_("Row {0}: the price cannot be negative.").format(row.idx))

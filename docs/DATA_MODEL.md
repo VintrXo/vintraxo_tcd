@@ -360,6 +360,14 @@ New fields: TCD Chapter (release_after_days, release_on); TCD Course (coming_soo
 
 New TCD Batch fields: mentors, course, instructor, timetable.
 
+## Phase 24
+| DocType | Purpose |
+|---|---|
+| TCD Country Price | Price and currency per country (child of TCD Course / TCD Learning Path, field `country_prices`) |
+
+New fields: TCD Session.attendance_synced; TCD Settings.zoom_attendance_percent (default stored by patch);
+TCD Learner Profile.country.
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

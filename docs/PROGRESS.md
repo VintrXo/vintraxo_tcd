@@ -135,7 +135,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 20 — Scheduled release + coming soon | bcf0428 | 223 | Chapters open N days after enrollment or on a date; coming-soon courses with notify-me |
 | Phase 21 — Production readiness | 089102e | 226 | Readiness check (Desk + bench execute), move-to-server guide with pinned app commits, audit of apps that cannot be moved yet |
 | Phase 22 — Space navigation (wiki sidebar) | 290d8f7 | 230 | Admin-arranged groups of pages / courses / paths / links, permission-filtered, on space and wiki pages |
-| Phase 23 — Batch mentors, feedback, timetable | this commit | 233 | Mentors on My Team, batch feedback on My Learning, weekly timetable generates sessions |
+| Phase 23 — Batch mentors, feedback, timetable | 514689e | 233 | Mentors on My Team, batch feedback on My Learning, weekly timetable generates sessions |
+| Phase 24 — Zoom attendance + country prices | this commit | 236 | Attendance read from Zoom after the session (hourly + button), prices by country from the learner profile |
 
 ## Phase 7 — Notifications and analytics: status
 

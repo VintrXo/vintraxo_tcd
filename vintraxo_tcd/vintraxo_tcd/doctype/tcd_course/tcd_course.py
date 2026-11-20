@@ -19,6 +19,9 @@ def set_offering_defaults(doc):
 		media.parse_video(doc.intro_video)  # same rules as video blocks (allowed hosts, public files)
 	if doc.get("cover_image"):
 		media.validate_file_url(doc.cover_image, public_only=True)
+	from vintraxo_tcd.core import payments
+
+	payments.validate_country_prices(doc)
 
 
 class TCDCourse(Document):

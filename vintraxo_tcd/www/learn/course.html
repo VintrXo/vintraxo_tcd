@@ -95,7 +95,7 @@
 		</div>
 		{% elif data.paid and not is_staff_preview %}
 		<div class="tcd-buy" data-for="Course" data-name="{{ doc.name|e }}">
-			<p class="tcd-price"><strong>{{ frappe.utils.fmt_money(data.price, currency=data.currency) }}</strong></p>
+			<p class="tcd-price"><strong>{{ frappe.utils.fmt_money(data.price, currency=data.currency) }}</strong>{% if data.price_country %} <span class="tcd-muted tcd-small">{{ _("Price for {0}").format(data.price_country|e) }}</span>{% endif %}</p>
 			<label class="tcd-small">{{ _("Coupon code") }} <input class="form-control tcd-coupon" maxlength="40" dir="ltr"></label>
 			<p class="tcd-assistant-actions"><button type="button" class="btn btn-primary tcd-buy-btn">{{ _("Buy", context="TCD") }}</button></p>
 		</div>

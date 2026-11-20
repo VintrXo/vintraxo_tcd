@@ -400,6 +400,7 @@
 			const status = form.querySelector(".tcd-profile-status");
 			const data = {
 				headline: form.headline.value,
+				country: form.country ? form.country.value : "",
 				bio: form.bio.value,
 				public_profile: form.public_profile.checked ? 1 : 0,
 				experience: rows(form.experience.value, ["job_title", "company", "from_year", "to_year"]),

@@ -160,3 +160,92 @@ def fill_meet_links():
 		link = frappe.db.get_value("Event", row.calendar_event, "google_meet_link")
 		if link:
 			frappe.db.set_value("TCD Session", row.name, "meeting_url", link, update_modified=False)
+
+
+# ---------------------------------------------------------------- Zoom attendance (Phase 24, ADR-0032)
+
+ATTENDANCE_WINDOW_HOURS = 48
+
+
+def zoom_participants(meeting_id: str) -> dict[str, int]:
+	"""Seconds spent in the meeting per e-mail (rejoins are added up), from Zoom's past-meeting API."""
+	s = settings()
+	headers = {"Authorization": f"Bearer {_zoom_token(s)}"}
+	seconds: dict[str, int] = {}
+	token = ""
+	for _page in range(20):
+		params = {"page_size": 300}
+		if token:
+			params["next_page_token"] = token
+		r = requests.get(
+			f"{ZOOM_API}/past_meetings/{meeting_id}/participants", params=params, headers=headers, timeout=20
+		)
+		r.raise_for_status()
+		data = r.json()
+		for p in data.get("participants") or []:
+			email = (p.get("user_email") or "").strip().lower()
+			if email:
+				seconds[email] = seconds.get(email, 0) + int(p.get("duration") or 0)
+		token = data.get("next_page_token") or ""
+		if not token:
+			break
+	return seconds
+
+
+def take_zoom_attendance(session_name: str) -> dict:
+	"""Fill empty attendance rows of an ended Zoom session. Rows the instructor already marked are kept."""
+	from vintraxo_tcd.core import sessions
+
+	doc = frappe.get_doc("TCD Session", session_name)
+	if doc.get("conferencing") != "Zoom" or not doc.meeting_id:
+		frappe.throw(_("This session has no Zoom meeting."))
+	if get_datetime(doc.ends_on) > frappe.utils.now_datetime():
+		frappe.throw(_("The session has not ended yet."))
+	seconds = zoom_participants(doc.meeting_id)
+	length = max((get_datetime(doc.ends_on) - get_datetime(doc.starts_on)).total_seconds(), 60)
+	needed = length * float(settings().get("zoom_attendance_percent") or 50) / 100
+	rows = {r.user: r for r in doc.attendance}
+	present = absent = kept = 0
+	for user in sessions.invited(doc):
+		row = rows.get(user)
+		if row and row.status:
+			kept += 1
+			continue
+		if not row:
+			row = doc.append("attendance", {"user": user})
+		spent = seconds.get(user.lower(), 0)
+		row.status = "Present" if spent >= needed else "Absent"
+		row.note = _("Zoom: {0} min").format(round(spent / 60))
+		if row.status == "Present":
+			present += 1
+		else:
+			absent += 1
+	doc.attendance_synced = 1
+	if doc.status == "Scheduled":
+		doc.status = "Completed"
+	doc.flags.from_zoom = True
+	doc.save(ignore_permissions=True)
+	return {"present": present, "absent": absent, "kept": kept}
+
+
+def sync_zoom_attendance():
+	"""Hourly: Zoom sessions that ended in the last 48 hours and were not read yet."""
+	now = frappe.utils.now_datetime()
+	for name in frappe.get_all(
+		"TCD Session",
+		filters=[
+			["conferencing", "=", "Zoom"],
+			["meeting_id", "is", "set"],
+			["attendance_synced", "=", 0],
+			["status", "!=", "Cancelled"],
+			["ends_on", "<=", now],
+			["ends_on", ">=", frappe.utils.add_to_date(now, hours=-ATTENDANCE_WINDOW_HOURS)],
+		],
+		pluck="name",
+	):
+		try:
+			take_zoom_attendance(name)
+			frappe.db.commit()  # one session at a time: a Zoom error on the next one keeps this one
+		except Exception:
+			frappe.db.rollback()
+			frappe.log_error(title=f"TCD: Zoom attendance for session {name}")

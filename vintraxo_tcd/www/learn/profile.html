@@ -64,6 +64,8 @@
 		<summary>{{ _("Edit my profile") }}</summary>
 		<form class="tcd-profile-form">
 			<label class="tcd-small">{{ _("Headline") }}<input name="headline" class="form-control" maxlength="140" value="{{ (p.headline or '')|e }}"></label>
+			<label class="tcd-small">{{ _("Country") }}<input name="country" class="form-control" list="tcd-countries" autocomplete="off" value="{{ (p.country or '')|e }}"></label>
+			<datalist id="tcd-countries">{% for c in countries %}<option value="{{ c|e }}">{% endfor %}</datalist>
 			<label class="tcd-small">{{ _("About") }}<textarea name="bio" class="form-control" rows="3" maxlength="2000">{{ (p.bio or '')|e }}</textarea></label>
 			<label class="tcd-small">{{ _("Experience (one per line: job title | company | from year | to year)") }}
 				<textarea name="experience" class="form-control" rows="3">{% for e in p.experience %}{{ e.job_title|e }} | {{ e.company|e }} | {{ e.from_year or "" }} | {{ e.to_year or "" }}

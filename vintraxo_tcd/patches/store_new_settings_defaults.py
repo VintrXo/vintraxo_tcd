@@ -11,6 +11,7 @@ DEFAULTS = {
 	"runner_wall_seconds": 10,
 	"runner_memory_mb": 256,
 	"runner_runs_per_minute": 10,
+	"zoom_attendance_percent": 50,
 }
 
 

@@ -356,7 +356,10 @@ scheduler_events = {
 	"cron": {
 		"*/5 * * * *": ["vintraxo_tcd.core.integrations.process_queue"],
 	},
-	"hourly": ["vintraxo_tcd.core.meetings.fill_meet_links"],
+	"hourly": [
+		"vintraxo_tcd.core.meetings.fill_meet_links",
+		"vintraxo_tcd.core.meetings.sync_zoom_attendance",
+	],
 	"daily": [
 		"vintraxo_tcd.core.credentials.expire_certificates",
 		"vintraxo_tcd.core.governance.daily",

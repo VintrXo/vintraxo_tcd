@@ -148,6 +148,16 @@ def submit_quiz(name: str, answers) -> dict:
 # ---------------------------------------------------------------- Phase 1: courses & enrollment
 
 
+def _local_price(doctype: str, doc) -> dict:
+	"""Price and currency for the current learner (country prices, Phase 24)."""
+	from vintraxo_tcd.core import payments
+
+	if not doc.get("paid"):
+		return {"price": doc.get("price"), "currency": doc.get("currency"), "price_country": None}
+	p = payments.price_for(doctype, doc.name, frappe.session.user)
+	return {"price": p["price"], "currency": p["currency"], "price_country": p["country"]}
+
+
 def _readable(doctype: str, name: str):
 	doc = frappe.get_doc(doctype, name)
 	doc.check_permission("read")
@@ -197,8 +207,7 @@ def get_course(name: str) -> dict:
 		"summary": course.summary,
 		"cover_image": course.get("cover_image"),
 		"paid": bool(course.get("paid")),
-		"price": course.get("price"),
-		"currency": course.get("currency"),
+		**_local_price("TCD Course", course),
 		"intro": _intro(course.get("intro_video")),
 		"completion_rule": course.completion_rule,
 		"minimum_score": course.minimum_score,
@@ -242,8 +251,7 @@ def get_learning_path(name: str) -> dict:
 		"summary": path.summary,
 		"cover_image": path.get("cover_image"),
 		"paid": bool(path.get("paid")),
-		"price": path.get("price"),
-		"currency": path.get("currency"),
+		**_local_price("TCD Learning Path", path),
 		"intro": _intro(path.get("intro_video")),
 		"completion_rule": path.completion_rule,
 		"self_enrollment": bool(path.self_enrollment),
@@ -1143,3 +1151,14 @@ def generate_batch_sessions(batch: str) -> dict:
 	from vintraxo_tcd.core import batches
 
 	return batches.generate_sessions(batch)
+
+
+@frappe.whitelist(methods=["POST"])
+def zoom_attendance(session: str) -> dict:
+	"""Read attendance of an ended Zoom session now (instructors of the course and admins)."""
+	from vintraxo_tcd.core import meetings, sessions
+
+	doc = frappe.get_doc("TCD Session", session)
+	if not sessions.can_manage(doc, frappe.session.user):
+		raise frappe.PermissionError
+	return meetings.take_zoom_attendance(session)

@@ -16,6 +16,7 @@
   "meeting_url",
   "conferencing",
   "meeting_id",
+  "attendance_synced",
   "host_url",
   "calendar_event",
   "instructor",
@@ -114,6 +115,12 @@
    "read_only": 1
   },
   {
+   "fieldname": "attendance_synced",
+   "fieldtype": "Check",
+   "label": "Attendance Taken from Zoom",
+   "read_only": 1
+  },
+  {
    "fieldname": "host_url",
    "fieldtype": "Small Text",
    "label": "Host Link",
@@ -159,7 +166,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 15:30:00.000000",
+ "modified": "2026-11-20 23:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Session",

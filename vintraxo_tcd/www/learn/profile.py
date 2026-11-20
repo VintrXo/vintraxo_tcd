@@ -14,6 +14,8 @@ def get_context(context):
 		context.data = careers.view(user, frappe.session.user)
 	except frappe.DoesNotExistError:
 		raise frappe.PageDoesNotExistError from None
+	if context.data.get("own"):
+		context.countries = frappe.get_all("Country", pluck="name", order_by="name asc")
 	context.labels_json = portal.json_for_script(portal.js_labels())
 	context.title = context.data["full_name"]
 	context.parents = [{"route": "/learn", "title": _("Learning")}]

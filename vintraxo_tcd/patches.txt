@@ -15,3 +15,4 @@ vintraxo_tcd.patches.backfill_content_review_dates
 vintraxo_tcd.patches.store_new_settings_defaults
 vintraxo_tcd.patches.store_new_settings_defaults #phase13
 vintraxo_tcd.patches.store_new_settings_defaults #phase14
+vintraxo_tcd.patches.store_new_settings_defaults #phase24

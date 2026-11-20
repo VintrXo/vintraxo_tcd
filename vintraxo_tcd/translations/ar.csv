@@ -2280,3 +2280,20 @@ A timetable can create at most {0} sessions.,الجدول يمكن أن ينشئ
 Generate Sessions,إنشاء الجلسات,TCD
 Create the sessions of the weekly timetable between the start and end dates?,إنشاء جلسات الجدول الأسبوعي بين تاريخي البداية والنهاية؟,TCD
 Sessions created: {0}. Already there: {1}.,الجلسات المنشأة: {0}. الموجودة من قبل: {1}.,TCD
+TCD Country Price,سعر حسب الدولة
+Prices by Country,الأسعار حسب الدولة
+Optional: a different price for learners whose profile is in that country,اختياري: سعر مختلف للمتعلمين الذين دولتهم في ملفهم هي هذه الدولة
+Country,الدولة
+Price,السعر
+Currency,العملة
+Attendance Taken from Zoom,الحضور مأخوذ من Zoom
+Zoom: Present After (%),Zoom: يُعتبر حاضرًا بعد (%)
+Share of the session a learner must stay in the Zoom meeting to be marked present (attendance is read from Zoom after the session),نسبة مدة الجلسة التي يجب أن يبقاها المتعلم في اجتماع Zoom ليُسجّل حاضرًا (يُقرأ الحضور من Zoom بعد الجلسة)
+This session has no Zoom meeting.,هذه الجلسة ليس لها اجتماع Zoom.
+The session has not ended yet.,الجلسة لم تنتهِ بعد.
+Zoom: {0} min,Zoom: {0} دقيقة
+Choose a country from the list.,اختر دولة من القائمة.
+Price for {0},السعر لـ {0}
+Row {0}: the price cannot be negative.,الصف {0}: السعر لا يمكن أن يكون سالبًا.
+Attendance from Zoom,الحضور من Zoom,TCD
+"Present: {0}, absent: {1}, kept: {2}",حاضر: {0}، غائب: {1}، بدون تغيير: {2},TCD

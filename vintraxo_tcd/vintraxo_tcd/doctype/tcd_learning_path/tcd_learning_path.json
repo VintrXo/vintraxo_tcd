@@ -31,6 +31,7 @@
   "paid",
   "price",
   "currency",
+  "country_prices",
   "items_section",
   "items"
  ],
@@ -209,6 +210,14 @@
    "mandatory_depends_on": "paid"
   },
   {
+   "fieldname": "country_prices",
+   "fieldtype": "Table",
+   "label": "Prices by Country",
+   "options": "TCD Country Price",
+   "depends_on": "paid",
+   "description": "Optional: a different price for learners whose profile is in that country"
+  },
+  {
    "fieldname": "items_section",
    "fieldtype": "Section Break",
    "label": "Courses"
@@ -221,7 +230,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 16:00:00.000000",
+ "modified": "2026-11-20 23:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Learning Path",

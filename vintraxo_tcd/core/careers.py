@@ -47,6 +47,7 @@ def view(user: str, viewer: str) -> dict:
 		"own": own,
 		"full_name": frappe.db.get_value("User", user, "full_name") or user,
 		"headline": doc.headline,
+		"country": doc.get("country"),
 		"bio": doc.bio,
 		"public_profile": bool(doc.public_profile),
 		"education": [
@@ -67,6 +68,10 @@ def save(user: str, data: dict) -> dict:
 		raise frappe.PermissionError
 	doc = _profile_doc(user)
 	doc.headline = (data.get("headline") or "").strip()[:140]
+	country = (data.get("country") or "").strip()
+	if country and not frappe.db.exists("Country", country):
+		frappe.throw(_("Choose a country from the list."))
+	doc.country = country or None
 	doc.bio = (data.get("bio") or "").strip()[:MAX_TEXT]
 	doc.public_profile = 1 if data.get("public_profile") else 0
 	doc.set("education", [])
