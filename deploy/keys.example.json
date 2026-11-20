@@ -1,0 +1,60 @@
+{
+  "_help": "Copy to keys.json (outside git) and fill what you have. Empty values or values starting with REPLACE are skipped, so you can run it again later. Run: bench --site <site> execute vintraxo_tcd.core.server_keys.apply_keys --kwargs \"{'path': '/home/<user>/keys.json'}\"",
+
+  "email": {
+    "_help": "Outgoing mail (Gmail/Workspace: smtp.gmail.com 587 + an App Password).",
+    "email_id": "REPLACE noreply@your-domain.com",
+    "password": "REPLACE",
+    "smtp_server": "REPLACE smtp.your-provider.com",
+    "smtp_port": 587,
+    "use_tls": 1,
+    "login_id": ""
+  },
+
+  "ai": {
+    "_help": "AI assistant (Anthropic). Key from console.anthropic.com.",
+    "api_key": "REPLACE sk-ant-...",
+    "model": "claude-opus-5-5",
+    "monthly_budget": 50
+  },
+
+  "runner": {
+    "_help": "Judge0 server for Java/C#/C++... (docs/PHASE10_ISOLATION_DESIGN.md). Leave empty to keep browser languages only.",
+    "url": "",
+    "token": ""
+  },
+
+  "zoom": {
+    "_help": "Zoom Server-to-Server OAuth app (marketplace.zoom.us). Fill zoom OR google_meet.",
+    "account_id": "",
+    "client_id": "",
+    "client_secret": ""
+  },
+
+  "google_meet": {
+    "_help": "Name of a Google Calendar already connected from the Desk (Google Settings + Google Calendar).",
+    "google_calendar": ""
+  },
+
+  "payment": {
+    "_help": "Name of a Payment Gateway record (payments app). Put the gateway's own keys under documents.",
+    "gateway": ""
+  },
+
+  "github": {
+    "_help": "Per space: sync its pages with a GitHub repo. Key = space name.",
+    "python-full": {"repo": "", "branch": "main", "token": ""}
+  },
+
+  "documents": [
+    {
+      "_help": "Keys kept by other apps, e.g. Stripe Settings or Google Settings. Field names as in the Desk form.",
+      "doctype": "Google Settings",
+      "enable": 0,
+      "client_id": "",
+      "client_secret": ""
+    }
+  ],
+
+  "trial_accounts": "disable"
+}

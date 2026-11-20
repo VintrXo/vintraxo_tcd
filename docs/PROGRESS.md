@@ -137,7 +137,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 22 — Space navigation (wiki sidebar) | 290d8f7 | 230 | Admin-arranged groups of pages / courses / paths / links, permission-filtered, on space and wiki pages |
 | Phase 23 — Batch mentors, feedback, timetable | 514689e | 233 | Mentors on My Team, batch feedback on My Learning, weekly timetable generates sessions |
 | Phase 24 — Zoom attendance + country prices | bfecbc7 | 236 | Attendance read from Zoom after the session (hourly + button), prices by country from the learner profile |
-| Phase 25 — Certified learners + Markdown editor | this commit | 238 | Opt-in certified learners page with platform stats; Markdown toolbar + sanitized preview in suggestions and the studio |
+| Phase 25 — Certified learners + Markdown editor | 7c69940 | 238 | Opt-in certified learners page with platform stats; Markdown toolbar + sanitized preview in suggestions and the studio |
+| Phase 26 — Move kit (server in one bundle, keys in one file) | this commit | 244 | export_internal.sh bundles apps/patches/backup; install_prereqs.sh + setup_server.sh rebuild the server; keys.json fills every key; readiness warns about trial accounts |
 
 ## Phase 7 — Notifications and analytics: status
 

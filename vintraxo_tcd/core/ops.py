@@ -152,6 +152,18 @@ def readiness() -> list[dict]:
 	for role in TCD_ROLES:
 		if not frappe.db.exists("Role", role):
 			out.append(_item(_("Roles"), FAIL, _("Role {0} is missing (run migrate).").format(role)))
+	from vintraxo_tcd.core.server_keys import TRIAL_ACCOUNTS
+
+	trial = frappe.get_all("User", filters={"name": ["in", TRIAL_ACCOUNTS], "enabled": 1}, pluck="name")
+	if trial:
+		out.append(
+			_item(
+				_("Roles"),
+				WARN,
+				_("{0} trial accounts are still enabled.").format(len(trial)),
+				'keys.json: "trial_accounts": "disable"',
+			)
+		)
 	users = frappe.db.sql(
 		"""select count(distinct parent) from `tabHas Role` where role in %(r)s and parenttype='User'""",
 		{"r": TCD_ROLES},
