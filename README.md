@@ -9,9 +9,12 @@ Arabic first (RTL), English second. Works on Frappe v16 with or without ERPNext 
 | Knowledge | Spaces, page trees, articles, versions with review and approval, Markdown, `[[links]]`, policies / SOPs with acknowledgments |
 | Learning | Courses, chapters, learning paths, batches, sessions with attendance, assignments, assessments, certificates, skills |
 
-Plus: mandatory training rules (by role, or department / designation / company with HRMS), manager dashboard,
-lesson discussions, content review cycles, notifications, 11 reports, signed webhooks, an optional AI assistant
-(off by default) and an optional isolated code runner (Judge0, off by default).
+Plus: an authoring studio in the portal, certification evaluations with evaluator schedules, scheduled chapter
+release, batches with mentors / feedback / timetables, Zoom and Google Meet sessions (attendance from Zoom),
+paid courses with coupons and country prices, SCORM, GitHub docs sync, space navigation menus, learner profiles,
+an internal job board, mandatory training rules (by role, or department / designation / company with HRMS),
+manager dashboard, discussions, content review cycles, notifications, reports, signed webhooks, a readiness check,
+an optional AI assistant and an optional isolated code runner (Judge0) — both off by default.
 
 ## Install
 
@@ -51,7 +54,7 @@ bench restart
 |---|---|
 | Learners and instructors (Arabic) | [docs/USER_GUIDE.md](docs/USER_GUIDE.md) |
 | Administrators (Arabic) | [docs/ADMIN_GUIDE.md](docs/ADMIN_GUIDE.md) |
-| Deployment, upgrade, backup | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
+| Deployment, upgrade, backup | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md), [docs/MOVE_TO_SERVER.md](docs/MOVE_TO_SERVER.md) |
 | Developers | [docs/DEVELOPER.md](docs/DEVELOPER.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/DATA_MODEL.md](docs/DATA_MODEL.md), [docs/PERMISSIONS.md](docs/PERMISSIONS.md), [docs/adr/](docs/adr/) |
 | Status and history | [docs/PROGRESS.md](docs/PROGRESS.md), [docs/RELEASE_NOTES.md](docs/RELEASE_NOTES.md) |
 

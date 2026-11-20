@@ -1,3 +1,36 @@
+# Release notes — VintraXo T-C-D 0.2.0
+
+Everything Frappe LMS, Frappe Wiki and W3Schools-style tutorials offer that fits an internal training platform,
+in one app. Upgrade from 0.1.0 with `bench --site <site> migrate` (no manual steps).
+
+## New since 0.1.0
+- **Learner experience:** new design (light / dark), lesson side menu, previous / next on top, syntax highlighting
+  with copy, full-screen "try it yourself", practice exercises with blanks, reference tables with search.
+- **Studio (`/learn/studio`):** authors write pages with the block editor and build courses (chapters, items,
+  release dates) from the portal; review and publish buttons for reviewers; Markdown toolbar with preview.
+- **Courses:** certification evaluations (evaluator schedules, slot booking, results issue certificates),
+  chapters released N days after enrollment or on a date, "coming soon" courses with notify-me, prices by country.
+- **Batches:** mentors following their batch on My Team, batch feedback, weekly timetable that creates sessions,
+  attendance read from Zoom after online sessions.
+- **Wiki:** admin-arranged space navigation menu; visitors (optional) can read public pages.
+- **Community:** certified learners page (opt-in) with platform statistics, learner profiles, internal job board.
+- **Also from 0.1.x:** Zoom / Google Meet sessions, paid courses with coupons (Frappe Payments), SCORM packages,
+  GitHub docs sync, video watch tracking, private notes, suggested edits, TOC, course cover and intro video,
+  proctoring, negative marking, multiple test cases, badges.
+- **Operations:** readiness check (Learning Settings → Readiness check, or `bench execute
+  vintraxo_tcd.core.ops.print_readiness`) and a move-to-server guide (`docs/MOVE_TO_SERVER.md`).
+
+## Quality
+- 238 automated tests, strict lint, every phase checked in a real browser (desktop, phone, dark mode, RTL).
+- Fixes found on the way: portal breadcrumbs now escape page titles; portal script loaded on every learner page.
+
+## Known limits
+- Extra code-runner languages need the Judge0 server; the AI assistant needs an API key; Zoom, Google Meet,
+  payment gateways and GitHub sync were tested with mocked APIs and need real credentials.
+- Prices by country follow the country the learner sets in their profile (a convenience, not a fraud control).
+
+---
+
 # Release notes — VintraXo T-C-D 0.1.0
 
 Training, Content and Documentation in one Frappe app, Arabic-first (RTL), mobile-friendly.
