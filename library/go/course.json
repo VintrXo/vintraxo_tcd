@@ -1,0 +1,16 @@
+{
+  "key": "go",
+  "spaces": {
+    "ar": {"name": "go-ar", "title": "تعلّم Go", "description": "لغة Go من الصفر: المتغيرات، الشروط، الحلقات، الشرائح والخرائط، الدوال، الهياكل والواجهات، الأخطاء والتزامن."},
+    "en": {"name": "go-en", "title": "Learn Go", "description": "Go from scratch: variables, conditions, loops, slices and maps, functions, structs and interfaces, errors and concurrency."}
+  },
+  "course": {
+    "ar": {"title": "دورة Go", "summary": "لغة الخوادم والسحابة: بسيطة وسريعة ومتزامنة."},
+    "en": {"title": "Go course", "summary": "The language of servers and the cloud: simple, fast and concurrent."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["go-intro", "go-variables", "go-control"]},
+    {"ar": "البيانات والدوال", "en": "Data and functions", "lessons": ["go-slices", "go-maps", "go-functions"]},
+    {"ar": "الهياكل والأخطاء والتزامن", "en": "Structs, errors and concurrency", "lessons": ["go-structs", "go-interfaces", "go-errors", "go-goroutines", "go-reference"]}
+  ]
+}
