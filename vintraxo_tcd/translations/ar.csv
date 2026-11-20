@@ -2297,3 +2297,13 @@ Price for {0},السعر لـ {0}
 Row {0}: the price cannot be negative.,الصف {0}: السعر لا يمكن أن يكون سالبًا.
 Attendance from Zoom,الحضور من Zoom,TCD
 "Present: {0}, absent: {1}, kept: {2}",حاضر: {0}، غائب: {1}، بدون تغيير: {2},TCD
+Certified learners,الحاصلون على شهادات
+Colleagues who earned certificates and chose to show their profile.,زملاء حصلوا على شهادات واختاروا إظهار ملفهم.
+Learning paths,مسارات التعلّم
+Completed courses and paths,دورات ومسارات مكتملة
+All courses,كل الدورات
+No certified learners to show yet.,لا يوجد حاصلون على شهادات لعرضهم بعد.
+The text is too long to preview.,النص طويل جدًا للمعاينة.
+Bold,عريض
+Italic,مائل
+Link,رابط

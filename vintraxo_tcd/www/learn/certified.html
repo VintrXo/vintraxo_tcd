@@ -1,0 +1,48 @@
+{% extends "templates/web.html" %}
+
+{% block style %}{{ super() }}<link rel="stylesheet" href="/assets/vintraxo_tcd/css/tcd_portal.css?v={{ asset_version() }}"><script>try{if(localStorage.getItem("tcd-theme")==="dark")document.documentElement.dataset.tcdTheme="dark"}catch(e){}</script>{% endblock %}
+
+{% block page_content %}
+{% set s = stats %}
+<div class="tcd-page tcd-certified">
+	<header class="tcd-hero">
+		<h1>{{ _("Certified learners") }}</h1>
+		<p class="tcd-summary">{{ _("Colleagues who earned certificates and chose to show their profile.") }}</p>
+	</header>
+
+	<ul class="tcd-stats">
+		<li><strong class="tcd-num">{{ s.courses }}</strong><span>{{ _("Courses") }}</span></li>
+		<li><strong class="tcd-num">{{ s.paths }}</strong><span>{{ _("Learning paths") }}</span></li>
+		<li><strong class="tcd-num">{{ s.pages }}</strong><span>{{ _("Published pages") }}</span></li>
+		<li><strong class="tcd-num">{{ s.learners }}</strong><span>{{ _("Learners") }}</span></li>
+		<li><strong class="tcd-num">{{ s.completions }}</strong><span>{{ _("Completed courses and paths") }}</span></li>
+		<li><strong class="tcd-num">{{ s.certificates }}</strong><span>{{ _("Certificates") }}</span></li>
+	</ul>
+
+	{% if courses %}
+	<form method="get" action="/learn/certified" class="tcd-search">
+		<select name="course" class="tcd-select" aria-label="{{ _('Course', context='TCD') }}" onchange="this.form.submit()">
+			<option value="">{{ _("All courses") }}</option>
+			{% for c in courses %}<option value="{{ c.name|e }}" {% if c.name == course %}selected{% endif %}>{{ (c.title or c.name)|e }}</option>{% endfor %}
+		</select>
+	</form>
+	{% endif %}
+
+	{% if rows %}
+	<ul class="tcd-cards">
+		{% for r in rows %}
+		<li class="tcd-card tcd-cert-card"><div>
+			<strong><a href="/learn/profile?user={{ r.user|urlencode }}">{{ r.full_name|e }}</a></strong>
+			<span>{{ r.title|e }}</span>
+			<span class="tcd-muted tcd-small">{{ frappe.format_date(r.issued_on) }} · <a href="/verify/{{ r.verification_code|urlencode }}" target="_blank" rel="noopener">{{ _("Verification link") }}</a></span>
+		</div></li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p class="tcd-muted">{{ _("No certified learners to show yet.") }}</p>
+	{% endif %}
+	<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
+</div>
+{% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

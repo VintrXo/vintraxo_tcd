@@ -190,6 +190,10 @@
 			input.addEventListener("change", update);
 			if (kind === "check") wrap.append(input, lab);
 			else wrap.append(lab, input);
+			if (kind === "text" && field === "text" && ["markdown", "paragraph", "callout"].includes(block.type) && !this.locked) {
+				input.dataset.md = "1";
+				window.tcdMarkdown?.enhance(input);
+			}
 			if (kind === "upload" && !this.locked) {
 				const fileInput = el("input", { type: "file", class: "tcd-studio-file", accept: options || null, "aria-label": (this.t.upload || "Upload") + " " + label });
 				const note = el("span", { class: "tcd-muted tcd-small", role: "status" });

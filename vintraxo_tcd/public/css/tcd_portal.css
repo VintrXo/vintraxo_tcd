@@ -540,3 +540,8 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 .tcd-studio-release { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .tcd-studio-release label { display: grid; gap: 0.2rem; }
 .tcd-coming-soon { display: grid; gap: 0.5rem; justify-items: start; }
+
+/* Markdown toolbar and preview (Phase 25) */
+.tcd-md-bar { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-block: 0.25rem; }
+.tcd-md-bar .btn { min-inline-size: 2rem; font-weight: 700; }
+.tcd-md-preview { min-block-size: 4rem; padding: 0.6rem 0.8rem; border: 1px dashed var(--tcd-border); border-radius: 10px; background: var(--tcd-surface); font-weight: normal; }

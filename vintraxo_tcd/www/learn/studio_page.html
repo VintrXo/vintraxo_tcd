@@ -62,5 +62,6 @@
 </div>
 {% endblock %}
 
-{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_studio.js?v={{ asset_version() }}"></script>
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_md.js?v={{ asset_version() }}"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_studio.js?v={{ asset_version() }}"></script>
 <script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

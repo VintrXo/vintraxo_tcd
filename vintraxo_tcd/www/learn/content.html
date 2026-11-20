@@ -218,7 +218,7 @@
 			<label class="tcd-small">{{ _("Title") }}<input name="title" class="form-control" maxlength="140" value="{{ doc.title|e }}"></label>
 			{% for f in suggest_fields %}
 			<label class="tcd-small tcd-suggest-field">{{ _(f.type, context="TCD Block") }}
-				<textarea class="form-control" data-index="{{ f.index }}" data-field="{{ f.field|e }}" rows="{{ 4 if f.field in ('code', 'items') or f.type == 'markdown' else 2 }}"{% if f.field == 'code' %} dir="ltr"{% endif %}>{{ f.value|e }}</textarea>
+				<textarea class="form-control" data-index="{{ f.index }}" data-field="{{ f.field|e }}" rows="{{ 4 if f.field in ('code', 'items') or f.type == 'markdown' else 2 }}"{% if f.field == 'code' %} dir="ltr"{% endif %}{% if f.field == 'text' and f.type in ('markdown', 'paragraph', 'callout') %} data-md data-space="{{ doc.space|e }}"{% endif %}>{{ f.value|e }}</textarea>
 			</label>
 			{% endfor %}
 			<label class="tcd-small">{{ _("What changed and why") }}<textarea name="summary" class="form-control" rows="2" maxlength="1000" required></textarea></label>
@@ -256,6 +256,7 @@
 {% block script %}
 {{ super() }}
 <script defer src="/assets/vintraxo_tcd/js/tcd_highlight.js?v={{ asset_version() }}"></script>
+<script defer src="/assets/vintraxo_tcd/js/tcd_md.js?v={{ asset_version() }}"></script>
 <script defer src="/assets/vintraxo_tcd/js/tcd_playground.js?v={{ asset_version() }}"></script>
 <script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>
 {% endblock %}

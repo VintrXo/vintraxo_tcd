@@ -327,6 +327,7 @@ website_route_rules = [
 	{"from_route": "/learn/team", "to_route": "learn/team"},
 	{"from_route": "/learn/profile", "to_route": "learn/profile"},
 	{"from_route": "/learn/jobs", "to_route": "learn/jobs"},
+	{"from_route": "/learn/certified", "to_route": "learn/certified"},
 	{"from_route": "/learn/studio", "to_route": "learn/studio"},
 	{"from_route": "/learn/studio/page", "to_route": "learn/studio_page"},
 	{"from_route": "/learn/studio/course", "to_route": "learn/studio_course"},

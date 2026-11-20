@@ -1162,3 +1162,18 @@ def zoom_attendance(session: str) -> dict:
 	if not sessions.can_manage(doc, frappe.session.user):
 		raise frappe.PermissionError
 	return meetings.take_zoom_attendance(session)
+
+
+# ---------------------------------------------------------------- Markdown preview (Phase 25)
+
+
+@frappe.whitelist(methods=["POST"])
+def preview_markdown(text: str = "", space: str | None = None) -> str:
+	"""Sanitized HTML of Markdown for the editors' preview (same renderer as the pages)."""
+	if frappe.session.user == "Guest":
+		raise frappe.PermissionError
+	if len(text or "") > 20000:
+		frappe.throw(frappe._("The text is too long to preview."))
+	if space:
+		frappe.has_permission("TCD Space", "read", space, throw=True)
+	return wiki.render_markdown(text or "", space or "")
