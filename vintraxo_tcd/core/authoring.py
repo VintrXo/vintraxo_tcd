@@ -6,6 +6,7 @@ Markdown with a few fenced extras:
 
     ```html                      code block (any language)
     ```try html                  "try it yourself" playground (python, sql, html, javascript, ...)
+    ```try sql shop              ... with the hidden setup code "shop" from course.json ("setups")
     ```exercise html             practice: first line "? prompt", code with ___ blanks, then "= answer" lines,
                                  optional "! hint"
     ```reference html            reference table, one "name | description | example" per line
@@ -18,7 +19,7 @@ no database access, so the parser is easy to test and to run anywhere."""
 import re
 
 LESSON = re.compile(r"^# @lesson\s+(\S+)\s*$", re.M)
-FENCE = re.compile(r"^```(\S*)(?:[ \t]+(\S+))?[ \t]*$")
+FENCE = re.compile(r"^```(\S*)(?:[ \t]+(\S+))?(?:[ \t]+(\S+))?[ \t]*$")
 CALLOUT = re.compile(r"^:::(info|tip|warning|danger)(?:[ \t]+(.*))?$")
 HEADING = re.compile(r"^(#{2,4})\s+(.*)$")
 
@@ -54,8 +55,8 @@ def split_lessons(text: str) -> list[dict]:
 	return lessons
 
 
-def to_blocks(body: str) -> tuple[list, list]:
-	"""Markdown-ish body -> (blocks, quiz questions)."""
+def to_blocks(body: str, setups: dict | None = None) -> tuple[list, list]:
+	"""Markdown-ish body -> (blocks, quiz questions). `setups`: named hidden code for ```try <lang> <setup>."""
 	blocks, questions = [], []
 	lines = body.splitlines()
 	para: list[str] = []
@@ -76,9 +77,13 @@ def to_blocks(body: str) -> tuple[list, list]:
 		heading = HEADING.match(line)
 		if fence:
 			flush()
-			kind, arg = fence.group(1), fence.group(2) or ""
+			kind, arg, extra = fence.group(1), fence.group(2) or "", fence.group(3) or ""
 			inner, i = _until(lines, i + 1, "```")
 			blocks_or_q = _fenced(kind, arg, inner)
+			if extra and kind == "try":
+				if extra not in (setups or {}):
+					raise SourceError(f"try block uses setup '{extra}', which course.json does not define")
+				blocks_or_q["setup"] = setups[extra]
 			if kind == "quiz":
 				questions.extend(blocks_or_q)
 			else:

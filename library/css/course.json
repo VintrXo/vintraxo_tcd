@@ -1,0 +1,18 @@
+{
+  "key": "css",
+  "spaces": {
+    "ar": {"name": "css-ar", "title": "تعلّم CSS", "description": "نسّق صفحات الويب بـ CSS: الألوان، الخطوط، الصندوق، التخطيط بـ Flexbox و Grid، والتصميم المتجاوب."},
+    "en": {"name": "css-en", "title": "Learn CSS", "description": "Style web pages with CSS: colors, fonts, the box model, Flexbox and Grid layout, and responsive design."}
+  },
+  "course": {
+    "ar": {"title": "دورة CSS الكاملة", "summary": "من أول قاعدة CSS إلى صفحات متجاوبة بـ Flexbox و Grid والحركة."},
+    "en": {"title": "Complete CSS course", "summary": "From your first CSS rule to responsive pages with Flexbox, Grid and motion."}
+  },
+  "chapters": [
+    {"ar": "الأساسيات", "en": "The basics", "lessons": ["css-intro", "css-syntax", "css-howto", "css-selectors"]},
+    {"ar": "الألوان والنصوص", "en": "Colors and text", "lessons": ["css-colors", "css-backgrounds", "css-text", "css-fonts"]},
+    {"ar": "نموذج الصندوق", "en": "The box model", "lessons": ["css-box-model", "css-borders", "css-margin-padding"]},
+    {"ar": "التخطيط", "en": "Layout", "lessons": ["css-display", "css-position", "css-flexbox", "css-grid", "css-responsive"]},
+    {"ar": "الحركة والمرجع", "en": "Motion and reference", "lessons": ["css-transitions", "css-reference"]}
+  ]
+}

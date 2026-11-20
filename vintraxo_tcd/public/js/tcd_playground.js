@@ -97,12 +97,41 @@
 		console.log = console.info = console.debug = (...a) => postMessage({ type: "stdout", text: fmt(a) + "\n" });
 		console.warn = console.error = (...a) => postMessage({ type: "stderr", text: fmt(a) + "\n" });
 		const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+		// pending setTimeout calls keep the run open (so "await wait(500)" and timers print); the page's hard
+		// time limit still stops code that never finishes
+		const nativeSet = setTimeout, nativeClear = clearTimeout, live = new Set();
+		let started = 0, codeDone = false;
+		const settle = () => nativeSet(() => {
+			if (codeDone && live.size === 0) {
+				codeDone = false;
+				postMessage({ type: "done", ms: Math.round(performance.now() - started) });
+			}
+		}, 0);
+		self.setTimeout = (fn, ms, ...args) => {
+			const id = nativeSet(() => {
+				live.delete(id);
+				try {
+					if (typeof fn === "function") fn(...args);
+				} catch (err) {
+					postMessage({ type: "error", text: String((err && err.stack) || err) });
+				}
+				settle();
+			}, ms);
+			live.add(id);
+			return id;
+		};
+		self.clearTimeout = (id) => {
+			live.delete(id);
+			nativeClear(id);
+			settle();
+		};
 		postMessage({ type: "loaded" });
 		onmessage = async function (e) {
-			const t = performance.now();
+			started = performance.now();
 			try {
 				await new AsyncFunction(e.data.code)();
-				postMessage({ type: "done", ms: Math.round(performance.now() - t) });
+				codeDone = true;
+				settle();
 			} catch (err) {
 				postMessage({ type: "error", text: String((err && err.stack) || err) });
 			}
@@ -235,6 +264,8 @@
 			this.output = section.querySelector(".tcd-output");
 			const expected = section.querySelector("template.tcd-expected");
 			this.expected = expected ? expected.content.textContent : null;
+			const setup = section.querySelector("template.tcd-setup");
+			this.setup = setup ? setup.content.textContent : ""; // hidden code run before the learner's code
 			this.original = this.editor.value;
 			this.frame = null;
 			this.buildActions();
@@ -360,7 +391,8 @@
 				return;
 			}
 
-			if (onRunner(this.language, this.cfg)) return this.runServer(code);
+			const full = this.setup ? this.setup + "\n" + code : code;
+			if (onRunner(this.language, this.cfg)) return this.runServer(full);
 			const source = workerSource(this.language, this.cfg);
 			if (!source) return this.status(this.language + ": unsupported", "error");
 
@@ -369,7 +401,7 @@
 			this.stopBtn.hidden = false;
 			this.status(this.language === "javascript" ? this.t.running || "Running..." : this.t.loading_runtime || "Loading...");
 
-			this.job = { source: source, code: code, timeout: this.cfg.timeout_seconds || 5 };
+			this.job = { source: source, code: full, timeout: this.cfg.timeout_seconds || 5 };
 			this.frame = el("iframe", { sandbox: "allow-scripts", hidden: "", "aria-hidden": "true", tabindex: "-1" });
 			this.frame.srcdoc = RUNNER_HTML;
 			window.addEventListener("message", this.onMessage);

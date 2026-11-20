@@ -1,0 +1,18 @@
+{
+  "key": "python",
+  "spaces": {
+    "ar": {"name": "python-ar", "title": "تعلّم Python", "description": "بايثون من الصفر: المتغيرات، الشروط، الحلقات، القوائم، القواميس، الدوال، الأخطاء، الأصناف والملفات."},
+    "en": {"name": "python-en", "title": "Learn Python", "description": "Python from scratch: variables, conditions, loops, lists, dictionaries, functions, errors, classes and files."}
+  },
+  "course": {
+    "ar": {"title": "دورة Python الكاملة", "summary": "تعلّم بايثون خطوة بخطوة، وشغّل كل مثال في متصفحك مباشرة."},
+    "en": {"title": "Complete Python course", "summary": "Learn Python step by step, and run every example right in your browser."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["py-intro", "py-syntax", "py-variables", "py-types"]},
+    {"ar": "الأساسيات", "en": "The basics", "lessons": ["py-numbers", "py-strings", "py-conditions", "py-loops"]},
+    {"ar": "هياكل البيانات", "en": "Data structures", "lessons": ["py-lists", "py-tuples-sets", "py-dicts", "py-comprehensions"]},
+    {"ar": "الدوال والوحدات", "en": "Functions and modules", "lessons": ["py-functions", "py-modules", "py-errors"]},
+    {"ar": "متقدم", "en": "Advanced", "lessons": ["py-classes", "py-files", "py-reference"]}
+  ]
+}

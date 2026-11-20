@@ -28,6 +28,8 @@ type: Lesson            (or Reference)
 Markdown text: **bold**, `code`, lists, tables, ## headings.
 
 ```try html                 "try it yourself" (html, javascript, python, sql)
+```try sql shop             ... with hidden setup code "shop" from course.json:
+                            "setups": {"shop": {"ar": "@shop_ar.sql", "en": "@shop_en.sql"}}
 <a href="#">رابط</a>
 ```
 
@@ -38,7 +40,7 @@ Markdown text: **bold**, `code`, lists, tables, ## headings.
 ! السمة التي تحدد العنوان
 ```
 
-```reference html           name | description | example, one per line (searchable table)
+```reference html           name | description | example, one per line (searchable table; use " | " with spaces)
 <a> | رابط | <a href="x">نص</a>
 ```
 

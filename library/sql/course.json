@@ -1,0 +1,18 @@
+{
+  "key": "sql",
+  "spaces": {
+    "ar": {"name": "sql-ar", "title": "تعلّم SQL", "description": "لغة قواعد البيانات: الاستعلام والتصفية والترتيب والتجميع والربط بين الجداول والتعديل، على قاعدة بيانات متجر جاهزة."},
+    "en": {"name": "sql-en", "title": "Learn SQL", "description": "The language of databases: querying, filtering, sorting, grouping, joining tables and changing data, on a ready-made shop database."}
+  },
+  "course": {
+    "ar": {"title": "دورة SQL الكاملة", "summary": "اكتب استعلامات حقيقية على قاعدة بيانات متجر من أول درس."},
+    "en": {"title": "Complete SQL course", "summary": "Write real queries on a shop database from the very first lesson."}
+  },
+  "setups": {"shop": {"ar": "@shop_ar.sql", "en": "@shop_en.sql"}},
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["sql-intro", "sql-database", "sql-select", "sql-where"]},
+    {"ar": "التصفية والترتيب", "en": "Filtering and sorting", "lessons": ["sql-order-by", "sql-like-in-between", "sql-null", "sql-limit"]},
+    {"ar": "التجميع والربط", "en": "Grouping and joining", "lessons": ["sql-aggregates", "sql-group-by", "sql-joins", "sql-subqueries"]},
+    {"ar": "تعديل البيانات", "en": "Changing data", "lessons": ["sql-insert", "sql-update-delete", "sql-create-table", "sql-reference"]}
+  ]
+}

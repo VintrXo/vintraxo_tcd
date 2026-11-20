@@ -1,0 +1,18 @@
+{
+  "key": "javascript",
+  "spaces": {
+    "ar": {"name": "javascript-ar", "title": "تعلّم JavaScript", "description": "لغة الويب: المتغيرات، الشروط، الحلقات، الدوال، المصفوفات، الكائنات، التحكم في الصفحة والأحداث، والكود غير المتزامن."},
+    "en": {"name": "javascript-en", "title": "Learn JavaScript", "description": "The language of the web: variables, conditions, loops, functions, arrays, objects, the DOM and events, and async code."}
+  },
+  "course": {
+    "ar": {"title": "دورة JavaScript الكاملة", "summary": "من أول console.log إلى صفحات تتفاعل مع الزائر وتجلب البيانات."},
+    "en": {"title": "Complete JavaScript course", "summary": "From your first console.log to pages that respond to visitors and fetch data."}
+  },
+  "chapters": [
+    {"ar": "الأساسيات", "en": "The basics", "lessons": ["js-intro", "js-output", "js-variables", "js-types"]},
+    {"ar": "العمليات والقرارات", "en": "Operations and decisions", "lessons": ["js-operators", "js-strings", "js-conditions", "js-loops"]},
+    {"ar": "الدوال والبيانات", "en": "Functions and data", "lessons": ["js-functions", "js-arrays", "js-array-methods", "js-objects"]},
+    {"ar": "الصفحة", "en": "The page", "lessons": ["js-dom", "js-events"]},
+    {"ar": "متقدم", "en": "Advanced", "lessons": ["js-json", "js-errors", "js-async", "js-reference"]}
+  ]
+}

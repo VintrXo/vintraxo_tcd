@@ -114,6 +114,47 @@ class TestPhase30Library(TCDTestCase):
 
 		content.validate_blocks(blocks)  # every block passes the page validation
 
+	def test_try_block_with_setup(self):
+		body = "```try sql shop\nSELECT * FROM t;\n```"
+		blocks, _ = authoring.to_blocks(body, {"shop": "CREATE TABLE t (a);"})
+		self.assertEqual(
+			blocks[0],
+			{
+				"type": "playground",
+				"language": "sql",
+				"code": "SELECT * FROM t;",
+				"setup": "CREATE TABLE t (a);",
+			},
+		)
+		from vintraxo_tcd.core import content, wiki
+
+		content.validate_blocks(blocks)
+		with self.assertRaises(authoring.SourceError):
+			authoring.to_blocks(body, {})
+		html = frappe.render_template(
+			"{% from 'templates/includes/tcd_blocks.html' import render_blocks %}{{ render_blocks(blocks, pg) }}",
+			{"blocks": wiki.prepare_blocks(blocks, ""), "pg": {"enabled": 1}},
+		)
+		self.assertIn('<template class="tcd-setup">CREATE TABLE t (a);</template>', html)
+
+	def test_reference_with_pipes(self):
+		from vintraxo_tcd.core import content, wiki
+
+		blocks = content.validate_blocks(
+			[{"type": "reference", "entries": ["|| | or | a || b", "x|plain|old style"]}]
+		)
+		self.assertEqual(content.reference_parts("|| | or | a || b"), ["||", "or", "a || b"])
+		with self.assertRaises(frappe.ValidationError):
+			content.validate_blocks([{"type": "reference", "entries": ["| no name"]}])
+		html = frappe.render_template(
+			"{% from 'templates/includes/tcd_blocks.html' import render_blocks %}{{ render_blocks(blocks, pg) }}",
+			{"blocks": wiki.prepare_blocks(blocks, ""), "pg": {"enabled": 1}},
+		)
+		self.assertIn('<code class="nohighlight">||</code>', html)
+		self.assertIn("a || b</code>", html)
+		self.assertIn('<code class="nohighlight">x</code>', html)
+		self.assertIn("<td>plain</td>", html)
+
 	def test_source_errors(self):
 		with self.assertRaises(authoring.SourceError):
 			authoring.split_lessons("# @lesson x\ntitle: X\nno separator")

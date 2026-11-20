@@ -23,7 +23,13 @@ BLOCK_SCHEMA = {
 	"callout": {"text": (str, True), "variant": (str, False), "title": (str, False)},
 	"list": {"items": (list, True), "ordered": (bool, False)},
 	"image": {"url": (str, True), "alt": (str, False), "caption": (str, False)},
-	"playground": {"language": (str, True), "code": (str, True), "expected_output": (str, False)},
+	# setup (Phase 30): hidden code run before the learner's code, e.g. the tables of a SQL lesson
+	"playground": {
+		"language": (str, True),
+		"code": (str, True),
+		"expected_output": (str, False),
+		"setup": (str, False),
+	},
 	"video": {
 		"url": (str, True),
 		"title": (str, False),
@@ -64,6 +70,13 @@ SEARCHABLE = {
 	"exercise": ("prompt", "code"),
 	"reference": ("title", "entries"),
 }
+
+
+def reference_parts(entry: str) -> list[str]:
+	"""name | description | example. " | " splits when present, so an operator such as || can be a name or an
+	example; plain "|" otherwise (older entries). Same rule as templates/includes/tcd_blocks.html."""
+	sep = " | " if " | " in entry else "|"
+	return [p.strip() for p in ([*entry.split(sep, 2), "", ""])[:3]]
 
 
 def parse_blocks(value) -> list:
@@ -145,7 +158,7 @@ def _validate_block_values(idx: int, block: dict):
 			frappe.throw(
 				_("Block {0}: a reference can have at most {1} entries.").format(idx, MAX_REFERENCE_ENTRIES)
 			)
-		if any(not e.split("|", 1)[0].strip() for e in entries):
+		if any(not reference_parts(e)[0] for e in entries):
 			frappe.throw(_("Block {0}: every reference entry needs a name before the first |.").format(idx))
 		block["entries"] = entries
 	if btype == "image" and not re.match(r"^(https?://|/)", block["url"]):

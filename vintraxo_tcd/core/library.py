@@ -30,6 +30,17 @@ def course_dirs(root: str = ROOT, only: list | None = None) -> list[str]:
 def read_course(path: str) -> dict:
 	with open(os.path.join(path, "course.json"), encoding="utf-8") as f:
 		meta = json.load(f)
+
+	def resolve(value):  # "@file.sql" -> that file's text
+		if isinstance(value, str) and value.startswith("@"):
+			with open(os.path.join(path, value[1:]), encoding="utf-8") as f:
+				return f.read().strip()
+		return value
+
+	for key, value in (meta.get("setups") or {}).items():  # one text, or {"ar": ..., "en": ...}
+		meta["setups"][key] = (
+			{lang: resolve(v) for lang, v in value.items()} if isinstance(value, dict) else resolve(value)
+		)
 	meta["lessons"] = {}
 	for lang in meta["spaces"]:
 		with open(os.path.join(path, f"{lang}.md"), encoding="utf-8") as f:
@@ -53,7 +64,10 @@ def build_bundle(meta: dict, lang: str) -> dict:
 	for chapter in meta["chapters"]:
 		for slug in chapter["lessons"]:
 			ls = meta["lessons"][lang][slug]
-			blocks, questions = authoring.to_blocks(ls["body"])
+			setups = {
+				k: (v.get(lang) if isinstance(v, dict) else v) for k, v in (meta.get("setups") or {}).items()
+			}
+			blocks, questions = authoring.to_blocks(ls["body"], setups)
 			if other:
 				target = meta["spaces"][other[0]]["name"]
 				blocks.insert(0, {"type": "paragraph", "text": f"[[{target}/{slug}|{SWITCH[lang]}]]"})
