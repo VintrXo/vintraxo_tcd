@@ -288,6 +288,12 @@
 			this.fullBtn = el("button", { type: "button", class: "btn btn-default btn-xs tcd-full-btn", "aria-pressed": "false" }, this.t.full_screen || "Full screen");
 			this.fullBtn.addEventListener("click", () => this.toggleFull());
 			bar.append(this.runBtn, this.stopBtn, this.resetBtn, this.fullBtn);
+			// a server language (Java, C#, ...) while the code runner is off: say so instead of failing on click
+			if (this.language !== "html" && !workerSource(this.language, this.cfg) && !onRunner(this.language, this.cfg)) {
+				this.runBtn.disabled = true;
+				const note = el("p", { class: "tcd-muted tcd-small tcd-runner-off" }, this.t.runner_off || "This example runs once the code runner is enabled.");
+				this.section.insertBefore(note, this.output);
+			}
 		}
 
 		// "Try it yourself" (Phase 17): the editor and the result side by side over the whole window
