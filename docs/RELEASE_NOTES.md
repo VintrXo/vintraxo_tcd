@@ -1,3 +1,8 @@
+# 0.3.1 (fix)
+- `defusedxml` is now a declared dependency (it was only present on the internal server through another app). On
+  servers where saving a page failed with `No module named 'defusedxml'`: `bench setup requirements --python`, then
+  restart. Saving pages no longer loads the SCORM parser at all.
+
 # Release notes — VintraXo T-C-D 0.3.0 (production release)
 
 The release that goes to the real server. Upgrade from 0.2.0 with `bench --site <site> migrate` (no manual steps).

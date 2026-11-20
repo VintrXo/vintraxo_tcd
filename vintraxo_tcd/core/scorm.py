@@ -13,7 +13,6 @@ import shutil
 import zipfile
 
 import frappe
-from defusedxml import ElementTree
 from frappe import _
 
 MAX_ZIP_BYTES = 200 * 1024 * 1024
@@ -34,6 +33,8 @@ def _zip_path(file_url: str) -> str:
 
 
 def _launch_href(z: zipfile.ZipFile) -> str:
+	from defusedxml import ElementTree  # only needed when a SCORM package is parsed
+
 	try:
 		root = ElementTree.fromstring(z.read("imsmanifest.xml"))
 	except KeyError:
