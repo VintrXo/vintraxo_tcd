@@ -13,7 +13,21 @@ import frappe
 from vintraxo_tcd.tests.base import TCDTestCase
 
 LANG_CODES = re.compile(r"^[a-z]{2}$")
-NOT_TRANSLATED = {"VX", "JSON", "SQL", "java", "cpp", "c", "csharp", "bash"}  # brand and technical names
+NOT_TRANSLATED = {
+	"VX",
+	"JSON",
+	"SQL",
+	"java",
+	"cpp",
+	"c",
+	"csharp",
+	"bash",
+	"php",
+	"rust",
+	"kotlin",
+	"typescript",
+	"r",
+}  # brand and technical names
 LAYOUT = {"Section Break", "Column Break", "Tab Break"}
 
 
