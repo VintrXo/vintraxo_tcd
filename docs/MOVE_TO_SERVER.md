@@ -43,6 +43,19 @@ bench restart        # أو في الإنتاج: sudo supervisorctl restart all
 
 **ممنوع** تشغيل اختبارات التطبيق (`run-tests`) على موقع الإنتاج، لأنها بتمسح جداول TCD.
 
+# ج) مشغّل الأكواد Judge0 (للغات Java وC# وC++ وC وGo وBash)
+
+لازم يكون على **سيرفر لوحده** صغير (2 أنوية و4 جيجا رام كفاية)، ويفضّل Ubuntu 22.04. ممنوع يتسطّب على سيرفر فرابي.
+```bash
+scp apps/vintraxo_tcd/deploy/judge0/install_judge0.sh <user>@<سيرفر-judge0>:~/
+# على سيرفر Judge0:
+FRAPPE_IP=<IP سيرفر فرابي> DOMAIN=runner.your-domain.com bash install_judge0.sh   # DOMAIN اختياري
+sudo reboot                                                                         # أول مرة بس
+FRAPPE_IP=<IP سيرفر فرابي> DOMAIN=runner.your-domain.com bash install_judge0.sh   # تاني مرة: بيسطّب
+```
+في الآخر بيجرّب برنامج Java ويطبع سطر `runner` اللي هتحطه في `keys.json` (فيه الرابط والتوكن). بعد ما تطبّق المفاتيح، ادخل من الديسك على **إعدادات التعلّم ← Test Runner**.
+الأمان: محدش يقدر يكلّمه غير سيرفر فرابي (جدار حماية)، وكل طلب لازم معاه توكن، والأكواد ما تقدرش توصل للإنترنت. التفاصيل في `docs/adr/0036-judge0-runner-install.md`.
+
 ---
 
 # ب) النقل الكامل بالحزمة (سيرفر جديد فاضي)

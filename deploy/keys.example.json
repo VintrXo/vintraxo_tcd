@@ -19,7 +19,7 @@
   },
 
   "runner": {
-    "_help": "Judge0 server for Java/C#/C++... (docs/PHASE10_ISOLATION_DESIGN.md). Leave empty to keep browser languages only.",
+    "_help": "Judge0 server for Java/C#/C++... Install it with deploy/judge0/install_judge0.sh on a SEPARATE server; it prints url and token. Leave empty to keep browser languages only.",
     "url": "",
     "token": ""
   },
