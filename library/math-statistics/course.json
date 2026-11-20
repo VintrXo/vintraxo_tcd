@@ -1,0 +1,71 @@
+{
+  "key": "math-statistics",
+  "spaces": {
+    "ar": {
+      "name": "math-statistics-ar",
+      "title": "الإحصاء والاحتمالات",
+      "description": "المتوسط والوسيط والاحتمال، ثم بايز والتوزيعات وفترات الثقة والاختبارات والانحدار والعمليات العشوائية."
+    },
+    "en": {
+      "name": "math-statistics-en",
+      "title": "Statistics and probability",
+      "description": "Mean, median and probability, then Bayes, distributions, confidence intervals, tests, regression and random processes."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الإحصاء والاحتمالات",
+      "summary": "المتوسط والوسيط والاحتمال، ثم بايز والتوزيعات وفترات الثقة والاختبارات والانحدار والعمليات العشوائية."
+    },
+    "en": {
+      "title": "Statistics and probability",
+      "summary": "Mean, median and probability, then Bayes, distributions, confidence intervals, tests, regression and random processes."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الإحصاء والاحتمالات",
+      "en": "Statistics and probability",
+      "lessons": [
+        "statistics-mean",
+        "statistics-median",
+        "statistics-spread",
+        "statistics-frequency",
+        "statistics-chance",
+        "statistics-independence",
+        "statistics-report"
+      ]
+    },
+    {
+      "ar": "الاحتمالات والإحصاء التطبيقي",
+      "en": "Applied probability and statistics",
+      "lessons": [
+        "applied-statistics-bayes",
+        "applied-statistics-binomial",
+        "applied-statistics-confidence",
+        "applied-statistics-test",
+        "applied-statistics-regression",
+        "applied-statistics-project"
+      ]
+    },
+    {
+      "ar": "التوزيعات والنماذج الإحصائية",
+      "en": "Statistical distributions and models",
+      "lessons": [
+        "statistical-models-normal",
+        "statistical-models-poisson",
+        "statistical-models-sampling",
+        "statistical-models-regression"
+      ]
+    },
+    {
+      "ar": "العمليات العشوائية",
+      "en": "Stochastic processes",
+      "lessons": [
+        "stochastic-processes-transition",
+        "stochastic-processes-stationary",
+        "stochastic-processes-walk"
+      ]
+    }
+  ]
+}

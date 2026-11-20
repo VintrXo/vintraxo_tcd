@@ -1,0 +1,60 @@
+{
+  "key": "math-linear-algebra",
+  "spaces": {
+    "ar": {
+      "name": "math-linear-algebra-ar",
+      "title": "الجبر الخطي",
+      "description": "المتجهات والمصفوفات والضرب، ثم الحذف والمحددات والقيم الذاتية، والمربعات الصغرى و SVD و PCA."
+    },
+    "en": {
+      "name": "math-linear-algebra-en",
+      "title": "Linear algebra",
+      "description": "Vectors, matrices and multiplication, then elimination, determinants and eigenvalues, least squares, SVD and PCA."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الجبر الخطي",
+      "summary": "المتجهات والمصفوفات والضرب، ثم الحذف والمحددات والقيم الذاتية، والمربعات الصغرى و SVD و PCA."
+    },
+    "en": {
+      "title": "Linear algebra",
+      "summary": "Vectors, matrices and multiplication, then elimination, determinants and eigenvalues, least squares, SVD and PCA."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "مدخل للجبر الخطي",
+      "en": "Introduction to linear algebra",
+      "lessons": [
+        "linear-algebra-vectors",
+        "linear-algebra-addition",
+        "linear-algebra-dot",
+        "linear-algebra-matrices",
+        "linear-algebra-multiply",
+        "linear-algebra-transform"
+      ]
+    },
+    {
+      "ar": "الجبر الخطي التطبيقي",
+      "en": "Applied linear algebra",
+      "lessons": [
+        "applied-linear-algebra-elimination",
+        "applied-linear-algebra-span",
+        "applied-linear-algebra-determinant",
+        "applied-linear-algebra-eigen",
+        "applied-linear-algebra-projection",
+        "applied-linear-algebra-project"
+      ]
+    },
+    {
+      "ar": "المربعات الصغرى وSVD وPCA",
+      "en": "Least squares, SVD, and PCA",
+      "lessons": [
+        "matrix-decompositions-least-squares",
+        "matrix-decompositions-svd",
+        "matrix-decompositions-pca"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "key": "math-calculus",
+  "spaces": {
+    "ar": {
+      "name": "math-calculus-ar",
+      "title": "التفاضل والتكامل",
+      "description": "النهايات والمشتقات والتكامل، ثم قاعدة السلسلة والمشتقات الجزئية والتدرّج، والمعادلات التفاضلية والتفاضل المتجه."
+    },
+    "en": {
+      "name": "math-calculus-en",
+      "title": "Calculus",
+      "description": "Limits, derivatives and integrals, then the chain rule, partial derivatives and the gradient, differential equations and vector calculus."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "التفاضل والتكامل",
+      "summary": "النهايات والمشتقات والتكامل، ثم قاعدة السلسلة والمشتقات الجزئية والتدرّج، والمعادلات التفاضلية والتفاضل المتجه."
+    },
+    "en": {
+      "title": "Calculus",
+      "summary": "Limits, derivatives and integrals, then the chain rule, partial derivatives and the gradient, differential equations and vector calculus."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "مدخل للتفاضل والتكامل",
+      "en": "Introduction to calculus",
+      "lessons": [
+        "calculus-limits",
+        "calculus-rate",
+        "calculus-power",
+        "calculus-optimize",
+        "calculus-integral",
+        "calculus-distance"
+      ]
+    },
+    {
+      "ar": "التفاضل والتكامل المتوسط",
+      "en": "Intermediate calculus",
+      "lessons": [
+        "intermediate-calculus-chain",
+        "intermediate-calculus-substitution",
+        "intermediate-calculus-parts",
+        "intermediate-calculus-partial",
+        "intermediate-calculus-gradient",
+        "intermediate-calculus-fit"
+      ]
+    },
+    {
+      "ar": "المعادلات التفاضلية العادية",
+      "en": "Ordinary differential equations",
+      "lessons": [
+        "differential-equations-initial",
+        "differential-equations-growth",
+        "differential-equations-separation",
+        "differential-equations-euler"
+      ]
+    },
+    {
+      "ar": "حساب المتجهات",
+      "en": "Vector calculus",
+      "lessons": [
+        "vector-calculus-direction",
+        "vector-calculus-divergence",
+        "vector-calculus-curl",
+        "vector-calculus-work"
+      ]
+    }
+  ]
+}

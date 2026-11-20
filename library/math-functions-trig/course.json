@@ -1,0 +1,51 @@
+{
+  "key": "math-functions-trig",
+  "spaces": {
+    "ar": {
+      "name": "math-functions-trig-ar",
+      "title": "الدوال والمثلثات",
+      "description": "الدوال والرسوم والميل والدوال التربيعية، ثم الزوايا والجيب وجيب التمام ودائرة الوحدة."
+    },
+    "en": {
+      "name": "math-functions-trig-en",
+      "title": "Functions and trigonometry",
+      "description": "Functions, graphs, slope and quadratics, then angles, sine, cosine and the unit circle."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الدوال والمثلثات",
+      "summary": "الدوال والرسوم والميل والدوال التربيعية، ثم الزوايا والجيب وجيب التمام ودائرة الوحدة."
+    },
+    "en": {
+      "title": "Functions and trigonometry",
+      "summary": "Functions, graphs, slope and quadratics, then angles, sine, cosine and the unit circle."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الدوال والرسوم",
+      "en": "Functions and graphs",
+      "lessons": [
+        "functions-rule",
+        "functions-points",
+        "functions-slope",
+        "functions-domain",
+        "functions-quadratic",
+        "functions-plans"
+      ]
+    },
+    {
+      "ar": "حساب المثلثات",
+      "en": "Trigonometry",
+      "lessons": [
+        "trigonometry-angles",
+        "trigonometry-ratios",
+        "trigonometry-circle",
+        "trigonometry-period",
+        "trigonometry-inverse",
+        "trigonometry-height"
+      ]
+    }
+  ]
+}

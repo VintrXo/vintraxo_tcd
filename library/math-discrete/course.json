@@ -1,0 +1,79 @@
+{
+  "key": "math-discrete",
+  "spaces": {
+    "ar": {
+      "name": "math-discrete-ar",
+      "title": "الرياضيات المتقطعة",
+      "description": "المنطق والمجموعات والعد، والبرهان والاستقراء، ونظرية الأعداد، والتوافقيات، ونظرية الرسوم."
+    },
+    "en": {
+      "name": "math-discrete-en",
+      "title": "Discrete mathematics",
+      "description": "Logic, sets and counting, proof and induction, number theory, combinatorics and graph theory."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الرياضيات المتقطعة",
+      "summary": "المنطق والمجموعات والعد، والبرهان والاستقراء، ونظرية الأعداد، والتوافقيات، ونظرية الرسوم."
+    },
+    "en": {
+      "title": "Discrete mathematics",
+      "summary": "Logic, sets and counting, proof and induction, number theory, combinatorics and graph theory."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الرياضيات المتقطعة",
+      "en": "Discrete mathematics",
+      "lessons": [
+        "discrete-math-logic",
+        "discrete-math-sets",
+        "discrete-math-counting",
+        "discrete-math-combinations",
+        "discrete-math-modulo",
+        "discrete-math-graphs",
+        "discrete-math-routes"
+      ]
+    },
+    {
+      "ar": "أساليب البرهان الرياضي",
+      "en": "Mathematical proof techniques",
+      "lessons": [
+        "mathematical-proof-direct",
+        "mathematical-proof-contrapositive",
+        "mathematical-proof-contradiction",
+        "mathematical-proof-induction"
+      ]
+    },
+    {
+      "ar": "نظرية الأعداد",
+      "en": "Number theory",
+      "lessons": [
+        "number-theory-division",
+        "number-theory-primes",
+        "number-theory-euclid",
+        "number-theory-inverse"
+      ]
+    },
+    {
+      "ar": "التوافقيات",
+      "en": "Combinatorics",
+      "lessons": [
+        "advanced-math-combinatorics",
+        "combinatorics-inclusion",
+        "combinatorics-pigeonhole",
+        "combinatorics-recurrence"
+      ]
+    },
+    {
+      "ar": "نظرية الرسوم البيانية",
+      "en": "Graph theory",
+      "lessons": [
+        "graph-theory-degree",
+        "graph-theory-trees",
+        "graph-theory-weighted"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "key": "math-physics",
+  "spaces": {
+    "ar": {
+      "name": "math-physics-ar",
+      "title": "رياضيات الفيزياء والإشارات",
+      "description": "متسلسلات وتحليل فورييه، والموجات والحرارة، والمعادلات التفاضلية الجزئية، ونظريات التكامل المتجه، والهندسة التفاضلية."
+    },
+    "en": {
+      "name": "math-physics-en",
+      "title": "Mathematics of physics and signals",
+      "description": "Fourier series and analysis, waves and heat, partial differential equations, vector integral theorems and differential geometry."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "رياضيات الفيزياء والإشارات",
+      "summary": "متسلسلات وتحليل فورييه، والموجات والحرارة، والمعادلات التفاضلية الجزئية، ونظريات التكامل المتجه، والهندسة التفاضلية."
+    },
+    "en": {
+      "title": "Mathematics of physics and signals",
+      "summary": "Fourier series and analysis, waves and heat, partial differential equations, vector integral theorems and differential geometry."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "مدخل إلى تحليل فورييه",
+      "en": "Introduction to Fourier analysis",
+      "lessons": [
+        "fourier-analysis-harmonics",
+        "fourier-analysis-orthogonality",
+        "fourier-analysis-coefficients",
+        "fourier-analysis-spectrum"
+      ]
+    },
+    {
+      "ar": "متسلسلات فورييه ومعادلة الحرارة",
+      "en": "Fourier series and the heat equation",
+      "lessons": [
+        "fourier-series-synthesis",
+        "fourier-series-sine-series",
+        "fourier-series-heat"
+      ]
+    },
+    {
+      "ar": "متسلسلات فورييه ومعادلة الموجة",
+      "en": "Fourier series and the wave equation",
+      "lessons": [
+        "fourier-waves-standing",
+        "fourier-waves-initial",
+        "fourier-waves-superposition"
+      ]
+    },
+    {
+      "ar": "المعادلات التفاضلية الجزئية",
+      "en": "Partial differential equations",
+      "lessons": [
+        "advanced-math-heat",
+        "partial-differential-equations-partials",
+        "partial-differential-equations-boundary",
+        "partial-differential-equations-stability"
+      ]
+    },
+    {
+      "ar": "الفيزياء الرياضية",
+      "en": "Mathematical physics",
+      "lessons": [
+        "advanced-math-physics",
+        "mathematical-physics-oscillation",
+        "mathematical-physics-energy",
+        "mathematical-physics-wave"
+      ]
+    },
+    {
+      "ar": "مبرهنات التكامل في حساب المتجهات",
+      "en": "Integral theorems in vector calculus",
+      "lessons": [
+        "vector-integral-theorems-green",
+        "vector-integral-theorems-stokes",
+        "vector-integral-theorems-gauss"
+      ]
+    },
+    {
+      "ar": "مدخل إلى الهندسة التفاضلية",
+      "en": "Introduction to differential geometry",
+      "lessons": [
+        "advanced-math-curvature",
+        "differential-geometry-tangent",
+        "differential-geometry-arc-length",
+        "differential-geometry-curvature"
+      ]
+    }
+  ]
+}

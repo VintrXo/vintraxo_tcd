@@ -1,0 +1,61 @@
+{
+  "key": "math-geometry",
+  "spaces": {
+    "ar": {
+      "name": "math-geometry-ar",
+      "title": "الهندسة",
+      "description": "المساحات والحجوم وفيثاغورس، والتطابق والتشابه وقانونا الجيب وجيب التمام، والهندسة الحسابية."
+    },
+    "en": {
+      "name": "math-geometry-en",
+      "title": "Geometry",
+      "description": "Area, volume and Pythagoras; congruence, similarity and the sine and cosine rules; computational geometry."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الهندسة",
+      "summary": "المساحات والحجوم وفيثاغورس، والتطابق والتشابه وقانونا الجيب وجيب التمام، والهندسة الحسابية."
+    },
+    "en": {
+      "title": "Geometry",
+      "summary": "Area, volume and Pythagoras; congruence, similarity and the sine and cosine rules; computational geometry."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الهندسة والقياس",
+      "en": "Geometry and measurement",
+      "lessons": [
+        "geometry-rectangles",
+        "geometry-triangles",
+        "geometry-circles",
+        "geometry-pythagoras",
+        "geometry-volume",
+        "geometry-scale"
+      ]
+    },
+    {
+      "ar": "الهندسة والمثلثات المتوسطة",
+      "en": "Intermediate geometry and trigonometry",
+      "lessons": [
+        "geometry-trigonometry-congruence",
+        "geometry-trigonometry-similarity",
+        "geometry-trigonometry-identity",
+        "geometry-trigonometry-sine",
+        "geometry-trigonometry-cosine",
+        "geometry-trigonometry-survey"
+      ]
+    },
+    {
+      "ar": "الهندسة الحسابية",
+      "en": "Computational geometry",
+      "lessons": [
+        "computational-geometry-orientation",
+        "computational-geometry-segments",
+        "computational-geometry-hull",
+        "computational-geometry-area"
+      ]
+    }
+  ]
+}

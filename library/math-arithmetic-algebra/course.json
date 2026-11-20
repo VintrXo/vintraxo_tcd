@@ -1,0 +1,66 @@
+{
+  "key": "math-arithmetic-algebra",
+  "spaces": {
+    "ar": {
+      "name": "math-arithmetic-algebra-ar",
+      "title": "الحساب والجبر",
+      "description": "من العمليات والكسور والنسب إلى المعادلات والمتباينات واللوغاريتمات والمتتابعات."
+    },
+    "en": {
+      "name": "math-arithmetic-algebra-en",
+      "title": "Arithmetic and algebra",
+      "description": "From operations, fractions and ratios to equations, inequalities, logarithms and sequences."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الحساب والجبر",
+      "summary": "من العمليات والكسور والنسب إلى المعادلات والمتباينات واللوغاريتمات والمتتابعات."
+    },
+    "en": {
+      "title": "Arithmetic and algebra",
+      "summary": "From operations, fractions and ratios to equations, inequalities, logarithms and sequences."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الحساب والنسب",
+      "en": "Arithmetic and ratios",
+      "lessons": [
+        "arith-order",
+        "arith-signed",
+        "arith-fractions",
+        "arith-decimals",
+        "arith-ratios",
+        "arith-rates",
+        "arith-percent",
+        "arith-discount",
+        "arith-project"
+      ]
+    },
+    {
+      "ar": "أساسيات الجبر",
+      "en": "Algebra foundations",
+      "lessons": [
+        "algebra-variables",
+        "algebra-terms",
+        "algebra-distribute",
+        "algebra-equations",
+        "algebra-inequalities",
+        "algebra-budget"
+      ]
+    },
+    {
+      "ar": "الجبر المتوسط",
+      "en": "Intermediate algebra",
+      "lessons": [
+        "intermediate-algebra-systems",
+        "intermediate-algebra-factoring",
+        "intermediate-algebra-quadratics",
+        "intermediate-algebra-exponents",
+        "intermediate-algebra-sequences",
+        "intermediate-algebra-project"
+      ]
+    }
+  ]
+}

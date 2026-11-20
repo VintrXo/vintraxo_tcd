@@ -1,0 +1,120 @@
+{
+  "key": "math-pure",
+  "spaces": {
+    "ar": {
+      "name": "math-pure-ar",
+      "title": "الرياضيات البحتة المتقدمة",
+      "description": "لمحة منظمة: الجبر المجرد، والتحليل الحقيقي والمركب، والطوبولوجيا، ونظرية القياس، والتحليل الدالي، ونظرية الفئات."
+    },
+    "en": {
+      "name": "math-pure-en",
+      "title": "Advanced pure mathematics",
+      "description": "A structured tour: abstract algebra, real and complex analysis, topology, measure theory, functional analysis and category theory."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الرياضيات البحتة المتقدمة",
+      "summary": "لمحة منظمة: الجبر المجرد، والتحليل الحقيقي والمركب، والطوبولوجيا، ونظرية القياس، والتحليل الدالي، ونظرية الفئات."
+    },
+    "en": {
+      "title": "Advanced pure mathematics",
+      "summary": "A structured tour: abstract algebra, real and complex analysis, topology, measure theory, functional analysis and category theory."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الجبر المجرّد",
+      "en": "Abstract algebra",
+      "lessons": [
+        "abstract-algebra-groups",
+        "abstract-algebra-cyclic",
+        "abstract-algebra-subgroups",
+        "abstract-algebra-homomorphism",
+        "abstract-algebra-fields"
+      ]
+    },
+    {
+      "ar": "مدخل إلى التحليل الحقيقي",
+      "en": "Introduction to real analysis",
+      "lessons": [
+        "real-analysis-sequences",
+        "real-analysis-continuity",
+        "real-analysis-supremum",
+        "real-analysis-uniform"
+      ]
+    },
+    {
+      "ar": "مدخل إلى التحليل المركب",
+      "en": "Introduction to complex analysis",
+      "lessons": [
+        "complex-analysis-polar",
+        "complex-analysis-roots",
+        "complex-analysis-derivative",
+        "complex-analysis-cauchy-riemann",
+        "complex-analysis-contours"
+      ]
+    },
+    {
+      "ar": "كوشي ولوران والبواقي",
+      "en": "Cauchy, Laurent series, and residues",
+      "lessons": [
+        "complex-residues-cauchy",
+        "complex-residues-laurent",
+        "complex-residues-residue"
+      ]
+    },
+    {
+      "ar": "مدخل إلى الطوبولوجيا",
+      "en": "Introduction to topology",
+      "lessons": [
+        "topology-open-sets",
+        "topology-finite-spaces",
+        "topology-continuity",
+        "topology-connectedness",
+        "topology-compactness"
+      ]
+    },
+    {
+      "ar": "مدخل إلى نظرية القياس",
+      "en": "Introduction to measure theory",
+      "lessons": [
+        "advanced-math-measure",
+        "measure-theory-sigma",
+        "measure-theory-additivity",
+        "measure-theory-functions",
+        "measure-theory-integral",
+        "measure-theory-approximation"
+      ]
+    },
+    {
+      "ar": "مبرهنات التقارب وفضاءات باناخ وهيلبرت",
+      "en": "Convergence theorems, Banach and Hilbert spaces",
+      "lessons": [
+        "integration-spaces-convergence",
+        "integration-spaces-banach",
+        "integration-spaces-hilbert"
+      ]
+    },
+    {
+      "ar": "مدخل إلى التحليل الدالي",
+      "en": "Introduction to functional analysis",
+      "lessons": [
+        "advanced-math-functional",
+        "functional-analysis-norm",
+        "functional-analysis-operator",
+        "functional-analysis-contraction"
+      ]
+    },
+    {
+      "ar": "مدخل إلى نظرية الفئات",
+      "en": "Introduction to category theory",
+      "lessons": [
+        "advanced-math-categories",
+        "category-theory-composition",
+        "category-theory-isomorphism",
+        "category-theory-functor"
+      ]
+    }
+  ]
+}

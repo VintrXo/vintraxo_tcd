@@ -1,0 +1,83 @@
+{
+  "key": "math-applied",
+  "spaces": {
+    "ar": {
+      "name": "math-applied-ar",
+      "title": "الرياضيات التطبيقية والتحسين",
+      "description": "الطرق العددية والجبر الخوارزمي، والتحسين المحدب وبحوث العمليات، ونظرية الألعاب ونظرية المعلومات."
+    },
+    "en": {
+      "name": "math-applied-en",
+      "title": "Applied mathematics and optimization",
+      "description": "Numerical methods and algorithmic algebra, convex optimization and operations research, game theory and information theory."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الرياضيات التطبيقية والتحسين",
+      "summary": "الطرق العددية والجبر الخوارزمي، والتحسين المحدب وبحوث العمليات، ونظرية الألعاب ونظرية المعلومات."
+    },
+    "en": {
+      "title": "Applied mathematics and optimization",
+      "summary": "Numerical methods and algorithmic algebra, convex optimization and operations research, game theory and information theory."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الطرق العددية",
+      "en": "Numerical methods",
+      "lessons": [
+        "numerical-methods-error",
+        "numerical-methods-bisection",
+        "numerical-methods-newton",
+        "numerical-methods-trapezoid"
+      ]
+    },
+    {
+      "ar": "الجبر الخوارزمي",
+      "en": "Algorithmic algebra",
+      "lessons": [
+        "algorithmic-algebra-horner",
+        "algorithmic-algebra-division",
+        "algorithmic-algebra-gcd",
+        "algorithmic-algebra-interpolation"
+      ]
+    },
+    {
+      "ar": "التحسين المحدّب",
+      "en": "Convex optimization",
+      "lessons": [
+        "convex-optimization-convexity",
+        "convex-optimization-gradient",
+        "convex-optimization-projection"
+      ]
+    },
+    {
+      "ar": "التحسين وبحوث العمليات",
+      "en": "Optimization and operations research",
+      "lessons": [
+        "operations-research-linear",
+        "operations-research-integer",
+        "operations-research-assignment"
+      ]
+    },
+    {
+      "ar": "نظرية الألعاب",
+      "en": "Game theory",
+      "lessons": [
+        "game-theory-responses",
+        "game-theory-mixed",
+        "game-theory-minimax"
+      ]
+    },
+    {
+      "ar": "نظرية المعلومات",
+      "en": "Information theory",
+      "lessons": [
+        "information-theory-entropy",
+        "information-theory-conditional",
+        "information-theory-prefix"
+      ]
+    }
+  ]
+}
