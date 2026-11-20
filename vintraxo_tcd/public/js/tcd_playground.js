@@ -391,7 +391,7 @@
 					title: this.t.preview || "Preview",
 					referrerpolicy: "no-referrer",
 				});
-				preview.srcdoc = code;
+				preview.srcdoc = this.setup ? this.setup + "\n" + code : code; // e.g. a framework's <link>/<script>
 				this.output.append(preview);
 				this.output.hidden = false;
 				return;

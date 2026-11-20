@@ -1,0 +1,70 @@
+{
+  "key": "bootstrap",
+  "spaces": {
+    "ar": {
+      "name": "bootstrap-ar",
+      "title": "تعلّم Bootstrap",
+      "description": "أسرع طريقة لبناء صفحات متجاوبة وأنيقة: الشبكة، الأزرار، البطاقات، النماذج، القوائم، والنوافذ المنبثقة."
+    },
+    "en": {
+      "name": "bootstrap-en",
+      "title": "Learn Bootstrap",
+      "description": "The fastest way to build clean, responsive pages: the grid, buttons, cards, forms, navbars and modals."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Bootstrap 5",
+      "summary": "ابنِ صفحات متجاوبة بمكونات جاهزة دون كتابة CSS كثير."
+    },
+    "en": {
+      "title": "Bootstrap 5 course",
+      "summary": "Build responsive pages with ready-made components and little CSS of your own."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "البداية",
+      "en": "Getting started",
+      "lessons": [
+        "bs-intro",
+        "bs-containers",
+        "bs-grid"
+      ]
+    },
+    {
+      "ar": "التنسيق",
+      "en": "Styling",
+      "lessons": [
+        "bs-typography-colors",
+        "bs-utilities",
+        "bs-tables-images"
+      ]
+    },
+    {
+      "ar": "المكونات",
+      "en": "Components",
+      "lessons": [
+        "bs-buttons",
+        "bs-cards",
+        "bs-alerts-badges",
+        "bs-forms",
+        "bs-navbar",
+        "bs-modal"
+      ]
+    },
+    {
+      "ar": "المرجع",
+      "en": "Reference",
+      "lessons": [
+        "bs-reference"
+      ]
+    }
+  ],
+  "setups": {
+    "bs": {
+      "ar": "@setup_ar.html",
+      "en": "@setup.html"
+    }
+  }
+}
