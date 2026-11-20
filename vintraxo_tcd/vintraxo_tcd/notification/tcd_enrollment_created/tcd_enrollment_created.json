@@ -14,7 +14,7 @@
  "message": "<p>تم تسجيلك في {{ frappe.db.get_value('TCD Course', doc.course, 'title') if doc.course else frappe.db.get_value('TCD Learning Path', doc.learning_path, 'title') }}.{% if doc.due_date %} الموعد النهائي: {{ doc.due_date | e }}{% endif %}</p>",
  "message_type": "HTML",
  "minutes_offset": 0,
- "modified": "2026-11-20 01:00:00.000000",
+ "modified": "2026-11-20 20:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Enrollment Created",
@@ -26,5 +26,5 @@
  ],
  "send_system_notification": 0,
  "send_to_all_assignees": 0,
- "subject": "تم تسجيلك: {{ doc.course or doc.learning_path }}"
+ "subject": "تم تسجيلك: {{ frappe.db.get_value('TCD Course' if doc.course else 'TCD Learning Path', doc.course or doc.learning_path, 'title') }}"
 }

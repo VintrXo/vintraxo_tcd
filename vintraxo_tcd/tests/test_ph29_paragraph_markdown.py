@@ -41,3 +41,20 @@ class TestPhase29ParagraphMarkdown(TCDTestCase):
 		self.assertNotIn("onerror", html)
 		html = self.html({"type": "paragraph", "text": "[bad](javascript:alert(1)) **x**"})
 		self.assertNotIn("javascript:", html)
+
+
+class TestEnrollmentNotificationSubject(TCDTestCase):
+	def test_subject_shows_the_course_title(self):
+		from vintraxo_tcd.tests.test_ph1_courses import lesson, make_course
+
+		frappe.set_user("Administrator")
+		for dt in CLEAN:
+			frappe.db.delete(dt)
+		space = make_space("ph29-notif").name
+		course = make_course(space, "Readable course title", [[lesson(space, "L1")]])
+		notification = frappe.get_doc("Notification", "TCD Enrollment Created")
+		self.assertLessEqual(len(notification.subject), 140)
+		doc = frappe._dict(course=course.name, learning_path=None)
+		subject = frappe.render_template(notification.subject, {"doc": doc})
+		self.assertIn("Readable course title", subject)
+		self.assertNotIn(course.name, subject)

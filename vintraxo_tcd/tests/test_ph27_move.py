@@ -90,7 +90,11 @@ class TestPhase27Move(TCDTestCase):
 
 	def test_only_this_sites_files(self):
 		text = json.dumps(
-			{"a": "/files/x.png", "b": "[doc](https://gov.example/files/y.pdf)", "c": "(/private/files/z.pdf)"}
+			{
+				"a": "/files/x.png",
+				"b": "[doc](https://gov.example/files/y.pdf)",
+				"c": "(/private/files/z.pdf)",
+			}
 		)
 		self.assertEqual(sorted(move.FILE_URL.findall(text)), ["/files/x.png", "/private/files/z.pdf"])
 
