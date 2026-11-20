@@ -6,6 +6,10 @@
 #
 #   FRAPPE_IP=<public IP of the Frappe server> [DOMAIN=runner.example.com] bash install_judge0.sh
 #
+# Local VM on the same Windows PC as a WSL Frappe (VirtualBox, NAT with port forwarding 8443 -> 8443):
+#   FRAPPE_IP=10.0.2.2 RUNNER_URL=http://<Windows host IP seen from WSL>:8443 bash install_judge0.sh
+#   (10.0.2.2 is the address VirtualBox gives forwarded connections inside the VM)
+#
 # Run it twice: the first run switches the kernel to cgroup v1 (Judge0 requires it) and asks for a reboot;
 # the second run installs. What you get:
 #   - Judge0 CE v1.13.1 (fixes the three critical sandbox CVEs of <= 1.13.0), pinned
@@ -85,6 +89,7 @@ if [ -n "$DOMAIN" ]; then
 else
   SITE=":8443"; PORT=8443; URL="http://$(curl -fsS https://api.ipify.org || hostname -I | cut -d' ' -f1):8443"
 fi
+URL="${RUNNER_URL:-$URL}"   # local VM: the address the Frappe server uses to reach it (e.g. through port forwarding)
 sudo tee /etc/caddy/Caddyfile >/dev/null <<CADDY
 $SITE {
 	request_body {

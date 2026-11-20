@@ -30,9 +30,14 @@ def read_course(path: str) -> dict:
 	with open(os.path.join(path, "course.json"), encoding="utf-8") as f:
 		meta = json.load(f)
 
-	def resolve(value):  # "@file.sql" -> that file's text
+	library_root = os.path.realpath(os.path.dirname(os.path.abspath(path)))
+
+	def resolve(value):  # "@file.sql" -> that file's text (only files inside the library folder)
 		if isinstance(value, str) and value.startswith("@"):
-			with open(os.path.join(path, value[1:]), encoding="utf-8") as f:
+			target = os.path.realpath(os.path.join(path, value[1:]))
+			if not target.startswith(library_root + os.sep):
+				frappe.throw(f"Setup file outside the library: {value}")
+			with open(target, encoding="utf-8") as f:
 				return f.read().strip()
 		return value
 

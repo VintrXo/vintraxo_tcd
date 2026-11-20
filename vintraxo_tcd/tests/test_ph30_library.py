@@ -137,6 +137,28 @@ class TestPhase30Library(TCDTestCase):
 		)
 		self.assertIn('<template class="tcd-setup">CREATE TABLE t (a);</template>', html)
 
+	def test_setup_files_stay_inside_the_library(self):
+		with tempfile.TemporaryDirectory() as outer:
+			root = os.path.join(outer, "library")
+			os.makedirs(root)
+			with open(os.path.join(outer, "secret.txt"), "w") as f:
+				f.write("password")
+			self.write_course(root)
+			os.makedirs(os.path.join(root, "other"))
+			with open(os.path.join(root, "other", "shared.html"), "w") as f:
+				f.write("<p>shared</p>")
+			course_json = os.path.join(root, "t", "course.json")
+			meta = dict(COURSE, setups={"s": "@../other/shared.html"})
+			with open(course_json, "w", encoding="utf-8") as f:
+				json.dump(meta, f)
+			# a sibling course folder is fine
+			self.assertEqual(library.read_course(os.path.join(root, "t"))["setups"]["s"], "<p>shared</p>")
+			meta["setups"] = {"s": "@../../secret.txt"}
+			with open(course_json, "w", encoding="utf-8") as f:
+				json.dump(meta, f)
+			with self.assertRaises(frappe.ValidationError):
+				library.read_course(os.path.join(root, "t"))
+
 	def test_reference_with_pipes(self):
 		from vintraxo_tcd.core import content, wiki
 
