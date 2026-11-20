@@ -27,6 +27,7 @@
 	{% include "templates/includes/tcd_outline.html" %}
 	<div class="tcd-main">
 	<header class="tcd-hero">
+		{% include "templates/includes/tcd_lang_switch.html" %}
 		<h1>{{ space.title|e }}</h1>
 		{% if space.description %}<p class="tcd-muted">{{ space.description|e }}</p>{% endif %}
 	</header>

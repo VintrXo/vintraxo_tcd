@@ -560,3 +560,10 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 
 /* Phase 30: note under a server-language example while the code runner is off */
 .tcd-runner-off { margin: 0; padding: 0.4rem 0.9rem; unicode-bidi: plaintext; text-align: start; }
+
+/* Phase 31: language buttons above a space / course / page */
+.tcd-lang-switch { display: flex; gap: 0.35rem; justify-content: flex-end; margin-block-end: 0.5rem; }
+.tcd-lang-switch a, .tcd-lang-current { padding: 0.2rem 0.8rem; border-radius: 999px; font-size: 0.85rem; text-decoration: none; border: 1px solid var(--tcd-border, #cbd5e1); }
+.tcd-lang-switch a { color: var(--tcd-ink, #1e293b); background: var(--tcd-surface, #fff); }
+.tcd-lang-switch a:hover { border-color: var(--tcd-brand, #4338ca); color: var(--tcd-brand, #4338ca); }
+.tcd-lang-current { background: var(--tcd-brand, #4338ca); color: #fff; border-color: var(--tcd-brand, #4338ca); font-weight: 600; }

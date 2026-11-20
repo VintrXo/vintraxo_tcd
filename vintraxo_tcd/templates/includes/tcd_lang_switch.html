@@ -1,0 +1,10 @@
+{# Phase 31: the same space / course / page in another language #}
+{% if lang_switcher %}
+<nav class="tcd-lang-switch" aria-label="{{ _('Content language') }}">
+	{% for l in lang_switcher %}
+	{% if l.current %}<span class="tcd-lang-current" aria-current="true" lang="{{ l.lang|e }}">{{ l.label|e }}</span>
+	{% else %}<a href="{{ l.url|e }}" lang="{{ l.lang|e }}" hreflang="{{ l.lang|e }}" rel="alternate"
+		data-doctype="{{ l.doctype|e }}" data-name="{{ l.name|e }}" data-lang="{{ l.lang|e }}" data-course="{{ l.course|e }}">{{ l.label|e }}</a>{% endif %}
+	{% endfor %}
+</nav>
+{% endif %}

@@ -1177,3 +1177,12 @@ def preview_markdown(text: str = "", space: str | None = None) -> str:
 	if space:
 		frappe.has_permission("TCD Space", "read", space, throw=True)
 	return wiki.render_markdown(text or "", space or "")
+
+
+@frappe.whitelist(methods=["POST"])
+def switch_language(doctype: str, name: str, lang: str, course: str | None = None) -> dict:
+	"""Language buttons (Phase 31): remember the content language, follow the course, return the page URL.
+	POST, because it changes data (GET requests are not committed)."""
+	from vintraxo_tcd.core import content_languages
+
+	return {"url": content_languages.target_url(doctype, name, lang, course or None)}

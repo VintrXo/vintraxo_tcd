@@ -184,8 +184,10 @@ class TestPhase30Library(TCDTestCase):
 				(course.status, course.issue_certificate, course.self_enrollment), ("Published", 1, 1)
 			)
 			intro = frappe.get_doc("TCD Content", {"space": "lib-t-ar", "slug": "t-intro"})
-			blocks = json.loads(intro.blocks)
-			self.assertIn("[[lib-t-en/t-intro|", blocks[0]["text"])  # link to the English lesson
+			self.assertEqual(intro.translation_key, "t:t-intro")  # Phase 31: linked to the English lesson
+			self.assertEqual(
+				frappe.db.get_value("TCD Space", "lib-t-en", ["language", "translation_key"]), ("en", "t")
+			)
 			quiz = frappe.get_doc("TCD Quiz", {"content": intro.name})
 			self.assertEqual((len(quiz.questions), quiz.required_to_complete), (4, 1))
 			# text that looks like HTML survives Frappe's XSS filter and reaches the learner as plain text
@@ -198,11 +200,7 @@ class TestPhase30Library(TCDTestCase):
 			self.assertEqual(item["explanation"], "<title> داخل <head>.")
 			from vintraxo_tcd.core import wiki
 
-			en_intro = frappe.db.get_value("TCD Content", {"space": "lib-t-en", "slug": "t-intro"})
-			self.assertIn(intro.name, frappe.db.get_value("TCD Content", en_intro, "internal_links"))
-			self.assertEqual(
-				wiki.backlinks(intro.name), []
-			)  # the English page's switch link is not a backlink
+			self.assertEqual(wiki.backlinks(intro.name), [])
 			space = frappe.get_doc("TCD Space", "lib-t-ar")
 			self.assertEqual([r.group_title for r in space.navigation], ["البداية", "البداية"])
 

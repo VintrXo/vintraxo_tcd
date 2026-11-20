@@ -58,6 +58,22 @@
 
 	// ------------------------------------------------------------ page
 
+	// Phase 31: language buttons save the choice (and follow the course) before opening the other language;
+	// without JavaScript the plain link still opens the page
+	function initLanguageSwitch() {
+		document.querySelectorAll(".tcd-lang-switch a[data-lang]").forEach((a) => {
+			a.addEventListener("click", async (e) => {
+				e.preventDefault();
+				try {
+					const r = await call("switch_language", { doctype: a.dataset.doctype, name: a.dataset.name, lang: a.dataset.lang, course: a.dataset.course }, true);
+					window.location.href = (r && r.url) || a.href;
+				} catch (_) {
+					window.location.href = a.href;
+				}
+			});
+		});
+	}
+
 	function initEnroll() {
 		document.querySelectorAll(".tcd-enroll[data-name]").forEach((btn) => {
 			btn.addEventListener("click", async () => {
@@ -867,6 +883,7 @@
 
 	function init() {
 		initEnroll();
+		initLanguageSwitch();
 		initWithdraw();
 		initBuy();
 		initScorm();

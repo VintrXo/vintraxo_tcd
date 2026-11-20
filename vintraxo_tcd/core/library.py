@@ -18,7 +18,6 @@ import frappe
 from vintraxo_tcd.core import authoring, content, transfer
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "library")
-SWITCH = {"ar": "Read this lesson in English", "en": "اقرأ هذا الدرس بالعربية"}
 QUIZ = {"ar": "اختبار: {0}", "en": "Quiz: {0}"}
 
 
@@ -59,7 +58,6 @@ def read_course(path: str) -> dict:
 def build_bundle(meta: dict, lang: str) -> dict:
 	"""Space bundle (transfer format) for one language."""
 	space = meta["spaces"][lang]
-	other = [lg for lg in meta["spaces"] if lg != lang]
 	contents, quizzes, navigation = [], [], []
 	for chapter in meta["chapters"]:
 		for slug in chapter["lessons"]:
@@ -68,9 +66,6 @@ def build_bundle(meta: dict, lang: str) -> dict:
 				k: (v.get(lang) if isinstance(v, dict) else v) for k, v in (meta.get("setups") or {}).items()
 			}
 			blocks, questions = authoring.to_blocks(ls["body"], setups)
-			if other:
-				target = meta["spaces"][other[0]]["name"]
-				blocks.insert(0, {"type": "paragraph", "text": f"[[{target}/{slug}|{SWITCH[lang]}]]"})
 			contents.append(
 				{
 					"_id": slug,
@@ -83,6 +78,7 @@ def build_bundle(meta: dict, lang: str) -> dict:
 					"summary": ls["summary"],
 					"blocks": json.dumps(blocks, ensure_ascii=False),
 					"skip_review": 1,
+					"translation_key": f"{meta['key']}:{slug}",  # Phase 31: same page in every language
 				}
 			)
 			for q in (
@@ -119,6 +115,8 @@ def build_bundle(meta: dict, lang: str) -> dict:
 			"description": space.get("description", ""),
 			"visibility": "Public",
 			"is_active": 1,
+			"language": lang,
+			"translation_key": meta["key"],
 			"navigation": navigation,
 		},
 		"contents": contents,
@@ -136,6 +134,7 @@ def build_bundle(meta: dict, lang: str) -> dict:
 				"access": "Open",
 				"issue_certificate": 1 if meta.get("certificate", True) else 0,
 				"certificate_validity_months": 0,
+				"translation_key": meta["key"],
 			}
 		],
 		"chapters": [
@@ -149,6 +148,22 @@ def build_bundle(meta: dict, lang: str) -> dict:
 			for n, ch in enumerate(meta["chapters"], 1)
 		],
 	}
+
+
+def link_translations(meta: dict, lang: str):
+	"""Spaces loaded before Phase 31: give the space, its course and pages their translation keys."""
+	space = meta["spaces"][lang]["name"]
+	frappe.db.set_value(
+		"TCD Space", space, {"language": lang, "translation_key": meta["key"]}, update_modified=False
+	)
+	for course in frappe.get_all("TCD Course", filters={"space": space}, pluck="name"):
+		frappe.db.set_value("TCD Course", course, "translation_key", meta["key"], update_modified=False)
+	for name, slug in frappe.get_all(
+		"TCD Content", filters={"space": space}, fields=["name", "slug"], as_list=True
+	):
+		frappe.db.set_value(
+			"TCD Content", name, "translation_key", f"{meta['key']}:{slug}", update_modified=False
+		)
 
 
 def update_pages(meta: dict, lang: str) -> int:
@@ -189,6 +204,7 @@ def load_library(only: list | None = None, root: str = ROOT) -> dict:
 		for lang in meta["spaces"]:
 			space = meta["spaces"][lang]["name"]
 			if frappe.db.exists("TCD Space", space):
+				link_translations(meta, lang)
 				report[space] = f"updated {update_pages(meta, lang)} pages"
 			else:
 				result = transfer.import_bundle(build_bundle(meta, lang))

@@ -10,6 +10,7 @@
 	{% endif %}
 	{% if data.cover_image %}<img class="tcd-cover" src="{{ data.cover_image|e }}" alt="" loading="lazy">{% endif %}
 	<header class="tcd-hero">
+		{% include "templates/includes/tcd_lang_switch.html" %}
 		<span class="tcd-badge">{{ _("Course", context="TCD") }}</span>
 		{% if e %}<span class="tcd-status tcd-status-{{ e.status|lower|replace(' ', '-') }}">{{ _(e.status, context="TCD") }}</span>{% endif %}
 		<h1>{{ doc.title|e }}</h1>

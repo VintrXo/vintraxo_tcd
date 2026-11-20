@@ -19,6 +19,7 @@
 	<div class="tcd-callout tcd-callout-warning tcd-outdated">{{ _("This page may be out of date: its review was due on {0}.").format(frappe.format_date(doc.next_review_date)) }}{% if doc.last_reviewed_on %} {{ _("Last reviewed on {0}.").format(frappe.format_date(doc.last_reviewed_on)) }}{% endif %}</div>
 	{% endif %}
 	<header class="tcd-hero">
+		{% include "templates/includes/tcd_lang_switch.html" %}
 		<span class="tcd-badge">{{ _(doc.content_type, context="TCD") }}</span>
 		<span class="tcd-status tcd-status-{{ lesson.progress|lower|replace(' ', '-') }}" data-progress-label>{{ _(lesson.progress, context="TCD") }}</span>
 		<h1>{{ doc.title|e }}</h1>

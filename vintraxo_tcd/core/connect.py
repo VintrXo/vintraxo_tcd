@@ -319,6 +319,14 @@ def search_all(
 			del row["search_text"]
 			results.append(row)
 	results.sort(key=lambda r: (-r.score, -r.modified.timestamp()))
+	from vintraxo_tcd.core import content_languages
+
+	keep = set()
+	for doctype in ("TCD Content", "TCD Course"):  # Phase 31: one result per translated item
+		keep |= {
+			id(r) for r in content_languages.collapse([r for r in results if r.doctype == doctype], doctype)
+		}
+	results = [r for r in results if r.doctype not in ("TCD Content", "TCD Course") or id(r) in keep]
 	return results[: max(1, min(int(limit or 30), 100))]
 
 
@@ -327,11 +335,23 @@ def search_all(
 
 def recommendations(user: str, limit: int = 6) -> list[dict]:
 	"""Simple and explainable: continue, follow-ups of completed content, popular courses."""
+	from vintraxo_tcd.core import content_languages
+
 	out, seen = [], set()
+	lang = content_languages.preferred(user)
 
 	def add(item, reason):
-		if item and item["name"] not in seen:
-			seen.add(item["name"])
+		if not item:
+			return
+		if item["doctype"] in ("TCD Content", "TCD Course"):  # Phase 31: one item per translation group
+			mine = content_languages.counterpart(item["doctype"], item["name"], lang)
+			if mine and mine != item["name"]:
+				item = _item(item["doctype"], mine) or item
+			key = frappe.db.get_value(item["doctype"], item["name"], "translation_key") or item["name"]
+		else:
+			key = item["name"]
+		if key not in seen:
+			seen.add(key)
 			out.append({**item, "reason": reason})
 
 	# 1. next unlocked item of active course enrollments
@@ -383,7 +403,9 @@ def recommendations(user: str, limit: int = 6) -> list[dict]:
 		limit_page_length=20,
 	)
 	for course in candidates:
-		if course in enrolled or not frappe.db.get_value("TCD Course", course, "self_enrollment"):
+		if any(s["name"] in enrolled for s in content_languages.siblings("TCD Course", course)):
+			continue  # enrolled in this course, in some language
+		if not frappe.db.get_value("TCD Course", course, "self_enrollment"):
 			continue
 		if frappe.db.get_value("TCD Course", course, "status") != "Published":
 			continue

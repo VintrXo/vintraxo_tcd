@@ -11,6 +11,7 @@
   "column_break_1",
   "status",
   "language",
+  "translation_key",
   "visibility",
   "completion_section",
   "completion_rule",
@@ -91,6 +92,13 @@
    "fieldtype": "Select",
    "label": "Language",
    "options": "ar\nen"
+  },
+  {
+   "fieldname": "translation_key",
+   "fieldtype": "Data",
+   "label": "Translation Key",
+   "search_index": 1,
+   "description": "Same key on the other-language versions of this item: learners see one item and switch language."
   },
   {
    "fieldname": "visibility",
@@ -289,7 +297,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 23:00:00.000000",
+ "modified": "2026-11-21 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

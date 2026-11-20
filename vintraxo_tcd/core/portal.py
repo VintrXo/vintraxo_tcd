@@ -113,6 +113,11 @@ def home_context(
 		fields=["name", "title", "description", "visibility"],
 		order_by="title asc",
 	)
+	from vintraxo_tcd.core import content_languages
+
+	spaces = content_languages.collapse(
+		spaces, "TCD Space", user
+	)  # one card per space, in the user's language
 	ctx = {"spaces": spaces, "query": query or "", "results": None}
 	from vintraxo_tcd.core import ai
 
@@ -237,9 +242,10 @@ def space_context(space_name: str) -> dict:
 			r.enrollment = mine.get(r.name)
 			offerings.append(r)
 
-	from vintraxo_tcd.core import wiki
+	from vintraxo_tcd.core import content_languages, wiki
 
 	return {
+		"lang_switcher": content_languages.switcher("TCD Space", space.name),
 		"space": space,
 		"page_tree": wiki.page_tree(space.name),
 		"outline": navigation.outline(space.name),
@@ -305,9 +311,10 @@ def content_context(
 
 	outline = lesson_outline(user, doc, space.name, tutorial, course)
 	quiz_required = bool(progress.required_quiz(doc.name))
-	from vintraxo_tcd.core import change_requests, freshness, notes
+	from vintraxo_tcd.core import change_requests, content_languages, freshness, notes
 
 	return {
+		"lang_switcher": content_languages.switcher("TCD Content", doc.name, course),
 		"outdated": doc.status == "Published" and freshness.is_overdue(doc),
 		"my_note": notes.get(doc.name, user) if user != "Guest" else None,
 		"suggest_fields": change_requests.editable_fields(doc)
@@ -557,7 +564,12 @@ def my_enrollments(user: str) -> list:
 		r.title = t.title
 		r.url = (course_url if r.course else path_url)(t.space, t.slug)
 		out.append(r)
-	return out
+	from vintraxo_tcd.core import content_languages
+
+	courses = content_languages.collapse(
+		[r for r in out if r.course], "TCD Course", user, name_field="course"
+	)
+	return [r for r in out if not r.course or r in courses]  # one row per course, in the learner's language
 
 
 def _offering_by_slug(doctype: str, space: str, slug: str):
@@ -588,9 +600,10 @@ def course_context(space_name: str, slug: str) -> dict:
 		)
 		if item:
 			prereqs.append(item)
-	from vintraxo_tcd.core import sessions
+	from vintraxo_tcd.core import content_languages, sessions
 
 	return {
+		"lang_switcher": content_languages.switcher("TCD Course", course.name),
 		"sessions": sessions.for_course(course.name, user),
 		"space": space,
 		"doc": course,

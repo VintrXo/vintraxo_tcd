@@ -120,8 +120,9 @@ def complete(user: str, content: str, from_quiz: bool = False):
 	for tutorial in tutorials_for_lesson(content):
 		refresh_tutorial(user, tutorial)
 	courses.on_content_changed(user, content)
-	from vintraxo_tcd.core import badges
+	from vintraxo_tcd.core import badges, content_languages
 
+	content_languages.mirror_completion(user, content)  # Phase 31: counts in the other languages too
 	badges.check(user, "Lessons Completed")
 	return doc
 

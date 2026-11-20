@@ -93,6 +93,7 @@ def main():
 						"chapters": chapters,
 					}
 				)
+				frappe.db.set_value("TCD Course", course["name"], "translation_key", f"odoo-course:{app.slug}")  # Phase 31
 				studio.set_course_status(course["name"], "Published")
 				frappe.db.commit()
 				made += 1

@@ -2312,3 +2312,7 @@ Google Calendar {0} does not exist. Connect it from the Desk first.,تقويم G
 Payment Gateway {0} does not exist.,بوابة الدفع {0} غير موجودة.
 Menu item {0} skipped: its target was not exported.,تم تخطي عنصر القائمة {0}: الصفحة المرتبطة به لم يتم تصديرها.
 This example runs once the code runner is enabled. You can still read and edit the code.,هذا المثال يعمل بعد تفعيل مشغّل الأكواد على الخادم. يمكنك قراءة الكود وتعديله الآن.
+Content language,لغة المحتوى
+Translation Key,مفتاح الترجمة
+Same key on the other-language versions of this item: learners see one item and switch language.,نفس المفتاح على نسخ هذا العنصر باللغات الأخرى: يرى المتعلم عنصرًا واحدًا ويبدّل اللغة.
+Unknown language.,لغة غير معروفة.

@@ -89,6 +89,10 @@ def on_completed(enrollment):
 				target,
 			)
 		else:
+			from vintraxo_tcd.core import content_languages
+
+			if kind == "Course" and content_languages.has_sibling_certificate(enrollment.user, target):
+				return  # Phase 31: one certificate per course, whatever language it was finished in
 			issue_certificate(enrollment.user, kind, target)
 
 

@@ -12,6 +12,7 @@
   "status",
   "ai_generated",
   "language",
+  "translation_key",
   "visibility",
   "location_section",
   "space",
@@ -104,6 +105,13 @@
    "fieldtype": "Select",
    "label": "Language",
    "options": "ar\nen"
+  },
+  {
+   "fieldname": "translation_key",
+   "fieldtype": "Data",
+   "label": "Translation Key",
+   "search_index": 1,
+   "description": "Same key on the other-language versions of this item: learners see one item and switch language."
   },
   {
    "fieldname": "visibility",
@@ -306,7 +314,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 16:30:00.000000",
+ "modified": "2026-11-21 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Content",

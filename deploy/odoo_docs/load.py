@@ -102,12 +102,13 @@ def build(lang, pages, urls):
 				"blocks": json.dumps(blocks, ensure_ascii=False),
 				"parent_content": p["parent"],
 				"skip_review": 1,
+				"translation_key": f"odoo:{p['slug']}",  # Phase 31
 			}
 		)
 	return {
 		"format": transfer.FORMAT,
 		"version": transfer.VERSION,
-		"space": {"_id": SPACES[lang], "space_name": SPACES[lang], "title": t["title"], "visibility": "Public", "is_active": 1, "description": t["desc"]},
+		"space": {"_id": SPACES[lang], "space_name": SPACES[lang], "title": t["title"], "visibility": "Public", "is_active": 1, "description": t["desc"], "language": lang, "translation_key": "odoo"},
 		"contents": contents,
 	}
 
