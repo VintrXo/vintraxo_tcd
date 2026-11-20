@@ -137,6 +137,19 @@ class TestPhase31Languages(TCDTestCase):
 		]
 		self.assertNotIn(self.course_en, names)
 
+	def test_continue_learning_in_the_learner_language(self):
+		from vintraxo_tcd.core.progress import _upsert
+
+		frappe.set_user("Administrator")
+		_upsert(self.learner, self.page[("en", "t-intro")], status="In Progress", percent=10)
+		_upsert(self.learner, self.page[("ar", "t-intro")], status="In Progress", percent=10)
+		_upsert(self.learner, self.page[("en", "t-next")], status="In Progress", percent=10)
+		frappe.set_user(self.learner)
+		cl.set_preferred("ar")
+		shown = [r.content for r in portal.home_context()["continue_learning"]]
+		# the same lesson read in both languages is one item, and English pages appear in Arabic
+		self.assertEqual(sorted(shown), sorted([self.page[("ar", "t-intro")], self.page[("ar", "t-next")]]))
+
 	def test_course_page_renders_buttons(self):
 		from vintraxo_tcd.tests.test_p3 import render
 

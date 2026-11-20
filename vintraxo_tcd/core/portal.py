@@ -132,9 +132,9 @@ def home_context(
 		filters={"user": user, "status": "In Progress"},
 		fields=["content", "percent", "last_viewed_on"],
 		order_by="last_viewed_on desc",
-		limit_page_length=6,
+		limit_page_length=12,
 	)
-	ctx["continue_learning"] = _attach_content(in_progress)
+	ctx["continue_learning"] = _attach_content(_in_language(in_progress, user))[:6]
 	ctx["my_enrollments"] = my_enrollments(user)
 	ctx["is_instructor"] = "TCD Instructor" in frappe.get_roles(
 		user
@@ -156,6 +156,22 @@ def home_context(
 		ctx["results"] = [i for i in (_item("TCD Content", n) for n in wiki.contents_with_tag(tag)) if i]
 		ctx["query"] = ctx["query"] or ""
 	return ctx
+
+
+def _in_language(rows, user: str) -> list:
+	"""Show each lesson in the learner's content language, once (a lesson read in two languages is one item)."""
+	from vintraxo_tcd.core import content_languages
+
+	lang = content_languages.preferred(user)
+	out, seen = [], set()
+	for row in rows:
+		other = content_languages.counterpart("TCD Content", row.content, lang)
+		if other and other != row.content and frappe.has_permission("TCD Content", "read", other):
+			row.content = other
+		if row.content not in seen:
+			seen.add(row.content)
+			out.append(row)
+	return out
 
 
 def _attach_content(rows) -> list:
