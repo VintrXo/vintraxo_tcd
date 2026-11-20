@@ -1,0 +1,16 @@
+{
+  "key": "csharp",
+  "spaces": {
+    "ar": {"name": "csharp-ar", "title": "تعلّم C#", "description": "سي شارب من الصفر: المتغيرات، الشروط، الحلقات، المصفوفات والقوائم، الدوال، الأصناف والواجهات، LINQ والاستثناءات."},
+    "en": {"name": "csharp-en", "title": "Learn C#", "description": "C# from scratch: variables, conditions, loops, arrays and lists, methods, classes and interfaces, LINQ and exceptions."}
+  },
+  "course": {
+    "ar": {"title": "دورة C# الكاملة", "summary": "لغة .NET: تطبيقات الشركات والويب والألعاب بمحرك Unity."},
+    "en": {"title": "Complete C# course", "summary": "The .NET language: enterprise apps, the web, and Unity games."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["cs-intro", "cs-variables", "cs-strings", "cs-control"]},
+    {"ar": "البيانات والدوال", "en": "Data and methods", "lessons": ["cs-arrays-lists", "cs-methods"]},
+    {"ar": "البرمجة الكائنية", "en": "Object-oriented programming", "lessons": ["cs-classes", "cs-inheritance", "cs-linq", "cs-exceptions", "cs-project", "cs-reference"]}
+  ]
+}
