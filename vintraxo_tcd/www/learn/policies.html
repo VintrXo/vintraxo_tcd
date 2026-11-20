@@ -32,4 +32,7 @@
 	<p class="tcd-muted">{{ _("No documents are addressed to you.") }}</p>
 	{% endif %}
 </div>
+<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 {% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

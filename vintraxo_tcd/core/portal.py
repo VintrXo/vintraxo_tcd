@@ -169,6 +169,8 @@ def _attach_content(rows) -> list:
 
 def space_context(space_name: str) -> dict:
 	space = get_space(space_name)
+	from vintraxo_tcd.core import navigation
+
 	user = frappe.session.user
 	rows = frappe.get_list(
 		"TCD Content",
@@ -240,6 +242,7 @@ def space_context(space_name: str) -> dict:
 	return {
 		"space": space,
 		"page_tree": wiki.page_tree(space.name),
+		"outline": navigation.outline(space.name),
 		"offerings": offerings,
 		"groups": sorted(groups.values(), key=lambda g: (g["sort"], g["title"])),
 		"title": space.title,
@@ -414,7 +417,9 @@ def lesson_outline(user: str, doc, space: str, tutorial: str | None, course: str
 			"percent": summary["percent"],
 			"groups": [{"title": None, "items": items}],
 		}
-	return None
+	from vintraxo_tcd.core import navigation
+
+	return navigation.outline(space, doc.name)  # wiki pages: the space menu, if the admin set one
 
 
 def js_labels() -> dict:

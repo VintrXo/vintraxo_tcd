@@ -15,3 +15,4 @@ def get_context(context):
 	context.title = _("Policies and procedures")
 	context.parents = [{"route": "/learn", "title": _("Learning")}]
 	context.show_sidebar = False
+	context.labels_json = portal.json_for_script(portal.js_labels())

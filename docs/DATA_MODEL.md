@@ -346,6 +346,11 @@ New TCD Course fields: requires_evaluation, evaluation_minutes, evaluators.
 
 New fields: TCD Chapter (release_after_days, release_on); TCD Course (coming_soon, opens_on).
 
+## Phase 22
+| DocType | Purpose |
+|---|---|
+| TCD Space Nav Item | Rows of the space side menu (child of TCD Space, field `navigation`) |
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

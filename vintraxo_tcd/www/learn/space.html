@@ -23,7 +23,9 @@
 {% endmacro %}
 
 {% block page_content %}
-<div class="tcd-page">
+<div class="tcd-page{% if outline %} tcd-with-outline{% endif %}">
+	{% include "templates/includes/tcd_outline.html" %}
+	<div class="tcd-main">
 	<header class="tcd-hero">
 		<h1>{{ space.title|e }}</h1>
 		{% if space.description %}<p class="tcd-muted">{{ space.description|e }}</p>{% endif %}
@@ -67,4 +69,8 @@
 	<p class="tcd-muted">{{ _("No content here yet.") }}</p>
 	{% endfor %}
 </div>
+</div>
+<script type="application/json" id="tcd-labels">{{ labels_json }}</script>
 {% endblock %}
+
+{% block script %}{{ super() }}<script defer src="/assets/vintraxo_tcd/js/tcd_portal.js?v={{ asset_version() }}"></script>{% endblock %}

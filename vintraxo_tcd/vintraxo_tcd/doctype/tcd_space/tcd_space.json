@@ -13,6 +13,8 @@
   "description",
   "access_section",
   "allowed_roles",
+  "navigation_section",
+  "navigation",
   "github_section",
   "github_repo",
   "github_branch",
@@ -84,6 +86,19 @@
    "description": "Only users with one of these roles can open a Restricted space or Restricted content in it"
   },
   {
+   "fieldname": "navigation_section",
+   "fieldtype": "Section Break",
+   "label": "Navigation",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "navigation",
+   "fieldtype": "Table",
+   "label": "Navigation",
+   "options": "TCD Space Nav Item",
+   "description": "Side menu of the space, in this order. Rows with the same group are shown together. Learners only see what they can open."
+  },
+  {
    "fieldname": "github_section",
    "fieldtype": "Section Break",
    "label": "GitHub Sync",
@@ -131,7 +146,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 17:00:00.000000",
+ "modified": "2026-11-20 21:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Space",

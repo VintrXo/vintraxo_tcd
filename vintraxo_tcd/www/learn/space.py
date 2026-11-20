@@ -11,3 +11,4 @@ def get_context(context):
 	context.is_guest = frappe.session.user == "Guest"
 	context.update(portal.space_context(frappe.form_dict.get("space")))
 	context.show_sidebar = False
+	context.labels_json = portal.json_for_script(portal.js_labels())

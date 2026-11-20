@@ -1,0 +1,21 @@
+{#- Side menu (course, tutorial or space navigation). `outline` = {title, url, percent|None, groups:[{title, items}]} -#}
+{% if outline %}
+<details class="tcd-outline" open>
+	<summary><strong>{{ outline.title|e }}</strong>{% if outline.percent is not none %} <span class="tcd-num tcd-small">{{ outline.percent|int }}%</span>{% endif %}</summary>
+	<nav aria-label="{{ _('Contents') }}">
+		{% if outline.percent is not none %}<span class="tcd-progress" role="progressbar" aria-valuenow="{{ outline.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ outline.percent|int }}%"></span></span>{% endif %}
+		<a class="tcd-outline-home tcd-small" href="{{ outline.url|e }}">{{ _("Overview") }}</a>
+		{% for g in outline.groups %}
+		{% if g.title %}<p class="tcd-outline-group">{{ g.title|e }}</p>{% endif %}
+		<ol class="tcd-outline-list">
+			{% for it in g["items"] %}
+			<li class="tcd-outline-item is-{{ it.state }}{% if it.current %} is-current{% endif %}">
+				<a href="{{ it.url|e }}"{% if it.current %} aria-current="page"{% endif %}{% if it.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ it.title|e }}</a>
+				{% if it.state == "completed" %}<span class="sr-only">{{ _("Completed", context="TCD") }}</span>{% elif it.state == "locked" %}<span class="sr-only">{{ _("Locked", context="TCD") }}</span>{% endif %}
+			</li>
+			{% endfor %}
+		</ol>
+		{% endfor %}
+	</nav>
+</details>
+{% endif %}

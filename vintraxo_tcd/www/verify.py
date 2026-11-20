@@ -1,6 +1,7 @@
 import frappe
 from frappe import _
 
+from vintraxo_tcd.core import portal
 from vintraxo_tcd.core.credentials import verify
 
 no_cache = 1
@@ -21,3 +22,4 @@ def get_context(context):
 	context.title = _("Certificate verification")
 	context.show_sidebar = False
 	context.no_breadcrumbs = True
+	context.labels_json = portal.json_for_script(portal.js_labels())

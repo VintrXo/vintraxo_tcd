@@ -6,26 +6,7 @@
 {% block page_content %}
 <article class="tcd-page tcd-content{% if is_guest %} tcd-guest{% endif %}{% if outline %} tcd-with-outline{% endif %}" dir="{{ dir }}" lang="{{ doc.language|e }}"
 	data-content="{{ doc.name|e }}" data-progress="{{ lesson.progress|e }}">
-	{% if outline %}
-	<details class="tcd-outline" open>
-		<summary><strong>{{ outline.title|e }}</strong> <span class="tcd-num tcd-small">{{ outline.percent|int }}%</span></summary>
-		<nav aria-label="{{ _('Contents') }}">
-			<span class="tcd-progress" role="progressbar" aria-valuenow="{{ outline.percent|int }}" aria-valuemin="0" aria-valuemax="100"><span style="inline-size: {{ outline.percent|int }}%"></span></span>
-			<a class="tcd-outline-home tcd-small" href="{{ outline.url|e }}">{{ _("Overview") }}</a>
-			{% for g in outline.groups %}
-			{% if g.title %}<p class="tcd-outline-group">{{ g.title|e }}</p>{% endif %}
-			<ol class="tcd-outline-list">
-				{% for it in g["items"] %}
-				<li class="tcd-outline-item is-{{ it.state }}{% if it.current %} is-current{% endif %}">
-					<a href="{{ it.url|e }}"{% if it.current %} aria-current="page"{% endif %}>{{ it.title|e }}</a>
-					{% if it.state == "completed" %}<span class="sr-only">{{ _("Completed", context="TCD") }}</span>{% elif it.state == "locked" %}<span class="sr-only">{{ _("Locked", context="TCD") }}</span>{% endif %}
-				</li>
-				{% endfor %}
-			</ol>
-			{% endfor %}
-		</nav>
-	</details>
-	{% endif %}
+	{% include "templates/includes/tcd_outline.html" %}
 	<div class="tcd-main">
 
 	{% if doc.status == "Archived" %}

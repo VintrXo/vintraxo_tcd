@@ -2232,3 +2232,19 @@ Readiness check,فحص الجاهزية,TCD
 OK,سليم,TCD
 Warning,تنبيه,TCD
 Problem,مشكلة,TCD
+TCD Space Nav Item,عنصر تنقّل المساحة
+Navigation,التنقّل
+Group,المجموعة
+Link Type,نوع الرابط
+External Link,رابط خارجي
+URL,الرابط
+Label,العنوان المعروض
+Optional: shown instead of the title,اختياري: يظهر بدل العنوان
+"Side menu of the space, in this order. Rows with the same group are shown together. Learners only see what they can open.",القائمة الجانبية للمساحة بهذا الترتيب. الصفوف التي لها نفس المجموعة تظهر معًا. المتعلم يرى فقط ما يمكنه فتحه.
+The navigation can have at most {0} items.,التنقّل يمكن أن يحتوي على {0} عنصر كحد أقصى.
+Row {0}: the link must start with https:// or /.,الصف {0}: الرابط يجب أن يبدأ بـ https:// أو /.
+Row {0}: an external link needs a label.,الصف {0}: الرابط الخارجي يحتاج عنوانًا.
+Row {0}: choose the {1}.,الصف {0}: اختر {1}.
+Row {0}: {1} belongs to another space.,الصف {0}: {1} تابع لمساحة أخرى.
+Page,صفحة,TCD
+External Link,رابط خارجي,TCD

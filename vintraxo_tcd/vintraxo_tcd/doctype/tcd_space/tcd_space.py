@@ -19,6 +19,9 @@ class TCDSpace(Document):
 		roles = [r.role for r in self.allowed_roles]
 		if len(roles) != len(set(roles)):
 			frappe.throw(_("Each role can be listed only once."))
+		from vintraxo_tcd.core import navigation
+
+		navigation.validate(self)
 		if self.visibility == "Restricted" and not roles:
 			frappe.msgprint(
 				_("This Restricted space has no allowed roles, so only administrators can open it."),
