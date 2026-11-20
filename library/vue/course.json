@@ -1,0 +1,17 @@
+{
+  "key": "vue",
+  "spaces": {
+    "ar": {"name": "vue-ar", "title": "تعلّم Vue", "description": "إطار Vue.js لبناء واجهات تفاعلية: القوالب، الربط، الأحداث، الشروط، القوائم، الخصائص المحسوبة، والمكونات."},
+    "en": {"name": "vue-en", "title": "Learn Vue", "description": "The Vue.js framework for interactive interfaces: templates, binding, events, conditions, lists, computed properties and components."}
+  },
+  "course": {
+    "ar": {"title": "دورة Vue 3", "summary": "واجهات تفاعلية بقوالب HTML بسيطة وبيانات تتحدث تلقائيًا."},
+    "en": {"title": "Vue 3 course", "summary": "Interactive interfaces with simple HTML templates and data that updates by itself."}
+  },
+  "setups": {"vue": {"ar": "@setup_ar.html", "en": "@setup.html"}},
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["vue-intro", "vue-template", "vue-bind"]},
+    {"ar": "التفاعل", "en": "Interaction", "lessons": ["vue-events", "vue-model", "vue-if-for", "vue-computed"]},
+    {"ar": "المكونات", "en": "Components", "lessons": ["vue-components", "vue-project", "vue-reference"]}
+  ]
+}
