@@ -30,7 +30,13 @@ if [ "$(stat -fc %T /sys/fs/cgroup)" = "cgroup2fs" ]; then
   echo "Kernel switched to cgroup v1 on next boot. Run:  sudo reboot   then run this script again."
   exit 0
 fi
-echo "  cgroup v1 active"
+if ! awk '$1=="memory" && $4==1 {found=1} END {exit !found}' /proc/cgroups; then
+  echo "This kernel ($(uname -r)) has no cgroup v1 memory controller (CONFIG_MEMCG_V1 off, common from"
+  echo "kernel 6.11 on). Judge0 cannot limit memory without it. Use Ubuntu 22.04, or Ubuntu 24.04 with its"
+  echo "standard 6.8 kernel (not the HWE kernel), then run this script again."
+  exit 1
+fi
+echo "  cgroup v1 active, memory controller present"
 
 step "2) packages"
 sudo apt-get update

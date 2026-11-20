@@ -19,6 +19,7 @@
   prints the `runner` lines for `keys.json`. Language ids are checked from the Desk with "Test Runner".
 
 ## Consequences
-- Not run here (WSL has no Docker and runs cgroup v2). The config edits were run against the real v1.13.1 zip:
+- Not run here: WSL has no Docker, and its kernel (6.18) is built without the cgroup v1 memory controller
+  (`CONFIG_MEMCG_V1` off), which Judge0 1.13.1 needs; the script now stops with a clear message on such kernels. The config edits were run against the real v1.13.1 zip:
   every setting exists, the port line was rewritten to 127.0.0.1, a rerun keeps the token.
 - gVisor (option B) stays a later hardening step if Judge0 is not enough.
