@@ -172,12 +172,12 @@ def prepare_blocks(blocks: list, space: str) -> list:
 def backlinks(content: str) -> list[dict]:
 	from vintraxo_tcd.core.connect import _item
 
-	rows = frappe.get_all(
-		"TCD Content",
-		filters={"internal_links": ("like", f'%"{content}"%')},
-		pluck="name",
-		ignore_permissions=True,
-	)
+	# same language only: the "read in the other language" link of a translated page is not a backlink a reader needs
+	language = frappe.db.get_value("TCD Content", content, "language")
+	filters = {"internal_links": ("like", f'%"{content}"%')}
+	if language:
+		filters["language"] = language
+	rows = frappe.get_all("TCD Content", filters=filters, pluck="name", ignore_permissions=True)
 	return [i for i in (_item("TCD Content", n) for n in rows if n != content) if i]
 
 

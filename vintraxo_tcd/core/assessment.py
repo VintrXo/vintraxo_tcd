@@ -5,6 +5,7 @@ An *item* is a plain dict describing one question, built either from an inline q
 on items, so both sources behave the same.
 """
 
+import html
 import random
 import re
 
@@ -59,18 +60,25 @@ def blanks_of(item) -> list[list[str]]:
 # ---------------------------------------------------------------- items
 
 
+def _text(value):
+	"""Question text as plain text. Frappe's XSS filter stores text that looks like HTML ("<title>") escaped or
+	mangled, so authors (and the library loader) store such text as entities ("&lt;title&gt;"); the portal shows
+	every question field with textContent, never as HTML, so decoding here is safe."""
+	return html.unescape(value) if isinstance(value, str) else value
+
+
 def item_from_inline(row) -> dict:
 	return {
 		"key": row.name,
 		"source": "inline",
 		"label": row.idx,
 		"type": row.question_type,
-		"question": row.question,
+		"question": _text(row.question),
 		"scenario": None,
-		"options": row.options,
+		"options": _text(row.options),
 		"correct_answers": row.correct_answers,
 		"points": flt(row.points) or 1,
-		"explanation": row.explanation,
+		"explanation": _text(row.explanation),
 		"manual_review": 0,
 		"rubric": [],
 	}
@@ -82,12 +90,12 @@ def item_from_bank(q) -> dict:
 		"source": "bank",
 		"label": (q.question or "")[:40],
 		"type": q.question_type,
-		"question": q.question,
-		"scenario": q.scenario,
-		"options": q.options,
+		"question": _text(q.question),
+		"scenario": _text(q.scenario),
+		"options": _text(q.options),
 		"correct_answers": q.correct_answers,
 		"accepted_answers": q.accepted_answers,
-		"pairs": q.pairs,
+		"pairs": _text(q.pairs),
 		"code_language": q.code_language,
 		"grade_on_server": int(q.get("grade_on_server") or 0),
 		"test_cases": [
@@ -99,7 +107,7 @@ def item_from_bank(q) -> dict:
 		"expected_output": q.expected_output,
 		"allowed_extensions": q.allowed_extensions,
 		"points": flt(q.points) or 1,
-		"explanation": q.explanation,
+		"explanation": _text(q.explanation),
 		"manual_review": int(q.manual_review or 0),
 		"rubric": [{"criterion": r.criterion, "max_points": flt(r.max_points)} for r in q.rubric],
 	}

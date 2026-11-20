@@ -554,3 +554,6 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 .tcd-callout { white-space: normal; }
 .tcd-callout > div:not(.tcd-md) { white-space: pre-line; }
 .tcd-content[dir] :is(p, li, h1, h2, h3, h4, td, th, aside, figcaption, dd, dt, .tcd-hero, .tcd-hero *) { text-align: start; }
+
+/* Phase 30: code inside Arabic quiz text (e.g. <meta charset="UTF-8">) keeps its own direction */
+.tcd-question legend, .tcd-option span, .tcd-quiz .tcd-muted { unicode-bidi: plaintext; }

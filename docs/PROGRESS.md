@@ -141,7 +141,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 26 — Move kit (server in one bundle, keys in one file) | db5e812 | 244 | export_internal.sh bundles apps/patches/backup; install_prereqs.sh + setup_server.sh rebuild the server; keys.json fills every key; readiness warns about trial accounts |
 | Phase 27 — Install on the existing server | 915752f | 247 | install_on_existing.sh (backup, get-app/pull, requirements, install/migrate, keys, content, readiness); space export/import from the command line; language set for bench execute (Frappe locale bug); defusedxml declared (0.3.1); API check against frappe 16.60.1 |
 | Phase 28 — Code runner install (Judge0) | 84b4184 | 247 | deploy/judge0/install_judge0.sh: pinned Judge0 1.13.1, cgroup v1, token, no network, localhost + Caddy + firewall, Java smoke test, keys.json lines |
-| Phase 29 — Odoo 18 docs (EN + AR) + Markdown text + space transfer fixes | this commit | 251 | 848 pages per language with images (CC BY-SA, source line on every page); Markdown in paragraphs / callouts; page text follows page language; space import keeps the menu; space export carries files |
+| Phase 29 — Odoo 18 docs (EN + AR) + Markdown text + space transfer fixes | 06d04d7 | 251 | 848 pages per language with images (CC BY-SA, source line on every page); Markdown in paragraphs / callouts; page text follows page language; space import keeps the menu; space export carries files |
+| Phase 30 — Programming library (original courses) | this commit | 257 | Source-file courses (library/), authoring parser + loader; HTML course AR + EN (18 lessons, 17 quizzes, certificate); quiz text with tags stored safely; bidi for quizzes; same-language backlinks |
 
 ## Phase 7 — Notifications and analytics: status
 

@@ -1,0 +1,18 @@
+{
+  "key": "html",
+  "spaces": {
+    "ar": {"name": "html-ar", "title": "تعلّم HTML", "description": "دروس HTML من الصفر: شرح قصير، أمثلة تجرّبها بنفسك، تمارين واختبارات وشهادة."},
+    "en": {"name": "html-en", "title": "Learn HTML", "description": "HTML from scratch: short lessons, examples you can try, exercises, quizzes and a certificate."}
+  },
+  "course": {
+    "ar": {"title": "دورة HTML الكاملة", "summary": "ابنِ صفحات الويب بنفسك: العناصر، النصوص، الروابط، الصور، القوائم، الجداول، الهيكل الدلالي والنماذج."},
+    "en": {"title": "Complete HTML course", "summary": "Build web pages yourself: elements, text, links, images, lists, tables, semantic structure and forms."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["html-intro", "html-editors", "html-basic", "html-elements", "html-attributes"]},
+    {"ar": "النصوص والروابط", "en": "Text and links", "lessons": ["html-headings", "html-paragraphs", "html-formatting", "html-comments", "html-links"]},
+    {"ar": "الوسائط والهيكل", "en": "Media and structure", "lessons": ["html-images", "html-lists", "html-tables", "html-block-inline", "html-semantic"]},
+    {"ar": "النماذج", "en": "Forms", "lessons": ["html-forms", "html-input-types"]},
+    {"ar": "المرجع", "en": "Reference", "lessons": ["html-reference"]}
+  ]
+}
