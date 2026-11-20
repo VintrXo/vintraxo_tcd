@@ -1,0 +1,46 @@
+{
+  "key": "trigonometry",
+  "spaces": {
+    "ar": {
+      "name": "trigonometry-ar",
+      "title": "حساب المثلثات",
+      "description": "من قياس الزوايا إلى النسب المثلثية وتقدير الارتفاعات."
+    },
+    "en": {
+      "name": "trigonometry-en",
+      "title": "Trigonometry",
+      "description": "From measuring angles to trigonometric ratios and estimating heights."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "حساب المثلثات",
+      "summary": "من قياس الزوايا إلى النسب المثلثية وتقدير الارتفاعات."
+    },
+    "en": {
+      "title": "Trigonometry",
+      "summary": "From measuring angles to trigonometric ratios and estimating heights."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الزوايا والنسب",
+      "en": "Angles and ratios",
+      "lessons": [
+        "trigonometry-angles",
+        "trigonometry-ratios",
+        "trigonometry-circle"
+      ]
+    },
+    {
+      "ar": "تطبيق النسب",
+      "en": "Applying ratios",
+      "lessons": [
+        "trigonometry-period",
+        "trigonometry-inverse",
+        "trigonometry-height",
+        "trigonometry-reference"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "key": "numerical-methods",
+  "spaces": {
+    "ar": {
+      "name": "numerical-methods-ar",
+      "title": "الطرق العددية",
+      "description": "قياس الخطأ، وإيجاد الجذور، وتقريب التكامل."
+    },
+    "en": {
+      "name": "numerical-methods-en",
+      "title": "Numerical methods",
+      "description": "Measuring error, finding roots, and approximating integrals."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الطرق العددية",
+      "summary": "قياس الخطأ، وإيجاد الجذور، وتقريب التكامل."
+    },
+    "en": {
+      "title": "Numerical methods",
+      "summary": "Measuring error, finding roots, and approximating integrals."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "numerical-methods-error",
+        "numerical-methods-bisection"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "numerical-methods-newton",
+        "numerical-methods-trapezoid",
+        "numerical-methods-reference"
+      ]
+    }
+  ]
+}

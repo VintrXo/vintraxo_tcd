@@ -1,0 +1,47 @@
+{
+  "key": "discrete-math",
+  "spaces": {
+    "ar": {
+      "name": "discrete-math-ar",
+      "title": "الرياضيات المتقطعة",
+      "description": "المنطق والمجموعات والعدّ والشبكات لتعلّم الخوارزميات."
+    },
+    "en": {
+      "name": "discrete-math-en",
+      "title": "Discrete mathematics",
+      "description": "Logic, sets, counting and graphs for learning algorithms."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الرياضيات المتقطعة",
+      "summary": "من جداول الصدق إلى إيجاد أقصر طريق بين المحطات."
+    },
+    "en": {
+      "title": "Discrete mathematics",
+      "summary": "From truth tables to shortest routes between stops."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "المنطق والعدّ",
+      "en": "Logic and counting",
+      "lessons": [
+        "discrete-math-logic",
+        "discrete-math-sets",
+        "discrete-math-counting",
+        "discrete-math-combinations"
+      ]
+    },
+    {
+      "ar": "الدورات والشبكات",
+      "en": "Cycles and graphs",
+      "lessons": [
+        "discrete-math-modulo",
+        "discrete-math-graphs",
+        "discrete-math-routes",
+        "discrete-math-reference"
+      ]
+    }
+  ]
+}

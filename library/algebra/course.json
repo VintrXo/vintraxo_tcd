@@ -1,0 +1,46 @@
+{
+  "key": "algebra",
+  "spaces": {
+    "ar": {
+      "name": "algebra-ar",
+      "title": "أساسيات الجبر",
+      "description": "من التعويض وتبسيط التعبيرات إلى حل المعادلات والمتباينات."
+    },
+    "en": {
+      "name": "algebra-en",
+      "title": "Algebra foundations",
+      "description": "From substitution and simplifying expressions to equations and inequalities."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "أساسيات الجبر",
+      "summary": "من التعويض وتبسيط التعبيرات إلى حل المعادلات والمتباينات."
+    },
+    "en": {
+      "title": "Algebra foundations",
+      "summary": "From substitution and simplifying expressions to equations and inequalities."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "التعبيرات",
+      "en": "Expressions",
+      "lessons": [
+        "algebra-variables",
+        "algebra-terms",
+        "algebra-distribute"
+      ]
+    },
+    {
+      "ar": "حل المعادلات",
+      "en": "Solving equations",
+      "lessons": [
+        "algebra-equations",
+        "algebra-inequalities",
+        "algebra-budget",
+        "algebra-reference"
+      ]
+    }
+  ]
+}

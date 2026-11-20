@@ -1,0 +1,44 @@
+{
+  "key": "vector-calculus",
+  "spaces": {
+    "ar": {
+      "name": "vector-calculus-ar",
+      "title": "حساب المتجهات",
+      "description": "المشتقة الاتجاهية والتباعد والدوران والتكامل الخطي."
+    },
+    "en": {
+      "name": "vector-calculus-en",
+      "title": "Vector calculus",
+      "description": "Directional derivatives, divergence, curl, and line integrals."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "حساب المتجهات",
+      "summary": "المشتقة الاتجاهية والتباعد والدوران والتكامل الخطي."
+    },
+    "en": {
+      "title": "Vector calculus",
+      "summary": "Directional derivatives, divergence, curl, and line integrals."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الحقول ومشتقاتها",
+      "en": "Fields and their derivatives",
+      "lessons": [
+        "vector-calculus-direction",
+        "vector-calculus-divergence"
+      ]
+    },
+    {
+      "ar": "الدوران والعمل",
+      "en": "Curl and work",
+      "lessons": [
+        "vector-calculus-curl",
+        "vector-calculus-work",
+        "vector-calculus-reference"
+      ]
+    }
+  ]
+}

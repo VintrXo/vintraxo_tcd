@@ -1,0 +1,43 @@
+{
+  "key": "fourier-series",
+  "spaces": {
+    "ar": {
+      "name": "fourier-series-ar",
+      "title": "متسلسلات فورييه ومعادلة الحرارة",
+      "description": "إعادة بناء الإشارة، متسلسلة الجيب على فترة، مشروع: برّد قضيبًا بنمطين."
+    },
+    "en": {
+      "name": "fourier-series-en",
+      "title": "Fourier series and the heat equation",
+      "description": "Signal reconstruction, Sine series on an interval, Project: cool a rod with two modes."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "متسلسلات فورييه ومعادلة الحرارة",
+      "summary": "إعادة بناء الإشارة، متسلسلة الجيب على فترة، مشروع: برّد قضيبًا بنمطين."
+    },
+    "en": {
+      "title": "Fourier series and the heat equation",
+      "summary": "Signal reconstruction, Sine series on an interval, Project: cool a rod with two modes."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "fourier-series-synthesis",
+        "fourier-series-sine-series"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "fourier-series-heat",
+        "fourier-series-reference"
+      ]
+    }
+  ]
+}

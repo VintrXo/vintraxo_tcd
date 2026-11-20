@@ -1,0 +1,55 @@
+{
+  "key": "arithmetic",
+  "spaces": {
+    "ar": {
+      "name": "arithmetic-ar",
+      "title": "تعلّم الحساب والنسب",
+      "description": "العمليات والكسور والأعداد العشرية والنسب والمئويات مع تطبيقات تفاعلية."
+    },
+    "en": {
+      "name": "arithmetic-en",
+      "title": "Learn arithmetic and ratios",
+      "description": "Operations, fractions, decimals, ratios and percentages with interactive examples."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الحساب والنسب",
+      "summary": "من ترتيب العمليات إلى مقارنة العروض وحساب الخصم."
+    },
+    "en": {
+      "title": "Arithmetic and ratios",
+      "summary": "From the order of operations to comparing offers and calculating discounts."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "أساسيات الحساب",
+      "en": "Arithmetic foundations",
+      "lessons": [
+        "arith-order",
+        "arith-signed",
+        "arith-fractions",
+        "arith-decimals"
+      ]
+    },
+    {
+      "ar": "النسب ومعدل الوحدة",
+      "en": "Ratios and unit rates",
+      "lessons": [
+        "arith-ratios",
+        "arith-rates"
+      ]
+    },
+    {
+      "ar": "المئويات والتطبيق",
+      "en": "Percentages and practice",
+      "lessons": [
+        "arith-percent",
+        "arith-discount",
+        "arith-project",
+        "arith-reference"
+      ]
+    }
+  ]
+}

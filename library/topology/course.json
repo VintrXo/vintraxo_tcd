@@ -1,0 +1,45 @@
+{
+  "key": "topology",
+  "spaces": {
+    "ar": {
+      "name": "topology-ar",
+      "title": "مدخل إلى الطوبولوجيا",
+      "description": "المجموعات المفتوحة، والاستمرارية، والاتصال، والتراص."
+    },
+    "en": {
+      "name": "topology-en",
+      "title": "Introduction to topology",
+      "description": "Open sets, continuity, connectedness, and compactness."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "مدخل إلى الطوبولوجيا",
+      "summary": "المجموعات المفتوحة، والاستمرارية، والاتصال، والتراص."
+    },
+    "en": {
+      "title": "Introduction to topology",
+      "summary": "Open sets, continuity, connectedness, and compactness."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "المفتوحات والاستمرارية",
+      "en": "Open sets and continuity",
+      "lessons": [
+        "topology-open-sets",
+        "topology-finite-spaces",
+        "topology-continuity"
+      ]
+    },
+    {
+      "ar": "خصائص الفضاءات",
+      "en": "Properties of spaces",
+      "lessons": [
+        "topology-connectedness",
+        "topology-compactness",
+        "topology-reference"
+      ]
+    }
+  ]
+}

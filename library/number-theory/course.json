@@ -1,0 +1,44 @@
+{
+  "key": "number-theory",
+  "spaces": {
+    "ar": {
+      "name": "number-theory-ar",
+      "title": "نظرية الأعداد",
+      "description": "القسمة والأعداد الأولية وخوارزمية إقليدس والمعكوس بترديد عدد."
+    },
+    "en": {
+      "name": "number-theory-en",
+      "title": "Number theory",
+      "description": "Divisibility, primes, Euclid’s algorithm, and modular inverses."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "نظرية الأعداد",
+      "summary": "القسمة والأعداد الأولية وخوارزمية إقليدس والمعكوس بترديد عدد."
+    },
+    "en": {
+      "title": "Number theory",
+      "summary": "Divisibility, primes, Euclid’s algorithm, and modular inverses."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "number-theory-division",
+        "number-theory-primes"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "number-theory-euclid",
+        "number-theory-inverse",
+        "number-theory-reference"
+      ]
+    }
+  ]
+}

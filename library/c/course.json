@@ -1,0 +1,16 @@
+{
+  "key": "c",
+  "spaces": {
+    "ar": {"name": "c-ar", "title": "تعلّم لغة C", "description": "لغة C من الصفر: المتغيرات، printf، الشروط، الحلقات، المصفوفات والنصوص، الدوال، المؤشرات، الهياكل وإدارة الذاكرة."},
+    "en": {"name": "c-en", "title": "Learn C", "description": "C from scratch: variables, printf, conditions, loops, arrays and strings, functions, pointers, structs and memory management."}
+  },
+  "course": {
+    "ar": {"title": "دورة لغة C", "summary": "أم اللغات: افهم كيف تعمل الذاكرة والحاسوب فعلًا."},
+    "en": {"title": "C language course", "summary": "The mother of languages: understand how memory and the computer really work."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["c-intro", "c-variables", "c-operators", "c-conditions-loops"]},
+    {"ar": "البيانات والدوال", "en": "Data and functions", "lessons": ["c-arrays-strings", "c-functions", "c-pointers"]},
+    {"ar": "الهياكل والذاكرة", "en": "Structs and memory", "lessons": ["c-structs", "c-memory", "c-files", "c-reference"]}
+  ]
+}

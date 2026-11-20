@@ -1,0 +1,44 @@
+{
+  "key": "differential-equations",
+  "spaces": {
+    "ar": {
+      "name": "differential-equations-ar",
+      "title": "المعادلات التفاضلية العادية",
+      "description": "الشروط الابتدائية والنمو والاضمحلال وفصل المتغيرات وطريقة أويلر."
+    },
+    "en": {
+      "name": "differential-equations-en",
+      "title": "Ordinary differential equations",
+      "description": "Initial conditions, growth and decay, separation, and Euler’s method."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "المعادلات التفاضلية العادية",
+      "summary": "الشروط الابتدائية والنمو والاضمحلال وفصل المتغيرات وطريقة أويلر."
+    },
+    "en": {
+      "title": "Ordinary differential equations",
+      "summary": "Initial conditions, growth and decay, separation, and Euler’s method."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "differential-equations-initial",
+        "differential-equations-growth"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "differential-equations-separation",
+        "differential-equations-euler",
+        "differential-equations-reference"
+      ]
+    }
+  ]
+}

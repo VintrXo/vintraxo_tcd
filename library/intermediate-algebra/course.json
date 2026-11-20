@@ -1,0 +1,46 @@
+{
+  "key": "intermediate-algebra",
+  "spaces": {
+    "ar": {
+      "name": "intermediate-algebra-ar",
+      "title": "الجبر المتوسط",
+      "description": "أنظمة المعادلات والتحليل والأسس واللوغاريتمات والمتتاليات."
+    },
+    "en": {
+      "name": "intermediate-algebra-en",
+      "title": "Intermediate algebra",
+      "description": "Equation systems, factoring, exponents, logarithms, and sequences."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الجبر المتوسط",
+      "summary": "أنظمة المعادلات والتحليل والأسس واللوغاريتمات والمتتاليات."
+    },
+    "en": {
+      "title": "Intermediate algebra",
+      "summary": "Equation systems, factoring, exponents, logarithms, and sequences."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "المعادلات وكثيرات الحدود",
+      "en": "Equations and polynomials",
+      "lessons": [
+        "intermediate-algebra-systems",
+        "intermediate-algebra-factoring",
+        "intermediate-algebra-quadratics"
+      ]
+    },
+    {
+      "ar": "الأسس والمتتاليات",
+      "en": "Exponents and sequences",
+      "lessons": [
+        "intermediate-algebra-exponents",
+        "intermediate-algebra-sequences",
+        "intermediate-algebra-project",
+        "intermediate-algebra-reference"
+      ]
+    }
+  ]
+}

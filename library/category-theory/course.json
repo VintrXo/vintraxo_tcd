@@ -1,0 +1,43 @@
+{
+  "key": "category-theory",
+  "spaces": {
+    "ar": {
+      "name": "category-theory-ar",
+      "title": "مدخل إلى نظرية الفئات",
+      "description": "الكائنات والأسهم والتركيب، التشاكل والأسهم العكسية، مشروع: مؤثر يحفظ التركيب."
+    },
+    "en": {
+      "name": "category-theory-en",
+      "title": "Introduction to category theory",
+      "description": "Objects, arrows, and composition, Isomorphisms and inverse arrows, Project: a functor preserves composition."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "مدخل إلى نظرية الفئات",
+      "summary": "الكائنات والأسهم والتركيب، التشاكل والأسهم العكسية، مشروع: مؤثر يحفظ التركيب."
+    },
+    "en": {
+      "title": "Introduction to category theory",
+      "summary": "Objects, arrows, and composition, Isomorphisms and inverse arrows, Project: a functor preserves composition."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "category-theory-composition",
+        "category-theory-isomorphism"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "category-theory-functor",
+        "category-theory-reference"
+      ]
+    }
+  ]
+}

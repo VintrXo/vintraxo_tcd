@@ -1,0 +1,59 @@
+{
+  "key": "math-branches",
+  "spaces": {
+    "ar": {
+      "name": "math-branches-ar",
+      "title": "فروع الرياضيات",
+      "description": "خريطة للمكتبة وجولة عملية في فروع الرياضيات البحتة والتطبيقية."
+    },
+    "en": {
+      "name": "math-branches-en",
+      "title": "Branches of mathematics",
+      "description": "A library map and practical survey of pure and applied mathematics."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "مدخل إلى فروع الرياضيات",
+      "summary": "خريطة للمكتبة وجولة عملية في فروع الرياضيات البحتة والتطبيقية."
+    },
+    "en": {
+      "title": "Introduction to the branches of mathematics",
+      "summary": "A library map and practical survey of pure and applied mathematics."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الرياضيات البحتة",
+      "en": "Pure mathematics",
+      "lessons": [
+        "math-branches-map",
+        "math-branches-numbers",
+        "math-branches-proof",
+        "math-branches-abstract",
+        "math-branches-analysis",
+        "math-branches-complex",
+        "math-branches-topology"
+      ]
+    },
+    {
+      "ar": "النمذجة والحساب",
+      "en": "Modelling and computation",
+      "lessons": [
+        "math-branches-differential",
+        "math-branches-numerical",
+        "math-branches-optimization"
+      ]
+    },
+    {
+      "ar": "البيانات والقرارات",
+      "en": "Data and decisions",
+      "lessons": [
+        "math-branches-inference",
+        "math-branches-stochastic",
+        "math-branches-information",
+        "math-branches-games"
+      ]
+    }
+  ]
+}

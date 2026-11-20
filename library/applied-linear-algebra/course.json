@@ -1,0 +1,46 @@
+{
+  "key": "applied-linear-algebra",
+  "spaces": {
+    "ar": {
+      "name": "applied-linear-algebra-ar",
+      "title": "الجبر الخطي التطبيقي",
+      "description": "حل الأنظمة والمحددات والقيم الذاتية والتحويلات باستخدام NumPy."
+    },
+    "en": {
+      "name": "applied-linear-algebra-en",
+      "title": "Applied linear algebra",
+      "description": "Systems, determinants, eigenvalues, and transformations using NumPy."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الجبر الخطي التطبيقي",
+      "summary": "حل الأنظمة والمحددات والقيم الذاتية والتحويلات باستخدام NumPy."
+    },
+    "en": {
+      "title": "Applied linear algebra",
+      "summary": "Systems, determinants, eigenvalues, and transformations using NumPy."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأنظمة والفضاءات",
+      "en": "Systems and spaces",
+      "lessons": [
+        "applied-linear-algebra-elimination",
+        "applied-linear-algebra-span",
+        "applied-linear-algebra-determinant"
+      ]
+    },
+    {
+      "ar": "الاتجاهات والتحويلات",
+      "en": "Directions and transformations",
+      "lessons": [
+        "applied-linear-algebra-eigen",
+        "applied-linear-algebra-projection",
+        "applied-linear-algebra-project",
+        "applied-linear-algebra-reference"
+      ]
+    }
+  ]
+}

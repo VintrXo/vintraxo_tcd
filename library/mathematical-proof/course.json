@@ -1,0 +1,44 @@
+{
+  "key": "mathematical-proof",
+  "spaces": {
+    "ar": {
+      "name": "mathematical-proof-ar",
+      "title": "أساليب البرهان الرياضي",
+      "description": "البرهان المباشر والمقابل المعاكس والتناقض والاستقراء."
+    },
+    "en": {
+      "name": "mathematical-proof-en",
+      "title": "Mathematical proof techniques",
+      "description": "Direct proof, contraposition, contradiction, and induction."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "أساليب البرهان الرياضي",
+      "summary": "البرهان المباشر والمقابل المعاكس والتناقض والاستقراء."
+    },
+    "en": {
+      "title": "Mathematical proof techniques",
+      "summary": "Direct proof, contraposition, contradiction, and induction."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "mathematical-proof-direct",
+        "mathematical-proof-contrapositive"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "mathematical-proof-contradiction",
+        "mathematical-proof-induction",
+        "mathematical-proof-reference"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "key": "geometry",
+  "spaces": {
+    "ar": {
+      "name": "geometry-ar",
+      "title": "الهندسة والقياس",
+      "description": "من المحيط والمساحة إلى الحجم والقياس على المخططات."
+    },
+    "en": {
+      "name": "geometry-en",
+      "title": "Geometry and measurement",
+      "description": "From perimeter and area to volume and scale drawings."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "الهندسة والقياس",
+      "summary": "من المحيط والمساحة إلى الحجم والقياس على المخططات."
+    },
+    "en": {
+      "title": "Geometry and measurement",
+      "summary": "From perimeter and area to volume and scale drawings."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأشكال المستوية",
+      "en": "Plane shapes",
+      "lessons": [
+        "geometry-rectangles",
+        "geometry-triangles",
+        "geometry-circles"
+      ]
+    },
+    {
+      "ar": "القياس والتطبيق",
+      "en": "Measurement and practice",
+      "lessons": [
+        "geometry-pythagoras",
+        "geometry-volume",
+        "geometry-scale",
+        "geometry-reference"
+      ]
+    }
+  ]
+}

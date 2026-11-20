@@ -1,0 +1,43 @@
+{
+  "key": "game-theory",
+  "spaces": {
+    "ar": {
+      "name": "game-theory-ar",
+      "title": "نظرية الألعاب",
+      "description": "أفضل استجابة وتوازن ناش، الاستراتيجيات المختلطة، مشروع: قارن أسوأ عائد لكل قرار."
+    },
+    "en": {
+      "name": "game-theory-en",
+      "title": "Game theory",
+      "description": "Best responses and Nash equilibrium, Mixed strategies, Project: compare worst-case payoffs."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "نظرية الألعاب",
+      "summary": "أفضل استجابة وتوازن ناش، الاستراتيجيات المختلطة، مشروع: قارن أسوأ عائد لكل قرار."
+    },
+    "en": {
+      "title": "Game theory",
+      "summary": "Best responses and Nash equilibrium, Mixed strategies, Project: compare worst-case payoffs."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "game-theory-responses",
+        "game-theory-mixed"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "game-theory-minimax",
+        "game-theory-reference"
+      ]
+    }
+  ]
+}

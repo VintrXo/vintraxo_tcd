@@ -1,0 +1,43 @@
+{
+  "key": "combinatorics",
+  "spaces": {
+    "ar": {
+      "name": "combinatorics-ar",
+      "title": "التوافقيات",
+      "description": "الشمول والاستبعاد، مبدأ صندوق الحمام، مشروع: عدّ طرق صعود الدرج."
+    },
+    "en": {
+      "name": "combinatorics-en",
+      "title": "Combinatorics",
+      "description": "Inclusion–exclusion, The pigeonhole principle, Project: count staircase routes."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "التوافقيات",
+      "summary": "الشمول والاستبعاد، مبدأ صندوق الحمام، مشروع: عدّ طرق صعود الدرج."
+    },
+    "en": {
+      "title": "Combinatorics",
+      "summary": "Inclusion–exclusion, The pigeonhole principle, Project: count staircase routes."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "combinatorics-inclusion",
+        "combinatorics-pigeonhole"
+      ]
+    },
+    {
+      "ar": "التطبيق والمراجعة",
+      "en": "Practice and review",
+      "lessons": [
+        "combinatorics-recurrence",
+        "combinatorics-reference"
+      ]
+    }
+  ]
+}
