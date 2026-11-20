@@ -6,7 +6,7 @@
 		{% set level = (b.level or 2) + 1 %}
 		<h{{ level }} class="tcd-heading"{% if b.anchor %} id="{{ b.anchor|e }}"{% endif %}>{{ b.text|e }}</h{{ level }}>
 	{% elif b.type == "paragraph" %}
-		<p class="tcd-paragraph">{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</p>
+		<p class="tcd-paragraph{% if b.md %} tcd-md{% endif %}">{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</p>
 	{% elif b.type == "markdown" %}
 		<div class="tcd-markdown">{{ b.html or "" }}</div>
 	{% elif b.type == "code" %}
@@ -14,7 +14,7 @@
 	{% elif b.type == "callout" %}
 		<aside class="tcd-callout tcd-callout-{{ (b.variant or 'info')|e }}">
 			{% if b.title %}<strong class="tcd-callout-title">{{ b.title|e }}</strong>{% endif %}
-			<div>{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</div>
+			<div{% if b.md %} class="tcd-md"{% endif %}>{% if b.html %}{{ b.html }}{% else %}{{ b.text|e }}{% endif %}</div>
 		</aside>
 	{% elif b.type == "list" %}
 		{% set tag = "ol" if b.ordered else "ul" %}

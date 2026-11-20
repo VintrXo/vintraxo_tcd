@@ -545,3 +545,12 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 .tcd-md-bar { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-block: 0.25rem; }
 .tcd-md-bar .btn { min-inline-size: 2rem; font-weight: 700; }
 .tcd-md-preview { min-block-size: 4rem; padding: 0.6rem 0.8rem; border: 1px dashed var(--tcd-border); border-radius: 10px; background: var(--tcd-surface); font-weight: normal; }
+
+/* Phase 29: Markdown-rendered paragraphs / callouts keep HTML spacing; text follows the page's own direction
+   (an English page on an Arabic site is left-aligned, and the other way round) */
+.tcd-md { white-space: normal; }
+.tcd-callout .tcd-md > :first-child { margin-block-start: 0; }
+.tcd-callout .tcd-md > :last-child { margin-block-end: 0; }
+.tcd-callout { white-space: normal; }
+.tcd-callout > div:not(.tcd-md) { white-space: pre-line; }
+.tcd-content[dir] :is(p, li, h1, h2, h3, h4, td, th, aside, figcaption, dd, dt, .tcd-hero, .tcd-hero *) { text-align: start; }

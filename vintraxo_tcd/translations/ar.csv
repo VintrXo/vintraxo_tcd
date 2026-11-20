@@ -2310,3 +2310,4 @@ Link,رابط
 {0} trial accounts are still enabled.,{0} من حسابات التجربة لسه شغالة.
 Google Calendar {0} does not exist. Connect it from the Desk first.,تقويم Google ‏{0} غير موجود. اربطه من الديسك الأول.
 Payment Gateway {0} does not exist.,بوابة الدفع {0} غير موجودة.
+Menu item {0} skipped: its target was not exported.,تم تخطي عنصر القائمة {0}: الصفحة المرتبطة به لم يتم تصديرها.

@@ -44,6 +44,50 @@ class TestPhase27Move(TCDTestCase):
 			self.assertEqual(move.import_spaces(d)["ph27-copy"], "skipped (already here)")
 			self.assertEqual(frappe.db.count("TCD Content", {"space": "ph27-copy"}), 1)
 
+	def test_menu_and_images_travel(self):
+		png = (
+			b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15"
+			b"\xc4\x89\x00\x00\x00\rIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82"
+		)
+		f = frappe.get_doc(
+			{"doctype": "File", "file_name": "ph27-pic.png", "content": png, "is_private": 0}
+		).insert()
+		page = make_content(self.space, "With picture")
+		page.blocks = json.dumps([{"type": "image", "url": f.file_url, "alt": "pic"}])
+		page.save()
+		sp = frappe.get_doc("TCD Space", self.space)
+		sp.append("navigation", {"group_title": "Start", "link_type": "Page", "content": page.name})
+		sp.append(
+			"navigation",
+			{
+				"group_title": "Start",
+				"link_type": "External Link",
+				"url": "https://example.com",
+				"label": "Out",
+			},
+		)
+		sp.save()
+		with tempfile.TemporaryDirectory() as d:
+			move.export_spaces(d, [self.space])
+			manifest = json.load(open(os.path.join(d, "files", "manifest.json")))
+			self.assertIn(f.file_url, manifest)
+			path = os.path.join(d, f"{self.space}.json")
+			bundle = json.load(open(path))
+			bundle["space"]["space_name"] = "ph27-copy"
+			json.dump(bundle, open(path, "w"))
+			frappe.delete_doc("File", f.name, force=True)  # as on a server that never had the picture
+
+			move.import_spaces(d)
+		copy = frappe.get_doc("TCD Space", "ph27-copy")
+		new_page = frappe.db.get_value("TCD Content", {"space": "ph27-copy", "slug": page.slug})
+		self.assertEqual([r.content for r in copy.navigation if r.link_type == "Page"], [new_page])
+		self.assertEqual(
+			[r.url for r in copy.navigation if r.link_type == "External Link"], ["https://example.com"]
+		)
+		url = json.loads(frappe.db.get_value("TCD Content", new_page, "blocks"))[0]["url"]
+		restored = frappe.get_doc("File", {"file_url": url})
+		self.assertEqual(open(restored.get_full_path(), "rb").read(), png)
+
 	def test_cli_setup_sets_a_language(self):
 		from frappe.locale import get_date_format
 

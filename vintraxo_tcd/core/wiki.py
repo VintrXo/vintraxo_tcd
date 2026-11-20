@@ -131,16 +131,40 @@ def table_of_contents(blocks: list) -> list[dict]:
 	return toc
 
 
+# Markdown in a paragraph / callout (the editors offer a Markdown toolbar and preview for both): bold, italic,
+# code, links, lists, backslash escapes. Text without any of these stays plain text, as before.
+MD_INLINE = re.compile(
+	r"\*\*[^*\n]+\*\*|(?<![\w*])\*[^*\s][^*\n]*\*(?!\w)|`[^`\n]+`|\[[^\]\n]+\]\([^)\s]+\)"
+	r"|\\[\\`*_\[\]<>]|^\s*(?:[-*]|\d+\.)\s|<(?:strong|em|code)>",
+	re.M,
+)
+PARA = re.compile(r"^<p>(.*)</p>$", re.S)
+
+
+def render_paragraph_markdown(text: str, space: str) -> str:
+	"""Markdown -> sanitized HTML that fits inside <p> (paragraph blocks)."""
+	html = render_markdown(text, space).strip()
+	m = PARA.match(html)
+	if m and "<p>" not in m.group(1):
+		return m.group(1)
+	return re.sub(r"</p>\s*<p>", "<br><br>", html).removeprefix("<p>").removesuffix("</p>")
+
+
 def prepare_blocks(blocks: list, space: str) -> list:
 	"""Add a safe `html` key to text blocks for the portal renderer."""
 	out = []
 	for block in blocks:
 		b = dict(block)
 		b.pop("html", None)  # only this function produces html; never trust a stored one
+		text = b.get("text") or ""
 		if b.get("type") == "markdown":
-			b["html"] = render_markdown(b.get("text"), space)
-		elif b.get("type") in ("paragraph", "callout") and LINK_RE.search(b.get("text") or ""):
-			b["html"] = render_inline(b.get("text"), space)
+			b["html"] = render_markdown(text, space)
+		elif b.get("type") == "paragraph" and MD_INLINE.search(text):
+			b["html"], b["md"] = render_paragraph_markdown(text, space), True
+		elif b.get("type") == "callout" and MD_INLINE.search(text):
+			b["html"], b["md"] = render_markdown(text, space), True
+		elif b.get("type") in ("paragraph", "callout") and LINK_RE.search(text):
+			b["html"] = render_inline(text, space)
 		out.append(b)
 	return out
 

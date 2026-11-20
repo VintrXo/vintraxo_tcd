@@ -140,7 +140,8 @@ expired every policy and certificate without an expiry date. Both jobs now filte
 | Phase 25 — Certified learners + Markdown editor | 7c69940 | 238 | Opt-in certified learners page with platform stats; Markdown toolbar + sanitized preview in suggestions and the studio |
 | Phase 26 — Move kit (server in one bundle, keys in one file) | db5e812 | 244 | export_internal.sh bundles apps/patches/backup; install_prereqs.sh + setup_server.sh rebuild the server; keys.json fills every key; readiness warns about trial accounts |
 | Phase 27 — Install on the existing server | 915752f | 247 | install_on_existing.sh (backup, get-app/pull, requirements, install/migrate, keys, content, readiness); space export/import from the command line; language set for bench execute (Frappe locale bug); defusedxml declared (0.3.1); API check against frappe 16.60.1 |
-| Phase 28 — Code runner install (Judge0) | this commit | 247 | deploy/judge0/install_judge0.sh: pinned Judge0 1.13.1, cgroup v1, token, no network, localhost + Caddy + firewall, Java smoke test, keys.json lines |
+| Phase 28 — Code runner install (Judge0) | 84b4184 | 247 | deploy/judge0/install_judge0.sh: pinned Judge0 1.13.1, cgroup v1, token, no network, localhost + Caddy + firewall, Java smoke test, keys.json lines |
+| Phase 29 — Odoo 18 docs (EN + AR) + Markdown text + space transfer fixes | this commit | 251 | 848 pages per language with images (CC BY-SA, source line on every page); Markdown in paragraphs / callouts; page text follows page language; space import keeps the menu; space export carries files |
 
 ## Phase 7 — Notifications and analytics: status
 

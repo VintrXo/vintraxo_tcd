@@ -159,7 +159,7 @@ class Importer:
 				)
 			)
 		space = dict(self.b["space"])
-		self.insert("TCD Space", space, space_name=self.target)
+		self.insert("TCD Space", space, space_name=self.target, navigation=[])  # menu: after its targets
 		self.natural("TCD Skill", "skills", "skill_name")
 		self.natural(
 			"TCD Question Category", "question_categories", "category_name", parent="parent_category"
@@ -169,9 +169,30 @@ class Importer:
 		self.questions()
 		self.offerings()
 		self.quizzes_assignments_relations()
+		self.navigation()
 		self.restore_statuses()
 		counts = {k: len(v) for k, v in self.map.items()}
 		return {"space": self.target, "created": counts, "log": self.log}
+
+	def navigation(self):
+		"""Space menu (Phase 22): links point to the new pages / courses / paths; others are dropped."""
+		rows = self.b["space"].get("navigation") or []
+		if not rows:
+			return
+		targets = {"content": "TCD Content", "course": "TCD Course", "learning_path": "TCD Learning Path"}
+		space = frappe.get_doc("TCD Space", self.target)
+		for row in rows:
+			row = {k: v for k, v in row.items() if k not in ("name", "_id")}
+			for field, doctype in targets.items():
+				if row.get(field):
+					row[field] = self.new(doctype, row[field])
+			if row.get("link_type") != "External Link" and not any(row.get(f) for f in targets):
+				self.log.append(
+					_("Menu item {0} skipped: its target was not exported.").format(row.get("label") or "")
+				)
+				continue
+			space.append("navigation", row)
+		space.save()
 
 	def natural(self, doctype, key, field, parent=None):
 		for row in self.b.get(key) or []:
