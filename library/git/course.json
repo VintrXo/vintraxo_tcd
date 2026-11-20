@@ -1,0 +1,18 @@
+{
+  "key": "git",
+  "spaces": {
+    "ar": {"name": "git-ar", "title": "تعلّم Git", "description": "إدارة إصدارات الكود بـ Git و GitHub: الحفظ، الفروع، الدمج، حل التعارضات، والعمل مع فريق."},
+    "en": {"name": "git-en", "title": "Learn Git", "description": "Version control with Git and GitHub: commits, branches, merging, resolving conflicts and working in a team."}
+  },
+  "course": {
+    "ar": {"title": "دورة Git الكاملة", "summary": "احفظ كل نسخة من مشروعك، وجرّب بأمان بالفروع، واعمل مع فريقك على GitHub."},
+    "en": {"title": "Complete Git course", "summary": "Keep every version of your project, experiment safely with branches, and work with your team on GitHub."}
+  },
+  "chapters": [
+    {"ar": "البداية", "en": "Getting started", "lessons": ["git-intro", "git-config", "git-init"]},
+    {"ar": "العمل اليومي", "en": "Everyday work", "lessons": ["git-commit", "git-log-diff", "git-undo", "git-ignore"]},
+    {"ar": "الفروع", "en": "Branches", "lessons": ["git-branches", "git-merge", "git-conflicts"]},
+    {"ar": "العمل مع الآخرين", "en": "Working with others", "lessons": ["git-remote", "git-workflow"]},
+    {"ar": "المرجع", "en": "Reference", "lessons": ["git-reference"]}
+  ]
+}
