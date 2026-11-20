@@ -29,6 +29,8 @@
 			ready = loadPyodide({ indexURL: indexURL }).then(function (py) {
 				py.setStdout({ batched: (s) => postMessage({ type: "stdout", text: s + "\n" }) });
 				py.setStderr({ batched: (s) => postMessage({ type: "stderr", text: s + "\n" }) });
+				// libraries' deprecation notices (e.g. pandas about pyarrow) only confuse learners; other warnings stay
+				py.runPython("import warnings\nwarnings.filterwarnings('ignore', category=DeprecationWarning)\nwarnings.filterwarnings('ignore', category=FutureWarning)");
 				postMessage({ type: "loaded" });
 				return py;
 			});

@@ -430,7 +430,9 @@ def js_labels() -> dict:
 		"reset": _("Reset"),
 		"running": _("Running..."),
 		"loading_runtime": _("Loading runtime (first run can take a few seconds)..."),
-		"runner_off": _("This example runs once the code runner is enabled. You can still read and edit the code."),
+		"runner_off": _(
+			"This example runs once the code runner is enabled. You can still read and edit the code."
+		),
 		"done_in": _("Done in {0} ms"),
 		"timeout": _("Stopped: time limit of {0} seconds reached."),
 		"stopped": _("Stopped."),

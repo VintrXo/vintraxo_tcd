@@ -1,0 +1,63 @@
+{
+  "key": "pandas",
+  "spaces": {
+    "ar": {
+      "name": "pandas-ar",
+      "title": "تعلّم Pandas",
+      "description": "تحليل البيانات في بايثون: الجداول DataFrame، القراءة من CSV، التصفية، التنظيف، التجميع، الدمج والرسوم."
+    },
+    "en": {
+      "name": "pandas-en",
+      "title": "Learn Pandas",
+      "description": "Data analysis in Python: DataFrames, reading CSV, filtering, cleaning, grouping, merging and charts."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Pandas",
+      "summary": "حلّل الجداول والبيانات الحقيقية كما يفعل محللو البيانات."
+    },
+    "en": {
+      "title": "Pandas course",
+      "summary": "Analyze tables and real data the way data analysts do."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "البداية",
+      "en": "Getting started",
+      "lessons": [
+        "pd-intro",
+        "pd-series",
+        "pd-dataframe",
+        "pd-csv"
+      ]
+    },
+    {
+      "ar": "العمل بالبيانات",
+      "en": "Working with data",
+      "lessons": [
+        "pd-select",
+        "pd-filter",
+        "pd-clean",
+        "pd-sort-new"
+      ]
+    },
+    {
+      "ar": "التحليل",
+      "en": "Analysis",
+      "lessons": [
+        "pd-groupby",
+        "pd-merge",
+        "pd-project",
+        "pd-reference"
+      ]
+    }
+  ],
+  "setups": {
+    "sales": {
+      "ar": "@sales_ar.py",
+      "en": "@sales_en.py"
+    }
+  }
+}
