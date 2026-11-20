@@ -88,6 +88,12 @@ class TestPhase27Move(TCDTestCase):
 		restored = frappe.get_doc("File", {"file_url": url})
 		self.assertEqual(open(restored.get_full_path(), "rb").read(), png)
 
+	def test_only_this_sites_files(self):
+		text = json.dumps(
+			{"a": "/files/x.png", "b": "[doc](https://gov.example/files/y.pdf)", "c": "(/private/files/z.pdf)"}
+		)
+		self.assertEqual(sorted(move.FILE_URL.findall(text)), ["/files/x.png", "/private/files/z.pdf"])
+
 	def test_cli_setup_sets_a_language(self):
 		from frappe.locale import get_date_format
 

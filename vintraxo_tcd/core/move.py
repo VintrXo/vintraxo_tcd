@@ -18,8 +18,9 @@ import frappe
 
 from vintraxo_tcd.core import transfer
 
-# files used by the exported records: image / file blocks, Markdown links, attachments
-FILE_URL = re.compile(r"/(?:private/)?files/[^\s\"'()\[\]<>\\]+")
+# files of THIS site used by the exported records (image / file blocks, Markdown links); not /files/ inside
+# another site's URL
+FILE_URL = re.compile(r"(?<![\w.\-/:%])/(?:private/)?files/[^\s\"'()\[\]<>\\]+")
 
 
 def _cli_only():
