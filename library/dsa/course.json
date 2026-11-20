@@ -1,0 +1,18 @@
+{
+  "key": "dsa",
+  "spaces": {
+    "ar": {"name": "dsa-ar", "title": "هياكل البيانات والخوارزميات", "description": "التعقيد Big O، البحث، الترتيب، المكدس والطابور، القوائم المترابطة، جداول التجزئة، الأشجار والرسوم البيانية، ببايثون."},
+    "en": {"name": "dsa-en", "title": "Data structures and algorithms", "description": "Big O complexity, searching, sorting, stacks and queues, linked lists, hash tables, trees and graphs, in Python."}
+  },
+  "course": {
+    "ar": {"title": "دورة هياكل البيانات والخوارزميات", "summary": "اكتب كودًا أسرع وأذكى، واستعد لمقابلات البرمجة."},
+    "en": {"title": "Data structures and algorithms course", "summary": "Write faster, smarter code, and get ready for programming interviews."}
+  },
+  "chapters": [
+    {"ar": "الأساسيات", "en": "Foundations", "lessons": ["dsa-intro", "dsa-recursion"]},
+    {"ar": "البحث والترتيب", "en": "Searching and sorting", "lessons": ["dsa-search", "dsa-simple-sorts", "dsa-fast-sorts"]},
+    {"ar": "الهياكل الخطية", "en": "Linear structures", "lessons": ["dsa-stack-queue", "dsa-linked-list", "dsa-hash"]},
+    {"ar": "الهياكل غير الخطية", "en": "Non-linear structures", "lessons": ["dsa-trees", "dsa-graphs"]},
+    {"ar": "المرجع", "en": "Reference", "lessons": ["dsa-reference"]}
+  ]
+}
