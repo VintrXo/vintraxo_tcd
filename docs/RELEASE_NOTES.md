@@ -1,3 +1,13 @@
+# 0.3.2
+- **Install on the existing production server** without touching its site: `deploy/install_on_existing.sh <site>
+  [keys.json] [spaces-dir]` (backup, get-app or pull, Python packages, install-app or migrate, build, keys, content,
+  readiness). Guide: `docs/MOVE_TO_SERVER.md` part A.
+- **Content from the command line:** `vintraxo_tcd.core.move.export_spaces` / `import_spaces` (an existing space is
+  skipped, so it is safe to run again).
+- Fix: commands run with `bench execute` set a language first; Frappe 16.33 - 16.60 crashed in its notifications
+  without one, which broke the content import.
+- Checked against frappe 16.60.1: every Frappe API the app uses exists there.
+
 # 0.3.1 (fix)
 - `defusedxml` is now a declared dependency (it was only present on the internal server through another app). On
   servers where saving a page failed with `No module named 'defusedxml'`: `bench setup requirements --python`, then

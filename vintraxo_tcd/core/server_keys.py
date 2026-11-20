@@ -211,12 +211,22 @@ def apply(data: dict) -> dict:
 	return report
 
 
-def apply_keys(path: str):
+def cli_setup():
+	"""Start of every bench-execute entry point: refuse web requests, run as Administrator, and set a
+	language. Frappe's notifications read the date format of `frappe.local.lang`, which `bench execute`
+	leaves empty (frappe.locale.get_locale_value then fails with UnboundLocalError on any save that
+	triggers a notification)."""
 	if getattr(frappe.local, "request", None):  # command line only
 		raise frappe.PermissionError
+	frappe.set_user("Administrator")
+	if not getattr(frappe.local, "lang", None):
+		frappe.local.lang = frappe.db.get_default("lang") or "en"
+
+
+def apply_keys(path: str):
+	cli_setup()
 	with open(path, encoding="utf-8") as f:
 		data = json.load(f)
-	frappe.set_user("Administrator")
 	report = apply(data)
 	for section, r in report.items():
 		line = f"[{r['status'].upper():7}] {section}"
