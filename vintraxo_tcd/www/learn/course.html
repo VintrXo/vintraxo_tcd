@@ -83,6 +83,16 @@
 		<p class="tcd-callout tcd-callout-warning">{{ _("Complete these courses first: {0}").format(unmet_prerequisites|join(", ")|e) }}</p>
 		{% elif is_guest %}
 		<p><a class="btn btn-primary" href="/login?redirect-to={{ (frappe.request.path if frappe.request else '/learn')|urlencode }}">{{ _("Log in to enroll") }}</a></p>
+		{% elif doc.coming_soon and not is_staff_preview %}
+		<div class="tcd-coming-soon">
+			<p><span class="tcd-badge tcd-badge-warn">{{ _("Coming soon") }}</span>{% if doc.opens_on %} {{ _("Expected opening: {0}").format(frappe.format_date(doc.opens_on)) }}{% endif %}</p>
+			{% if interested %}
+			<p class="tcd-status tcd-status-completed">{{ _("We will notify you when it opens.") }}</p>
+			<button type="button" class="btn btn-default btn-xs tcd-interest" data-course="{{ doc.name|e }}" data-on="0">{{ _("Stop notifying me") }}</button>
+			{% else %}
+			<button type="button" class="btn btn-primary tcd-interest" data-course="{{ doc.name|e }}" data-on="1">{{ _("Notify me when it opens") }}</button>
+			{% endif %}
+		</div>
 		{% elif data.paid and not is_staff_preview %}
 		<div class="tcd-buy" data-for="Course" data-name="{{ doc.name|e }}">
 			<p class="tcd-price"><strong>{{ frappe.utils.fmt_money(data.price, currency=data.currency) }}</strong></p>
@@ -167,7 +177,7 @@
 				{% if it.locked %}<span class="tcd-lock" aria-hidden="true"></span>{% endif %}
 				<a href="{{ it.url|e }}">{{ it.title|e }}</a>
 				{% if it.is_optional %}<span class="tcd-badge">{{ _("Optional") }}</span>{% endif %}
-				<span class="tcd-status tcd-status-{{ st }}">{{ _("Completed", context="TCD") if it.completed else (_("Locked", context="TCD") if it.locked else "") }}</span>
+				<span class="tcd-status tcd-status-{{ st }}">{% if it.completed %}{{ _("Completed", context="TCD") }}{% elif it.opens_on %}{{ _("Opens {0}").format(frappe.format_date(it.opens_on)) }}{% elif it.locked %}{{ _("Locked", context="TCD") }}{% endif %}</span>
 			</li>
 			{% endfor %}
 		</ol>

@@ -338,6 +338,26 @@
 				head.append(tools);
 			}
 			card.append(head);
+			const release = el("div", { class: "tcd-studio-release" });
+			const after = el("input", { type: "number", min: "0", class: "form-control", disabled: locked });
+			after.value = ch.release_after_days || "";
+			after.addEventListener("input", () => {
+				ch.release_after_days = parseInt(after.value || "0", 10) || 0;
+				markDirty();
+			});
+			const on = el("input", { type: "date", class: "form-control", disabled: locked });
+			on.value = ch.release_on || "";
+			on.addEventListener("input", () => {
+				ch.release_on = on.value;
+				markDirty();
+			});
+			const lab = (text, input) => {
+				const l = el("label", { class: "tcd-small" }, text);
+				l.append(input);
+				return l;
+			};
+			release.append(lab(t.opens_after || "Opens after (days)", after), lab(t.opens_on || "Opens on", on));
+			card.append(release);
 			const list = el("ol", { class: "tcd-studio-items" });
 			(ch.items || []).forEach((it, ii) => {
 				const li = el("li", { class: "tcd-studio-item" });
@@ -416,13 +436,13 @@
 
 		const save = async () => {
 			const payload = { name: doc.name || null };
-			["title", "space", "language", "visibility", "summary", "completion_rule", "minimum_score", "access", "intro_video", "cover_image", "evaluation_minutes"].forEach((f) => {
+			["title", "space", "language", "visibility", "summary", "completion_rule", "minimum_score", "access", "intro_video", "cover_image", "evaluation_minutes", "opens_on"].forEach((f) => {
 				if (form.elements[f]) payload[f] = form.elements[f].value;
 			});
-			["self_enrollment", "issue_certificate", "requires_evaluation"].forEach((f) => {
+			["self_enrollment", "coming_soon", "issue_certificate", "requires_evaluation"].forEach((f) => {
 				if (form.elements[f]) payload[f] = form.elements[f].checked ? 1 : 0;
 			});
-			if (doc.name && !locked) payload.chapters = chapters.map((c) => ({ name: c.name || null, title: c.title, items: (c.items || []).map((i) => ({ content: i.content, is_optional: i.is_optional ? 1 : 0 })) }));
+			if (doc.name && !locked) payload.chapters = chapters.map((c) => ({ name: c.name || null, title: c.title, release_after_days: c.release_after_days || 0, release_on: c.release_on || null, items: (c.items || []).map((i) => ({ content: i.content, is_optional: i.is_optional ? 1 : 0 })) }));
 			status(msg, t.saving || "Saving...");
 			const r = await call("studio_save_course", { data: JSON.stringify(payload) }, true);
 			dirty = false;

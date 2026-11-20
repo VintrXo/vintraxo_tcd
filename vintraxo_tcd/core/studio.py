@@ -23,6 +23,8 @@ COURSE_FIELDS = (
 	"completion_rule",
 	"minimum_score",
 	"self_enrollment",
+	"coming_soon",
+	"opens_on",
 	"access",
 	"issue_certificate",
 	"requires_evaluation",
@@ -259,7 +261,7 @@ def course_data(name: str | None) -> dict:
 	for ch in frappe.get_all(
 		"TCD Chapter",
 		filters={"course": name},
-		fields=["name", "title"],
+		fields=["name", "title", "release_after_days", "release_on"],
 		order_by="sort_order asc, creation asc",
 	):
 		items = frappe.get_all(
@@ -270,7 +272,15 @@ def course_data(name: str | None) -> dict:
 		)
 		for it in items:
 			it["title"] = frappe.db.get_value("TCD Content", it.content, "title")
-		chapters.append({"name": ch.name, "title": ch.title, "items": items})
+		chapters.append(
+			{
+				"name": ch.name,
+				"title": ch.title,
+				"release_after_days": ch.release_after_days or 0,
+				"release_on": str(ch.release_on) if ch.release_on else "",
+				"items": items,
+			}
+		)
 	out = {f: doc.get(f) for f in ("name", "space", "slug", "status", *COURSE_FIELDS)}
 	return {
 		"doc": out,
@@ -326,12 +336,15 @@ def _save_chapters(course, chapters: list):
 				frappe.throw(_("A course item points to a page that does not exist."))
 			frappe.has_permission("TCD Content", "read", content, throw=True)
 			rows.append({"content": content, "is_optional": 1 if it.get("is_optional") else 0})
+		release = {
+			"release_after_days": max(0, int(ch.get("release_after_days") or 0)),
+			"release_on": ch.get("release_on") or None,
+		}
 		name = ch.get("name")
 		if name and name in existing:
 			chapter = frappe.get_doc("TCD Chapter", name)
 			chapter.check_permission("write")
-			chapter.title = title
-			chapter.sort_order = order
+			chapter.update({"title": title, "sort_order": order, **release})
 			chapter.set("items", rows)
 			chapter.save()
 		else:
@@ -342,6 +355,7 @@ def _save_chapters(course, chapters: list):
 					"title": title,
 					"sort_order": order,
 					"items": rows,
+					**release,
 				}
 			)
 			chapter.insert()
@@ -405,4 +419,6 @@ def labels() -> dict:
 		"no_results": _("Nothing found. Try a shorter word."),
 		"confirm_remove": _("Remove this item?"),
 		"status_changed": _("Status changed to {0}."),
+		"opens_after": _("Opens After (days)"),
+		"opens_on": _("Opens On"),
 	}

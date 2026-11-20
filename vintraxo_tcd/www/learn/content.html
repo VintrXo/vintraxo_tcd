@@ -62,6 +62,10 @@
 	</section>
 	{% endif %}
 
+	{% if lesson.opens_on %}
+	<div class="tcd-callout tcd-callout-info tcd-opens-on">{{ _("This lesson opens on {0}.").format(frappe.format_date(lesson.opens_on)) }}</div>
+	{% endif %}
+
 	{% if unmet_prerequisites %}
 	<div class="tcd-callout tcd-callout-warning">{{ _("Complete the prerequisites first: {0}").format(unmet_prerequisites|join(", ")|e) }}</div>
 	{% endif %}

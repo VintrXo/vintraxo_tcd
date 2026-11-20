@@ -45,6 +45,8 @@
 				</select>
 			</label>
 			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="self_enrollment" {% if d.self_enrollment %}checked{% endif %}> {{ _("Self Enrollment") }}</label>
+			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="coming_soon" {% if d.coming_soon %}checked{% endif %}> {{ _("Coming Soon") }}</label>
+			<label class="tcd-studio-field">{{ _("Expected Opening") }}<input name="opens_on" type="date" class="form-control" value="{{ d.opens_on or '' }}"></label>
 			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="issue_certificate" {% if d.issue_certificate %}checked{% endif %}> {{ _("Issue Certificate") }}</label>
 			<label class="tcd-studio-field tcd-studio-check"><input type="checkbox" name="requires_evaluation" {% if d.requires_evaluation %}checked{% endif %}> {{ _("Requires Evaluation") }}</label>
 			<label class="tcd-studio-field">{{ _("Evaluation Length (minutes)") }}<input name="evaluation_minutes" type="number" min="10" max="240" class="form-control" value="{{ d.evaluation_minutes or 30 }}"></label>

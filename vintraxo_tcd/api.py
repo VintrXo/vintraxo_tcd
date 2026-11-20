@@ -89,6 +89,9 @@ def get_lesson(name: str, tutorial: str | None = None) -> dict:
 		"lesson_type": doc.lesson_type,
 		"assignment": assignment_name and get_assignment(assignment_name),
 	}
+	opens = courses.drip_lock(user, doc.name)
+	if opens:  # Phase 20: held back by the course schedule
+		out.update({"blocks": [], "quiz": None, "assignment": None, "opens_on": str(opens)})
 	if doc.content_type == "Tutorial":
 		out["tutorial"] = progress.tutorial_summary(user, doc.name)
 	elif tutorial:
@@ -127,6 +130,8 @@ def _quiz_for_user(name: str):
 	_readable_content(quiz.content)
 	if not quiz.is_active:
 		frappe.throw(frappe._("This quiz is not active."))
+	if courses.drip_lock(frappe.session.user, quiz.content):
+		frappe.throw(frappe._("This lesson is not open yet."), frappe.PermissionError)
 	return quiz
 
 
@@ -257,6 +262,8 @@ def enroll(enrollment_for: str, name: str) -> dict:
 	doc = _readable(doctype, name)
 	if doc.get("paid"):
 		frappe.throw(frappe._("This is a paid course. Use Buy."), frappe.PermissionError)
+	if doc.get("coming_soon"):
+		frappe.throw(frappe._("This course opens soon. Ask to be notified."), frappe.PermissionError)
 	if not doc.self_enrollment:
 		frappe.throw(
 			frappe._("Self enrollment is not allowed here. Ask your instructor."), frappe.PermissionError
@@ -1105,3 +1112,15 @@ def evaluation_meeting(name: str, url: str = "") -> dict:
 	from vintraxo_tcd.core import evaluations
 
 	return evaluations.set_meeting_url(name, frappe.session.user, url)
+
+
+# ---------------------------------------------------------------- coming soon (Phase 20)
+
+
+@frappe.whitelist(methods=["POST"])
+def course_interest(course: str, on: int = 1) -> dict:
+	"""Ask (or stop asking) to be notified when a coming-soon course opens."""
+	from vintraxo_tcd.core import courses as course_svc
+
+	doc = _readable("TCD Course", course)
+	return course_svc.set_interest(frappe.session.user, doc.name, bool(int(on)))

@@ -102,6 +102,11 @@ def complete(user: str, content: str, from_quiz: bool = False):
 
 	from vintraxo_tcd.core import courses
 
+	opens = courses.drip_lock(user, content)
+	if opens:
+		if from_quiz:
+			return None
+		frappe.throw(_("This lesson opens on {0}.").format(frappe.utils.formatdate(opens)))
 	blockers = courses.sequence_blockers(user, content)
 	if blockers:
 		if from_quiz:

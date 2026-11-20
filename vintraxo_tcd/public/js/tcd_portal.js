@@ -553,6 +553,26 @@
 		});
 	}
 
+	// coming soon: notify me (Phase 20)
+	function initInterest() {
+		document.querySelectorAll(".tcd-interest[data-course]").forEach((btn) =>
+			btn.addEventListener("click", async () => {
+				btn.disabled = true;
+				const message = btn.closest("section")?.querySelector(".tcd-message");
+				try {
+					await call("course_interest", { course: btn.dataset.course, on: btn.dataset.on }, true);
+					window.location.reload();
+				} catch (e) {
+					if (message) {
+						message.textContent = e.message;
+						message.hidden = false;
+					}
+					btn.disabled = false;
+				}
+			})
+		);
+	}
+
 	// reference tables (Phase 17b): filter rows as the learner types
 	function initReference() {
 		document.querySelectorAll(".tcd-reference").forEach((box) => {
@@ -825,6 +845,7 @@
 		initExercises(t0);
 		initReference();
 		initEvaluations(t0);
+		initInterest();
 		initOutline();
 		initProfile(t0);
 		initJobs(t0);

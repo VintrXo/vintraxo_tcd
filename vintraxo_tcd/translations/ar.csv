@@ -2174,3 +2174,24 @@ Sunday,الأحد
 Sunday,الأحد,TCD Evaluator Slot
 Date,التاريخ
 Certificate,الشهادة
+TCD Course Interest,طلب تنبيه بالدورة
+Notified,تم التنبيه
+Opens After (days),تُفتح بعد (أيام)
+Days after the learner enrolls; 0 = at once,أيام بعد تسجيل المتعلم؛ 0 = فورًا
+Opens On,تُفتح في
+Not before this date (optional),ليس قبل هذا التاريخ (اختياري)
+Coming Soon,قريبًا
+Coming soon,قريبًا
+Expected Opening,الافتتاح المتوقع
+"Shown to learners, but nobody can enroll yet; they can ask to be notified",تظهر للمتعلمين لكن لا يمكن التسجيل بعد؛ يمكنهم طلب تنبيه
+This lesson opens on {0}.,هذا الدرس يُفتح في {0}.
+This lesson is not open yet.,هذا الدرس لم يُفتح بعد.
+Opens {0},يُفتح {0}
+Expected opening: {0},الافتتاح المتوقع: {0}
+We will notify you when it opens.,سننبهك عند الافتتاح.
+Stop notifying me,أوقف التنبيه
+Notify me when it opens,نبّهني عند الافتتاح
+This course opens soon. Ask to be notified.,هذه الدورة تُفتح قريبًا. اطلب التنبيه.
+This course is already open.,هذه الدورة مفتوحة بالفعل.
+{0} is open now. You can enroll.,{0} مفتوحة الآن. يمكنك التسجيل.
+Learners ask to be notified from the course page.,المتعلمون يطلبون التنبيه من صفحة الدورة.

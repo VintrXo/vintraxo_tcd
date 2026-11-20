@@ -18,6 +18,8 @@
   "minimum_attendance",
   "column_break_2",
   "self_enrollment",
+  "coming_soon",
+  "opens_on",
   "access_section",
   "access",
   "instructors",
@@ -133,6 +135,18 @@
    "fieldtype": "Check",
    "label": "Allow Self Enrollment",
    "default": "1"
+  },
+  {
+   "fieldname": "coming_soon",
+   "fieldtype": "Check",
+   "label": "Coming Soon",
+   "description": "Shown to learners, but nobody can enroll yet; they can ask to be notified"
+  },
+  {
+   "fieldname": "opens_on",
+   "fieldtype": "Date",
+   "label": "Expected Opening",
+   "depends_on": "coming_soon"
   },
   {
    "fieldname": "access_section",
@@ -266,7 +280,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 19:00:00.000000",
+ "modified": "2026-11-20 20:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Course",

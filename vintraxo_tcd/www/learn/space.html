@@ -45,6 +45,7 @@
 				<a href="{{ o.url|e }}" dir="{{ 'rtl' if o.language == 'ar' else 'ltr' }}">
 					{% if o.cover_image %}<img class="tcd-card-cover" src="{{ o.cover_image|e }}" alt="" loading="lazy">{% endif %}
 					<span class="tcd-badge">{{ _("Learning Path") if o.kind == "path" else _("Course", context="TCD") }}</span>
+					{% if o.coming_soon %}<span class="tcd-badge tcd-badge-warn">{{ _("Coming soon") }}</span>{% endif %}
 					{% if o.status != "Published" %}<span class="tcd-badge tcd-badge-warn">{{ _(o.status, context="TCD") }}</span>{% endif %}
 					<strong>{{ o.title|e }}</strong>
 					{% if o.summary %}<span class="tcd-muted">{{ o.summary|e }}</span>{% endif %}

@@ -31,6 +31,9 @@ class TCDCourse(Document):
 		self.search_text = connect.course_search_text(self)
 		courses.validate_offering_status(self)
 
+	def on_update(self):
+		courses.notify_interested(self)
+
 	def on_trash(self):
 		if frappe.db.exists("TCD Enrollment", {"course": self.name}):
 			frappe.throw(_("Cannot delete a course that has enrollments. Archive it instead."))

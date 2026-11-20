@@ -212,10 +212,11 @@ def space_context(space_name: str) -> dict:
 
 	offerings = []
 	for doctype, kind, url in (("TCD Learning Path", "path", path_url), ("TCD Course", "course", course_url)):
+		extra = ["coming_soon"] if kind == "course" else []
 		rows_o = frappe.get_list(
 			doctype,
 			filters={"space": space.name},
-			fields=["name", "title", "slug", "summary", "language", "status", "cover_image"],
+			fields=["name", "title", "slug", "summary", "language", "status", "cover_image", *extra],
 			order_by="title asc",
 			limit_page_length=200,
 		)
@@ -323,7 +324,8 @@ def content_context(
 		and lesson["progress"] != "Completed"
 		and not (quiz_required and not (lesson["quiz"] or {}).get("passed"))
 		and not blockers
-		and not unmet,
+		and not unmet
+		and not lesson.get("opens_on"),
 		"quiz_required": quiz_required,
 		"sequence_blockers": blockers,
 		"unmet_prerequisites": unmet,
@@ -446,6 +448,7 @@ def js_labels() -> dict:
 		"false": _("False"),
 		"preview": _("Preview"),
 		"booked": _("Booked. The evaluator has been notified."),
+		"interest_on": _("We will notify you when it opens."),
 		"confirm_cancel_evaluation": _("Cancel this evaluation?"),
 		"result_saved": _("Result saved."),
 		"copy": _("Copy", context="TCD"),
@@ -552,6 +555,7 @@ def _offering_by_slug(doctype: str, space: str, slug: str):
 
 def course_context(space_name: str, slug: str) -> dict:
 	from vintraxo_tcd import api
+	from vintraxo_tcd.core import courses as course_svc
 	from vintraxo_tcd.core import evaluations
 
 	space = get_space(space_name)
@@ -595,6 +599,9 @@ def course_context(space_name: str, slug: str) -> dict:
 			as_dict=True,
 		),
 		"evaluation": evaluations.state(user, course.name),
+		"interested": user != "Guest"
+		and course.get("coming_soon")
+		and course_svc.is_interested(user, course.name),
 		"js_labels": js_labels(),
 	}
 

@@ -339,6 +339,13 @@ New content block `reference` (entries "name | description | example", optional 
 
 New TCD Course fields: requires_evaluation, evaluation_minutes, evaluators.
 
+## Phase 20
+| DocType | Purpose |
+|---|---|
+| TCD Course Interest | "Notify me when it opens" requests for coming-soon courses |
+
+New fields: TCD Chapter (release_after_days, release_on); TCD Course (coming_soon, opens_on).
+
 ## Decisions
 - One lesson entity, reused by tutorials and courses: TCD Content with content_type = Lesson
 - Blocks stored as JSON with a fixed schema; `search_text` derived on save

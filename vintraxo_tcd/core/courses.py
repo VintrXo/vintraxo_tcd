@@ -3,9 +3,11 @@
 Roll-up chain: lesson (TCD Progress) -> chapter (computed) -> course enrollment -> path enrollment.
 """
 
+from datetime import date
+
 import frappe
 from frappe import _
-from frappe.utils import flt, now_datetime
+from frappe.utils import add_days, flt, getdate, now_datetime, nowdate
 
 from vintraxo_tcd.core.content import REVIEW_ROLES, require_approval
 
@@ -21,7 +23,7 @@ def course_items(course: str) -> list[dict]:
 	chapters = frappe.get_all(
 		"TCD Chapter",
 		filters={"course": course},
-		fields=["name", "title"],
+		fields=["name", "title", "release_after_days", "release_on"],
 		order_by="sort_order asc, creation asc",
 		ignore_permissions=True,
 	)
@@ -40,6 +42,8 @@ def course_items(course: str) -> list[dict]:
 					"chapter_title": ch.title,
 					"content": row.content,
 					"is_optional": bool(row.is_optional),
+					"release_after_days": int(ch.release_after_days or 0),
+					"release_on": ch.release_on,
 				}
 			)
 	return items
@@ -207,6 +211,44 @@ def _best_scores(user: str, contents: list[str]) -> dict:
 	return best
 
 
+# ---------------------------------------------------------------- scheduled release (Phase 20, ADR-0028)
+
+
+def release_date(item: dict, enrolled_on) -> date | None:
+	"""When a course item opens for a learner: the later of the chapter's fixed date and
+	`enrolled_on + release_after_days`. None means it is open from the start."""
+	dates = []
+	if item.get("release_on"):
+		dates.append(getdate(item["release_on"]))
+	if item.get("release_after_days") and enrolled_on:
+		dates.append(getdate(add_days(getdate(enrolled_on), int(item["release_after_days"]))))
+	return max(dates) if dates else None
+
+
+def _enrolled_on(user: str, course: str):
+	return frappe.db.get_value(
+		"TCD Enrollment",
+		{"user": user, "course": course, "status": ("in", ["Active", "Pending Approval"])},
+		"enrolled_on",
+	)
+
+
+def drip_lock(user: str, content: str) -> date | None:
+	"""The date `content` opens for this learner, when every active course of theirs that contains it
+	still holds it back. None = open."""
+	waits = []
+	for course in courses_with_content(content):
+		enrolled_on = _enrolled_on(user, course)
+		if not enrolled_on:
+			continue
+		item = next((i for i in course_items(course) if i["content"] == content), None)
+		opens = release_date(item, enrolled_on) if item else None
+		if not opens or opens <= getdate(nowdate()):
+			return None  # one active course already opened it
+		waits.append(opens)
+	return min(waits) if waits else None
+
+
 def course_status(user: str, course: str) -> dict:
 	"""Per-item and per-chapter state plus the course result under its completion rule."""
 	rule, minimum, min_attendance = frappe.db.get_value(
@@ -219,9 +261,15 @@ def course_status(user: str, course: str) -> dict:
 
 	blocked = False
 	chapters: dict[str, dict] = {}
+	enrolled_on = _enrolled_on(user, course)
+	today = getdate(nowdate())
 	for item in items:
 		item["completed"] = item["content"] in done
-		item["locked"] = rule == "Required Sequence" and blocked and not item["completed"]
+		opens = release_date(item, enrolled_on) if enrolled_on else None
+		item["opens_on"] = opens if opens and opens > today and not item["completed"] else None
+		item["locked"] = bool(item["opens_on"]) or (
+			rule == "Required Sequence" and blocked and not item["completed"]
+		)
 		if not item["is_optional"] and not item["completed"]:
 			blocked = True
 		ch = chapters.setdefault(
@@ -460,3 +508,46 @@ def approve(enrollment_name: str):
 		for path in paths_with_course(doc.course):
 			refresh_path(doc.user, path)
 	return doc
+
+
+# ---------------------------------------------------------------- coming soon (Phase 20)
+
+
+def set_interest(user: str, course: str, on: bool) -> dict:
+	if user == "Guest":
+		raise frappe.PermissionError
+	if not frappe.db.get_value("TCD Course", course, "coming_soon"):
+		frappe.throw(_("This course is already open."))
+	existing = frappe.db.get_value("TCD Course Interest", {"user": user, "course": course, "notified": 0})
+	if on and not existing:
+		doc = frappe.get_doc({"doctype": "TCD Course Interest", "user": user, "course": course})
+		doc.flags.from_service = True
+		doc.insert(ignore_permissions=True)
+	elif not on and existing:
+		frappe.delete_doc("TCD Course Interest", existing, ignore_permissions=True)
+	return {"interested": on}
+
+
+def is_interested(user: str, course: str) -> bool:
+	return bool(frappe.db.exists("TCD Course Interest", {"user": user, "course": course, "notified": 0}))
+
+
+def notify_interested(course_doc):
+	"""TCD Course.on_update: tell everyone who asked once the course is open (published, not coming soon)."""
+	before = course_doc.get_doc_before_save()
+	opened = course_doc.status == "Published" and not course_doc.coming_soon
+	was_open = before and before.status == "Published" and not before.coming_soon
+	if not opened or was_open:
+		return
+	from vintraxo_tcd.core import notify
+
+	for row in frappe.get_all(
+		"TCD Course Interest", filters={"course": course_doc.name, "notified": 0}, fields=["name", "user"]
+	):
+		notify._send(
+			[row.user],
+			_("{0} is open now. You can enroll.").format(course_doc.title),
+			"TCD Course",
+			course_doc.name,
+		)
+		frappe.db.set_value("TCD Course Interest", row.name, "notified", 1)

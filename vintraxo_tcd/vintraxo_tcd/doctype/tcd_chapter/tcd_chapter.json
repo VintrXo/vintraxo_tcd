@@ -8,6 +8,8 @@
   "course",
   "column_break_1",
   "sort_order",
+  "release_after_days",
+  "release_on",
   "space",
   "items_section",
   "items"
@@ -42,6 +44,18 @@
    "in_list_view": 1
   },
   {
+   "fieldname": "release_after_days",
+   "fieldtype": "Int",
+   "label": "Opens After (days)",
+   "description": "Days after the learner enrolls; 0 = at once"
+  },
+  {
+   "fieldname": "release_on",
+   "fieldtype": "Date",
+   "label": "Opens On",
+   "description": "Not before this date (optional)"
+  },
+  {
    "fieldname": "space",
    "fieldtype": "Link",
    "options": "TCD Space",
@@ -62,7 +76,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 15:00:00.000000",
+ "modified": "2026-11-20 20:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Chapter",
