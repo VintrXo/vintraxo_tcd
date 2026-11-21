@@ -1,0 +1,75 @@
+<style>
+body { font-family: system-ui, sans-serif; margin: 0; padding: 10px; }
+#pg-out { direction: ltr; text-align: left; font-size: 14px; }
+#pg-out table { border-collapse: collapse; margin: 0 0 12px; }
+#pg-out th, #pg-out td { border: 1px solid #d0d7de; padding: 4px 10px; white-space: nowrap; }
+#pg-out th { background: #f1f5f9; }
+#pg-out td.null { color: #94a3b8; font-style: italic; }
+#pg-out .pg-msg { color: #475569; margin: 0 0 10px; font-family: ui-monospace, monospace; }
+#pg-out .pg-err { color: #b00020; white-space: pre-wrap; font-family: ui-monospace, monospace; }
+</style>
+<div id="pg-out"><p class="pg-msg">Starting PostgreSQL…</p></div>
+<script type="module">
+// Real PostgreSQL (PGlite, WebAssembly) running in this sandboxed frame, with sample tables, fresh on every run.
+import { PGlite } from "https://cdn.jsdelivr.net/npm/@electric-sql/pglite@0.5.15/dist/index.js";
+const out = document.getElementById("pg-out");
+const SEED = `
+CREATE TABLE departments (id int PRIMARY KEY, name text NOT NULL, city text);
+INSERT INTO departments VALUES (1,'Sales','Cairo'),(2,'IT','Cairo'),(3,'HR','Alexandria'),(4,'Finance','Giza');
+CREATE TABLE employees (id int PRIMARY KEY, name text NOT NULL, department_id int REFERENCES departments(id), job text,
+  salary numeric(10,2), hired_on date, manager_id int REFERENCES employees(id), email text);
+INSERT INTO employees VALUES
+ (1,'Sara Ali',2,'IT Manager',32000,'2018-03-01',NULL,'sara@example.com'),
+ (2,'Omar Hassan',2,'Developer',21000,'2020-07-15',1,'omar@example.com'),
+ (3,'Lina Adel',2,'Developer',23500,'2019-11-02',1,NULL),
+ (4,'Karim Nabil',1,'Sales Manager',28000,'2017-05-20',NULL,'karim@example.com'),
+ (5,'Mona Samir',1,'Sales Rep',14000,'2022-01-10',4,'mona@example.com'),
+ (6,'Youssef Farid',1,'Sales Rep',15500,'2021-09-01',4,NULL),
+ (7,'Nour Tarek',3,'HR Specialist',16000,'2023-02-14',NULL,'nour@example.com'),
+ (8,'Hany Wael',NULL,'Intern',6000,'2024-06-01',NULL,NULL);
+CREATE TABLE customers (id int PRIMARY KEY, name text NOT NULL, city text, joined_on date);
+INSERT INTO customers VALUES (1,'Nile Trading','Cairo','2023-01-05'),(2,'Delta Foods','Tanta','2023-04-18'),
+ (3,'Sea Breeze Hotels','Alexandria','2024-02-01'),(4,'Pyramid Tech','Giza','2024-08-12'),(5,'Sinai Tours','Sharm','2025-01-20');
+CREATE TABLE products (id int PRIMARY KEY, name text NOT NULL, category text, price numeric(10,2));
+INSERT INTO products VALUES (1,'Laptop','Hardware',25000),(2,'Monitor','Hardware',6000),(3,'Keyboard','Accessories',900),
+ (4,'Mouse','Accessories',450),(5,'Office license','Software',3200),(6,'Antivirus','Software',1100);
+CREATE TABLE orders (id int PRIMARY KEY, customer_id int REFERENCES customers(id), sales_rep_id int REFERENCES employees(id),
+  ordered_on date, status text);
+INSERT INTO orders VALUES (101,1,5,'2025-01-10','delivered'),(102,2,6,'2025-01-22','delivered'),(103,1,5,'2025-02-03','shipped'),
+ (104,3,6,'2025-02-17','delivered'),(105,4,5,'2025-03-01','cancelled'),(106,1,6,'2025-03-09','pending');
+CREATE TABLE order_items (order_id int REFERENCES orders(id), product_id int REFERENCES products(id), qty int, PRIMARY KEY (order_id, product_id));
+INSERT INTO order_items VALUES (101,1,2),(101,3,2),(102,5,10),(102,6,10),(103,2,3),(104,1,1),(104,4,5),(105,3,4),(106,1,3),(106,2,3);
+`;
+const msg = (cls, text) => { const p = document.createElement("p"); p.className = cls; p.textContent = text; out.appendChild(p); };
+const cell = (v) => v === null ? "NULL" : v instanceof Date ? (isNaN(v) ? "" : v.toISOString().replace("T00:00:00.000Z", "").replace(".000Z", "Z"))
+  : typeof v === "object" ? JSON.stringify(v) : String(v);
+function table(r) {
+  const t = document.createElement("table"), head = t.insertRow();
+  for (const f of r.fields) { const th = document.createElement("th"); th.textContent = f.name; head.appendChild(th); }
+  for (const row of r.rows.slice(0, 200)) {
+    const tr = t.insertRow();
+    for (const f of r.fields) { const td = tr.insertCell(); const v = row[f.name]; td.textContent = cell(v); if (v === null) td.className = "null"; }
+  }
+  out.appendChild(t);
+  msg("pg-msg", r.rows.length + (r.rows.length === 1 ? " row" : " rows") + (r.rows.length > 200 ? " (first 200 shown)" : ""));
+}
+try {
+  const db = new PGlite();
+  await db.exec(SEED);
+  out.textContent = "";
+  const started = performance.now();
+  for (const s of document.querySelectorAll('script[type="text/postgresql"]')) {
+    try {   // each block runs on its own: an error in one block does not hide the results of the others
+      for (const r of await db.exec(s.textContent)) {
+        if (r.fields.length) table(r);
+        else msg("pg-msg", "OK" + (r.affectedRows ? " (" + r.affectedRows + " rows changed)" : ""));
+      }
+    } catch (e) {
+      msg("pg-err", "ERROR: " + (e.message || e));
+    }
+  }
+  msg("pg-msg", "done in " + Math.round(performance.now() - started) + " ms");
+} catch (e) {
+  msg("pg-err", "ERROR: " + (e.message || e));
+}
+</script>

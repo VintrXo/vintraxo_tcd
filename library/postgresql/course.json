@@ -1,0 +1,62 @@
+{
+  "key": "postgresql",
+  "category": "Data",
+  "spaces": {
+    "ar": {
+      "name": "postgresql-ar",
+      "title": "تعلّم PostgreSQL",
+      "description": "قاعدة بيانات PostgreSQL حقيقية تعمل في متصفحك: الاستعلام والتصفية، الدوال و CASE، التجميع، الربط، الاستعلامات الفرعية و CTE، دوال النوافذ، الجداول والقيود، تعديل البيانات، JSON، الفهارس والمعاملات، والعروض والدوال."
+    },
+    "en": {
+      "name": "postgresql-en",
+      "title": "Learn PostgreSQL",
+      "description": "A real PostgreSQL database running in your browser: querying and filtering, functions and CASE, aggregates, joins, subqueries and CTEs, window functions, tables and constraints, changing data, JSON, indexes and transactions, views and functions."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة PostgreSQL",
+      "summary": "أقوى قاعدة بيانات مفتوحة المصدر، بأمثلة تعمل على PostgreSQL حقيقية في المتصفح."
+    },
+    "en": {
+      "title": "PostgreSQL course",
+      "summary": "The most capable open-source database, with examples that run on a real PostgreSQL in your browser."
+    }
+  },
+  "setups": {
+    "pg": "@setup.html"
+  },
+  "chapters": [
+    {
+      "ar": "الاستعلام",
+      "en": "Querying",
+      "lessons": [
+        "pg-intro",
+        "pg-select",
+        "pg-expressions",
+        "pg-aggregate",
+        "pg-joins"
+      ]
+    },
+    {
+      "ar": "استعلامات متقدمة",
+      "en": "Advanced queries",
+      "lessons": [
+        "pg-subqueries",
+        "pg-window",
+        "pg-json"
+      ]
+    },
+    {
+      "ar": "تصميم البيانات وإدارتها",
+      "en": "Designing and managing data",
+      "lessons": [
+        "pg-ddl",
+        "pg-dml",
+        "pg-performance",
+        "pg-views-functions",
+        "pg-reference"
+      ]
+    }
+  ]
+}

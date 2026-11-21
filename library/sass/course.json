@@ -1,0 +1,59 @@
+{
+  "key": "sass",
+  "category": "Web",
+  "spaces": {
+    "ar": {
+      "name": "sass-ar",
+      "title": "تعلّم Sass",
+      "description": "Sass الحديثة بمترجمها الرسمي في متصفحك: المتغيرات والتداخل، و mixins و extend، والوحدات و @use، والدوال، والخرائط والحلقات، ومشروع نظام سمات."
+    },
+    "en": {
+      "name": "sass-en",
+      "title": "Learn Sass",
+      "description": "Modern Sass with the official compiler in your browser: variables and nesting, mixins and extend, modules and @use, functions, maps and loops, and a theme system project."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Sass",
+      "summary": "اكتب CSS أقصر وأسهل في الصيانة بالمتغيرات والتداخل والـ mixins."
+    },
+    "en": {
+      "title": "Sass course",
+      "summary": "Write shorter, more maintainable CSS with variables, nesting and mixins."
+    }
+  },
+  "setups": {
+    "scss": "@setup.html"
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Basics",
+      "lessons": [
+        "sass-intro",
+        "sass-variables",
+        "sass-nesting"
+      ]
+    },
+    {
+      "ar": "إعادة الاستخدام",
+      "en": "Reuse",
+      "lessons": [
+        "sass-mixins",
+        "sass-extend",
+        "sass-modules",
+        "sass-functions"
+      ]
+    },
+    {
+      "ar": "توليد التنسيقات",
+      "en": "Generating styles",
+      "lessons": [
+        "sass-control",
+        "sass-project",
+        "sass-reference"
+      ]
+    }
+  ]
+}

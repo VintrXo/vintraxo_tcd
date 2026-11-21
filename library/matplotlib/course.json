@@ -1,0 +1,51 @@
+{
+  "key": "matplotlib",
+  "category": "Data",
+  "spaces": {
+    "ar": {
+      "name": "matplotlib-ar",
+      "title": "تعلّم Matplotlib",
+      "description": "الرسوم البيانية بلغة Python تُرسم في متصفحك: الخطية والأعمدة والتشتت والتوزيعات والدائرية، والرسوم الفرعية والتنسيق، والرسم من pandas، ولوحة مبيعات كاملة."
+    },
+    "en": {
+      "name": "matplotlib-en",
+      "title": "Learn Matplotlib",
+      "description": "Python charts drawn in your browser: line, bar, scatter, distributions and pie charts, subplots and styling, plotting from pandas, and a full sales dashboard."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Matplotlib",
+      "summary": "حوّل الأرقام إلى رسوم بيانية واضحة تقول رسالة واحدة."
+    },
+    "en": {
+      "title": "Matplotlib course",
+      "summary": "Turn numbers into clear charts that say one thing."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "أنواع الرسوم",
+      "en": "Chart types",
+      "lessons": [
+        "mpl-intro",
+        "mpl-line",
+        "mpl-bar",
+        "mpl-scatter",
+        "mpl-distribution",
+        "mpl-pie"
+      ]
+    },
+    {
+      "ar": "رسوم احترافية",
+      "en": "Professional charts",
+      "lessons": [
+        "mpl-subplots",
+        "mpl-customize",
+        "mpl-pandas",
+        "mpl-project",
+        "mpl-reference"
+      ]
+    }
+  ]
+}

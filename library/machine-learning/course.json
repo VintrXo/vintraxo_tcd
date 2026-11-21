@@ -1,0 +1,59 @@
+{
+  "key": "machine-learning",
+  "category": "Data",
+  "spaces": {
+    "ar": {
+      "name": "machine-learning-ar",
+      "title": "تعلّم الآلة",
+      "description": "تعلّم الآلة بلغة Python و scikit-learn: البيانات والتقسيم، الانحدار والتصنيف ومقاييسهما، أقرب الجيران والأشجار والغابات، فرط التخصيص والتحقق المتقاطع، التجميع، خطوط المعالجة، ومشروع كامل."
+    },
+    "en": {
+      "name": "machine-learning-en",
+      "title": "Machine learning",
+      "description": "Machine learning with Python and scikit-learn: data and splits, regression and classification and their metrics, nearest neighbours, trees and forests, overfitting and cross-validation, clustering, pipelines, and a full project."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة تعلّم الآلة",
+      "summary": "ابنِ نماذج تتعلّم من البيانات وقيّمها بأمانة، بأمثلة تعمل في المتصفح."
+    },
+    "en": {
+      "title": "Machine learning course",
+      "summary": "Build models that learn from data and evaluate them honestly, with examples that run in your browser."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Foundations",
+      "lessons": [
+        "ml-intro",
+        "ml-data",
+        "ml-linear-regression",
+        "ml-regression-metrics"
+      ]
+    },
+    {
+      "ar": "التصنيف",
+      "en": "Classification",
+      "lessons": [
+        "ml-classification",
+        "ml-classification-metrics",
+        "ml-knn-scaling",
+        "ml-trees"
+      ]
+    },
+    {
+      "ar": "نماذج أفضل",
+      "en": "Better models",
+      "lessons": [
+        "ml-overfitting",
+        "ml-clustering",
+        "ml-pipelines",
+        "ml-project",
+        "ml-reference"
+      ]
+    }
+  ]
+}

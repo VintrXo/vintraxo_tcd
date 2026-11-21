@@ -1,0 +1,40 @@
+<style>
+body { font-family: system-ui, sans-serif; padding: 12px; }
+.scss-css { margin-top: 14px; direction: ltr; text-align: left; }
+.scss-css summary { cursor: pointer; color: #475569; font-size: 13px; }
+.scss-css pre { background: #0f172a; color: #e2e8f0; padding: 10px; border-radius: 8px; font-size: 13px; white-space: pre-wrap; }
+.scss-err { direction: ltr; text-align: left; color: #b00020; white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 13px; }
+</style>
+<script type="module">
+// The official Sass compiler (dart-sass) running in this sandboxed frame: compiles <style type="text/scss">,
+// applies the CSS to the page, and shows the compiled CSS below the example.
+const blocks = [...document.querySelectorAll('style[type="text/scss"]')];
+try {
+  const sass = await import("https://cdn.jsdelivr.net/npm/sass@1.80.6/+esm");
+  for (const block of blocks) {
+    const box = document.createElement("details");
+    box.className = "scss-css";
+    box.open = true;
+    const summary = document.createElement("summary");
+    summary.textContent = "Compiled CSS";
+    const pre = document.createElement("pre");
+    box.append(summary, pre);
+    try {
+      const css = sass.compileString(block.textContent, { style: "expanded" }).css;
+      const style = document.createElement("style");
+      style.textContent = css;
+      document.head.appendChild(style);
+      pre.textContent = css;
+    } catch (e) {
+      pre.className = "scss-err";
+      pre.textContent = "Sass error: " + e.message;
+    }
+    document.body.appendChild(box);
+  }
+} catch (e) {
+  const p = document.createElement("p");
+  p.className = "scss-err";
+  p.textContent = "Could not load the Sass compiler: " + (e.message || e);
+  document.body.appendChild(p);
+}
+</script>

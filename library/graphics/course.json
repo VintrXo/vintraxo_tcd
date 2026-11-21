@@ -1,0 +1,51 @@
+{
+  "key": "graphics",
+  "category": "Web",
+  "spaces": {
+    "ar": {
+      "name": "graphics-ar",
+      "title": "رسوم الويب: SVG و Canvas",
+      "description": "ارسم على الويب: أشكال SVG ومساراتها وتنسيقها وحركتها ورسم بياني من البيانات، ثم Canvas والنصوص والتدرجات والحركة ولوحة رسم تفاعلية."
+    },
+    "en": {
+      "name": "graphics-en",
+      "title": "Web graphics: SVG and Canvas",
+      "description": "Drawing on the web: SVG shapes, paths, styling, animation and a data chart, then Canvas, text, gradients, animation and an interactive drawing pad."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة رسوم الويب",
+      "summary": "أيقونات ورسوم بيانية وحركة ولوحات تفاعلية بـ SVG و Canvas."
+    },
+    "en": {
+      "title": "Web graphics course",
+      "summary": "Icons, charts, animation and interactive pads with SVG and Canvas."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "SVG",
+      "en": "SVG",
+      "lessons": [
+        "gfx-intro",
+        "svg-shapes",
+        "svg-paths",
+        "svg-style",
+        "svg-animate",
+        "svg-chart"
+      ]
+    },
+    {
+      "ar": "Canvas",
+      "en": "Canvas",
+      "lessons": [
+        "canvas-basics",
+        "canvas-text-images",
+        "canvas-animation",
+        "canvas-interactive",
+        "gfx-reference"
+      ]
+    }
+  ]
+}
