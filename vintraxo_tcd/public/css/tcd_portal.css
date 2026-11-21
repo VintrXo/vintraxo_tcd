@@ -642,3 +642,7 @@ html[data-tcd-theme="dark"] .tcd-evaluation { border-color: #343e70; }
 .tcd-cat-more[hidden] { display: none; }
 @media (min-width: 768px) { .tcd-tabs { flex-wrap: wrap; overflow: visible; } }
 .tcd-run-image { display: block; max-inline-size: 100%; block-size: auto; margin-block: 0.5rem; border-radius: 8px; background: #fff; }
+/* code is always read left to right, even inside Arabic sentences and tables (Excel formulas with Arabic text,
+   SQL with Arabic strings): isolate keeps brackets and commas in place */
+.tcd-page code, .tcd-page kbd, .tcd-page samp { direction: ltr; unicode-bidi: isolate; }
+.tcd-exercise-code { direction: ltr; text-align: left; unicode-bidi: isolate; }

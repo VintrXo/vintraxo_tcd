@@ -10,7 +10,7 @@
  *   python      -> Pyodide (WASM)
  *   sql         -> sql.js  (SQLite WASM), fresh in-memory database per run
  *   javascript  -> plain worker with console capture
- *   html        -> rendered preview in a sandboxed iframe
+ *   html        -> rendered preview in a sandboxed iframe (allow-scripts allow-forms, still opaque origin)
  */
 (function () {
 	"use strict";
@@ -442,7 +442,9 @@
 
 			if (this.language === "html") {
 				const preview = el("iframe", {
-					sandbox: "allow-scripts",
+					// forms (and <form method="dialog">) need allow-forms; the frame still has an opaque origin, so
+					// it reaches no cookies, no page and no Frappe API (scripts could already send requests anyway)
+					sandbox: "allow-scripts allow-forms",
 					class: "tcd-preview",
 					title: this.t.preview || "Preview",
 					referrerpolicy: "no-referrer",
