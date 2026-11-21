@@ -7,13 +7,13 @@ A **shell** is the program that reads the commands you type in a terminal and ru
 ```try bash
 echo "Hello, Bash"
 echo "Today is $(date +%A)"
-whoami
+whoami 2>/dev/null || id -u
 pwd
 ```
 
 - `echo` prints text.
 - `$(command)` runs a command and puts its output in place.
-- `whoami` shows the current user; `pwd` shows the current folder.
+- `whoami` shows the current user; `pwd` shows the current folder. (In this sandbox the user has only a number, so the example falls back to `id -u`.)
 
 :::info Running the examples
 Bash examples run in a separate, secure sandbox; if it is not enabled yet they run as soon as it is. On your computer: open a terminal on Linux or macOS, or use WSL or Git Bash on Windows.

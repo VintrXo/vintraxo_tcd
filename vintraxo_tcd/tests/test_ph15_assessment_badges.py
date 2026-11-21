@@ -106,7 +106,12 @@ class TestPhase15(TCDTestCase):
 				"Code", code_language="python", points=3, test_cases=[{"input": "1", "expected_output": "2"}]
 			)
 		frappe.get_single("TCD Settings").update(
-			{"runner_enabled": 1, "runner_url": "http://10.0.0.5:2358", "runner_languages": []}
+			{
+				"runner_enabled": 1,
+				"runner_type": "Judge0",
+				"runner_url": "http://10.0.0.5:2358",
+				"runner_languages": [],
+			}
 		).save()
 		frappe.clear_document_cache("TCD Settings", "TCD Settings")
 		q = question(

@@ -194,7 +194,7 @@ def _piston_run(s, language: str, code: str, stdin: str) -> dict:
 		"stdin": stdin or "",
 		"compile_timeout": 10000,
 		"run_timeout": int((flt(s.runner_wall_seconds) or 10) * 1000),
-		"compile_memory_limit": -1,
+		"compile_memory_limit": int(s.runner_memory_mb or 256) * 1024 * 1024,
 		"run_memory_limit": int(s.runner_memory_mb or 256) * 1024 * 1024,
 	}
 	try:

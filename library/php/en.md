@@ -375,7 +375,7 @@ echo ucfirst("sara"), "\n";
 printf("Price: %.2f, items: %d\n", 9.5, 3);
 echo sprintf("%05d", 42), "\n";
 echo str_repeat("-", 10), "\n";
-echo mb_strlen("مرحبا"), " vs ", strlen("مرحبا"), "\n";
+echo count(preg_split("//u", "مرحبا", -1, PREG_SPLIT_NO_EMPTY)), " vs ", strlen("مرحبا"), "\n";   // characters, like mb_strlen (this runner's PHP has no mbstring extension)
 ```
 
 ```reference php
@@ -561,7 +561,8 @@ function buy(int $stock, int $qty): int {
 
 foreach ([2, 10, 0] as $qty) {
     try {
-        echo "Left: ", buy(5, $qty), "\n";
+        $left = buy(5, $qty);
+        echo "Left: $left\n";
     } catch (OutOfStock $e) {
         echo "Sorry: ", $e->getMessage(), "\n";
     } catch (InvalidArgumentException $e) {
