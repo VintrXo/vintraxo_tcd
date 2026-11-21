@@ -1,5 +1,6 @@
 {
   "key": "python",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "python-ar", "title": "تعلّم Python", "description": "بايثون من الصفر: المتغيرات، الشروط، الحلقات، القوائم، القواميس، الدوال، الأخطاء، الأصناف والملفات."},
     "en": {"name": "python-en", "title": "Learn Python", "description": "Python from scratch: variables, conditions, loops, lists, dictionaries, functions, errors, classes and files."}

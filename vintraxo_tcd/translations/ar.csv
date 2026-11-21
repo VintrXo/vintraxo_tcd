@@ -2316,3 +2316,35 @@ Content language,لغة المحتوى
 Translation Key,مفتاح الترجمة
 Same key on the other-language versions of this item: learners see one item and switch language.,نفس المفتاح على نسخ هذا العنصر باللغات الأخرى: يرى المتعلم عنصرًا واحدًا ويبدّل اللغة.
 Unknown language.,لغة غير معروفة.
+Programming,البرمجة
+Web development,تطوير الويب
+Data and databases,البيانات وقواعد البيانات
+Mathematics,الرياضيات
+Marketing,التسويق
+Business systems,أنظمة الأعمال
+More to explore,المزيد للاستكشاف
+Explore courses,استكشف الدورات
+Filter courses,ابحث في الدورات
+Filters,خيارات البحث
+Your courses,دوراتك
+{0}% done,أنجزت {0}%
+{0} lessons,{0} درس
+No courses match.,لا توجد دورات مطابقة.
+Groups the space in the learner catalog.,يحدد قسم المساحة في كتالوج المتعلّم.
+Web,الويب
+Data,البيانات
+Business,الأعمال
+Show all ({0}),عرض الكل ({0})
+Sign In,تسجيل الدخول
+Welcome! Please sign in to continue.,مرحبًا! يرجى تسجيل الدخول للمتابعة.
+Email,البريد الإلكتروني
+Password,كلمة السر
+Forgot password?,نسيت كلمة المرور؟
+Continue,استمر
+Login with Email Link,تسجيل الدخول باستخدام رابط البريد الإلكتروني
+Don't have an account?,ليس لديك حساب؟
+Sign up,سجل
+Send login link,إرسال رابط تسجيل الدخول
+Reset Password,إعادة تعيين كلمة المرور
+Login with LDAP,تسجيل الدخول مع LDAP
+or,أو

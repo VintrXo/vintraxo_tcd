@@ -1,5 +1,6 @@
 {
   "key": "css",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "css-ar", "title": "تعلّم CSS", "description": "نسّق صفحات الويب بـ CSS: الألوان، الخطوط، الصندوق، التخطيط بـ Flexbox و Grid، والتصميم المتجاوب."},
     "en": {"name": "css-en", "title": "Learn CSS", "description": "Style web pages with CSS: colors, fonts, the box model, Flexbox and Grid layout, and responsive design."}

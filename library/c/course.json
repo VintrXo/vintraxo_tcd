@@ -1,5 +1,6 @@
 {
   "key": "c",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "c-ar", "title": "تعلّم لغة C", "description": "لغة C من الصفر: المتغيرات، printf، الشروط، الحلقات، المصفوفات والنصوص، الدوال، المؤشرات، الهياكل وإدارة الذاكرة."},
     "en": {"name": "c-en", "title": "Learn C", "description": "C from scratch: variables, printf, conditions, loops, arrays and strings, functions, pointers, structs and memory management."}

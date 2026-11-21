@@ -29,8 +29,9 @@ required_apps = ["frappe"]  # ERPNext/HRMS are optional and guarded
 # app_include_js = "/assets/vintraxo_tcd/js/vintraxo_tcd.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/vintraxo_tcd/css/vintraxo_tcd.css"
-# web_include_js = "/assets/vintraxo_tcd/js/vintraxo_tcd.js"
+# login page look (every rule and script is limited to /login)
+web_include_css = ["/assets/vintraxo_tcd/css/tcd_login.css?v=2"]
+web_include_js = ["/assets/vintraxo_tcd/js/tcd_login.js?v=2"]
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "vintraxo_tcd/public/scss/website"

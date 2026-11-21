@@ -1,5 +1,6 @@
 {
   "key": "marketing-experiments",
+  "category": "Marketing",
   "spaces": {
     "ar": {
       "name": "marketing-experiments-ar",

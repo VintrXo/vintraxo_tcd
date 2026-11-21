@@ -1,5 +1,6 @@
 {
   "key": "bash",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "bash-ar", "title": "تعلّم Bash", "description": "سطر أوامر Linux وسكربتات Bash: الملفات والمجلدات، المتغيرات، الأنابيب وإعادة التوجيه، معالجة النصوص، الشروط والحلقات، الدوال والمصفوفات، العمليات والصلاحيات و cron."},
     "en": {"name": "bash-en", "title": "Learn Bash", "description": "The Linux command line and Bash scripting: files and folders, variables, pipes and redirection, text processing, conditions and loops, functions and arrays, processes, permissions and cron."}

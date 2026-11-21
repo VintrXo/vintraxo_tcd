@@ -108,7 +108,7 @@ def build(lang, pages, urls):
 	return {
 		"format": transfer.FORMAT,
 		"version": transfer.VERSION,
-		"space": {"_id": SPACES[lang], "space_name": SPACES[lang], "title": t["title"], "visibility": "Public", "is_active": 1, "description": t["desc"], "language": lang, "translation_key": "odoo"},
+		"space": {"_id": SPACES[lang], "space_name": SPACES[lang], "title": t["title"], "visibility": "Public", "is_active": 1, "description": t["desc"], "language": lang, "translation_key": "odoo", "category": "Business"},
 		"contents": contents,
 	}
 

@@ -1,5 +1,6 @@
 {
   "key": "pandas",
+  "category": "Data",
   "spaces": {
     "ar": {
       "name": "pandas-ar",

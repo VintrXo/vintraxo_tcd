@@ -1,5 +1,6 @@
 {
   "key": "paid-campaigns",
+  "category": "Marketing",
   "spaces": {
     "ar": {
       "name": "paid-campaigns-ar",

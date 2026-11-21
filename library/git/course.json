@@ -1,5 +1,6 @@
 {
   "key": "git",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "git-ar", "title": "تعلّم Git", "description": "إدارة إصدارات الكود بـ Git و GitHub: الحفظ، الفروع، الدمج، حل التعارضات، والعمل مع فريق."},
     "en": {"name": "git-en", "title": "Learn Git", "description": "Version control with Git and GitHub: commits, branches, merging, resolving conflicts and working in a team."}

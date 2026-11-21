@@ -1,5 +1,6 @@
 {
   "key": "rust",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "rust-ar", "title": "تعلّم Rust", "description": "لغة Rust من الصفر: المتغيرات والتحكم والدوال، الملكية والاستعارة، الهياكل والتعدادات و match، المجموعات، معالجة الأخطاء والسمات."},
     "en": {"name": "rust-en", "title": "Learn Rust", "description": "Rust from scratch: variables, control flow and functions; ownership and borrowing; structs, enums and match; collections; error handling and traits."}

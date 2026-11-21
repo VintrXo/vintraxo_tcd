@@ -136,6 +136,7 @@ def home_context(
 	)
 	ctx["continue_learning"] = _attach_content(_in_language(in_progress, user))[:6]
 	ctx["my_enrollments"] = my_enrollments(user)
+	ctx["catalog"] = catalog(spaces, user)
 	ctx["is_instructor"] = "TCD Instructor" in frappe.get_roles(
 		user
 	) or "TCD Administrator" in frappe.get_roles(user)
@@ -156,6 +157,76 @@ def home_context(
 		ctx["results"] = [i for i in (_item("TCD Content", n) for n in wiki.contents_with_tag(tag)) if i]
 		ctx["query"] = ctx["query"] or ""
 	return ctx
+
+
+CATALOG_ORDER = ("Programming", "Web", "Data", "Mathematics", "Marketing", "Business", "")
+# short label shown on the course card icon, by translation key (others show their category icon)
+COURSE_BADGES = {
+	"intro-programming": "</>", "python": "Py", "java": "Java", "cpp": "C++", "c": "C", "csharp": "C#",
+	"go": "Go", "rust": "Rs", "kotlin": "Kt", "php": "PHP", "bash": "$_", "dsa": "DSA", "git": "Git",
+	"html": "HTML", "css": "CSS", "javascript": "JS", "bootstrap": "BS", "react": "Re", "vue": "Vue",
+	"jquery": "jQ", "typescript": "TS", "json-xml": "{ }", "sql": "SQL", "numpy": "NP", "pandas": "pd",
+	"r": "R", "odoo": "Odoo",
+}  # fmt: skip
+
+
+def catalog(spaces: list, user: str) -> list:
+	"""Spaces grouped by category for the learner home page: [{key, label, spaces}], each space with its
+	number of published pages and the learner's progress in its course (0 when not enrolled)."""
+	names = [s.name for s in spaces]
+	if not names:
+		return []
+	meta = {
+		r.name: r
+		for r in frappe.get_all(
+			"TCD Space",
+			filters={"name": ("in", names)},
+			fields=["name", "category", "language", "translation_key"],
+		)
+	}
+	counts = dict(
+		frappe.get_all(
+			"TCD Content",
+			filters={"space": ("in", names), "status": "Published"},
+			fields=["space", {"COUNT": "*", "as": "n"}],
+			group_by="space",
+			as_list=True,
+		)
+	)
+	progress = {}
+	if user != "Guest":
+		from vintraxo_tcd.core import content_languages
+
+		for e in frappe.get_all(
+			"TCD Enrollment",
+			filters={"user": user, "status": ("!=", "Withdrawn"), "course": ("is", "set")},
+			fields=["course", "percent"],
+		):
+			for sib in content_languages.siblings("TCD Course", e.course):  # progress shows in any language
+				space = frappe.db.get_value("TCD Course", sib["name"], "space")
+				progress[space] = max(progress.get(space, 0), int(e.percent or 0))
+	groups = {}
+	for s in spaces:
+		m = meta.get(s.name) or frappe._dict()
+		key = m.category if m.category in CATALOG_ORDER else ""
+		s.category = key
+		s.lessons = counts.get(s.name, 0)
+		s.progress = progress.get(s.name, 0)
+		s.language = m.language
+		s.short = COURSE_BADGES.get(m.translation_key or "")
+		groups.setdefault(key, []).append(s)
+	labels = {
+		"Programming": _("Programming"),
+		"Web": _("Web development"),
+		"Data": _("Data and databases"),
+		"Mathematics": _("Mathematics"),
+		"Marketing": _("Marketing"),
+		"Business": _("Business systems"),
+		"": _("More to explore"),
+	}
+	return [
+		{"key": k or "other", "label": labels[k], "spaces": groups[k]} for k in CATALOG_ORDER if k in groups
+	]
 
 
 def _in_language(rows, user: str) -> list:

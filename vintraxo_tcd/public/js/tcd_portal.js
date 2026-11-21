@@ -58,6 +58,72 @@
 
 	// ------------------------------------------------------------ page
 
+	// learner home: category tabs and a type-to-filter box over the course catalog
+	function initCatalog() {
+		const root = document.querySelector("[data-tcd-catalog]");
+		if (!root) return;
+		const tabs = [...root.querySelectorAll(".tcd-tab")];
+		const groups = [...root.querySelectorAll(".tcd-cat-group")];
+		const filter = root.querySelector(".tcd-catalog-filter");
+		const empty = root.querySelector(".tcd-catalog-empty");
+		let current = "all";
+		try {
+			const saved = localStorage.getItem("tcd-catalog-tab");
+			if (saved && tabs.some((t) => t.dataset.cat === saved)) current = saved;
+		} catch (e) {
+			/* storage blocked: start on "all" */
+		}
+		const apply = () => {
+			const words = (filter?.value || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
+			let shown = 0;
+			for (const g of groups) {
+				let inGroup = 0;
+				const preview = current === "all" && !words.length; // "All": a few courses per category
+				for (const card of g.querySelectorAll(".tcd-course-card")) {
+					const ok = words.every((w) => (card.dataset.title || "").includes(w));
+					card.hidden = !ok || (preview && inGroup >= PREVIEW);
+					if (ok) inGroup++;
+				}
+				const more = g.querySelector(".tcd-cat-more");
+				if (more) more.hidden = !preview;
+				g.hidden = (current !== "all" && g.dataset.cat !== current) || !inGroup;
+				if (!g.hidden) shown += inGroup;
+			}
+			for (const t of tabs) t.setAttribute("aria-selected", String(t.dataset.cat === current));
+			root.classList.toggle("tcd-filtered", current !== "all");
+			if (empty) empty.hidden = shown > 0;
+		};
+		const PREVIEW = 4;
+		const select = (cat) => {
+			current = cat;
+			try {
+				localStorage.setItem("tcd-catalog-tab", current);
+			} catch (e) {
+				/* ignore */
+			}
+			apply();
+		};
+		for (const b of root.querySelectorAll(".tcd-cat-more")) {
+			b.addEventListener("click", () => {
+				select(b.dataset.cat);
+				root.querySelector(".tcd-tabs")?.scrollIntoView({ block: "start", behavior: "smooth" });
+			});
+		}
+		for (const t of tabs) {
+			t.addEventListener("click", () => {
+				current = t.dataset.cat;
+				try {
+					localStorage.setItem("tcd-catalog-tab", current);
+				} catch (e) {
+					/* ignore */
+				}
+				apply();
+			});
+		}
+		filter?.addEventListener("input", apply);
+		apply();
+	}
+
 	// Phase 31: language buttons save the choice (and follow the course) before opening the other language;
 	// without JavaScript the plain link still opens the page
 	function initLanguageSwitch() {
@@ -884,6 +950,7 @@
 	function init() {
 		initEnroll();
 		initLanguageSwitch();
+		initCatalog();
 		initWithdraw();
 		initBuy();
 		initScorm();

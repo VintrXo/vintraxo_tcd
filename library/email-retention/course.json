@@ -1,5 +1,6 @@
 {
   "key": "email-retention",
+  "category": "Marketing",
   "spaces": {
     "ar": {
       "name": "email-retention-ar",

@@ -1,5 +1,6 @@
 {
   "key": "csharp",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "csharp-ar", "title": "تعلّم C#", "description": "سي شارب من الصفر: المتغيرات، الشروط، الحلقات، المصفوفات والقوائم، الدوال، الأصناف والواجهات، LINQ والاستثناءات."},
     "en": {"name": "csharp-en", "title": "Learn C#", "description": "C# from scratch: variables, conditions, loops, arrays and lists, methods, classes and interfaces, LINQ and exceptions."}

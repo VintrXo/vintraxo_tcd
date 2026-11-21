@@ -1,5 +1,6 @@
 {
   "key": "vue",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "vue-ar", "title": "تعلّم Vue", "description": "إطار Vue.js لبناء واجهات تفاعلية: القوالب، الربط، الأحداث، الشروط، القوائم، الخصائص المحسوبة، والمكونات."},
     "en": {"name": "vue-en", "title": "Learn Vue", "description": "The Vue.js framework for interactive interfaces: templates, binding, events, conditions, lists, computed properties and components."}

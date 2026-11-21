@@ -1,5 +1,6 @@
 {
   "key": "kotlin",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "kotlin-ar", "title": "تعلّم Kotlin", "description": "لغة Kotlin من الصفر: المتغيرات والشروط و when، الحلقات والدوال، الأمان من null، المجموعات، الأصناف والوراثة، الاستثناءات ودوال التوسيع."},
     "en": {"name": "kotlin-en", "title": "Learn Kotlin", "description": "Kotlin from scratch: variables, conditions and when, loops and functions, null safety, collections, classes and inheritance, exceptions and extension functions."}

@@ -1,5 +1,6 @@
 {
   "key": "go",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "go-ar", "title": "تعلّم Go", "description": "لغة Go من الصفر: المتغيرات، الشروط، الحلقات، الشرائح والخرائط، الدوال، الهياكل والواجهات، الأخطاء والتزامن."},
     "en": {"name": "go-en", "title": "Learn Go", "description": "Go from scratch: variables, conditions, loops, slices and maps, functions, structs and interfaces, errors and concurrency."}

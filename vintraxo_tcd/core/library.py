@@ -214,6 +214,8 @@ def load_library(only: list | None = None, root: str = ROOT) -> dict:
 			else:
 				result = transfer.import_bundle(build_bundle(meta, lang))
 				report[space] = ", ".join(f"{k}: {v}" for k, v in sorted(result["created"].items()))
+			if meta.get("category") is not None:  # catalog group on the learner home page
+				frappe.db.set_value("TCD Space", space, "category", meta["category"], update_modified=False)
 			frappe.db.commit()
 			print(f"[LIBRARY] {space}: {report[space]}", flush=True)
 	return report

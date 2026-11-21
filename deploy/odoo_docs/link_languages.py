@@ -14,7 +14,7 @@ def main():
 	for space, lang in SPACES.items():
 		if not frappe.db.exists("TCD Space", space):
 			continue
-		frappe.db.set_value("TCD Space", space, {"language": lang, "translation_key": "odoo"}, update_modified=False)
+		frappe.db.set_value("TCD Space", space, {"language": lang, "translation_key": "odoo", "category": "Business"}, update_modified=False)
 		for name, slug in frappe.get_all("TCD Content", filters={"space": space}, fields=["name", "slug"], as_list=True):
 			frappe.db.set_value("TCD Content", name, "translation_key", f"odoo:{slug}", update_modified=False)
 			pages += 1

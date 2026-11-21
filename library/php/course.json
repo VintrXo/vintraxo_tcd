@@ -1,5 +1,6 @@
 {
   "key": "php",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "php-ar", "title": "تعلّم PHP", "description": "لغة PHP من الصفر: المتغيرات والشروط والحلقات، المصفوفات والدوال والنصوص، النماذج بأمان، الأصناف والاستثناءات، الملفات و JSON وقواعد البيانات مع PDO."},
     "en": {"name": "php-en", "title": "Learn PHP", "description": "PHP from scratch: variables, conditions and loops; arrays, functions and strings; safe forms; classes and exceptions; files, JSON and databases with PDO."}

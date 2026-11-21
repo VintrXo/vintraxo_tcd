@@ -1,5 +1,6 @@
 {
   "key": "cpp",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "cpp-ar", "title": "تعلّم C++", "description": "سي بلس بلس من الصفر: المتغيرات، الشروط، الحلقات، المتجهات، الدوال، المراجع والمؤشرات، الأصناف والوراثة، ومكتبة STL."},
     "en": {"name": "cpp-en", "title": "Learn C++", "description": "C++ from scratch: variables, conditions, loops, vectors, functions, references and pointers, classes and inheritance, and the STL."}

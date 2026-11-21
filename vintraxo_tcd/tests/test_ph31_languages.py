@@ -150,6 +150,23 @@ class TestPhase31Languages(TCDTestCase):
 		# the same lesson read in both languages is one item, and English pages appear in Arabic
 		self.assertEqual(sorted(shown), sorted([self.page[("ar", "t-intro")], self.page[("ar", "t-next")]]))
 
+	def test_home_catalog_groups_by_category(self):
+		frappe.set_user("Administrator")
+		frappe.db.set_value("TCD Space", "lib-t-en", "category", "Programming")
+		frappe.db.set_value("TCD Space", "lib-t-ar", "category", "Programming")
+		frappe.set_user(self.learner)
+		cl.set_preferred("en")
+		groups = {g["key"]: g for g in portal.home_context()["catalog"]}
+		mine = [s for s in groups["Programming"]["spaces"] if s.name in SPACES]
+		self.assertEqual([s.name for s in mine], ["lib-t-en"])  # one card, in the learner's language
+		self.assertEqual(mine[0].lessons, 2)
+		self.assertEqual(mine[0].progress, 0)
+		api.enroll("Course", self.course_ar)
+		progress.complete(self.learner, self.page[("ar", "t-intro")])
+		groups = {g["key"]: g for g in portal.home_context()["catalog"]}
+		mine = [s for s in groups["Programming"]["spaces"] if s.name in SPACES]
+		self.assertEqual(mine[0].progress, 50)  # progress made in Arabic shows on the English card
+
 	def test_course_page_renders_buttons(self):
 		from vintraxo_tcd.tests.test_p3 import render
 

@@ -1,5 +1,6 @@
 {
   "key": "html",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "html-ar", "title": "تعلّم HTML", "description": "دروس HTML من الصفر: شرح قصير، أمثلة تجرّبها بنفسك، تمارين واختبارات وشهادة."},
     "en": {"name": "html-en", "title": "Learn HTML", "description": "HTML from scratch: short lessons, examples you can try, exercises, quizzes and a certificate."}

@@ -1,5 +1,6 @@
 {
   "key": "intro-programming",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "intro-programming-ar", "title": "مقدمة في البرمجة", "description": "ابدأ البرمجة من الصفر: ما هي البرمجة والخوارزميات، المتغيرات والعمليات، القرارات والحلقات، الدوال والقوائم، تصحيح الأخطاء، ومشروع حاسبة درجات، ثم اختيار مسارك التالي."},
     "en": {"name": "intro-programming-en", "title": "Introduction to programming", "description": "Start programming from zero: what programming and algorithms are, variables and operators, decisions and loops, functions and lists, debugging, a grade calculator project, and choosing your next path."}

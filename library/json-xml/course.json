@@ -1,5 +1,6 @@
 {
   "key": "json-xml",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "json-xml-ar", "title": "تعلّم JSON و XML", "description": "صيغتا تبادل البيانات: قواعد JSON والتعامل معه في JavaScript و Python وواجهات API، ثم XML وقراءته وبناؤه، ومساحات الأسماء و XPath، ومشروع تحويل بين الصيغتين."},
     "en": {"name": "json-xml-en", "title": "Learn JSON and XML", "description": "The two data exchange formats: JSON rules and using JSON in JavaScript, Python and APIs; then XML, reading and building it, namespaces and XPath, and a conversion project."}

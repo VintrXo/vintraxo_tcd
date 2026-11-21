@@ -11,6 +11,7 @@
   "is_active",
   "language",
   "translation_key",
+  "category",
   "description_section",
   "description",
   "access_section",
@@ -76,6 +77,13 @@
    "label": "Translation Key",
    "search_index": 1,
    "description": "Same key on the other-language versions of this item: learners see one item and switch language."
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "\nProgramming\nWeb\nData\nMathematics\nMarketing\nBusiness",
+   "description": "Groups the space in the learner catalog."
   },
   {
    "fieldname": "description_section",
@@ -161,7 +169,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-21 12:00:00.000000",
+ "modified": "2026-11-22 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Space",

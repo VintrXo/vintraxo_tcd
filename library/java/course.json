@@ -1,5 +1,6 @@
 {
   "key": "java",
+  "category": "Programming",
   "spaces": {
     "ar": {"name": "java-ar", "title": "تعلّم Java", "description": "جافا من الصفر: المتغيرات، الشروط، الحلقات، المصفوفات، الدوال، الأصناف والوراثة، المجموعات والاستثناءات."},
     "en": {"name": "java-en", "title": "Learn Java", "description": "Java from scratch: variables, conditions, loops, arrays, methods, classes and inheritance, collections and exceptions."}

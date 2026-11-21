@@ -1,5 +1,6 @@
 {
   "key": "numpy",
+  "category": "Data",
   "spaces": {
     "ar": {"name": "numpy-ar", "title": "تعلّم NumPy", "description": "الحساب العلمي في بايثون: المصفوفات، الفهرسة، الأشكال، العمليات السريعة، الإحصاء، التصفية والأرقام العشوائية."},
     "en": {"name": "numpy-en", "title": "Learn NumPy", "description": "Scientific computing in Python: arrays, indexing, shapes, fast operations, statistics, filtering and random numbers."}

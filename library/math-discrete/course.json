@@ -1,5 +1,6 @@
 {
   "key": "math-discrete",
+  "category": "Mathematics",
   "spaces": {
     "ar": {
       "name": "math-discrete-ar",

@@ -1,5 +1,6 @@
 {
   "key": "bootstrap",
+  "category": "Web",
   "spaces": {
     "ar": {
       "name": "bootstrap-ar",

@@ -1,5 +1,6 @@
 {
   "key": "sql",
+  "category": "Data",
   "spaces": {
     "ar": {"name": "sql-ar", "title": "تعلّم SQL", "description": "لغة قواعد البيانات: الاستعلام والتصفية والترتيب والتجميع والربط بين الجداول والتعديل، على قاعدة بيانات متجر جاهزة."},
     "en": {"name": "sql-en", "title": "Learn SQL", "description": "The language of databases: querying, filtering, sorting, grouping, joining tables and changing data, on a ready-made shop database."}

@@ -1,5 +1,6 @@
 {
   "key": "jquery",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "jquery-ar", "title": "تعلّم jQuery", "description": "مكتبة jQuery من الصفر: المحددات والأحداث، تغيير المحتوى والتنسيق، النماذج، المؤثرات، التنقل في الصفحة، AJAX، ومشروع قائمة مهام."},
     "en": {"name": "jquery-en", "title": "Learn jQuery", "description": "jQuery from scratch: selectors and events, changing content and styles, forms, effects, traversing, AJAX, and a to-do list project."}

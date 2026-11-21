@@ -1,5 +1,6 @@
 {
   "key": "r",
+  "category": "Data",
   "spaces": {
     "ar": {"name": "r-ar", "title": "تعلّم R", "description": "لغة R لتحليل البيانات: المتغيرات والمتجهات، الشروط والدوال، القوائم والعوامل، إطارات البيانات، عائلة apply، النصوص، والإحصاء والمخططات."},
     "en": {"name": "r-en", "title": "Learn R", "description": "R for data analysis: variables and vectors, conditions and functions, lists and factors, data frames, the apply family, text, and statistics and charts."}

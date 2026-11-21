@@ -1,0 +1,52 @@
+/* VintraXo login page. Frappe's own form and logic stay as they are; this only restyles /login and adds
+   a brand panel (tcd_login.js). Every rule is scoped to the login page. */
+body[data-path="login"] { background: #f4f6fb; }
+body[data-path="login"] .web-footer, body[data-path="login"] footer { display: none; }
+body.tcd-login .page-content-wrapper { min-block-size: 100vh; display: flex; margin: 0 !important; padding: 0 !important; }
+body.tcd-login .page-content-wrapper > main, body.tcd-login .page_content { margin: 0 !important; padding: 0 !important; }
+body.tcd-login main.container { max-inline-size: none; padding: 0; display: flex; flex: 1; }
+body.tcd-login .page_content { flex: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); min-block-size: 100vh; }
+body.tcd-login .tcd-login-form { display: flex; align-items: center; justify-content: center; padding: 2rem 1.25rem; }
+body.tcd-login .tcd-login-form > div { inline-size: min(100%, 420px); }
+
+/* brand panel */
+.tcd-login-brand { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; padding: clamp(1.5rem, 1rem + 3vw, 3.5rem); color: #fff;
+	background: radial-gradient(circle at 10% 110%, rgb(255 255 255 / 0.13) 0 25%, transparent 26%), radial-gradient(circle at 100% -10%, rgb(255 255 255 / 0.12) 0 22%, transparent 23%), linear-gradient(140deg, #312e81, #4338ca 55%, #0e7490); }
+.tcd-login-brand-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.tcd-login-logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.2rem; letter-spacing: 0.01em; color: #fff; }
+.tcd-login-logo img { inline-size: 2.5rem; block-size: 2.5rem; border-radius: 12px; box-shadow: 0 0 0 2px rgb(255 255 255 / 0.25); }
+.tcd-login-lang { display: flex; gap: 0.25rem; padding: 0.2rem; border-radius: 999px; background: rgb(255 255 255 / 0.14); }
+.tcd-login-lang button { border: 0; background: none; color: #fff; font-size: 0.85rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 999px; cursor: pointer; }
+.tcd-login-lang button[aria-pressed="true"] { background: #fff; color: #312e81; }
+.tcd-login-brand h1 { color: #fff; font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem); line-height: 1.25; margin: 0 0 0.75rem; font-weight: 800; }
+.tcd-login-brand p { color: rgb(255 255 255 / 0.85); font-size: 1.05rem; margin: 0; max-inline-size: 30rem; line-height: 1.8; }
+.tcd-login-points { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: 0.85rem; }
+.tcd-login-points li { display: flex; align-items: center; gap: 0.75rem; font-weight: 600; }
+.tcd-login-points svg { flex: none; inline-size: 2.2rem; block-size: 2.2rem; padding: 0.5rem; border-radius: 10px; background: rgb(255 255 255 / 0.15); }
+.tcd-login-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tcd-login-chips span { padding: 0.3rem 0.8rem; border-radius: 999px; background: rgb(255 255 255 / 0.12); border: 1px solid rgb(255 255 255 / 0.2); font-size: 0.85rem; font-weight: 600; direction: ltr; }
+
+/* Frappe's form, restyled */
+body[data-path="login"] .page-card { border: 0; box-shadow: none; background: transparent; padding: 0; max-inline-size: none; }
+body[data-path="login"] .page-card-head { text-align: start; margin-block-end: 1.5rem; }
+body[data-path="login"] .page-card-head .app-logo { inline-size: 3rem; block-size: 3rem; border-radius: 14px; margin-block-end: 1rem; }
+body[data-path="login"] .page-card-head h4, body[data-path="login"] .page-card-head-text h4 { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+body[data-path="login"] .page-card-subtitle { color: #64748b; font-size: 1rem; }
+body[data-path="login"] .form-label { font-weight: 600; color: #334155; font-size: 0.9rem; }
+body[data-path="login"] .form-control { block-size: auto; padding-block: 0.7rem; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff; font-size: 1rem; }
+body[data-path="login"] .form-control:focus { border-color: #4338ca; box-shadow: 0 0 0 3px rgb(67 56 202 / 0.15); }
+body[data-path="login"] .email-field .field-icon, body[data-path="login"] .password-field .field-icon { inset-block-start: 50%; transform: translateY(-50%); }
+body[data-path="login"] .btn-login:not(.btn-login-option), body[data-path="login"] .btn-primary { background: #4338ca !important; border-color: #4338ca !important; color: #fff !important; border-radius: 12px; padding-block: 0.7rem; font-size: 1rem; font-weight: 700; box-shadow: 0 8px 20px rgb(67 56 202 / 0.25); }
+body[data-path="login"] .btn-login:not(.btn-login-option):hover { background: #3730a3 !important; }
+body[data-path="login"] .btn-login-option { border-radius: 12px; padding-block: 0.65rem; border: 1px solid #e2e8f0; background: #fff; font-weight: 600; }
+body[data-path="login"] .forgot-password-message a { color: #4338ca; font-weight: 600; }
+
+@media (max-width: 900px) {
+	.tcd-login-tag { display: none; }
+	body.tcd-login .page_content { grid-template-columns: 1fr; }
+	.tcd-login-brand { min-block-size: auto; gap: 1rem; padding: 1.25rem; }
+	.tcd-login-brand h1 { font-size: 1.4rem; margin-block-end: 0.35rem; }
+	.tcd-login-brand p { font-size: 0.95rem; }
+	.tcd-login-points, .tcd-login-chips { display: none; }
+	body.tcd-login .tcd-login-form { align-items: flex-start; padding-block-start: 1.5rem; }
+}

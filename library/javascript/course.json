@@ -1,5 +1,6 @@
 {
   "key": "javascript",
+  "category": "Web",
   "spaces": {
     "ar": {"name": "javascript-ar", "title": "تعلّم JavaScript", "description": "لغة الويب: المتغيرات، الشروط، الحلقات، الدوال، المصفوفات، الكائنات، التحكم في الصفحة والأحداث، والكود غير المتزامن."},
     "en": {"name": "javascript-en", "title": "Learn JavaScript", "description": "The language of the web: variables, conditions, loops, functions, arrays, objects, the DOM and events, and async code."}
