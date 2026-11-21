@@ -28,6 +28,7 @@
   "max_upload_mb",
   "runner_section",
   "runner_enabled",
+  "runner_type",
   "runner_url",
   "runner_token",
   "column_break_runner",
@@ -199,6 +200,15 @@
    "description": "Runs code on a separate, isolated runner service (never on this server). See docs/PHASE10_ISOLATION_DESIGN.md"
   },
   {
+   "default": "Judge0",
+   "depends_on": "runner_enabled",
+   "description": "Judge0 (CE, with an API token) or Piston (keep it on a private address: it has no token).",
+   "fieldname": "runner_type",
+   "fieldtype": "Select",
+   "label": "Runner Type",
+   "options": "Judge0\nPiston"
+  },
+  {
    "fieldname": "runner_url",
    "fieldtype": "Data",
    "label": "Runner URL",
@@ -323,7 +333,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-11-20 23:00:00.000000",
+ "modified": "2026-11-22 13:00:00.000000",
  "modified_by": "Administrator",
  "module": "VintraXo TCD",
  "name": "TCD Settings",

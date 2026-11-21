@@ -62,6 +62,7 @@ class TestPhase10Runner(TCDTestCase):
 			{
 				"runner_url": "http://10.0.0.5:2358/",
 				"runner_token": "tok",
+				"runner_type": "Judge0",
 				"runner_runs_per_minute": 10,
 				"runner_languages": [],
 				"enable_portal": 1,
@@ -70,6 +71,62 @@ class TestPhase10Runner(TCDTestCase):
 		)
 		s.save()
 		frappe.clear_document_cache("TCD Settings", "TCD Settings")
+
+	# ------------------------------------------------------------ Piston runner
+
+	def test_piston_runner(self):
+		self.configure(runner_enabled=1, runner_type="Piston", runner_url="http://127.0.0.1:2000")
+		frappe.cache.delete_value("tcd_piston_runtimes")
+		runtimes = MagicMock(status_code=200)
+		runtimes.json.return_value = [
+			{"language": "java", "version": "15.0.2", "aliases": []},
+			{"language": "c++", "version": "10.2.0", "aliases": ["cpp", "g++"]},
+		]
+		runtimes.raise_for_status.return_value = None
+
+		def answer(run=None, compile=None, http=200):
+			r = MagicMock(status_code=http)
+			r.json.return_value = {"compile": compile, "run": run or {}}
+			return r
+
+		with patch("vintraxo_tcd.core.runner.requests.get", return_value=runtimes):
+			with patch(
+				POST, return_value=answer({"stdout": "42\n", "stderr": "", "code": 0, "signal": None})
+			) as post:
+				result = runner.run("java", "class Main {}", self.learner)
+			sent = post.call_args.kwargs["json"]
+			self.assertEqual(post.call_args.args[0], "http://127.0.0.1:2000/api/v2/execute")
+			self.assertEqual(
+				(sent["language"], sent["version"], sent["files"][0]["name"]), ("java", "15.0.2", "Main.java")
+			)
+			self.assertEqual((result["status"], result["output"]), ("Finished", "42\n"))
+
+			with patch(POST, return_value=answer(compile={"code": 1, "stderr": "error: ';' expected"})):
+				result = runner.run("cpp", "int main(", self.learner)  # cpp found through its alias
+			self.assertEqual(
+				(result["status"], result["error"]), ("Compilation Error", "error: ';' expected")
+			)
+
+			with patch(
+				POST, return_value=answer({"stdout": "", "code": None, "signal": "SIGKILL", "status": "TO"})
+			):
+				self.assertEqual(runner.run("java", "while(true){}", self.learner)["status"], "Time Limit")
+
+			with patch(
+				POST, return_value=answer({"stdout": "", "stderr": "Exception", "code": 1, "signal": None})
+			):
+				self.assertEqual(runner.run("java", "x", self.learner)["status"], "Runtime Error")
+
+			with self.assertRaises(runner.RunnerError):  # configured but not installed on Piston
+				runner.run("rust", "fn main(){}", self.learner)
+
+			report = runner.test_connection()
+		self.assertEqual(report["version"], "Piston")
+		self.assertIn("rust", report["unknown"])
+		self.assertNotIn("cpp", report["unknown"])
+		self.assertEqual(
+			frappe.db.count("TCD Code Run", {"user": self.learner}), 5
+		)  # failures are logged too
 
 	# ------------------------------------------------------------ settings
 

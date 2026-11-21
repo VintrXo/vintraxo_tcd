@@ -139,6 +139,107 @@ def _post(s, payload: dict) -> dict:
 		raise RunnerError(_("The code runner sent an unreadable answer.")) from e
 
 
+# ---------------------------------------------------------------- Piston (alternative runner)
+# Piston (https://github.com/engineer-man/piston) names runtimes instead of numbering them, has no API token
+# (keep it on a private address), and answers {compile: {...}, run: {stdout, stderr, code, signal, status}}.
+
+PISTON_FILES = {
+	"java": "Main.java", "kotlin": "main.kt", "csharp": "Program.cs", "go": "main.go", "rust": "main.rs",
+	"cpp": "main.cpp", "c": "main.c", "php": "main.php", "r": "main.r", "bash": "main.sh",
+	"typescript": "main.ts", "python": "main.py", "javascript": "main.js",
+}  # fmt: skip
+PISTON_ALIASES = {
+	"cpp": ("c++", "cpp", "g++"),
+	"csharp": ("csharp", "cs", "c#", "mono", "dotnet"),
+	"r": ("rscript", "r"),
+}
+
+
+def is_piston(s) -> bool:
+	return (s.get("runner_type") or "Judge0") == "Piston"
+
+
+def _piston_runtimes(s, refresh: bool = False) -> list[dict]:
+	key = "tcd_piston_runtimes"
+	cached = None if refresh else frappe.cache.get_value(key)
+	if cached is not None:
+		return cached
+	response = requests.get(f"{s.runner_url}/api/v2/runtimes", timeout=10, allow_redirects=False)
+	response.raise_for_status()
+	runtimes = [r for r in response.json() if isinstance(r, dict) and r.get("language")]
+	frappe.cache.set_value(key, runtimes, expires_in_sec=600)
+	return runtimes
+
+
+def _piston_runtime(s, language: str) -> dict | None:
+	"""The installed Piston runtime for one of our language keys (by name or alias), newest version first."""
+	wanted = set(PISTON_ALIASES.get(language, (language,)))
+	matches = [
+		r for r in _piston_runtimes(s) if r["language"] in wanted or wanted & set(r.get("aliases") or [])
+	]
+	return sorted(matches, key=lambda r: r.get("version") or "", reverse=True)[0] if matches else None
+
+
+def _piston_run(s, language: str, code: str, stdin: str) -> dict:
+	try:
+		runtime = _piston_runtime(s, language)
+	except (requests.RequestException, ValueError) as e:
+		raise RunnerError(_("Cannot reach the code runner.")) from e
+	if not runtime:
+		raise RunnerError(_("The code runner does not support {0}.").format(language))
+	payload = {
+		"language": runtime["language"],
+		"version": runtime["version"],
+		"files": [{"name": PISTON_FILES.get(language, "main"), "content": code}],
+		"stdin": stdin or "",
+		"compile_timeout": 10000,
+		"run_timeout": int((flt(s.runner_wall_seconds) or 10) * 1000),
+		"compile_memory_limit": -1,
+		"run_memory_limit": int(s.runner_memory_mb or 256) * 1024 * 1024,
+	}
+	try:
+		response = requests.post(
+			f"{s.runner_url}/api/v2/execute",
+			json=payload,
+			timeout=flt(s.runner_wall_seconds) + 30,
+			allow_redirects=False,
+		)
+	except requests.RequestException as e:
+		raise RunnerError(_("Cannot reach the code runner.")) from e
+	if response.status_code >= 400:
+		message = ""
+		try:
+			message = str(response.json().get("message") or "")[:200]
+		except ValueError:
+			pass
+		raise RunnerError(
+			_("The code runner returned an error ({0}). {1}").format(response.status_code, message)
+		)
+	try:
+		data = response.json()
+	except ValueError as e:
+		raise RunnerError(_("The code runner sent an unreadable answer.")) from e
+	compiled = data.get("compile") or {}
+	ran = data.get("run") or {}
+	if compiled and compiled.get("code") not in (0, None):
+		status, error = "Compilation Error", compiled.get("stderr") or compiled.get("output") or ""
+	elif ran.get("status") == "TO" or (ran.get("signal") == "SIGKILL" and ran.get("code") is None):
+		status, error = "Time Limit", ran.get("stderr") or ""
+	elif ran.get("status") == "XX":
+		status, error = "Error", ran.get("message") or ""
+	elif ran.get("code") not in (0, None) or ran.get("signal") or ran.get("status"):
+		status, error = "Runtime Error", ran.get("stderr") or ran.get("message") or ran.get("signal") or ""
+	else:
+		status, error = "Finished", ran.get("stderr") or ""
+	return {
+		"status": status,
+		"output": (ran.get("stdout") or "")[:MAX_OUTPUT_CHARS],
+		"error": str(error)[:4000],
+		"time_ms": round(flt(ran.get("wall_time") or ran.get("cpu_time") or 0), 1),
+		"memory_kb": int(flt(ran.get("memory") or 0) / 1024),
+	}
+
+
 # ---------------------------------------------------------------- run
 
 
@@ -186,6 +287,15 @@ def run(
 	}
 	if reference:
 		log.update(reference_doctype=reference[0], reference_name=reference[1])
+	if is_piston(s):
+		try:
+			result = _piston_run(s, language, code, stdin)
+		except RunnerError as e:
+			_log({**log, "status": "Error", "error": str(e)})
+			frappe.db.commit()  # keep the failed attempt in the log even though the request fails
+			frappe.throw(str(e), RunnerError)
+		_log({**log, **result})
+		return result
 	try:
 		data = _post(s, payload)
 	except RunnerError as e:
@@ -260,6 +370,14 @@ def test_connection() -> dict:
 	s = settings()
 	if not s.get("runner_enabled"):
 		frappe.throw(_("The code runner is turned off."), RunnerError)
+	if is_piston(s):
+		try:
+			runtimes = _piston_runtimes(s, refresh=True)
+			unknown = [lang for lang in languages(s) if not _piston_runtime(s, lang)]
+		except (requests.RequestException, ValueError, KeyError, TypeError) as e:
+			frappe.log_error(title="TCD code runner test failed")
+			frappe.throw(_("Cannot reach the code runner: {0}").format(type(e).__name__), RunnerError)
+		return {"version": "Piston", "unknown": unknown, "available": len(runtimes)}
 	try:
 		about = requests.get(f"{s.runner_url}/about", headers=_headers(s), timeout=10, allow_redirects=False)
 		langs = requests.get(

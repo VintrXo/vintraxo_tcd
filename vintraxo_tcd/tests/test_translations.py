@@ -15,6 +15,8 @@ from vintraxo_tcd.tests.base import TCDTestCase
 LANG_CODES = re.compile(r"^[a-z]{2}$")
 NOT_TRANSLATED = {
 	"VX",
+	"Judge0",
+	"Piston",
 	"JSON",
 	"SQL",
 	"java",

@@ -2354,3 +2354,5 @@ Chart drawn by the code,رسم بياني أنتجه الكود
 Oops! Something went wrong.,عفوًا! حدث خطأ ما.
 Something went wrong.,حدث خطأ ما.
 Verifying...,جارٍ التحقق...
+Runner Type,نوع خادم التشغيل
+"Judge0 (CE, with an API token) or Piston (keep it on a private address: it has no token).",Judge0 (نسخة CE بمفتاح API) أو Piston (أبقه على عنوان خاص، فهو بلا مفتاح).
