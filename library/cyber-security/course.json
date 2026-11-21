@@ -1,0 +1,58 @@
+{
+  "key": "cyber-security",
+  "category": "Business",
+  "spaces": {
+    "ar": {
+      "name": "cyber-security-ar",
+      "title": "أساسيات الأمن السيبراني",
+      "description": "الأمن للجميع: كلمات المرور ومديروها، والتجزئة، والتحقق بخطوتين، والتعرف على التصيّد، وحقن السكربتات و SQL، والتشفير و HTTPS، والصلاحيات، والتحديثات والنسخ الاحتياطي، والتعامل مع الحوادث، بأمثلة عملية آمنة."
+    },
+    "en": {
+      "name": "cyber-security-en",
+      "title": "Cybersecurity basics",
+      "description": "Security for everyone: passwords and managers, hashing, two-factor authentication, spotting phishing, XSS and SQL injection, encryption and HTTPS, access control, updates and backups, and handling incidents, with safe hands-on examples."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة أساسيات الأمن السيبراني",
+      "summary": "عادات وأدوات تحمي حساباتك وبيانات الشركة."
+    },
+    "en": {
+      "title": "Cybersecurity basics course",
+      "summary": "Habits and tools that protect your accounts and your company's data."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "حماية حساباتك",
+      "en": "Protecting your accounts",
+      "lessons": [
+        "sec-intro",
+        "sec-passwords",
+        "sec-hashing",
+        "sec-mfa",
+        "sec-phishing"
+      ]
+    },
+    {
+      "ar": "أمن التطبيقات والبيانات",
+      "en": "Application and data security",
+      "lessons": [
+        "sec-xss",
+        "sec-sql-injection",
+        "sec-encryption",
+        "sec-access"
+      ]
+    },
+    {
+      "ar": "الاستعداد والاستجابة",
+      "en": "Preparing and responding",
+      "lessons": [
+        "sec-updates-backups",
+        "sec-incident",
+        "sec-reference"
+      ]
+    }
+  ]
+}

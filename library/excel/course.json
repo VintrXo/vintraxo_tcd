@@ -1,0 +1,58 @@
+{
+  "key": "excel",
+  "category": "Business",
+  "spaces": {
+    "ar": {
+      "name": "excel-ar",
+      "title": "تعلّم Excel",
+      "description": "Excel للعمل اليومي: الخلايا والمعادلات والمراجع، والدوال الأساسية، والقرارات بـ IF، والمجاميع المشروطة، والبحث بـ XLOOKUP، والنصوص والتواريخ، والجداول والتصفية، والجداول المحورية والرسوم البيانية."
+    },
+    "en": {
+      "name": "excel-en",
+      "title": "Learn Excel",
+      "description": "Excel for everyday work: cells, formulas and references, essential functions, decisions with IF, conditional totals, XLOOKUP, text and dates, tables and filters, pivot tables and charts."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Excel",
+      "summary": "حوّل الجداول اليدوية إلى تقارير دقيقة تتحدث بنقرة."
+    },
+    "en": {
+      "title": "Excel course",
+      "summary": "Turn manual spreadsheets into accurate reports that update in one click."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Basics",
+      "lessons": [
+        "excel-intro",
+        "excel-formulas",
+        "excel-references",
+        "excel-functions"
+      ]
+    },
+    {
+      "ar": "دوال للعمل",
+      "en": "Functions for work",
+      "lessons": [
+        "excel-logic",
+        "excel-conditional-sums",
+        "excel-lookup",
+        "excel-text-dates"
+      ]
+    },
+    {
+      "ar": "التحليل والتقارير",
+      "en": "Analysis and reports",
+      "lessons": [
+        "excel-tables-filters",
+        "excel-pivot",
+        "excel-charts",
+        "excel-reference"
+      ]
+    }
+  ]
+}

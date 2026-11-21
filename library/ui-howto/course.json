@@ -1,0 +1,65 @@
+{
+  "key": "ui-howto",
+  "category": "Web",
+  "spaces": {
+    "ar": {
+      "name": "ui-howto-ar",
+      "title": "مكونات الواجهة: كيف تبنيها",
+      "description": "ابنِ مكونات الواجهة الشائعة من الصفر بـ HTML و CSS و JavaScript وبشكل سهل الوصول: التبويبات والأكورديون ونوافذ الحوار والقوائم المنسدلة وشريط التنقل والإشعارات والتلميحات وشرائح العرض والنماذج والوضع الداكن والبحث."
+    },
+    "en": {
+      "name": "ui-howto-en",
+      "title": "UI components: how to build them",
+      "description": "Build common interface components from scratch with HTML, CSS and JavaScript, accessibly: tabs, accordions, dialogs, dropdowns, navigation bars, toasts, tooltips, carousels, forms, dark mode and search."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة مكونات الواجهة",
+      "summary": "مكونات واجهة يستطيع الجميع استخدامها، بالفأرة ولوحة المفاتيح وقارئات الشاشة."
+    },
+    "en": {
+      "title": "UI components course",
+      "summary": "Interface components everyone can use, with a mouse, a keyboard or a screen reader."
+    }
+  },
+  "setups": {
+    "ui": {
+      "ar": "<html lang=\"ar\" dir=\"rtl\">",
+      "en": "<html lang=\"en\">"
+    }
+  },
+  "chapters": [
+    {
+      "ar": "التنقل والمحتوى",
+      "en": "Navigation and content",
+      "lessons": [
+        "howto-intro",
+        "howto-tabs",
+        "howto-accordion",
+        "howto-navbar",
+        "howto-carousel"
+      ]
+    },
+    {
+      "ar": "النوافذ والرسائل",
+      "en": "Overlays and messages",
+      "lessons": [
+        "howto-modal",
+        "howto-dropdown",
+        "howto-toast",
+        "howto-tooltip"
+      ]
+    },
+    {
+      "ar": "النماذج والتفضيلات",
+      "en": "Forms and preferences",
+      "lessons": [
+        "howto-form",
+        "howto-dark-mode",
+        "howto-filter",
+        "howto-reference"
+      ]
+    }
+  ]
+}

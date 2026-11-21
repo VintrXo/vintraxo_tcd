@@ -1,0 +1,57 @@
+{
+  "key": "ai-basics",
+  "category": "Data",
+  "spaces": {
+    "ar": {
+      "name": "ai-basics-ar",
+      "title": "أساسيات الذكاء الاصطناعي",
+      "description": "افهم الذكاء الاصطناعي من الداخل وبأمثلة تعمل في المتصفح: كيف تتعلم النماذج، والشبكات العصبية، وكيف تكتب النماذج اللغوية، ودرجة الحرارة، والتضمينات و RAG، وكتابة التوجيهات، والحدود والتحيز، والاستخدام المسؤول في العمل."
+    },
+    "en": {
+      "name": "ai-basics-en",
+      "title": "AI basics",
+      "description": "Understand AI from the inside with examples that run in your browser: how models learn, neural networks, how language models write, temperature, embeddings and RAG, writing prompts, limits and bias, and responsible use at work."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة أساسيات الذكاء الاصطناعي",
+      "summary": "ما الذي يفعله الذكاء الاصطناعي فعلًا، ومتى تثق به، وكيف تستخدمه بأمان."
+    },
+    "en": {
+      "title": "AI basics course",
+      "summary": "What AI really does, when to trust it, and how to use it safely."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "كيف تتعلم الآلات",
+      "en": "How machines learn",
+      "lessons": [
+        "ai-intro",
+        "ai-neuron",
+        "ai-neural-network"
+      ]
+    },
+    {
+      "ar": "النماذج اللغوية",
+      "en": "Language models",
+      "lessons": [
+        "ai-language-models",
+        "ai-temperature",
+        "ai-embeddings",
+        "ai-rag"
+      ]
+    },
+    {
+      "ar": "الاستخدام في العمل",
+      "en": "Using AI at work",
+      "lessons": [
+        "ai-prompting",
+        "ai-limits",
+        "ai-at-work",
+        "ai-reference"
+      ]
+    }
+  ]
+}
