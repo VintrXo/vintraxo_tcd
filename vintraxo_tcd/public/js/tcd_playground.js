@@ -30,7 +30,7 @@
 				py.setStdout({ batched: (s) => postMessage({ type: "stdout", text: s + "\n" }) });
 				py.setStderr({ batched: (s) => postMessage({ type: "stderr", text: s + "\n" }) });
 				// libraries' deprecation notices (e.g. pandas about pyarrow) only confuse learners; other warnings stay
-				py.runPython("import warnings\nwarnings.filterwarnings('ignore', category=DeprecationWarning)\nwarnings.filterwarnings('ignore', category=FutureWarning)");
+				py.runPython("import os, warnings\nos.environ['MPLBACKEND'] = 'Agg'\nwarnings.filterwarnings('ignore', category=DeprecationWarning)\nwarnings.filterwarnings('ignore', category=FutureWarning)");
 				postMessage({ type: "loaded" });
 				return py;
 			});
@@ -40,13 +40,38 @@
 		ready.catch((e) => postMessage({ type: "error", text: "Could not load Python: " + (e.message || e) }));
 		onmessage = async function (e) {
 			const py = await ready;
-			const t = performance.now();
+			let t = performance.now();
 			try {
+				// downloading libraries (scikit-learn, scipy...) is not run time: the runner pauses the clock
+				postMessage({ type: "packages" });
 				await py.loadPackagesFromImports(e.data.code);
+				// importing the libraries the code uses (matplotlib, sklearn...) is set-up, not the learner's run
+				// time; a module that cannot be imported is left for the learner's code to report
+				py.globals.set("_tcd_code", e.data.code);
+				py.runPython(
+					"import importlib\nfrom pyodide.code import find_imports as _fi\n_names = set(_fi(_tcd_code))\n" +
+						"if 'matplotlib' in _names: _names.add('matplotlib.pyplot')\n" +
+						"for _m in sorted(_names):\n    try: importlib.import_module(_m)\n    except Exception: pass\n" +
+						"del _tcd_code, _names"
+				);
+				postMessage({ type: "packages-ready" });
+				t = performance.now();
 				const result = await py.runPythonAsync(e.data.code);
 				if (result !== undefined && result !== null) {
 					postMessage({ type: "stdout", text: String(result) + "\n" });
 				}
+				// matplotlib figures drawn by the code come back as PNG images (at most 4); turning them into
+				// images is not the learner's run time, so the runner gives it its own short allowance
+				postMessage({ type: "rendering" });
+				const images = py.runPython(
+					"import sys, json\n_out = []\nif 'matplotlib.pyplot' in sys.modules:\n" +
+						"    import io, base64, matplotlib.pyplot as _plt\n" +
+						"    for _n in _plt.get_fignums()[:4]:\n" +
+						"        _b = io.BytesIO(); _plt.figure(_n).savefig(_b, format='png', dpi=90, bbox_inches='tight')\n" +
+						"        _out.append(base64.b64encode(_b.getvalue()).decode())\n" +
+						"    _plt.close('all')\njson.dumps(_out)"
+				);
+				for (const data of JSON.parse(images)) postMessage({ type: "image", data: data });
 				postMessage({ type: "done", ms: Math.round(performance.now() - t) });
 			} catch (err) {
 				postMessage({ type: "error", text: String(err.message || err) });
@@ -168,8 +193,29 @@
 						send({ type: "error", text: "This browser cannot start the playground: " + err.message });
 						return;
 					}
+					const stopAfter = (seconds) => {
+						clearTimeout(timer);
+						timer = setTimeout(function () {
+							worker.terminate();
+							send({ type: "timeout" });
+						}, seconds * 1000);
+					};
 					worker.onmessage = function (m) {
 						const d = m.data;
+						if (d.type === "packages") {
+							stopAfter(job.grace || 90); // library download: same allowance as the runtime download
+							send({ type: "loading-packages" });
+							return;
+						}
+						if (d.type === "rendering") {
+							stopAfter(15);
+							return;
+						}
+						if (d.type === "packages-ready") {
+							stopAfter(job.timeout); // the run limit starts now
+							send({ type: "packages-loaded" });
+							return;
+						}
 						if (d.type === "loaded") {
 							send({ type: "started" });
 							timer = setTimeout(function () {
@@ -347,6 +393,14 @@
 			this.output.hidden = false;
 		}
 
+		image(data) {
+			// only a PNG in base64 from the sandbox is shown: nothing else can become an image or markup
+			if (typeof data !== "string" || data.length > 4000000 || !/^iVBORw0KGgo[A-Za-z0-9+/]*={0,2}$/.test(data)) return;
+			const img = el("img", { class: "tcd-run-image", alt: this.t.chart || "Chart", src: "data:image/png;base64," + data });
+			this.output.append(img);
+			this.output.hidden = false;
+		}
+
 		write(text, kind) {
 			if (this.size > MAX_OUTPUT) return;
 			this.size += text.length;
@@ -409,7 +463,7 @@
 			this.stopBtn.hidden = false;
 			this.status(this.language === "javascript" ? this.t.running || "Running..." : this.t.loading_runtime || "Loading...");
 
-			this.job = { source: source, code: full, timeout: this.cfg.timeout_seconds || 5 };
+			this.job = { source: source, code: full, timeout: this.cfg.timeout_seconds || 5, grace: LOAD_GRACE_SECONDS };
 			this.frame = el("iframe", { sandbox: "allow-scripts", hidden: "", "aria-hidden": "true", tabindex: "-1" });
 			this.frame.srcdoc = RUNNER_HTML;
 			window.addEventListener("message", this.onMessage);
@@ -431,12 +485,27 @@
 					this.output.querySelector(".tcd-run-status")?.remove();
 					this.output.hidden = true;
 					break;
+				case "loading-packages":
+					clearTimeout(this.hardStop);
+					this.hardStop = setTimeout(
+						() => this.finish(format(this.t.timeout, this.job.timeout), "error"),
+						(this.job.timeout + LOAD_GRACE_SECONDS) * 1000
+					);
+					this.status(this.t.loading_packages || this.t.loading_runtime || "Loading...");
+					break;
+				case "packages-loaded":
+					this.output.querySelector(".tcd-run-status")?.remove();
+					this.output.hidden = !this.output.childElementCount;
+					break;
 				case "stdout":
 				case "stderr":
 					this.write(String(d.text || ""), d.type);
 					break;
 				case "table":
 					this.table(d.columns || [], d.values || []);
+					break;
+				case "image":
+					this.image(d.data);
 					break;
 				case "done":
 					this.finish(format(this.t.done_in, d.ms), "ok");
@@ -515,7 +584,7 @@
 		const source = workerSource(language, cfg);
 		if (!source) return Promise.resolve({ error: language + ": unsupported" });
 		const timeout = options.timeout || cfg.timeout_seconds || 5;
-		const job = { source: source, code: (options.setup ? options.setup + "\n" : "") + code, timeout: timeout };
+		const job = { source: source, code: (options.setup ? options.setup + "\n" : "") + code, timeout: timeout, grace: LOAD_GRACE_SECONDS };
 		return new Promise((resolve) => {
 			const out = { stdout: "", stderr: "", tables: [], error: null, timedOut: false };
 			const frame = el("iframe", { sandbox: "allow-scripts", hidden: "", "aria-hidden": "true", tabindex: "-1" });
@@ -536,6 +605,10 @@
 				else if (d.type === "error") (out.error = String(d.text || "")), done();
 				else if (d.type === "timeout") (out.timedOut = true), done();
 				else if (d.type === "done") done();
+				else if (d.type === "loading-packages") {
+					clearTimeout(hard);
+					hard = setTimeout(() => ((out.timedOut = true), done()), (timeout + LOAD_GRACE_SECONDS) * 1000);
+				}
 			};
 			window.addEventListener("message", onMessage);
 			frame.srcdoc = RUNNER_HTML;

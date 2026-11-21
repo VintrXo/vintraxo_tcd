@@ -2348,3 +2348,5 @@ Send login link,إرسال رابط تسجيل الدخول
 Reset Password,إعادة تعيين كلمة المرور
 Login with LDAP,تسجيل الدخول مع LDAP
 or,أو
+Loading libraries (first run can take up to a minute)...,جارٍ تحميل المكتبات (أول تشغيل قد يستغرق حتى دقيقة)...
+Chart drawn by the code,رسم بياني أنتجه الكود

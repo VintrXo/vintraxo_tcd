@@ -524,6 +524,8 @@ def js_labels() -> dict:
 		"reset": _("Reset"),
 		"running": _("Running..."),
 		"loading_runtime": _("Loading runtime (first run can take a few seconds)..."),
+		"loading_packages": _("Loading libraries (first run can take up to a minute)..."),
+		"chart": _("Chart drawn by the code"),
 		"runner_off": _(
 			"This example runs once the code runner is enabled. You can still read and edit the code."
 		),
