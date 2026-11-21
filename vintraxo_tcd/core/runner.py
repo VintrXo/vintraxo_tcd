@@ -34,6 +34,7 @@ DEFAULT_LANGUAGES = [
 	("typescript", "TypeScript", 74),
 	("kotlin", "Kotlin", 78),
 	("r", "R", 80),
+	("swift", "Swift", 83),
 ]
 # Judge0 status ids -> our status
 STATUS = {3: "Finished", 4: "Finished", 5: "Time Limit", 6: "Compilation Error"}
@@ -146,7 +147,7 @@ def _post(s, payload: dict) -> dict:
 PISTON_FILES = {
 	"java": "Main.java", "kotlin": "main.kt", "csharp": "Program.cs", "go": "main.go", "rust": "main.rs",
 	"cpp": "main.cpp", "c": "main.c", "php": "main.php", "r": "main.r", "bash": "main.sh",
-	"typescript": "main.ts", "python": "main.py", "javascript": "main.js",
+	"typescript": "main.ts", "python": "main.py", "javascript": "main.js", "swift": "main.swift",
 }  # fmt: skip
 PISTON_ALIASES = {
 	"cpp": ("c++", "cpp", "g++"),

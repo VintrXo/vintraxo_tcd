@@ -27,6 +27,7 @@ PLAYGROUND_LANGUAGES = (
 	"kotlin",
 	"typescript",
 	"r",
+	"swift",
 )
 # all but the first four run only when the code runner (Phase 10) is enabled for them
 CALLOUT_VARIANTS = ("info", "tip", "warning", "danger")

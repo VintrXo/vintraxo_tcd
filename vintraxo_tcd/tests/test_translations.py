@@ -27,6 +27,7 @@ NOT_TRANSLATED = {
 	"php",
 	"rust",
 	"kotlin",
+	"swift",
 	"typescript",
 	"r",
 }  # brand and technical names

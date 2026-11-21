@@ -34,7 +34,7 @@
 		if (["javascript", "js", "typescript", "ts", "json"].includes(lang)) return "javascript";
 		if (["sql", "mysql", "postgresql", "sqlite"].includes(lang)) return "sql";
 		if (["html", "xml", "svg"].includes(lang)) return "html";
-		if (["java", "c", "cpp", "c++", "go", "csharp", "cs", "bash", "sh", "shell", "php", "kotlin"].includes(lang)) return "clike";
+		if (["java", "c", "cpp", "c++", "go", "csharp", "cs", "bash", "sh", "shell", "php", "kotlin", "swift"].includes(lang)) return "clike";
 		return "";
 	}
 

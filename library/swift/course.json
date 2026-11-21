@@ -1,0 +1,57 @@
+{
+  "key": "swift",
+  "category": "Programming",
+  "spaces": {
+    "ar": {
+      "name": "swift-ar",
+      "title": "تعلّم Swift",
+      "description": "لغة Swift من الصفر: الثوابت والمتغيرات، والقيم الاختيارية، والشروط والحلقات، والمجموعات، والدوال والـ closures، والهياكل والأصناف، والتعدادات والبروتوكولات، ومعالجة الأخطاء."
+    },
+    "en": {
+      "name": "swift-en",
+      "title": "Learn Swift",
+      "description": "Swift from scratch: constants and variables, optionals, conditions and loops, collections, functions and closures, structs and classes, enums and protocols, and error handling."
+    }
+  },
+  "course": {
+    "ar": {
+      "title": "دورة Swift",
+      "summary": "لغة تطبيقات iPhone و Mac: آمنة وسريعة وسهلة القراءة."
+    },
+    "en": {
+      "title": "Swift course",
+      "summary": "The language of iPhone and Mac apps: safe, fast and readable."
+    }
+  },
+  "chapters": [
+    {
+      "ar": "الأساسيات",
+      "en": "Basics",
+      "lessons": [
+        "swift-intro",
+        "swift-variables",
+        "swift-optionals",
+        "swift-control",
+        "swift-loops"
+      ]
+    },
+    {
+      "ar": "البيانات والدوال",
+      "en": "Data and functions",
+      "lessons": [
+        "swift-collections",
+        "swift-functions"
+      ]
+    },
+    {
+      "ar": "الأنواع والأخطاء",
+      "en": "Types and errors",
+      "lessons": [
+        "swift-structs-classes",
+        "swift-enums-protocols",
+        "swift-errors",
+        "swift-reference"
+      ]
+    }
+  ]
+}
