@@ -43,7 +43,7 @@ def _readable_content(name: str):
 def runner_languages() -> set:
 	from vintraxo_tcd.core import runner
 
-	return set(runner.languages())
+	return runner.usable_languages()
 
 
 def playground_config() -> dict:

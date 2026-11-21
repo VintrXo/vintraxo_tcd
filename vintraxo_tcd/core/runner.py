@@ -57,6 +57,20 @@ def languages(s=None) -> dict:
 	return {r.language.strip().lower(): int(r.runner_language_id) for r in s.get("runner_languages") or []}
 
 
+def usable_languages(s=None) -> set:
+	"""Configured languages the runner can run right now. With Piston: only those whose runtime is installed
+	(the runtime list is cached for 10 minutes); none when Piston cannot be reached, so pages show the
+	"runner is off" note instead of failing runs."""
+	s = s or settings()
+	configured = languages(s)
+	if not configured or not is_piston(s):
+		return set(configured)
+	try:
+		return {lang for lang in configured if _piston_runtime(s, lang)}
+	except (requests.RequestException, ValueError, KeyError, TypeError):
+		return set()
+
+
 def server_only(language: str | None) -> bool:
 	return bool(language) and language not in BROWSER_LANGUAGES
 
@@ -67,9 +81,9 @@ def grades_on_server(item) -> bool:
 	if item.get("type") != "Code":
 		return False
 	if item.get("test_cases"):
-		return item.get("code_language") in languages()
+		return item.get("code_language") in usable_languages()
 	language = item.get("code_language")
-	if language not in languages():
+	if language not in usable_languages():
 		return False
 	return bool(item.get("grade_on_server")) or server_only(language)
 

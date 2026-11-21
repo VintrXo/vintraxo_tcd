@@ -120,6 +120,10 @@ class TestPhase10Runner(TCDTestCase):
 			with self.assertRaises(runner.RunnerError):  # configured but not installed on Piston
 				runner.run("rust", "fn main(){}", self.learner)
 
+			usable = runner.usable_languages()  # what the pages offer: only installed runtimes
+			self.assertTrue({"java", "cpp"} <= usable)
+			self.assertNotIn("rust", usable)
+
 			report = runner.test_connection()
 		self.assertEqual(report["version"], "Piston")
 		self.assertIn("rust", report["unknown"])
@@ -127,6 +131,10 @@ class TestPhase10Runner(TCDTestCase):
 		self.assertEqual(
 			frappe.db.count("TCD Code Run", {"user": self.learner}), 5
 		)  # failures are logged too
+
+		frappe.cache.delete_value("tcd_piston_runtimes")
+		with patch("vintraxo_tcd.core.runner.requests.get", side_effect=requests.ConnectionError):
+			self.assertEqual(runner.usable_languages(), set())  # Piston down: nothing offered
 
 	# ------------------------------------------------------------ settings
 

@@ -172,7 +172,7 @@ def validate_question(doc):
 		if doc.get("test_cases"):
 			from vintraxo_tcd.core import runner
 
-			if doc.code_language not in runner.languages():
+			if doc.code_language not in runner.usable_languages():
 				frappe.throw(
 					_("Test cases run on the code runner. Enable it for {0} first.").format(doc.code_language)
 				)
@@ -180,7 +180,7 @@ def validate_question(doc):
 			frappe.throw(_("Add the expected output, or tick Requires Manual Review."))
 		from vintraxo_tcd.core import runner
 
-		if runner.server_only(doc.code_language) and doc.code_language not in runner.languages():
+		if runner.server_only(doc.code_language) and doc.code_language not in runner.usable_languages():
 			frappe.throw(
 				_("{0} runs only on the code runner. Enable the runner and add the language first.").format(
 					doc.code_language
@@ -266,7 +266,9 @@ def payload(item, ref) -> dict:
 		from vintraxo_tcd.core import runner
 
 		# languages the browser cannot run are run (for practice) through api.run_code
-		out["run_on_server"] = runner.server_only(out["language"]) and out["language"] in runner.languages()
+		out["run_on_server"] = (
+			runner.server_only(out["language"]) and out["language"] in runner.usable_languages()
+		)
 		# visible test cases are examples; hidden ones never leave the server
 		out["examples"] = [
 			{"input": c["input"], "expected_output": c["expected_output"]}
