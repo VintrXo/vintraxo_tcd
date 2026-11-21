@@ -2350,3 +2350,7 @@ Login with LDAP,تسجيل الدخول مع LDAP
 or,أو
 Loading libraries (first run can take up to a minute)...,جارٍ تحميل المكتبات (أول تشغيل قد يستغرق حتى دقيقة)...
 Chart drawn by the code,رسم بياني أنتجه الكود
+"Invalid credentials, try again.",بيانات اعتماد غير صالحة، حاول مرة أخرى.
+Oops! Something went wrong.,عفوًا! حدث خطأ ما.
+Something went wrong.,حدث خطأ ما.
+Verifying...,جارٍ التحقق...
